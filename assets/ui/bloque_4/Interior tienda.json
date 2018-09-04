@@ -1,0 +1,35 @@
+{
+	"frames": {
+		"4. TIENDA FONDO.png": {
+			"frame": {
+				"x": 4,
+				"y": 4,
+				"w": 3305,
+				"h": 2204
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 3305,
+				"h": 2204
+			},
+			"sourceSize": {
+				"w": 3305,
+				"h": 2204
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 3313,
+			"h": 2212
+		},
+		"scale": "1"
+	}
+}

@@ -1,0 +1,17 @@
+.circulos{
+  border-radius: 40px;
+background-color: white;
+width: 30px;
+height: 30px;
+align-self: center;
+display: inline-block;
+margin: 30px 10px 10px 10px;
+border-color: white;
+}
+
+#container{
+  height: 100px;
+  width: 100%;
+  background-color: rgb(25,41,26);
+  text-align: center;
+}

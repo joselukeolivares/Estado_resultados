@@ -1,0 +1,215 @@
+{
+	"frames": {
+		"coppel_puerta_01.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		},
+		"coppel_puerta_010.png": {
+			"frame": {
+				"x": 1168,
+				"y": 1,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		},
+		"coppel_puerta_02.png": {
+			"frame": {
+				"x": 2335,
+				"y": 1,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		},
+		"coppel_puerta_03.png": {
+			"frame": {
+				"x": 1,
+				"y": 1313,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		},
+		"coppel_puerta_04.png": {
+			"frame": {
+				"x": 1168,
+				"y": 1313,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		},
+		"coppel_puerta_05.png": {
+			"frame": {
+				"x": 2335,
+				"y": 1313,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		},
+		"coppel_puerta_06.png": {
+			"frame": {
+				"x": 3502,
+				"y": 1,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		},
+		"coppel_puerta_07.png": {
+			"frame": {
+				"x": 3502,
+				"y": 1313,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		},
+		"coppel_puerta_08.png": {
+			"frame": {
+				"x": 1,
+				"y": 2625,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		},
+		"coppel_puerta_09.png": {
+			"frame": {
+				"x": 1168,
+				"y": 2625,
+				"w": 1165,
+				"h": 1310
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1165,
+				"h": 1310
+			},
+			"sourceSize": {
+				"w": 1165,
+				"h": 1310
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "doors.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 4668,
+			"h": 3936
+		},
+		"scale": "1"
+	}
+}
