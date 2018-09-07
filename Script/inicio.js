@@ -12,10 +12,11 @@ function inicio(){
 
 
        self.app.destroy(true);
+       /*
        var canvas=document.getElementsByTagName("canvas")
        var parent=document.getElementById("aplicacion");
        parent.removeChild(canvas[0]);
-
+      */
 
     return self;
   }
@@ -43,9 +44,9 @@ function inicio(){
         return false;
 
       var app=self.app;
-      while(app.stage.children[0]) {
+      while(app.stage.getChildAt[0]) {
         console.log("Elemntos restantes: "+app.stage.children.length +" de la app de PIXI")
-        app.stage.removeChild(app.stage.children[0]); }
+        app.stage.removeChildAt(0); }
 
 
 
