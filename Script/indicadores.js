@@ -79,7 +79,11 @@ function indicadores(){
       try{
 
         new Promise(function(resolve,reject){
-            shopping().build(self.app);
+            var shop=new shopping();
+                shop.flag_ctes=false;
+                shop.build(self.app);
+                debugger;
+
             resolve("Tienda construida");
         }).then(function(msj){
           console.log(msj);
@@ -141,7 +145,7 @@ function indicadores(){
               WTC_txt.x=50;
 
               var rect_tc=new PIXI.Graphics();
-              var rect_WTC=new PIXI.Graphics();    
+              var rect_WTC=new PIXI.Graphics();
 
       }
 

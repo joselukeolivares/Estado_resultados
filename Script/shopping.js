@@ -2,6 +2,7 @@ function shopping(){
 
 
    var shop={};
+   shop.flag_ctes=true;
 
    shop.build=function(app)
 {
@@ -32,6 +33,7 @@ function shopping(){
 
                   }catch(err){
                     console.log(err);
+
                   setup();
                 }
 
@@ -46,10 +48,21 @@ function shopping(){
 
 
 	function setup(){
+try{
+  var loader_ctes=PIXI.loader;
+      if(shop.flag_ctes){
+        loader_ctes
+        .add('Cliente_naranja','assets/Cliente_naranja.json')
+        .load(onAssetsLoad);
+      }
 
-  PIXI.loader
-      .add('Cliente_naranja','assets/Cliente_naranja.json')
-      .load(onAssetsLoad);
+
+}catch(err){
+  debugger;
+  if(shop.flag_ctes)
+  Loader.load(onAssetsLoad);
+}
+
 
       var Cliente_1,
        Cliente_2,
@@ -124,10 +137,10 @@ function shopping(){
 
 
 
-  var clientes_t=[Cliente_1,Cliente_2,Cliente_3,Cliente_4,Cliente_5,Cliente_6,Cliente_7,Cliente_8,Cliente_9];
 
 function onAssetsLoad(Loader,res){
-
+  var clientes_t=[Cliente_1,Cliente_2,Cliente_3,Cliente_4,Cliente_5,Cliente_6,Cliente_7,Cliente_8,Cliente_9];
+  shop.clientes_t=clientes_t;
 var position=1;
 
 
@@ -135,6 +148,7 @@ var position=1;
 
           var p = i * 200;
           var q = i * 100;
+          debugger;
            clientes_t[i] = new PIXI.spine.Spine(res.Cliente_naranja.spineData);
            clientes_t[i].scale.set(0.07,0.07);
            clientes_t[i].x = app.screen.width / 16+p;
@@ -255,7 +269,7 @@ function LoadButton(){
 
    }
 
-
+ return shop;
   }//end build
 
 return shop;

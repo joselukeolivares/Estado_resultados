@@ -1,10 +1,12 @@
 function inicio(){
+  
   var self={};
   self.frames;
 
 
 
   self.destroyApp=function(){
+
     console.log("destruyendo la app Inicio");
     debugger;
     if(self.app==null)
@@ -12,11 +14,6 @@ function inicio(){
 
 
        self.app.destroy(true);
-       /*
-       var canvas=document.getElementsByTagName("canvas")
-       var parent=document.getElementById("aplicacion");
-       parent.removeChild(canvas[0]);
-      */
 
     return self;
   }
