@@ -1,0 +1,125 @@
+
+Cliente_naranja.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+3
+  rotate: false
+  xy: 3595, 1366
+  size: 375, 675
+  orig: 375, 675
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 3027, 1174
+  size: 566, 741
+  orig: 567, 741
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 657, 1177
+  size: 375, 675
+  orig: 375, 675
+  offset: 0, 0
+  index: -1
+brazo_izq_rojo
+  rotate: false
+  xy: 657, 1854
+  size: 375, 675
+  orig: 375, 675
+  offset: 0, 0
+  index: -1
+pierna_izq_roja
+  rotate: false
+  xy: 2371, 1993
+  size: 288, 560
+  orig: 288, 560
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 3027, 1917
+  size: 288, 560
+  orig: 288, 560
+  offset: 0, 0
+  index: -1
+torso_rojo
+  rotate: false
+  xy: 2371, 1174
+  size: 654, 817
+  orig: 654, 817
+  offset: 0, 0
+  index: -1
+2_2
+  rotate: false
+  xy: 1, 1177
+  size: 654, 817
+  orig: 654, 817
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 1, 1996
+  size: 654, 817
+  orig: 654, 817
+  offset: 0, 0
+  index: -1
+cabeza_roja
+  rotate: false
+  xy: 2371, 1
+  size: 1182, 1171
+  orig: 1182, 1171
+  offset: 0, 0
+  index: -1
+9
+  rotate: false
+  xy: 1, 1
+  size: 1184, 1174
+  orig: 1184, 1174
+  offset: 0, 0
+  index: -1
+1
+  rotate: false
+  xy: 1187, 1
+  size: 1182, 1171
+  orig: 1182, 1171
+  offset: 0, 0
+  index: -1
+1_2
+  rotate: false
+  xy: 1187, 1174
+  size: 1182, 1171
+  orig: 1182, 1171
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 3555, 1
+  size: 388, 686
+  orig: 389, 686
+  offset: 0, 0
+  index: -1
+brazo_der_rojo
+  rotate: false
+  xy: 3595, 689
+  size: 375, 675
+  orig: 375, 675
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 3317, 2043
+  size: 286, 560
+  orig: 286, 560
+  offset: 0, 0
+  index: -1
+pierna_der_roja
+  rotate: false
+  xy: 2661, 1993
+  size: 286, 560
+  orig: 286, 560
+  offset: 0, 0
+  index: -1

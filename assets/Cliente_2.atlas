@@ -1,0 +1,83 @@
+
+Cliente_2.png
+size: 2048,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pierna_izq_roja
+  rotate: false
+  xy: 1753, 1997
+  size: 288, 560
+  orig: 288, 560
+  offset: 0, 0
+  index: -1
+brazo_izq_rojo_2
+  rotate: false
+  xy: 1185, 1997
+  size: 566, 741
+  orig: 567, 741
+  offset: 0, 0
+  index: -1
+brazo_izq_rojo
+  rotate: false
+  xy: 1575, 3417
+  size: 375, 675
+  orig: 375, 675
+  offset: 0, 0
+  index: -1
+torso_rojo_2
+  rotate: false
+  xy: 1185, 1178
+  size: 654, 817
+  orig: 654, 817
+  offset: 0, 0
+  index: -1
+torso_rojo
+  rotate: false
+  xy: 1187, 1
+  size: 654, 817
+  orig: 654, 817
+  offset: 0, 0
+  index: -1
+cabeza_roja
+  rotate: false
+  xy: 1, 2351
+  size: 1182, 1171
+  orig: 1182, 1171
+  offset: 0, 0
+  index: -1
+cabeza_roja_2_1
+  rotate: false
+  xy: 1, 1
+  size: 1184, 1175
+  orig: 1184, 1175
+  offset: 0, 0
+  index: -1
+cabeza_roja_2
+  rotate: false
+  xy: 1, 1178
+  size: 1182, 1171
+  orig: 1182, 1171
+  offset: 0, 0
+  index: -1
+braso_der_rojo_2
+  rotate: false
+  xy: 1185, 2740
+  size: 388, 685
+  orig: 389, 685
+  offset: 0, 0
+  index: -1
+brazo_der_rojo
+  rotate: false
+  xy: 1575, 2740
+  size: 375, 675
+  orig: 375, 675
+  offset: 0, 0
+  index: -1
+pierna_der_roja
+  rotate: false
+  xy: 1185, 3427
+  size: 286, 560
+  orig: 286, 560
+  offset: 0, 0
+  index: -1

@@ -80,7 +80,7 @@ function inicio(){
     shop.scale.set(0.4,0.4);
 
     notDoor.x = app.screen.width / 2;
-    notDoor.y = app.screen.height /1.52;
+    notDoor.y = app.screen.height /1.48;
     notDoor.anchor.set(0.5,0.5);
     notDoor.scale.set(0.4,0.4);
 
@@ -113,9 +113,9 @@ function inicio(){
             animatedDoor= new PIXI.extras.AnimatedSprite(self.frames);
 
            animatedDoor.x = app.screen.width / 2;
-           animatedDoor.y = app.screen.height / 1.52;
+           animatedDoor.y = app.screen.height / 1.48;
            animatedDoor.anchor.set(0.5);
-           animatedDoor.animationSpeed = 0.1;
+           animatedDoor.animationSpeed = 0.2;
            animatedDoor.scale.set(0.4,0.4);
            animatedDoor.name="animatedDoor";
            animatedDoor.visible=false;
@@ -145,7 +145,7 @@ function inicio(){
           var shop=app.stage.getChildByName('shop')
           var background=app.stage.getChildByName('background')
           var animatedDoor=app.stage.getChildByName('animatedDoor')
-          animatedDoor.animationSpeed = 0.1;
+          animatedDoor.animationSpeed = 0.2;
           notDoor.visible = false;
           animatedDoor.visible = true;
           animatedDoor.gotoAndPlay(0);
