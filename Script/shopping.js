@@ -195,22 +195,19 @@ var position=1;
 });
 
 
-}
-
-
-setTimeout(function () {LoadButton()}, 10000);
+setTimeout(function () {LoadButton()}, 1000);
 
 function LoadButton(){
 
-  var btn = PIXI.Texture.fromImage('assets/Botton_1.png');
-  var btn_2 = PIXI.Texture.fromImage('assets/Button_2.png');
+  var btn = PIXI.Texture.fromImage('assets/Button_3.png');
+  var btn_2 = PIXI.Texture.fromImage('assets/Botton_1.png');
 
   	var button = new PIXI.Sprite(btn);
 
   	        button.x = app.screen.width / 2;
               button.y = app.screen.height / 2;
               button.anchor.set(0.5,0.5);
-              button.scale.set(0.25,0.25);
+              button.scale.set(0.4,0.4);
 
 
        app.stage.addChild(button);
@@ -220,7 +217,8 @@ function LoadButton(){
 
               button
                  .on('mouseover',MouseOver)
-                 .on('mouseout',MouseOut);
+                 .on('mouseout',MouseOut)
+                 .on('click',Clicked);
 
 
                  function MouseOver(){
@@ -240,10 +238,23 @@ function LoadButton(){
 
 					}
 
+           function Clicked(){
 
 
+                 toSlide("historia");
+
+
+
+
+           }
 
             					}
+
+
+}
+
+
+
 
 
 
