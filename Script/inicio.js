@@ -6,7 +6,7 @@ function inicio(){
 
   self.destroyApp=function(){
     console.log("destruyendo la app Inicio");
-
+    debugger;
     if(self.app==null)
        return self;
 
