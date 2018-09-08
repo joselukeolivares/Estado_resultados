@@ -110,10 +110,12 @@ function indicadores(){
       graphics.drawRect(0,0,width,height);
       graphics.endFill();
 
+      /*
       graphics.lineStyle(2, 0xFF00FF, 1);
       graphics.beginFill(0xFF00BB, 0.25);
       graphics.drawRoundedRect(250, 450, 300, 100, 15);
       graphics.parentGroup=group_1;
+      */
 
       var container2=new PIXI.Container();
           container2.addChild(graphics);
@@ -147,49 +149,78 @@ function indicadores(){
               var rect_tc=new PIXI.Graphics();
               var rect_WTC=new PIXI.Graphics();
 
-      }
-
-      var button_TC=new PIXI.Container();
-      var button_WTC=new PIXI.Container();
 
 
+              rect_tc.lineStyle(2,0x4286f4,1);
+              rect_tc.beginFill(0xa5a4a0,.95);
+              rect_tc.drawRect(TC_txt.x-10,TC_txt.y*.85,width*.20,height*.15);
+              rect_tc.endFill();
+
+              rect_WTC.lineStyle(2,0x4286f4,1);
+              rect_WTC.beginFill(0xa5a4a0,.95);
+              rect_WTC.drawRect(TC_txt.x-10,TC_txt.y*.85,width*.20,height*.12);
+              rect_WTC.endFill();
+
+              container_1[i].addChild(rect_tc);
+              container_1[i].addChild(TC_txt);
+
+              container_2[i].addChild(rect_WTC);
+              container_2[i].addChild(WTC_txt);
+              container_2[i].alpha=0;
+              container_2[i].y=container_1[i].y+(i*200);
+
+
+              app.stage.addChild(container_2[i]);
+
+              app.stage.addChild(container_1[i]);
+
+              container_1[i].interactive = true;
+              container_1[i].buttonMode = true;
+              container_2[i].interactive = true;
+              container_2[i].buttonMode = true;
+              container_1[i].name="container_1_"+i;
+              container_2[i].name="container_2_"+i;
+
+              container_1[i].child_container=container_2[i];
+
+              TweenMax.to(container_1[i],2,{pixi:{y:(container_1[i].y+(i*200)),alpha:1}});
+
+              container_1[i].on('mouseover',function(){
+                 debugger;
+                  TweenMax.to(this.child_container,3,{pixi:{x:(this.width+this.x),y:this.y,alpha:1}});
+              });
+
+
+              container_2[i].on('mouseover',function(){
+                  console.log("on click")
+                  var containers=[]
+
+                  for(var i=0;i<3;i++){
+
+
+                      var container_1=app.stage.getChildByName("container_1_"+i);
+                      container_1.old_x=container_1.x;
+                      container_1.old_y=container_1.y;
+                      containers.push(container_1);
+
+                      var container_2=app.stage.getChildByName("container_2_"+i);
+                      container_2.old_x=container_2.x;
+                      container_2.old_y=container_2.y;
+                      containers.push(container_2);
+                  }
+                  debugger;
+                  TweenMax.to(containers,3,{pixi:{x:(width*1.5),rotation:360,alpha:0,scale:.1},onComplete:Qes(this.name)});
+              })
 
 
 
+      }//end for
 
+    }//end createSprite
 
-
-          rect_tc.lineStyle(2,0x4286f4,1);
-          rect_tc.beginFill(0xa5a4a0,.95);
-          rect_tc.drawRect(TC_txt.x-10,TC_txt.y*.85,width*.20,height*.15);
-          rect_tc.endFill();
-
-          rect_WTC.lineStyle(2,0x4286f4,1);
-          rect_WTC.beginFill(0xa5a4a0,.95);
-          rect_WTC.drawRect(TC_txt.x-10,TC_txt.y*.85,width*.20,height*.12);
-          rect_WTC.endFill();
-
-
-          button_TC.addChild(rect_tc);
-          button_TC.addChild(TC_txt);
-
-          button_WTC.addChild(rect_WTC);
-          button_WTC.addChild(WTC_txt);
-          button_WTC.alpha=0;
-
-
-       app.stage.addChild(button_WTC);
-
-       app.stage.addChild(button_TC);
-       button_TC.interactive = true;
-       button_TC.buttonMode = true;
-
-       button_TC.on('mouseover',function(){
-         console.log('mouseover');
-
-         TweenMax.to(button_WTC,2,{pixi:{x:((width*.20)),alpha:1}});
-       })
-
+    function Qes(nombre){
+      console.log("Qes function");
+      console.log(nombre);
     }
 
 

@@ -1,5 +1,5 @@
 function toSlide(to){
-
+debugger;
 
 
    scratching(1)
@@ -7,7 +7,7 @@ function toSlide(to){
    .then(function(){
       actual_app=null;
       actual_app=new window[to]().createApp();
-    
+
       console.log(actual_app);
 
    })
