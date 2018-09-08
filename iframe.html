@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title> Demo 1 </title>
+		<script src="js/pixi.min.js"></script>
+	</head>
+	<body>
+	<div align="center" style="position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);">
+	<iframe id="preview" src="index.html" frameborder="0" scrolling="no" align="middle" onload="redimensionariframe(this)"></iframe>
+	</div>
+	<script type="text/javascript">
+  function redimensionariframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+	obj.style.width = obj.contentWindow.document.body.scrollWidth+ 'px';
+  }
+</script>
+	</body>
+</html>

@@ -27,11 +27,11 @@
 <script src="Script/shopping.js"></script>
 <script src="Script/historia.js"></script>
 <script src="Script/indicadores.js"></script>
-<main id="main">
+<main id="main" align="center" style="position: absolute;left: 50%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)";>
 
 </main>
 <footer>
-  <div id="container" >
+  <div id="container" align="center" style="position: absolute;left: 50%;top: 95%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)" >
     <div class="circulos" data-balloon="Inicio!" data-balloon-pos="up" onclick='toSlide("inicio")'></div>
     <div class="circulos" data-balloon="Historia!" data-balloon-pos="up" onclick='toSlide("historia")'></div>
     <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicadores")'></div>
@@ -44,7 +44,7 @@
 <script>
 
 
-    var width =screen.width-25,
+    var width =screen.width-500,
         height =screen.height-225,
         dom={},
         div=document.createElement('div'),
@@ -56,6 +56,7 @@
 
   div.setAttribute("id","aplicacion");
   div.setAttribute("style","width:"+width+"px;height:"+height+"px;");
+  debugger;
   main.appendChild(div);
 
 
