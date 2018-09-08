@@ -8,73 +8,7 @@ function indicadores(){
 
       div_app.appendChild(self.app.view);
 
-
-
-
-
-
       self.app.stage = new PIXI.display.Stage();
-
-      //self.app.stage.addChild(new PIXI.display.Layer(group_2));
-
-
-     /*
-      var loader=PIXI.loader;
-          loader
-          .add("assets/Articulos.json")
-          .load(setup);
-
-          var comedor;
-
-          function setup(){
-
-
-            var id=loader.resources['assets/Articulos.json'].textures;
-
-
-            debugger;
-            comedor=new PIXI.Sprite(id['11. COMEDOR.png']);
-                comedor.position.set(0,100);
-                comedor.scale.set(.5,.5);
-                comedor.parentGroup=group_1;
-                //comedor.zOrder=+2;
-
-            lineablanca=new PIXI.Sprite(id['9. LINEA BLANCA.png']);
-                lineablanca.position.set(1,100);
-                lineablanca.scale.set(.5,.5);
-                lineablanca.parentGroup=group_1;
-                //lineablanca.zOrder=+1;
-
-
-
-                TweenMax.to([comedor],5,{pixi:{opacity:1},onComplete:tweenComplete});
-
-
-
-                function tweenComplete(){
-                  console.log("tweenComplete Comedor");
-                }
-
-
-
-
-
-            var container2=new PIXI.Container();
-                container2.addChild(lineablanca);
-                self.app.stage.addChild(container2);
-
-
-
-          }
-      //var shop=Loader.resources["assets/Articulos.json"].texture;
-
-
-
-
-      //self.app.view.style.width=div_app.width;
-      //self.app.view.style.height=div_app.height;
-*/
-
 
       try{
 
@@ -110,15 +44,13 @@ function indicadores(){
       graphics.drawRect(0,0,width,height);
       graphics.endFill();
 
-      /*
-      graphics.lineStyle(2, 0xFF00FF, 1);
-      graphics.beginFill(0xFF00BB, 0.25);
-      graphics.drawRoundedRect(250, 450, 300, 100, 15);
-      graphics.parentGroup=group_1;
-      */
+      var titulo=new PIXI.Text("Indicadores del Estado de Resultado de Clientes",{fontSize:36,fill:0x174389,fontWeight:'bold'});
+          titulo.y=height*.05;
+          titulo.x=50;
 
       var container2=new PIXI.Container();
           container2.addChild(graphics);
+          container2.addChild(titulo);
 
 
       app.stage.addChild(container2);
@@ -221,6 +153,16 @@ function indicadores(){
     function Qes(nombre){
       console.log("Qes function");
       console.log(nombre);
+
+      var descripcion=new PIXI.Text("Indicadores del Estado de Resultado de Clientes",
+      {fontSize:36,
+       fill:0x174389,
+       fontWeight:'bold'});
+          titulo.y=height*.05;
+          titulo.x=50;
+          self.app.stage.addChild()
+
+
     }
 
 
