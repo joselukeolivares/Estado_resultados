@@ -146,13 +146,13 @@ var position=1;
 
           for(i=0;i<clientes_t.length;i++){
 
-          var p = i * 200;
-          var q = i * 100;
+          var p = i * 150;
+          var q = i * 75;
           debugger;
            clientes_t[i] = new PIXI.spine.Spine(res.Cliente_naranja.spineData);
            clientes_t[i].scale.set(0.07,0.07);
-           clientes_t[i].x = app.screen.width / 16+p;
-           clientes_t[i].y = app.screen.height / 16+q;
+           clientes_t[i].x = Math.floor((Math.random() * app.screen.height) + 1)+p;
+           clientes_t[i].y = app.screen.height / 6+q;
            clientes_t[i].interactive = true;
            clientes_t[i].state.setAnimation(0,'walk',true);
            clientes_t[i].on('mouseover',clicked);
