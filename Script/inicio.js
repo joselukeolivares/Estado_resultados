@@ -54,7 +54,7 @@ function inicio(){
 
 
   function createSprite(app){
-    debugger;
+    //debugger;
     var textureBackground = PIXI.Texture.fromImage('assets/background_coppel.png');
   	var textureShop = PIXI.Texture.fromImage('assets/coppel.png');
   	var textureDoor = PIXI.Texture.fromImage('assets/coppel_puerta_01.png');

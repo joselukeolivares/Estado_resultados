@@ -1,6 +1,6 @@
 function shopping(){
 
-  debugger;
+  //debugger;
    var shop={};
 
    shop.build=function(app)
