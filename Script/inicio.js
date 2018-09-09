@@ -1,21 +1,19 @@
 function inicio(){
+  
   var self={};
   self.frames;
 
 
 
   self.destroyApp=function(){
-    console.log("destruyendo la app Inicio");
 
+    console.log("destruyendo la app Inicio");
+    debugger;
     if(self.app==null)
        return self;
 
 
        self.app.destroy(true);
-       var canvas=document.getElementsByTagName("canvas")
-       var parent=document.getElementById("aplicacion");
-       parent.removeChild(canvas[0]);
-
 
     return self;
   }
@@ -43,9 +41,9 @@ function inicio(){
         return false;
 
       var app=self.app;
-      while(app.stage.children[0]) {
+      while(app.stage.getChildAt[0]) {
         console.log("Elemntos restantes: "+app.stage.children.length +" de la app de PIXI")
-        app.stage.removeChild(app.stage.children[0]); }
+        app.stage.removeChildAt(0); }
 
 
 
@@ -80,7 +78,7 @@ function inicio(){
     shop.scale.set(0.4,0.4);
 
     notDoor.x = app.screen.width / 2;
-    notDoor.y = app.screen.height /1.52;
+    notDoor.y = app.screen.height /1.48;
     notDoor.anchor.set(0.5,0.5);
     notDoor.scale.set(0.4,0.4);
 
@@ -113,9 +111,9 @@ function inicio(){
             animatedDoor= new PIXI.extras.AnimatedSprite(self.frames);
 
            animatedDoor.x = app.screen.width / 2;
-           animatedDoor.y = app.screen.height / 1.52;
+           animatedDoor.y = app.screen.height / 1.48;
            animatedDoor.anchor.set(0.5);
-           animatedDoor.animationSpeed = 0.1;
+           animatedDoor.animationSpeed = 0.2;
            animatedDoor.scale.set(0.4,0.4);
            animatedDoor.name="animatedDoor";
            animatedDoor.visible=false;
@@ -145,7 +143,7 @@ function inicio(){
           var shop=app.stage.getChildByName('shop')
           var background=app.stage.getChildByName('background')
           var animatedDoor=app.stage.getChildByName('animatedDoor')
-          animatedDoor.animationSpeed = 0.1;
+          animatedDoor.animationSpeed = 0.2;
           notDoor.visible = false;
           animatedDoor.visible = true;
           animatedDoor.gotoAndPlay(0);

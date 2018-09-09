@@ -1,0 +1,95 @@
+{
+	"frames": {
+		"1.png": {
+			"frame": {
+				"x": 4,
+				"y": 4,
+				"w": 3300,
+				"h": 2550
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 3300,
+				"h": 2550
+			},
+			"sourceSize": {
+				"w": 3300,
+				"h": 2550
+			}
+		},
+		"1. PUERTAS CERRADAS.png": {
+			"frame": {
+				"x": 3312,
+				"y": 4,
+				"w": 3306,
+				"h": 2060
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 3306,
+				"h": 2060
+			},
+			"sourceSize": {
+				"w": 3306,
+				"h": 2060
+			}
+		},
+		"3. BOTON 1.png": {
+			"frame": {
+				"x": 6626,
+				"y": 4,
+				"w": 1180,
+				"h": 1180
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1180,
+				"h": 1180
+			},
+			"sourceSize": {
+				"w": 1180,
+				"h": 1180
+			}
+		},
+		"3. BOTON 2.png": {
+			"frame": {
+				"x": 7814,
+				"y": 4,
+				"w": 1184,
+				"h": 1184
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1184,
+				"h": 1184
+			},
+			"sourceSize": {
+				"w": 1184,
+				"h": 1184
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "Puerta y Logo.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 9002,
+			"h": 2558
+		},
+		"scale": "1"
+	}
+}

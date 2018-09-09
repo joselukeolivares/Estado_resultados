@@ -11,26 +11,31 @@
   <link rel="stylesheet" href="CSS/balloon.css">
 
 
-  <!--librerias-->
+  <!--librerias
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script>
+  -->
   <script src="js/pixi.min.js"></script>
+  <script src="js/pixi-layers.js"></script>
+  <script src="js/pixi.spine.js"></script>
   <script src="js/GSAP Class/Tweening Basics/js/gsap/plugins/PixiPlugin.js"></script>
   <script src="js/GSAP Class/Tweening Basics/js/gsap/TimelineMax.js"></script>
   <script src="js/GSAP Class/Tweening Basics/js/gsap/TweenMax.js"></script>
 
-  <script src="Script/inicio.js"></script>
+<script src="Script/inicio.js"></script>
 
 <body>
 <script src="Script/shopping.js"></script>
-<script src="Script/historia.js"></script>
 <script src="Script/story.js"></script>
-<main id="main">
+<script src="Script/indicadores.js"></script>
+<main id="main" align="center" style="position: absolute;left: 50%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)";>
+
 
 </main>
 <footer>
-  <div id="container" >
+  <div id="container" align="center" style="position: absolute;left: 50%;top: 95%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)" >
     <div class="circulos" data-balloon="Inicio!" data-balloon-pos="up" onclick='toSlide("inicio")'></div>
     <div class="circulos" data-balloon="Historia!" data-balloon-pos="up" onclick='toSlide("story")'></div>
-    <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("Indicadores")'></div>
+    <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicadores")'></div>
     <div class="circulos" data-balloon="Segmentación de Cliente!" data-balloon-pos="up" onclick='toSlide("segmentacion")'></div>
     <div class="circulos" data-balloon="Simulación!" data-balloon-pos="up" onclick='toSlide("simulacion")'></div>
     <div class="circulos" data-balloon="Escenario!" data-balloon-pos="up" onclick='toSlide("escenario")'></div>
@@ -40,8 +45,9 @@
 <script>
 
 
-    var width =screen.width,
-        height =screen.height,
+
+    var width =screen.width-500,
+        height =screen.height-225,
         dom={},
         div=document.createElement('div'),
         main=document.getElementById('main');
@@ -52,6 +58,7 @@
 
   div.setAttribute("id","aplicacion");
   div.setAttribute("style","width:"+width+"px;height:"+height+"px;");
+  debugger;
   main.appendChild(div);
 
 
