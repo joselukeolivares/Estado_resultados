@@ -2,7 +2,7 @@ console.log("SCRATCHER ON");
 
 var div=document.createElement("div");
     div.setAttribute("class","Scratcher_div");
-    div.style.width=width+"px";
+    div.style.width=(width*2)+"px";
     div.style.display="none";
     div.style.height=height+"px";
 

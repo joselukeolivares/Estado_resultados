@@ -3,10 +3,16 @@ function shopping(){
 
    var shop={};
    shop.flag_ctes=true;
+   shop.escala_1=(self.height*.4)/950;
+   shop.escala_2=(self.height*.5)/950;
+   shop.escala_3=(self.height*.07)/950;
 
    shop.build=function(app)
 {
   console.log("building shop");
+
+  shop.width=app.screen.width;
+  shop.height=app.screen.height;
 
     var texture = PIXI.Texture.fromImage('assets/Interior tienda.png');
     var tienda_dentro = new PIXI.Sprite(texture);
@@ -15,7 +21,7 @@ function shopping(){
                 tienda_dentro.x = app.screen.width / 2;
                 tienda_dentro.y = app.screen.height / 2;
                 tienda_dentro.anchor.set(0.5,0.5);
-		        		tienda_dentro.scale.set(0.5,0.5);
+		        		tienda_dentro.scale.set(shop.escala_2,shop.escala_2);
     app.stage.addChild(tienda_dentro);
     var group_2=new PIXI.display.Group(-1,false);
     app.stage.addChild(new PIXI.display.Layer(group_2));
@@ -76,27 +82,25 @@ try{
 
 
      var id = Loader.resources['assets/Articulos.json'].textures;
-
-
        tvs = new PIXI.Sprite(id['5. TVS.png']);
-	   tvs.position.set(screen.width / 1.5, screen.height / 5.6);
-	   tvs.scale.set(0.4,0.4);
+	   tvs.position.set(shop.width*.75, screen.height / 5.6);
+	   tvs.scale.set(shop.escala_1,shop.escala_1);
      tvs.alpha=0;
      tvs.parentGroup=group_2;
 
 	   //app.stage.addChild(tvs);
 
   	   audio = new PIXI.Sprite(id['8. AUDIO.png']);
-	   audio.position.set(screen.width / 1.45, screen.height / 3.2);
-	   audio.scale.set(0.4,0.4);
+	   audio.position.set(shop.width*.8, screen.height / 3.2);
+	   audio.scale.set(shop.escala_1,shop.escala_1);
      audio.alpha=0;
      audio.parentGroup=group_2;
 
 	   //app.stage.addChild(audio);
 
        celulares = new PIXI.Sprite(id['10. CELULARES.png']);
-	   celulares.position.set(screen.width / 1.38,screen.height / 2.5);
-	   celulares.scale.set(0.4,0.4);
+	   celulares.position.set(shop.width*.85,screen.height / 2.5);
+	   celulares.scale.set(shop.escala_1,shop.escala_1);
      celulares.alpha=0;
      celulares.parentGroup=group_2;
 
@@ -105,32 +109,32 @@ try{
 	   ////////////////////////////////////////////////
 
 	   sala = new PIXI.Sprite(id['6. SALA.png']);
-	   sala.position.set(screen.width /8, screen.height / 6.2);
-	   sala.scale.set(0.5,0.5);
+	   sala.position.set(shop.width*.01, screen.height / 6.2);
+	   sala.scale.set(shop.escala_2,shop.escala_2);
      sala.alpha=0;
      sala.parentGroup=group_2;
 
 	   //app.stage.addChild(sala);
 
 	   lavanderia = new PIXI.Sprite(id['7. LAVANDERIA.png']);
-	   lavanderia.position.set(screen.width /16, screen.height / 4);
-	   lavanderia.scale.set(0.5,0.5);
+	   lavanderia.position.set(shop.width*.02, screen.height / 4);
+	   lavanderia.scale.set(shop.escala_2,shop.escala_2);
      lavanderia.alpha=0;
      lavanderia.parentGroup=group_2;
 
 	   //app.stage.addChild(lavanderia);
 
 	   lineablanca = new PIXI.Sprite(id['9. LINEA BLANCA.png']);
-	   lineablanca.position.set(screen.width /7, screen.height / 3.8);
-	   lineablanca.scale.set(0.5,0.5);
+	   lineablanca.position.set(shop.width*.03, screen.height / 3.8);
+	   lineablanca.scale.set(shop.escala_2,shop.escala_2);
      lineablanca.alpha=0;
      lineablanca.parentGroup=group_2;
 
 	   //app.stage.addChild(lineablanca);
 
 	   comedor = new PIXI.Sprite(id['11. COMEDOR.png']);
-	   comedor.position.set(-180,600);
-	   comedor.scale.set(0.5,0.5);
+	   comedor.position.set(-100,shop.height*.7);
+	   comedor.scale.set(shop.escala_2,shop.escala_2);
      comedor.alpha=0;
      comedor.parentGroup=group_2;
      //container.addChild(comedor);
@@ -146,13 +150,13 @@ var position=1;
 
           for(i=0;i<clientes_t.length;i++){
 
-          var p = i * 150;
-          var q = i * 75;
+          var p = i * (shop.width/10);
+          var q = i * (shop.height/10);
           debugger;
            clientes_t[i] = new PIXI.spine.Spine(res.Cliente_naranja.spineData);
-           clientes_t[i].scale.set(0.07,0.07);
-           clientes_t[i].x = Math.floor((Math.random() * app.screen.height) + 1)+p;
-           clientes_t[i].y = app.screen.height / 6+q;
+           clientes_t[i].scale.set(shop.escala_3,shop.escala_3);
+           clientes_t[i].x =Math.floor((Math.random() * shop.width) + 1);
+           clientes_t[i].y = app.screen.height*.3+q;
            clientes_t[i].interactive = true;
            clientes_t[i].state.setAnimation(0,'walk',true);
            clientes_t[i].on('mouseover',clicked);
@@ -207,7 +211,7 @@ function LoadButton(){
   	        button.x = app.screen.width / 2;
               button.y = app.screen.height / 2;
               button.anchor.set(0.5,0.5);
-              button.scale.set(0.4,0.4);
+              button.scale.set(shop.escala_1,shop.escala_1);
 
 
        app.stage.addChild(button);
@@ -240,11 +244,7 @@ function LoadButton(){
 
            function Clicked(){
 
-
-                 toSlide("historia");
-
-
-
+                 toSlide("story");
 
            }
 

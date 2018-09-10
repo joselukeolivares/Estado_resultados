@@ -1,5 +1,5 @@
 function inicio(){
-  
+
   var self={};
   self.frames;
 
@@ -23,6 +23,8 @@ function inicio(){
 
      var aplicacion=document.getElementById('aplicacion');
      self.app = new PIXI.Application(width,height,{transparent:true});
+     self.width=self.app.screen.width;
+     self.height=self.app.screen.height;
 
      self.app.view.style.width = aplicacion.width;
    	 self.app.view.style.height = aplicacion.height;
@@ -52,7 +54,7 @@ function inicio(){
 
 
   function createSprite(app){
-    debugger;
+    //debugger;
     var textureBackground = PIXI.Texture.fromImage('assets/background_coppel.png');
   	var textureShop = PIXI.Texture.fromImage('assets/coppel.png');
   	var textureDoor = PIXI.Texture.fromImage('assets/coppel_puerta_01.png');
@@ -66,21 +68,22 @@ function inicio(){
 
     let animatedDoor;
 
+    var escala=(self.height*.4)/950;
 
     background.x = app.screen.width / 2;
     background.y =app.screen.height / 1.52;
     background.anchor.set(0.5,0.5);
-    background.scale.set(0.4,0.4);
+    background.scale.set(escala,escala);
 
     shop.x = app.screen.width / 2;
     shop.y = app.screen.height / 2;
     shop.anchor.set(0.5,0.5);
-    shop.scale.set(0.4,0.4);
+    shop.scale.set(escala,escala);
 
     notDoor.x = app.screen.width / 2;
     notDoor.y = app.screen.height /1.48;
     notDoor.anchor.set(0.5,0.5);
-    notDoor.scale.set(0.4,0.4);
+    notDoor.scale.set(escala,escala);
 
     app.stage.addChild(background);
         app.stage.addChild(shop);
@@ -114,7 +117,7 @@ function inicio(){
            animatedDoor.y = app.screen.height / 1.48;
            animatedDoor.anchor.set(0.5);
            animatedDoor.animationSpeed = 0.2;
-           animatedDoor.scale.set(0.4,0.4);
+           animatedDoor.scale.set(escala,escala);
            animatedDoor.name="animatedDoor";
            animatedDoor.visible=false;
            animatedDoor.loop=false;

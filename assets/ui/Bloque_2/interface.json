@@ -1,6 +1,6 @@
 {
 	"frames": {
-		"1. ROMBO AZUL.png": {
+		"rombo.png": {
 			"frame": {
 				"x": 4,
 				"y": 4,
@@ -20,7 +20,7 @@
 				"h": 1860
 			}
 		},
-		"2. EN VIDEO 1.png": {
+		"videoButton1.png": {
 			"frame": {
 				"x": 2160,
 				"y": 4,
@@ -40,7 +40,7 @@
 				"h": 185
 			}
 		},
-		"2. EN VIDEO 2.png": {
+		"videoButton2.png": {
 			"frame": {
 				"x": 2690,
 				"y": 4,
@@ -60,7 +60,7 @@
 				"h": 184
 			}
 		},
-		"3. CONTINUAR 1.png": {
+		"continuarButton.png": {
 			"frame": {
 				"x": 3217,
 				"y": 4,
@@ -80,7 +80,7 @@
 				"h": 184
 			}
 		},
-		"3. CONTINUAR 2.png": {
+		"continuarButton2.png": {
 			"frame": {
 				"x": 3744,
 				"y": 4,
@@ -104,7 +104,7 @@
 	"meta": {
 		"app": "http://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"image": "spritesheet.png",
+		"image": "interface.png",
 		"format": "RGBA8888",
 		"size": {
 			"w": 4267,
