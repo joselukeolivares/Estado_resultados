@@ -244,11 +244,7 @@ function LoadButton(){
 
            function Clicked(){
 
-
-                 toSlide("historia");
-
-
-
+                 toSlide("story");
 
            }
 

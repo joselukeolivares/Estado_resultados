@@ -237,14 +237,16 @@ function indicadores(){
 try{
   Loader
     .add('assets/ui/Bloque_3/triangles.json')
+    .add('cliente_negro','assets/ui/Bloque_3/cliente_negro.json')
     .load(triangles);
 
 }catch(err){
-   triangles();
+  Loader.load(triangles);
+
 }
 
 
-          function triangles(){
+          function triangles(Loader,res){
              var triangle_rg=Loader.resources['assets/ui/Bloque_3/triangles.json'].textures;
              var articulos=Loader.resources['assets/Articulos.json'].textures;
              var img=
@@ -258,18 +260,31 @@ try{
               '6. SALA.png',
               '7. LAVANDERIA.png',
               '6. SALA.png']
+              var cte=[];
 
 
               var row=self.width*.025;
               var col=self.height*.02;
              for(var i=0;i<img.length;i++){
-               var articulo=new PIXI.Sprite(articulos[img[i]]);
 
-               var
-               row=+row;
-               col=+col;
-               articulo.position.set((self.width*.7)+ (col*i), self.height*.2+(i*row));
-          	   articulo.scale.set((self.height*.2)/500,(self.height*.2)/500);
+               var articulo;
+               var row=+row;
+                   col=+col;
+               if(index==0){
+                 articulo= new PIXI.spine.Spine(res.cliente_negro.spineData);
+       					articulo.scale.set((self.height*.07)/950,(self.height*.07)/950);
+                articulo.position.set((self.width*.7)+ (col*i), self.height*.2+(i*row));
+
+               }else if(index==1){
+                 articulo=new PIXI.Sprite(articulos[img[i]]);
+                 articulo.scale.set((self.height*.2)/500,(self.height*.2)/500);
+                 articulo.position.set((self.width*.7)+ (col*i), self.height*.2+(i*row));
+               }
+
+
+
+
+
                articulo.name="item_porncentaje_"+(i+1)+"0%";
                console.log(articulo.name);
                contenedor_kpi.addChild(articulo);
@@ -285,8 +300,8 @@ try{
               wordWrap: true,
               wordWrapWidth: self.width*.2
             });
-                 porcentaje.y=self.height*.72;
-                 porcentaje.x=self.width*.82;
+                 porcentaje.y=self.height*.7;
+                 porcentaje.x=self.width*.80;
                  porcentaje.name="porcentaje";
                  contenedor_kpi.addChild(porcentaje);
              var red_triangle=new PIXI.Sprite(triangle_rg['Red_triangle.png']);
