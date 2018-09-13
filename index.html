@@ -21,7 +21,7 @@
   <script src="js/GSAP Class/Tweening Basics/js/gsap/TimelineMax.js"></script>
   <script src="js/GSAP Class/Tweening Basics/js/gsap/TweenMax.js"></script>
 
-<script src="Script/inicio.js"></script>
+<script src="Script/start.js"></script>
 
 <body>
 <script src="Script/shopping.js"></script>
@@ -33,7 +33,7 @@
 </main>
 <footer>
   <div id="container" align="center" style="position: absolute;left: 50%;top: 95%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)" >
-    <div class="circulos" data-balloon="Inicio!" data-balloon-pos="up" onclick='toSlide("inicio")'></div>
+    <div class="circulos" data-balloon="Inicio!" data-balloon-pos="up" onclick='toSlide("start")'></div>
     <div class="circulos" data-balloon="Historia!" data-balloon-pos="up" onclick='toSlide("story")'></div>
     <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicadores")'></div>
     <div class="circulos" data-balloon="Segmentación de Cliente! (En construcción)" data-balloon-pos="up" ></div>
@@ -58,7 +58,6 @@
 
   div.setAttribute("id","aplicacion");
   div.setAttribute("style","width:"+width+"px;height:"+height+"px;");
-  debugger;
   main.appendChild(div);
 
 
@@ -66,7 +65,7 @@
 
 
 
-  actual_app=inicio().createApp();
+  actual_app=start().createApp();
 
 
 

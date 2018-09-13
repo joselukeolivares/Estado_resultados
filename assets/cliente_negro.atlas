@@ -20,7 +20,7 @@ repeat: none
   index: -1
 brazo_negro_nuevo_2
   rotate: false
-  xy: 1856, 935
+  xy: 1856, 1275
   size: 188, 338
   orig: 188, 338
   offset: 0, 0
@@ -167,14 +167,14 @@ pierna_negro_1
   index: -1
 brazo_negro_nuevo
   rotate: false
-  xy: 1856, 1275
+  xy: 1856, 1615
   size: 188, 338
   orig: 188, 338
   offset: 0, 0
   index: -1
 brazo_der_rojo
   rotate: false
-  xy: 1856, 1615
+  xy: 1856, 935
   size: 188, 338
   orig: 188, 338
   offset: 0, 0
