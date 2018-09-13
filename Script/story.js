@@ -79,7 +79,7 @@ function story() {
 					  coin.state.setAnimation(0,'happy',false);
 					});
 					coin.on('mouseout',function(){
-						coin.state.setAnimation(0,'happy',false);
+						//coin.state.setAnimation(0,'unhappy',false);
 					});
 
 				}else{
