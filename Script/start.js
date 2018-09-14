@@ -75,8 +75,8 @@ function start() {
       .on("pointerout", onDoorsOut);
 
     function onDoorsOver() {
-      TweenMax.to(door1, 1.3, {x: 220, onComplete: tweenCompleted});
-      TweenMax.to(door2, 1.3, {x: 560});
+      TweenMax.to(door1, 1.3, {x: (app.screen.width * 62) / 220, onComplete: tweenCompleted});
+      TweenMax.to(door2, 1.3, {x: (app.screen.width * 400) / 560});
     }
 
     function onDoorsOut() {
