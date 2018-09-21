@@ -1,0 +1,135 @@
+{
+	"frames": {
+		"COIN1.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 95,
+				"h": 94
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 95,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 95,
+				"h": 94
+			}
+		},
+		"COIN2.png": {
+			"frame": {
+				"x": 98,
+				"y": 1,
+				"w": 81,
+				"h": 94
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 81,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 81,
+				"h": 94
+			}
+		},
+		"COIN3.png": {
+			"frame": {
+				"x": 1,
+				"y": 97,
+				"w": 49,
+				"h": 94
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 49,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 49,
+				"h": 94
+			}
+		},
+		"COIN4.png": {
+			"frame": {
+				"x": 52,
+				"y": 97,
+				"w": 24,
+				"h": 94
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 24,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 24,
+				"h": 94
+			}
+		},
+		"COIN5.png": {
+			"frame": {
+				"x": 78,
+				"y": 97,
+				"w": 49,
+				"h": 94
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 49,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 49,
+				"h": 94
+			}
+		},
+		"COIN6.png": {
+			"frame": {
+				"x": 181,
+				"y": 1,
+				"w": 81,
+				"h": 94
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 81,
+				"h": 94
+			},
+			"sourceSize": {
+				"w": 81,
+				"h": 94
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet (2).png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 263,
+			"h": 192
+		},
+		"scale": "1"
+	}
+}
