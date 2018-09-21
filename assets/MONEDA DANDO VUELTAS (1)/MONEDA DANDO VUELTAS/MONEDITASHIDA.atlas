@@ -1,0 +1,167 @@
+
+MONEDITASHIDA.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+COIN23
+  rotate: false
+  xy: 388, 130
+  size: 20, 126
+  orig: 20, 126
+  offset: 0, 0
+  index: -1
+COIN12
+  rotate: false
+  xy: 337, 1
+  size: 76, 127
+  orig: 76, 127
+  offset: 0, 0
+  index: -1
+COIN27
+  rotate: false
+  xy: 1, 129
+  size: 126, 126
+  orig: 126, 126
+  offset: 0, 0
+  index: -1
+COIN15
+  rotate: false
+  xy: 233, 1
+  size: 102, 127
+  orig: 102, 127
+  offset: 0, 0
+  index: -1
+COIN5
+  rotate: false
+  xy: 338, 130
+  size: 20, 126
+  orig: 20, 126
+  offset: 0, 0
+  index: -1
+COIN18
+  rotate: false
+  xy: 366, 130
+  size: 20, 127
+  orig: 20, 127
+  offset: 0, 0
+  index: -1
+COIN3
+  rotate: false
+  xy: 207, 130
+  size: 76, 126
+  orig: 76, 126
+  offset: 0, 0
+  index: -1
+COIN10
+  rotate: false
+  xy: 366, 259
+  size: 20, 127
+  orig: 20, 127
+  offset: 0, 0
+  index: -1
+COIN6
+  rotate: false
+  xy: 502, 129
+  size: 7, 126
+  orig: 7, 126
+  offset: 0, 0
+  index: -1
+COIN26
+  rotate: false
+  xy: 1, 385
+  size: 101, 126
+  orig: 101, 126
+  offset: 0, 0
+  index: -1
+COIN24
+  rotate: false
+  xy: 285, 130
+  size: 51, 126
+  orig: 51, 126
+  offset: 0, 0
+  index: -1
+COIN22
+  rotate: false
+  xy: 502, 1
+  size: 7, 126
+  orig: 7, 126
+  offset: 0, 0
+  index: -1
+COIN16
+  rotate: false
+  xy: 415, 1
+  size: 76, 127
+  orig: 76, 127
+  offset: 0, 0
+  index: -1
+COIN4
+  rotate: false
+  xy: 313, 258
+  size: 51, 126
+  orig: 51, 126
+  offset: 0, 0
+  index: -1
+COIN14
+  rotate: false
+  xy: 1, 1
+  size: 126, 126
+  orig: 126, 126
+  offset: 0, 0
+  index: -1
+COIN1
+  rotate: false
+  xy: 1, 257
+  size: 126, 126
+  orig: 126, 126
+  offset: 0, 0
+  index: -1
+COIN7
+  rotate: false
+  xy: 410, 257
+  size: 5, 126
+  orig: 5, 126
+  offset: 0, 0
+  index: -1
+COIN17
+  rotate: false
+  xy: 260, 258
+  size: 51, 127
+  orig: 51, 127
+  offset: 0, 0
+  index: -1
+COIN9
+  rotate: false
+  xy: 493, 1
+  size: 7, 127
+  orig: 7, 127
+  offset: 0, 0
+  index: -1
+COIN2
+  rotate: false
+  xy: 104, 385
+  size: 101, 126
+  orig: 101, 126
+  offset: 0, 0
+  index: -1
+COIN25
+  rotate: false
+  xy: 129, 130
+  size: 76, 126
+  orig: 76, 126
+  offset: 0, 0
+  index: -1
+COIN13
+  rotate: false
+  xy: 129, 1
+  size: 102, 127
+  orig: 102, 127
+  offset: 0, 0
+  index: -1
+COIN11
+  rotate: false
+  xy: 207, 258
+  size: 51, 127
+  orig: 51, 127
+  offset: 0, 0
+  index: -1

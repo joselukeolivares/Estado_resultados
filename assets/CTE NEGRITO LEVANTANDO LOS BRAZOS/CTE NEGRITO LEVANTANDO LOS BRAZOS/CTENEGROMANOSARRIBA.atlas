@@ -1,0 +1,69 @@
+
+CTENEGROMANOSARRIBA.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+7
+  rotate: false
+  xy: 128, 283
+  size: 54, 100
+  orig: 54, 100
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 255, 289
+  size: 53, 104
+  orig: 55, 104
+  offset: 1, 0
+  index: -1
+5
+  rotate: false
+  xy: 344, 117
+  size: 99, 114
+  orig: 99, 115
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 344, 1
+  size: 99, 114
+  orig: 99, 115
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 220, 1
+  size: 122, 143
+  orig: 122, 143
+  offset: 0, 0
+  index: -1
+1
+  rotate: false
+  xy: 1, 1
+  size: 217, 215
+  orig: 218, 215
+  offset: 0, 0
+  index: -1
+NEGRITO 3
+  rotate: false
+  xy: 1, 218
+  size: 125, 73
+  orig: 125, 73
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 255, 233
+  size: 129, 54
+  orig: 129, 54
+  offset: 0, 0
+  index: -1
+NEGRITO 2
+  rotate: false
+  xy: 128, 218
+  size: 125, 63
+  orig: 125, 63
+  offset: 0, 0
+  index: -1

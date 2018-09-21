@@ -1,0 +1,14 @@
+﻿{
+	"dropShadow": true,
+	"dropShadowAngle": 12.6,
+	"dropShadowColor": "#fffb42",
+	"dropShadowDistance": 3,
+	"fill": "#4a5bf2",
+	"fontFamily": "Arial Black",
+	"fontSize": 38,
+	"lineHeight": 6,
+	"miterLimit": 0,
+	"stroke": "white",
+	"whiteSpace": "normal",
+	"wordWrapWidth": 120
+}
