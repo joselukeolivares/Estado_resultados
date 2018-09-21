@@ -14,8 +14,8 @@ function start() {
     self.width = self.app.screen.width;
     self.height = self.app.screen.height;
 
-    self.app.view.style.width = self.width;
-    self.app.view.style.height = self.height;
+    self.app.view.style.width = appDiv.width;
+    self.app.view.style.height = appDiv.height;
 
     appDiv.appendChild(self.app.view);
 
@@ -75,8 +75,8 @@ function start() {
       .on("pointerout", onDoorsOut);
 
     function onDoorsOver() {
-      TweenMax.to(door1, 1.3, {x: 220, onComplete: tweenCompleted});
-      TweenMax.to(door2, 1.3, {x: 560});
+      TweenMax.to(door1, 1.3, {x: (app.screen.width * 62) / 220, onComplete: tweenCompleted});
+      TweenMax.to(door2, 1.3, {x: (app.screen.width * 400) / 560});
     }
 
     function onDoorsOut() {

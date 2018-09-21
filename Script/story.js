@@ -19,6 +19,11 @@ function story() {
   self.destroyApp = function () {
     console.log("Destroying the story...");
     if(self.app == null) return self;
+
+		var child_video=self.app.stage.getChildByName("video_sprite");
+		if(child_video!=null)
+		child_video.texture.baseTexture.destroy();
+
     		self.app.destroy(true);
 
     return self;
@@ -116,6 +121,109 @@ function story() {
 			txt_historia.x=self.width/2.8;
 			txt_historia.y=self.height*.15;
 			app.stage.addChild(txt_historia);
+
+
+			//app.stage.addChild(rect_video);
+
+			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/ERC_video_1.png'));
+			    button_video_1.scale.set(.8,.8);
+					button_video_1.x=width*.05;
+					button_video_1.y=height*.85;
+
+
+
+			let paused=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/pause_play.png'));
+			let next_block=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/explorar_1.png'));
+			let close=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/close_video_2.png'));
+			paused.position.set(width/2,height/2);
+			paused.scale.set(.25,.25);
+			paused.anchor.set(.5,.5);
+			paused.alpha=0;
+			paused.name="paused_button";
+
+			next_block.scale.set(.8,.8);
+			next_block.x=width*.85;
+			next_block.y=height*.85;
+			next_block.name="next_block";
+
+
+			close.position.set(width*.98,height*.02);
+			close.scale.set(.15,.15);
+			close.anchor.set(.5,.5);
+      close.interactive=true;
+			close.buttonMode=true;
+			close.name="close_video";
+			close.on('pointertap',deleteVideo)
+
+
+
+			let button_video=new PIXI.Container();
+			button_video.addChild(button_video_1);
+			button_video.addChild(next_block);
+
+			button_video.interactive=true;
+			button_video.buttonMode=true;
+
+
+
+
+
+
+			button_video.on('pointertap',function(){
+
+				var texture=PIXI.Texture.fromVideo('assets/video/videoplayback.mp4');
+				var videoSprite=new PIXI.Sprite(texture);
+				    videoSprite.width=self.width;
+						videoSprite.height=self.height;
+            videoSprite.interactive=true;
+	  				videoSprite.buttonMode=true;
+						videoSprite.name="video_sprite"
+		  			videoSprite.on('click',pause);
+
+          videoSprite.texture.baseTexture.source.onended=
+					function(){
+							app.stage.removeChild(videoSprite);
+					};
+    				app.stage.addChild(videoSprite);
+						app.stage.addChild(paused);
+						app.stage.addChild(close);
+
+			});
+
+
+
+			app.stage.addChild(button_video);
+
+			function pause(){
+				 var source=this.texture.baseTexture.source;
+
+			 if(source.paused){
+				 source.play();
+				 TweenMax.to(paused,2,{pixi:{alpha:0}});
+			 }else{
+				 source.pause();
+				 TweenMax.to(paused,2,{pixi:{alpha:.9}});
+			 }
+
+		}
+
+		function deleteVideo(){
+
+
+			var child_video=app.stage.getChildByName("video_sprite");
+			var child_close=app.stage.getChildByName("close_video");
+			var paused_button=app.stage.getChildByName("paused_button");
+			debugger;
+			child_video.texture.baseTexture.destroy();
+
+			app.stage.removeChild(child_close);
+		  app.stage.removeChild(child_video);
+			app.stage.removeChild(paused_button);
+
+		}
+
+
+
 
     }
   }
