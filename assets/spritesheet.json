@@ -1,0 +1,175 @@
+{
+	"frames": {
+		"10. CELULARES.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 865,
+				"h": 707
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 865,
+				"h": 707
+			},
+			"sourceSize": {
+				"w": 865,
+				"h": 707
+			}
+		},
+		"11. COMEDOR.png": {
+			"frame": {
+				"x": 868,
+				"y": 1,
+				"w": 865,
+				"h": 322
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 865,
+				"h": 322
+			},
+			"sourceSize": {
+				"w": 865,
+				"h": 322
+			}
+		},
+		"5. TVS.png": {
+			"frame": {
+				"x": 1735,
+				"y": 1,
+				"w": 1076,
+				"h": 458
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1076,
+				"h": 458
+			},
+			"sourceSize": {
+				"w": 1076,
+				"h": 458
+			}
+		},
+		"6. SALA.png": {
+			"frame": {
+				"x": 2813,
+				"y": 1,
+				"w": 791,
+				"h": 244
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 791,
+				"h": 244
+			},
+			"sourceSize": {
+				"w": 791,
+				"h": 244
+			}
+		},
+		"7. LAVANDERIA.png": {
+			"frame": {
+				"x": 3606,
+				"y": 1,
+				"w": 976,
+				"h": 277
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 976,
+				"h": 277
+			},
+			"sourceSize": {
+				"w": 976,
+				"h": 277
+			}
+		},
+		"8. AUDIO.png": {
+			"frame": {
+				"x": 4584,
+				"y": 1,
+				"w": 643,
+				"h": 525
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 643,
+				"h": 525
+			},
+			"sourceSize": {
+				"w": 643,
+				"h": 525
+			}
+		},
+		"9. LINEA BLANCA.png": {
+			"frame": {
+				"x": 5229,
+				"y": 1,
+				"w": 521,
+				"h": 533
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 521,
+				"h": 533
+			},
+			"sourceSize": {
+				"w": 521,
+				"h": 533
+			}
+		},
+		"PERFUMERIA.png": {
+			"frame": {
+				"x": 5752,
+				"y": 1,
+				"w": 797,
+				"h": 458
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 797,
+				"h": 458
+			},
+			"sourceSize": {
+				"w": 797,
+				"h": 458
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 6550,
+			"h": 709
+		},
+		"scale": "1"
+	}
+}
