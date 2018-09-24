@@ -1,4 +1,3 @@
-console.log("SCRATCHER ON");
 
 var div=document.createElement("div");
     div.setAttribute("class","Scratcher_div");
@@ -6,7 +5,6 @@ var div=document.createElement("div");
     div.style.display="none";
     div.style.height=height+"px";
 
-    console.log("height:"+height+"pxXD");
 
     document.body.appendChild(div);
 
@@ -16,7 +14,6 @@ var div=document.createElement("div");
 
 var scratching=function (num){
     div.style.display="block";
-    console.log("Scratching effect "+num)
 
     return  new Promise(function(resolve,reject){
 
@@ -31,7 +28,6 @@ var scratching=function (num){
                   }
 
                   div.style.backgroundPosition=(num==1?0:100)+"%"+(frame*-100)+"%";
-                  console.log(frame);
 
                 },50);
 
@@ -42,7 +38,6 @@ var scratching=function (num){
 
  var print=function(status){
 
-    console.log(status+" print");
 
     actual_app.removeElements();
     actual_app.destroyApp();
