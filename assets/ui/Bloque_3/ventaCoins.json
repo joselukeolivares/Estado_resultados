@@ -1,0 +1,215 @@
+{
+	"frames": {
+		"venta_10.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 119,
+				"h": 107
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 119,
+				"h": 107
+			},
+			"sourceSize": {
+				"w": 119,
+				"h": 107
+			}
+		},
+		"venta_100.png": {
+			"frame": {
+				"x": 122,
+				"y": 1,
+				"w": 327,
+				"h": 212
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 327,
+				"h": 212
+			},
+			"sourceSize": {
+				"w": 327,
+				"h": 212
+			}
+		},
+		"venta_20.png": {
+			"frame": {
+				"x": 451,
+				"y": 1,
+				"w": 256,
+				"h": 166
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 166
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 166
+			}
+		},
+		"venta_30.png": {
+			"frame": {
+				"x": 451,
+				"y": 169,
+				"w": 256,
+				"h": 166
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 166
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 166
+			}
+		},
+		"venta_40.png": {
+			"frame": {
+				"x": 1,
+				"y": 337,
+				"w": 256,
+				"h": 195
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 195
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 195
+			}
+		},
+		"venta_50.png": {
+			"frame": {
+				"x": 259,
+				"y": 337,
+				"w": 256,
+				"h": 195
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 195
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 195
+			}
+		},
+		"venta_60.png": {
+			"frame": {
+				"x": 709,
+				"y": 1,
+				"w": 256,
+				"h": 195
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 195
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 195
+			}
+		},
+		"venta_70.png": {
+			"frame": {
+				"x": 517,
+				"y": 337,
+				"w": 327,
+				"h": 195
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 327,
+				"h": 195
+			},
+			"sourceSize": {
+				"w": 327,
+				"h": 195
+			}
+		},
+		"venta_80.png": {
+			"frame": {
+				"x": 1,
+				"y": 534,
+				"w": 327,
+				"h": 195
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 327,
+				"h": 195
+			},
+			"sourceSize": {
+				"w": 327,
+				"h": 195
+			}
+		},
+		"venta_90.png": {
+			"frame": {
+				"x": 330,
+				"y": 534,
+				"w": 327,
+				"h": 198
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 327,
+				"h": 198
+			},
+			"sourceSize": {
+				"w": 327,
+				"h": 198
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "ventaCoins.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 966,
+			"h": 733
+		},
+		"scale": "1"
+	}
+}
