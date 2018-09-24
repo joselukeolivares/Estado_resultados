@@ -145,12 +145,17 @@ function indicators() {
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Tasa de Compra."],
                     ["Indica la compra promedio que realizaron los Clientes (que compraron) en un perido. Se calcula dividiendo las ventas totales sobre el número de Clientes que compraron.",
                     "De los 500 Clietes que nos han comprado a mes de Julio, cada uno ha comprado en promedio $ 1,000.00 Pesos. \n Interactuemos y veamos el efecto que tienen al aumentar la Compra Promedio.",
-                    "Ahora, en sentido contrario veamos el efecto al disminuir la Compra Promedio."]];
+                    "Ahora, en sentido contrario veamos el efecto al disminuir la Compra Promedio."],
+                    ["Iiahjw asj whfwhe fhwfhwh wh wjfwoioeihf asuihqpwup aiodupaoi awpoidfuu pwoiefupasiodufpawoiu oapufupowi",
+                    "fñlajeijoi oawijfeoiaslkdf woifj wofij   awoiijw fpajsdfi wijfajj djfpoqje faisdfwioq ´0ij aposijdf qp aspoief. \n ajskljdfwiojfowjefioasoñdifjwo dlfj  woijf qj jaowjef qj oije fioaeji.",
+                    "lajeijf dkflwjf owiejfw o qu oawjfjoiwej foai qu qu eoifjjaoisjf dwue qeifj aoief uwe que que foaijsdofijw eufqpoei"]];
     //let interactive = [PIXI.Texture.fromImage("assets/ui/Bloque_3/tasa_50.png"),
       //                PIXI.Texture.fromImage("assets/ui/Bloque_3/arts.png")];
     try {
       PIXI.loader
           .add("assets/ui/Bloque_3/persons.json")
+          .add("assets/ui/Bloque_3/arts.json")
+          .add("assets/ui/Bloque_3/ventaCoins.json")
           .load(setup);
     } catch(e) {
       setup();
@@ -158,11 +163,12 @@ function indicators() {
 
     function setup() {
       let interactive = [PIXI.Texture.fromFrame("tasa_50.png"),
-                          PIXI.Texture.fromImage("assets/ui/Bloque_3/arts.png")];
+                          PIXI.Texture.fromFrame("tasa_50.png"),
+                          PIXI.Texture.fromFrame("venta_50.png")];
       let incPercent = 60,
           decPercent = 40;
 
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 3; i++) {
         stage[i] = new PIXI.Container();
         stage[i].visible = false;
         stage[i].name = "stage " + i;
@@ -188,6 +194,7 @@ function indicators() {
           things.anchor.set(0.5);
           things.x = app.screen.width / 1.35;
           things.y = app.screen.height / 1.7;
+          things.name = "thing_" + i;
           scenes[j].addChild(things);
 
           if (j == 1) {
@@ -201,9 +208,7 @@ function indicators() {
             scenes[j].addChild(increment);
             increment.on("click", function() {
               slide(incPercent, things);
-              things.name = "tasa_" + incPercent;
               incPercent += 10;
-              console.log(things.name);
             });
 
             let retry = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/retry.png"));
@@ -262,9 +267,15 @@ function indicators() {
         app.stage.addChild(stage[i]);
       }
 
-      function slide(per, things) {
-        console.log(things.name);
-        things.setTexture(PIXI.Texture.fromFrame("tasa_" + per + ".png"));
+      function slide(per, thing) {
+        let n = thing.name;
+        if (n === "thing_0") {
+          thing.setTexture(PIXI.Texture.fromFrame("tasa_" + per + ".png"));
+        } else if (n === "thing_1") {
+          console.log("lacking of sprites");
+        } else {
+          thing.setTexture(PIXI.Texture.fromFrame("venta_" + per + ".png"));
+        }
       }
     }
 
@@ -276,42 +287,109 @@ function indicators() {
         TweenMax.fromTo(stage[0], 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});
         tasaDeCompra.alpha = 0.5;
 
-        //Compra promedio boton
-        compraPromedio.interactive = true;
-        compraPromedio.buttonMode = true;
-        compraPromedio.on("click", function() {
-          TweenMax.to(stage[0], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-            stage[0].visible = false;
-            stage[1].visible = true;
-            TweenMax.to(stage[1], 0.3, {pixi: {alpha: 1}});
-
-            scenes[0].visible = true;
-            scenes[0].alpha = 1;
-
-            scenes[1].visible = false;
-            scenes[1].alpha = 0;
-          }});
-          compraPromedio.alpha = 0.5;
-          tasaDeCompra.alpha = 1;
-        });
-
         //Tasa de compra boton
         tasaDeCompra.interactive = true;
         tasaDeCompra.cursor = "pointer";
         tasaDeCompra.on("click", function() {
-          TweenMax.to(stage[1], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-            stage[1].visible = false;
-            stage[0].visible = true;
-            TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
+          if(stage[1].visible) {
+            TweenMax.to(stage[1], 0.3, {pixi: {alpha: 0}, onComplete: function() {
+              stage[1].visible = false;
+              stage[0].visible = true;
+              TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
 
-            scenes[0].visible = true;
-            scenes[0].alpha = 1;
+              scenes[0].visible = true;
+              scenes[0].alpha = 1;
 
-            scenes[1].visible = false;
-            scenes[1].alpha = 0;
-          }});
-          tasaDeCompra.alpha = 0.5;
-          compraPromedio.alpha = 1;
+              scenes[1].visible = false;
+              scenes[1].alpha = 0;
+            }});
+            tasaDeCompra.alpha = 0.5;
+            compraPromedio.alpha = 1;
+          } else if(stage[2].visible) {
+            TweenMax.to(stage[2], 0.3, {pixi: {alpha: 0}, onComplete: function() {
+              stage[2].visible = false;
+              stage[0].visible = true;
+              TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
+
+              scenes[0].visible = true;
+              scenes[0].alpha = 1;
+
+              scenes[1].visible = false;
+              scenes[1].alpha = 0;
+            }});
+            tasaDeCompra.alpha = 0.5;
+            venta.alpha = 1;
+          }
+        });
+
+        //Compra promedio boton
+        compraPromedio.interactive = true;
+        compraPromedio.cursor = "pointer";
+        compraPromedio.on("click", function() {
+          if(stage[0].visible) {
+            TweenMax.to(stage[0], 0.3, {pixi: {alpha: 0}, onComplete: function() {
+              stage[0].visible = false;
+              stage[1].visible = true;
+              TweenMax.to(stage[1], 0.3, {pixi: {alpha: 1}});
+
+              scenes[0].visible = true;
+              scenes[0].alpha = 1;
+
+              scenes[1].visible = false;
+              scenes[1].alpha = 0;
+            }});
+            compraPromedio.alpha = 0.5;
+            tasaDeCompra.alpha = 1;
+          } else if(stage[2].visible) {
+            TweenMax.to(stage[2], 0.3, {pixi: {alpha: 0}, onComplete: function() {
+              stage[2].visible = false;
+              stage[1].visible = true;
+              TweenMax.to(stage[1], 0.3, {pixi: {alpha: 1}});
+
+              scenes[0].visible = true;
+              scenes[0].alpha = 1;
+
+              scenes[1].visible = false;
+              scenes[1].alpha = 0;
+            }});
+            compraPromedio.alpha = 0.5;
+            venta.alpha = 1;
+          }
+        });
+
+        //Venta boton
+        venta.interactive = true;
+        venta.cursor = "pointer";
+        venta.on("click", function() {
+          if(stage[0].visible) {
+            TweenMax.to(stage[0], 0.3, {pixi: {alpha: 0}, onComplete: function() {
+              stage[0].visible = false;
+              stage[2].visible = true;
+              TweenMax.to(stage[2], 0.3, {pixi: {alpha: 1}});
+
+              scenes[0].visible = true;
+              scenes[0].alpha = 1;
+
+              scenes[1].visible = false;
+              scenes[1].alpha = 0;
+            }});
+            venta.alpha = 0.5;
+            tasaDeCompra.alpha = 1;
+          } else if(stage[1].visible) {
+            TweenMax.to(stage[1], 0.3, {pixi: {alpha: 0}, onComplete: function() {
+              stage[1].visible = false;
+              stage[2].visible = true;
+              TweenMax.to(stage[2], 0.3, {pixi: {alpha: 1}});
+
+              scenes[0].visible = true;
+              scenes[0].alpha = 1;
+
+              scenes[1].visible = false;
+              scenes[1].alpha = 0;
+            }});
+            venta.alpha = 0.5;
+            compraPromedio.alpha = 1;
+          }
         });
       }});
     });
