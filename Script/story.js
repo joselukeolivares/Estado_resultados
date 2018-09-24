@@ -75,7 +75,7 @@ var Height = self.height=self.app.screen.height;
 			let coins = new PIXI.Container();
 			app.stage.addChild(coins);
 			var flag=false;
-			for(let i = 0; i < 80; i++) {
+			for(let i = 0; i < 90; i++) {
 
 				var p = i * (self.width/10);
 				var q = i * (self.height/10);

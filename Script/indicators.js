@@ -316,10 +316,12 @@ function indicators() {
       }});
 
       let appDiv = document.getElementById("aplicacion");
-      var slider_div=document.createElement('div');
+      /*
+          var slider_div=document.createElement('div');
           slider_div.setAttribute("Style","width: 200px;height: 200px;left: 70%;top: 60%;background-color: red;position: absolute;")
           appDiv.appendChild(slider_div);
-          Slider(slider_div);
+      */
+          Slider(appDiv);
 
 
 
