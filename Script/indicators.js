@@ -146,59 +146,126 @@ function indicators() {
                     ["Indica la compra promedio que realizaron los Clientes (que compraron) en un perido. Se calcula dividiendo las ventas totales sobre el número de Clientes que compraron.",
                     "De los 500 Clietes que nos han comprado a mes de Julio, cada uno ha comprado en promedio $ 1,000.00 Pesos. \n Interactuemos y veamos el efecto que tienen al aumentar la Compra Promedio.",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Compra Promedio."]];
-    let interactive = [PIXI.Texture.fromImage("assets/ui/Bloque_3/tasa_50.png"),
-                      PIXI.Texture.fromImage("assets/ui/Bloque_3/arts.png")];
+    //let interactive = [PIXI.Texture.fromImage("assets/ui/Bloque_3/tasa_50.png"),
+      //                PIXI.Texture.fromImage("assets/ui/Bloque_3/arts.png")];
+    try {
+      PIXI.loader
+          .add("assets/ui/Bloque_3/persons.json")
+          .load(setup);
+    } catch(e) {
+      setup();
+    }
 
-    for (let i = 0; i < 2; i++) {
-      stage[i] = new PIXI.Container();
-      stage[i].visible = false;
-      stage[i].name = "stage " + i;
-      let title = new PIXI.Text(titles[i], indiStyle);
-      title.anchor.set(0.5);
-      title.x = app.screen.width / 3.5;
-      title.y = app.screen.height / 2;
-      stage[i].addChild(title);
+    function setup() {
+      let interactive = [PIXI.Texture.fromFrame("tasa_50.png"),
+                          PIXI.Texture.fromImage("assets/ui/Bloque_3/arts.png")];
+      let incPercent = 60,
+          decPercent = 40;
 
-      for (let j = 0; j < 3; j++) {
-        scenes[j] = new PIXI.Container();
-        scenes[j].visible = false;
-        scenes[j].name= "scene " + j;
-        if(j == 0) scenes[j].visible = true;
-        let sub = new PIXI.Text(subTitles[i][j], indiStyleSub);
-        sub.anchor.set(0.5);
-        sub.x = app.screen.width / 3.5;
-        sub.y = app.screen.height / 1.5;
-        scenes[j].addChild(sub);
+      for (let i = 0; i < 2; i++) {
+        stage[i] = new PIXI.Container();
+        stage[i].visible = false;
+        stage[i].name = "stage " + i;
+        let title = new PIXI.Text(titles[i], indiStyle);
+        title.anchor.set(0.5);
+        title.x = app.screen.width / 3.5;
+        title.y = app.screen.height / 2;
+        stage[i].addChild(title);
 
-        let things = new PIXI.Sprite(interactive[i]);
-        things.scale.set(scale2);
-        things.anchor.set(0.5);
-        things.x = app.screen.width / 1.35;
-        things.y = app.screen.height / 1.7;
-        scenes[j].addChild(things);
+        for (let j = 0; j < 3; j++) {
+          scenes[j] = new PIXI.Container();
+          scenes[j].visible = false;
+          scenes[j].name= "scene " + j;
+          if(j == 0) scenes[j].visible = true;
+          let sub = new PIXI.Text(subTitles[i][j], indiStyleSub);
+          sub.anchor.set(0.5);
+          sub.x = app.screen.width / 3.5;
+          sub.y = app.screen.height / 1.5;
+          scenes[j].addChild(sub);
 
-        if(j==0) {
-          let rightArrow = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/rightArrow.png"));
-          rightArrow.scale.set(0.5);
-          rightArrow.anchor.set(0.5);
-          rightArrow.name="Arrow"+i+"_"+j;
-          rightArrow.x = app.screen.width / 1.05;
-          rightArrow.y = app.screen.height / 2;
-          rightArrow.interactive = true;
-          rightArrow.buttonMode = true;
-          scenes[j].addChild(rightArrow);
-          rightArrow.on("click", function() {
-            TweenMax.to(this.parent, 0.2, {pixi: {alpha: 0}, onComplete: () => {
-              this.parent.visible = false;
-              let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
-              uncle.visible = true;
-              TweenMax.fromTo(uncle, 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});
-            }});
-          });
+          let things = new PIXI.Sprite(interactive[i]);
+          things.scale.set(scale2);
+          things.anchor.set(0.5);
+          things.x = app.screen.width / 1.35;
+          things.y = app.screen.height / 1.7;
+          scenes[j].addChild(things);
+
+          if (j == 1) {
+            let increment = new PIXI.Graphics();
+            increment.beginFill(0xFFFFFF);
+            increment.drawCircle(0, 0, 15);
+            increment.x = app.screen.width / 1.35;
+            increment.y = app.screen.height / 1.3;
+            increment.interactive = true;
+            increment.cursor = "pointer";
+            scenes[j].addChild(increment);
+            increment.on("click", function() {
+              slide(incPercent, things);
+              things.name = "tasa_" + incPercent;
+              incPercent += 10;
+              console.log(things.name);
+            });
+
+            let retry = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/retry.png"));
+            retry.anchor.set(0.5);
+            retry.x = app.screen.width / 1.2;
+            retry.y = app.screen.height / 1.3;
+            retry.interactive = true;
+            retry.cursor = "pointer";
+            scenes[j].addChild(retry);
+            retry.on("click", function() {
+              TweenMax.to(this.parent, 0.2, {pixi: {alpha: 0}, onComplete: () => {
+                this.parent.visible = false;
+                let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
+                uncle.visible = true;
+                TweenMax.fromTo(uncle, 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});
+              }});
+            });
+          }
+
+          if (j == 2) {
+            let decrement = new PIXI.Graphics();
+            decrement.beginFill(0xFFFFFF);
+            decrement.drawCircle(0, 0, 15);
+            decrement.x = app.screen.width / 1.35;
+            decrement.y = app.screen.height / 1.3;
+            decrement.interactive = true;
+            decrement.cursor = "pointer";
+            scenes[j].addChild(decrement);
+            decrement.on("click", function () {
+              slide(decPercent, things);
+              decPercent -= 10;
+            });
+          }
+
+          if(j==0) {
+            let rightArrow = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/rightArrow.png"));
+            rightArrow.scale.set(0.5);
+            rightArrow.anchor.set(0.5);
+            rightArrow.name="Arrow"+i+"_"+j;
+            rightArrow.x = app.screen.width / 1.05;
+            rightArrow.y = app.screen.height / 2;
+            rightArrow.interactive = true;
+            rightArrow.buttonMode = true;
+            scenes[j].addChild(rightArrow);
+            rightArrow.on("click", function() {
+              TweenMax.to(this.parent, 0.2, {pixi: {alpha: 0}, onComplete: () => {
+                this.parent.visible = false;
+                let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
+                uncle.visible = true;
+                TweenMax.fromTo(uncle, 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});
+              }});
+            });
+          }
+          stage[i].addChild(scenes[j]);
         }
-        stage[i].addChild(scenes[j]);
+        app.stage.addChild(stage[i]);
       }
-      app.stage.addChild(stage[i]);
+
+      function slide(per, things) {
+        console.log(things.name);
+        things.setTexture(PIXI.Texture.fromFrame("tasa_" + per + ".png"));
+      }
     }
 
     contButton.on("click", function() {
@@ -236,7 +303,6 @@ function indicators() {
             stage[1].visible = false;
             stage[0].visible = true;
             TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
-            console.log(scenes);
 
             scenes[0].visible = true;
             scenes[0].alpha = 1;
@@ -250,7 +316,5 @@ function indicators() {
       }});
     });
   }
-
-
   return self;
 }
