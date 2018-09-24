@@ -272,7 +272,12 @@ app.stage.addChild(text_parrafo_7);
 			next_block.x=width*.85;
 			next_block.y=height*.85;
 			next_block.name="next_block";
-
+			next_block.interactive = true;
+			next_block.cursor = "pointer";
+			app.stage.addChild(next_block);
+			next_block.on("pointertap", function() {
+				toSlide("indicators");
+			});
 
 			close.position.set(width*.98,height*.02);
 			close.scale.set(.15,.15);
@@ -280,13 +285,12 @@ app.stage.addChild(text_parrafo_7);
       close.interactive=true;
 			close.buttonMode=true;
 			close.name="close_video";
-			close.on('pointertap',deleteVideo)
+			close.on("pointertap", deleteVideo);
 
 
 
 			let button_video=new PIXI.Container();
 			button_video.addChild(button_video_1);
-			button_video.addChild(next_block);
 
 			button_video.interactive=true;
 			button_video.buttonMode=true;

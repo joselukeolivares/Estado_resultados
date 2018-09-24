@@ -1,0 +1,215 @@
+{
+	"frames": {
+		"tasa_10.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 136,
+				"h": 133
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 136,
+				"h": 133
+			},
+			"sourceSize": {
+				"w": 136,
+				"h": 133
+			}
+		},
+		"tasa_100.png": {
+			"frame": {
+				"x": 139,
+				"y": 1,
+				"w": 310,
+				"h": 190
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 310,
+				"h": 190
+			},
+			"sourceSize": {
+				"w": 310,
+				"h": 190
+			}
+		},
+		"tasa_20.png": {
+			"frame": {
+				"x": 451,
+				"y": 1,
+				"w": 195,
+				"h": 136
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 195,
+				"h": 136
+			},
+			"sourceSize": {
+				"w": 195,
+				"h": 136
+			}
+		},
+		"tasa_30.png": {
+			"frame": {
+				"x": 1,
+				"y": 193,
+				"w": 237,
+				"h": 136
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 237,
+				"h": 136
+			},
+			"sourceSize": {
+				"w": 237,
+				"h": 136
+			}
+		},
+		"tasa_40.png": {
+			"frame": {
+				"x": 240,
+				"y": 193,
+				"w": 280,
+				"h": 138
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 280,
+				"h": 138
+			},
+			"sourceSize": {
+				"w": 280,
+				"h": 138
+			}
+		},
+		"tasa_50.png": {
+			"frame": {
+				"x": 1,
+				"y": 333,
+				"w": 310,
+				"h": 138
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 310,
+				"h": 138
+			},
+			"sourceSize": {
+				"w": 310,
+				"h": 138
+			}
+		},
+		"tasa_60.png": {
+			"frame": {
+				"x": 313,
+				"y": 333,
+				"w": 310,
+				"h": 180
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 310,
+				"h": 180
+			},
+			"sourceSize": {
+				"w": 310,
+				"h": 180
+			}
+		},
+		"tasa_70.png": {
+			"frame": {
+				"x": 648,
+				"y": 1,
+				"w": 310,
+				"h": 180
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 310,
+				"h": 180
+			},
+			"sourceSize": {
+				"w": 310,
+				"h": 180
+			}
+		},
+		"tasa_80.png": {
+			"frame": {
+				"x": 625,
+				"y": 183,
+				"w": 310,
+				"h": 181
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 310,
+				"h": 181
+			},
+			"sourceSize": {
+				"w": 310,
+				"h": 181
+			}
+		},
+		"tasa_90.png": {
+			"frame": {
+				"x": 625,
+				"y": 366,
+				"w": 310,
+				"h": 181
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 310,
+				"h": 181
+			},
+			"sourceSize": {
+				"w": 310,
+				"h": 181
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "persons.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 959,
+			"h": 548
+		},
+		"scale": "1"
+	}
+}
