@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="CSS/Scratcher.css">
   <link rel="stylesheet" href="CSS/tools.css">
   <link rel="stylesheet" href="CSS/balloon.css">
+  <link rel="stylesheet" href="styles/Roboto.css">
 
 
   <!--librerias
@@ -27,6 +28,7 @@
 <script src="Script/shopping.js"></script>
 <script src="Script/story.js"></script>
 <script src="Script/indicators.js"></script>
+
 <main id="main" align="center" style="position: absolute;left: 50%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)";>
 
 
@@ -39,7 +41,7 @@
     <div class="circulos" data-balloon="Segmentación de Cliente! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Simulación! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Escenario! (En construcción)" data-balloon-pos="up" ></div>
-    <div class="circulos" data-balloon="Créditos! (En construcción)" data-balloon-pos="up" ></div>
+    <div class="circulos" data-balloon="Créditos! (En construcción)" data-balloon-pos="up" onclick='toSlide("historia")' ></div>
 
 </footer>
 <script>
@@ -47,12 +49,14 @@
 
 
     var width =screen.width-500,
-        height =screen.height-225,
+        height =screen.height-200,
         dom={},
         div=document.createElement('div'),
         main=document.getElementById('main');
 
       let  actual_app;
+
+      console.log(width,height);
 
 
 

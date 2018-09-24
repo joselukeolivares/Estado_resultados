@@ -1,9 +1,9 @@
 
 var div=document.createElement("div");
     div.setAttribute("class","Scratcher_div");
-    div.style.width=(width*2)+"px";
+    div.style.width=(width*1.2)+"px";
     div.style.display="none";
-    div.style.height=height+"px";
+    div.style.height=height*.995+"px";
 
 
     document.body.appendChild(div);
