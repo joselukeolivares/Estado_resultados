@@ -94,6 +94,7 @@ function start() {
       try {
         shopping().build(app);
       } catch(e) {
+        console.log(e);
         return e;
       }
     }

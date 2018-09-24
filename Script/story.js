@@ -74,13 +74,18 @@ var Height = self.height=self.app.screen.height;
       }
 			let coins = new PIXI.Container();
 			app.stage.addChild(coins);
-			for(let i = 0; i < 90; i++) {
+			var flag=false;
+			for(let i = 0; i < 80; i++) {
 
 				var p = i * (self.width/10);
 				var q = i * (self.height/10);
 
 				let coin;
-				if(i%2==0){
+
+
+
+
+				if(i%2==flag){
 					coin= new PIXI.spine.Spine(loader_ctes.resources.cliente_negro.spineData);
 					coin.scale.set((self.height*.2)/950,(self.height*.2)/950);
 					coin.interactive = true;
@@ -88,11 +93,7 @@ var Height = self.height=self.app.screen.height;
 					coin.on('mouseover',function(){
 					  coin.state.setAnimation(0,'animtion0',false);
 					});
-					/*
-					coin.on('mouseout',function(){
-						coin.state.setAnimation(0,'unhappy',false);
-					});
-          */
+
 				}else{
 					coin = new PIXI.extras.AnimatedSprite(self.frames);
 					coin.play();
@@ -102,74 +103,21 @@ var Height = self.height=self.app.screen.height;
 
 				}
 
+
+
 				coin.x = (i % 10) *self.width*.1;
 				coin.y =Math.floor(i / 10) * self.height*.1;
+
 				coins.addChild(coin);
+
+
+
+
+
 			}
 
 			coins.x = (app.screen.width - coins.width) / 1;
 			coins.y = (app.screen.height - coins.height) / 1;
-/*
-			let rombo = new PIXI.Sprite(id["assets/1. ROMBO AZUL.png"]);
-			rombo.anchor.set(0.5, 0.5);
-			rombo.position.set(app.screen.width / 2, app.screen.height / 2);
-			rombo.scale.set(	self.escala_1,	self.escala_1);
-			app.stage.addChild(rombo);
-
-
-			var txt_historia=new PIXI.Text("¿Qué importancia tiene cada cliente en la rentabilidad en la empresa? tanto el cliente nuevo que realiza su primera compra, los clientes antiguos que siguen comprando, clientes que liquidaron su cuenta y los que deben a la empresa (clientes morosos) La generación, compra, recompra y morosidad del cliente son temas de gran importancia. Medir el impacto que tiene cada tipo de cliente conlleva a un estudio y creación de indicadores que nos permiten evaluar la importancia de cada cliente.",{
-				fontSize:(self.height*15)/500,
-	       fill:'white',
-	       fontWeight:'bold',
-	       wordWrap: true,
-	       wordWrapWidth: rombo.width/1.95
-			});
-			txt_historia.x=self.width/2.8;
-			txt_historia.y=self.height*.15;
-			app.stage.addChild(txt_historia);
-*/
-/*
-
-*/
-
-
-/*
-	var style = new PIXI.TextStyle({
-		dropShadow: true,
-		dropShadowAngle: 12.6,
-		dropShadowColor: "#E7C82F",
-		dropShadowDistance: 4,
-		fill: "#2D5F96",
-		fontFamily: "Arial Black",
-		fontSize: 50,
-		lineHeight: 6,
-		miterLimit: 0,
-		stroke: "white",
-		whiteSpace: "normal",
-		wordWrapWidth: 120
-	});
-
-	var text_titulo = new PIXI.Text('Estado de resultados de clientes', style);
-	 text_titulo.x=(self.width*200)/950;
-	 text_titulo.y=(self.height*48)/950;
-	 app.stage.addChild(text_titulo);
-
-	 var texture = PIXI.Texture.fromImage('assets/500 X 500.png');
-
-	 var rombo = new PIXI.Sprite(texture);
-
-					 rombo.x = self.app.screen.width / 2;
-					 rombo.y = (self.app.screen.height / 1.8);
-					 rombo.anchor.set(0.5,0.5);
-					 rombo.scale.set((self.height*.45)/950,(self.height*.45)/950);
-
-	app.stage.addChild(rombo);
-
-
-}
-
-*/
-
 
 
 var style = new PIXI.TextStyle({
@@ -350,7 +298,7 @@ app.stage.addChild(text_parrafo_7);
 
 			button_video.on('pointertap',function(){
 
-				var texture=PIXI.Texture.fromVideo('assets/video/videoplayback.mp4');
+				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADOS DE CTES VIDEO EN MP4.mp4');
 				var videoSprite=new PIXI.Sprite(texture);
 				    videoSprite.width=self.width;
 						videoSprite.height=self.height;

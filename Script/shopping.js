@@ -2,7 +2,7 @@ function shopping(){
 
 
    var shop={};
-   shop.flag_ctes=true;
+
    shop.escala_1=(self.height*.4)/950;
    shop.escala_2=(self.height*.5)/950;
    shop.escala_3=(self.height*.07)/950;
@@ -34,7 +34,8 @@ function shopping(){
                app.stage.addChild(new PIXI.display.Layer(group_2));
 
                var container=new PIXI.Container();
-
+               debugger;
+  /*
               try{
 
                       var Loader = PIXI.loader;
@@ -43,10 +44,13 @@ function shopping(){
                             .load(setup);
 
                   }catch(err){
-                    console.log(err);
-
-                  setup();
+                    //console.log(err);
+                    debugger;
+                   setup();
                 }
+                */
+                var Loader = PIXI.loader;
+                Loader.load(setup);
 
    var celulares,
        comedor,
@@ -59,20 +63,22 @@ function shopping(){
 
 
 	function setup(){
+    /*
 try{
   var loader_ctes=PIXI.loader;
-      if(shop.flag_ctes){
+
         loader_ctes
         .add('Cliente_naranja','assets/CTE CAMINANDO/CTECAMINANDO.json')
         .load(onAssetsLoad);
-      }
+
 
 
 }catch(err){
   debugger;
-  if(shop.flag_ctes)
+
   Loader.load(onAssetsLoad);
 }
+*/
 
 
       var Cliente_1,
@@ -158,7 +164,8 @@ try{
      perfumeria.x= app.screen.width / 2.6;
 
      //container.addChild(comedor);
-
+     var loader_ctes=PIXI.loader;
+         Loader.load(onAssetsLoad);
 
 
 function onAssetsLoad(Loader,res){
