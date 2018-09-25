@@ -74,12 +74,7 @@ var Height = self.height=self.app.screen.height;
       }
 			let coins = new PIXI.Container();
 			app.stage.addChild(coins);
-<<<<<<< HEAD
 			for(let i = 0; i < 99; i++) {
-=======
-			var flag=false;
-			for(let i = 0; i < 90; i++) {
->>>>>>> master
 
 				var p = i * (self.width/10);
 				var q = i * (self.height/10);
@@ -89,7 +84,7 @@ var Height = self.height=self.app.screen.height;
 
 
 
-				if(i%2==flag){
+				if(i%2==0){
 					coin= new PIXI.spine.Spine(loader_ctes.resources.cliente_negro.spineData);
 					coin.scale.set((self.height*.2)/950,(self.height*.2)/950);
 					coin.interactive = true;
@@ -107,7 +102,6 @@ var Height = self.height=self.app.screen.height;
 
 				}
 
-<<<<<<< HEAD
 				coin.x = (i % 11) *self.width*.1;
 				coin.y =Math.floor(i / 11) * self.height*.1;
 				coins.addChild(coin);
@@ -120,29 +114,14 @@ var Height = self.height=self.app.screen.height;
 
 
 	var texture = PIXI.Texture.fromImage('assets/1. ROMBO AZUL.png');
-=======
-
-
-				coin.x = (i % 10) *self.width*.1;
-				coin.y =Math.floor(i / 10) * self.height*.1;
-
-				coins.addChild(coin);
-
-
->>>>>>> master
 
 	var rombo = new PIXI.Sprite(texture);
 
-<<<<<<< HEAD
 					rombo.x = self.app.screen.width / 2;
 					rombo.y = (self.app.screen.height / 1.8);
 					rombo.anchor.set(0.5,0.5);
-					rombo.scale.set((self.height*.45)/950,(self.height*.45)/950);
+					rombo.scale.set((self.height*.40)/950,(self.height*.40)/950);
 
-=======
-
-			}
->>>>>>> master
 
 			coins.x = (app.screen.width - coins.width) / 1;
 			coins.y = (app.screen.height - coins.height) / 1;
@@ -199,7 +178,7 @@ const style_2 = new PIXI.TextStyle({
 
 
 $(function() {
-$('#main').append('<div id="intro" align="center" style="fontFamily:Roboto;color:#FFFFFF;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)"><p>HISTORIA<br>Los clientes representan el activo <strong>más importante</strong> para las empresas, en el<br>siguiente proyecto queremos ayudarte a entender que los clientes son los que<br> conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados<br>financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias<br>monetarias / entras y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por<br>el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos<br>clientes, sino también en los que ya tiene. Deben estar lo suficientemente<br>satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve<br>muy relevante para el futuro de la organización, además contar con la ayuda de<br>diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma<br>de decisiones en una estrategia enfocada al cliente.<br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
+$('#main').append('<div id="intro" align="center" style="font-Family:Roboto;color:#FFFFFF;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)"><p>HISTORIA<br>Los clientes representan el activo <strong>más importante</strong> para las empresas, en el<br>siguiente proyecto queremos ayudarte a entender que los clientes son los que<br> conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados<br>financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias<br>monetarias / entras y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por<br>el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos<br>clientes, sino también en los que ya tiene. Deben estar lo suficientemente<br>satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve<br>muy relevante para el futuro de la organización, además contar con la ayuda de<br>diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma<br>de decisiones en una estrategia enfocada al cliente.<br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
 
 });
 
@@ -271,12 +250,9 @@ app.stage.addChild(text_parrafo_5);
 app.stage.addChild(text_parrafo_6);
 app.stage.addChild(text_parrafo_7);
 
-<<<<<<< HEAD
-*/
-=======
 
 			//app.stage.addChild(rect_video);
-
+*/
 			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/ERC_video_1.png'));
 			    button_video_1.scale.set(.8,.8);
 					button_video_1.x=width*.05;
@@ -380,7 +356,6 @@ app.stage.addChild(text_parrafo_7);
 
 
 
->>>>>>> master
 
     }
   }
