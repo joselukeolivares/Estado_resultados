@@ -32,7 +32,7 @@ function Slider(father, indicador, iteration) {
   var _isDragging = false;
   var _offsetX = 0;
 
-  var _mouseToParam=function(event){
+  var _mouseToParam = function(event) {
 
 
     var param= (event.clientX- dom.getBoundingClientRect().left - _offsetX)/200;
@@ -47,7 +47,7 @@ function Slider(father, indicador, iteration) {
      console.log(self.value);
      console.log(indicador.children[1]);
      indicador.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
-   }
+  };
 
 	var _onDomMouseDown = function(event){
 
