@@ -35,6 +35,12 @@ function indicadores(){
     }
 
     function createSprite(app){
+
+      $(function() {
+      $('#main').remove('#titulo');
+      $('#main').remove('#intro');
+
+      });
       console.log("indicadores: createSprite ");
       var group_1=new PIXI.display.Group(0,false);
       self.app.stage.addChild(new PIXI.display.Layer(group_1));

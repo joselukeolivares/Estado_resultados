@@ -1,0 +1,12 @@
+
+#intro {
+  font-size: 18px;
+}
+
+@media (max-width: 1366px)  {
+  #intro{ font-size: 11px; }
+}
+
+@media (max-width: 1280px)  {
+  #intro{ font-size: 11px; }
+}

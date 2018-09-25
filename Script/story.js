@@ -106,68 +106,20 @@ var Height = self.height=self.app.screen.height;
 
 			coins.x = (app.screen.width - coins.width) / 1;
 			coins.y = (app.screen.height - coins.height) / 1;
-/*
-			let rombo = new PIXI.Sprite(id["assets/1. ROMBO AZUL.png"]);
-			rombo.anchor.set(0.5, 0.5);
-			rombo.position.set(app.screen.width / 2, app.screen.height / 2);
-			rombo.scale.set(	self.escala_1,	self.escala_1);
-			app.stage.addChild(rombo);
 
 
-			var txt_historia=new PIXI.Text("¿Qué importancia tiene cada cliente en la rentabilidad en la empresa? tanto el cliente nuevo que realiza su primera compra, los clientes antiguos que siguen comprando, clientes que liquidaron su cuenta y los que deben a la empresa (clientes morosos) La generación, compra, recompra y morosidad del cliente son temas de gran importancia. Medir el impacto que tiene cada tipo de cliente conlleva a un estudio y creación de indicadores que nos permiten evaluar la importancia de cada cliente.",{
-				fontSize:(self.height*15)/500,
-	       fill:'white',
-	       fontWeight:'bold',
-	       wordWrap: true,
-	       wordWrapWidth: rombo.width/1.95
-			});
-			txt_historia.x=self.width/2.8;
-			txt_historia.y=self.height*.15;
-			app.stage.addChild(txt_historia);
-*/
-/*
+	var texture = PIXI.Texture.fromImage('assets/1. ROMBO AZUL.png');
 
-*/
+	var rombo = new PIXI.Sprite(texture);
+
+					rombo.x = self.app.screen.width / 2;
+					rombo.y = (self.app.screen.height / 1.8);
+					rombo.anchor.set(0.5,0.5);
+					rombo.scale.set((self.height*.45)/950,(self.height*.45)/950);
 
 
-/*
-	var style = new PIXI.TextStyle({
-		dropShadow: true,
-		dropShadowAngle: 12.6,
-		dropShadowColor: "#E7C82F",
-		dropShadowDistance: 4,
-		fill: "#2D5F96",
-		fontFamily: "Arial Black",
-		fontSize: 50,
-		lineHeight: 6,
-		miterLimit: 0,
-		stroke: "white",
-		whiteSpace: "normal",
-		wordWrapWidth: 120
-	});
 
-	var text_titulo = new PIXI.Text('Estado de resultados de clientes', style);
-	 text_titulo.x=(self.width*200)/950;
-	 text_titulo.y=(self.height*48)/950;
-	 app.stage.addChild(text_titulo);
-
-	 var texture = PIXI.Texture.fromImage('assets/500 X 500.png');
-
-	 var rombo = new PIXI.Sprite(texture);
-
-					 rombo.x = self.app.screen.width / 2;
-					 rombo.y = (self.app.screen.height / 1.8);
-					 rombo.anchor.set(0.5,0.5);
-					 rombo.scale.set((self.height*.45)/950,(self.height*.45)/950);
-
-	app.stage.addChild(rombo);
-
-
-}
-
-*/
-
-
+app.stage.addChild(rombo);
 
 var style = new PIXI.TextStyle({
 
@@ -193,19 +145,6 @@ var style = new PIXI.TextStyle({
 	text_titulo.y=(self.height*48)/950;
 	app.stage.addChild(text_titulo);
 
-	var texture = PIXI.Texture.fromImage('assets/1. ROMBO AZUL.png');
-
-	var rombo = new PIXI.Sprite(texture);
-
-					rombo.x = self.app.screen.width / 2;
-					rombo.y = (self.app.screen.height / 1.8);
-					rombo.anchor.set(0.5,0.5);
-					rombo.scale.set((self.height*.45)/950,(self.height*.45)/950);
-debugger;
-
-
-app.stage.addChild(rombo);
-
 
 const style_2_2 = new PIXI.TextStyle({
 	align: "center",
@@ -230,10 +169,16 @@ const style_2 = new PIXI.TextStyle({
 	wordWrapWidth: rombo.width * 420 / .42
 });
 
-console.log(rombo.width);
 
+$(function() {
+$('#main').append('<div id="intro" align="center" style="fontFamily:Roboto;color:#FFFFFF;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)"><p>HISTORIA<br>Los clientes representan el activo <strong>más importante</strong> para las empresas, en el<br>siguiente proyecto queremos ayudarte a entender que los clientes son los que<br> conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados<br>financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias<br>monetarias / entras y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por<br>el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos<br>clientes, sino también en los que ya tiene. Deben estar lo suficientemente<br>satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve<br>muy relevante para el futuro de la organización, además contar con la ayuda de<br>diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma<br>de decisiones en una estrategia enfocada al cliente.<br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
+
+});
+
+
+/*
 const text_parrafo_1 = new PIXI.Text('Los clientes representan el activo más importante para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.',style_2);
-text_parrafo_1.x=self.width*.32;
+text_parrafo_1.x=self.width*.35;
 text_parrafo_1.y=self.height/4.2;
 
 const style_3 = new PIXI.TextStyle({
@@ -247,7 +192,7 @@ const style_3 = new PIXI.TextStyle({
 });
 
 const text_parrafo_2 = new PIXI.Text('Actualmente las empresas miden sus resultados a través de los estados financieros que reflejan sólo el incremento en ventas de un periodo (ganancias monetarias / entras y salidas de dinero a la caja).\n\n', style_3);
-text_parrafo_2.x=self.width*.32;
+text_parrafo_2.x=self.width*.35;
 text_parrafo_2.y=self.height/2.8;
 
 const style_4 = new PIXI.TextStyle({
@@ -260,34 +205,34 @@ const style_4 = new PIXI.TextStyle({
 });
 
 const text_parrafo_3 = new PIXI.Text('Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?', style_4);
-text_parrafo_3.x=self.width*.32;
+text_parrafo_3.x=self.width*.35;
 text_parrafo_3.y=self.height/2.15;
 
 const text_parrafo_4 = new PIXI.Text('Hablar de clientes se vuelve un tema mucho más complejo, principalmente por el cambio en el estilo de vida de los clientes.', style_4);
-text_parrafo_4.x=self.width*.32;
+text_parrafo_4.x=self.width*.35;
 text_parrafo_4.y=self.height/1.95;
 
 const text_parrafo_5 = new PIXI.Text('Un negocio que crece de manera exitosa no se basa solo en generar nuevos clientes, sino también en los que ya tiene. Deben estar lo suficientemente satisfechos como para seguir comprando.', style_4);
-text_parrafo_5.x=self.width*.32;
+text_parrafo_5.x=self.width*.35;
 text_parrafo_5.y=self.height/1.7;
 
 const text_parrafo_6 = new PIXI.Text('Por lo que evaluar la pérdida y ganancia de clientes en la empresa se vuelve muy relevante para el futuro de la organización, además contar con la ayuda de diferentes indicadores de monitoreo que nos brinde información para la toma de decisiones en una estrategia enfocada al cliente.', style_4);
-text_parrafo_6.x=self.width*.32;
+text_parrafo_6.x=self.width*.35;
 text_parrafo_6.y=self.height/1.45;
 
 const text_parrafo_7 = new PIXI.Text('El estado de resultados de clientes nos puede ayudar con esto.', style_4);
-text_parrafo_7.x=self.width*.32;
+text_parrafo_7.x=self.width*.35;
 text_parrafo_7.y=self.height/1.2;
 
 
-text_parrafo_1_1.scale.set(1.2,1.2);
-text_parrafo_1.scale.set(1.2,1.2);
-text_parrafo_2.scale.set(1.2,1.2);
-text_parrafo_3.scale.set(1.2,1.2);
-text_parrafo_4.scale.set(1.2,1.2);
-text_parrafo_5.scale.set(1.2,1.2);
-text_parrafo_6.scale.set(1.2,1.2);
-text_parrafo_7.scale.set(1.2,1.2);
+text_parrafo_1_1.scale.set(1,1);
+text_parrafo_1.scale.set(1,1);
+text_parrafo_2.scale.set(1,1);
+text_parrafo_3.scale.set(1,1);
+text_parrafo_4.scale.set(1,1);
+text_parrafo_5.scale.set(1,1);
+text_parrafo_6.scale.set(1,1);
+text_parrafo_7.scale.set(1,1);
 
 app.stage.addChild(text_parrafo_1_1);
 app.stage.addChild(text_parrafo_1);
@@ -297,6 +242,8 @@ app.stage.addChild(text_parrafo_4);
 app.stage.addChild(text_parrafo_5);
 app.stage.addChild(text_parrafo_6);
 app.stage.addChild(text_parrafo_7);
+
+*/
 
     }
   }
