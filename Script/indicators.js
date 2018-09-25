@@ -2,6 +2,14 @@ function indicators() {
   let self = {};
 
   self.destroyApp = function() {
+
+    var sliders=document.getElementsByClassName("slider_indicator");
+    if(sliders!=null){
+      for(var i=0;i<sliders.length;i++){
+        sliders[i].parentNode.removeChild(sliders[i]);
+      }
+    }
+
     if(self.app == null) return self;
     self.app.destroy(true);
     return self;
@@ -150,7 +158,7 @@ function indicators() {
                     "fñlajeijoi oawijfeoiaslkdf woifj wofij   awoiijw fpajsdfi wijfajj djfpoqje faisdfwioq ´0ij aposijdf qp aspoief. \n ajskljdfwiojfowjefioasoñdifjwo dlfj  woijf qj jaowjef qj oije fioaeji.",
                     "lajeijf dkflwjf owiejfw o qu oawjfjoiwej foai qu qu eoifjjaoisjf dwue qeifj aoief uwe que que foaijsdofijw eufqpoei"]];
     let interactive = [PIXI.Texture.fromFrame("tasa_5.png"),
-                          PIXI.Texture.fromFrame("tasa_5.png"),
+                          PIXI.Texture.fromFrame("compra_5.png"),
                           PIXI.Texture.fromFrame("venta_50.png")];
 
     let slider0, slider1, slider2;
@@ -251,7 +259,6 @@ function indicators() {
         tasaDeCompra.cursor = "pointer";
         tasaDeCompra.on("click", function() {
           if(stage[1].visible) {
-            console.log(stage[1].children);
             if(stage[1].children[2].visible) {
               slider1.style.display = "none";
               stage[1].children[2].visible = false;

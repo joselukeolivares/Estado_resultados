@@ -1,4 +1,4 @@
-function Slider(father, indicador, iteration) {
+function Slider(father, indicator, iteration) {
   var self = this;
   self.value=0;
 
@@ -6,9 +6,9 @@ function Slider(father, indicador, iteration) {
   // Create DOM
   var dom = document.createElement("div");
   dom.setAttribute("id","slider_"+iteration);
-  dom.className = "slider";
-  dom.style.left = width*.68+"px";
-  dom.style.top = height*.75+"px";
+  dom.className = "slider slider_indicator";
+  dom.style.left = width * .66 + "px";
+  dom.style.top = height * .75 + "px";
   dom.style.width = "200px";
   dom.style.height = "50px";
   dom.style.position = "absolute";
@@ -43,10 +43,17 @@ function Slider(father, indicador, iteration) {
      knob.style.left=(event.clientX - width*.7-230)+"px";
 
      self.value=Math.round(param*10);
-     //indicador.value=self.value;
-     console.log(self.value);
-     console.log(indicador.children[1]);
-     indicador.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
+     //indicator.value=self.value;
+     console.log(indicator);
+     if (iteration == 0) {
+       if (indicator.visible) {
+         indicator.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
+       } else if (indicator.visible) {
+         indicator.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
+       }
+     } else if (iteration == 1) {
+       indicator.children[1].setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
+     }
   };
 
 	var _onDomMouseDown = function(event){
@@ -69,7 +76,7 @@ function Slider(father, indicador, iteration) {
 
 	};
 	var _onWindowMouseUp = function(){
-		   _isDragging = false;
+    _isDragging = false;
 	};
 	dom.addEventListener("mousedown",_onDomMouseDown,false);
 	knob.addEventListener("mousedown",_onKnobMouseDown,false);
