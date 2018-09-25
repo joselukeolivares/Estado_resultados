@@ -1,18 +1,18 @@
-function Slider(father,indicador){
-
-
+function Slider(father, indicador, iteration) {
   var self = this;
   self.value=0;
 
 
   // Create DOM
   var dom = document.createElement("div");
+  dom.setAttribute("id","slider_"+iteration);
   dom.className = "slider";
   dom.style.left = width*.68+"px";
-  dom.style.top = height*.85+"px";
+  dom.style.top = height*.75+"px";
   dom.style.width = "200px";
   dom.style.height = "50px";
   dom.style.position = "absolute";
+  dom.style.display="none";
   self.dom = dom;
 
   // Background
@@ -42,10 +42,12 @@ function Slider(father,indicador){
      if(param>0&&param<1)
      knob.style.left=(event.clientX - width*.7-230)+"px";
 
-     self.value=Math.round(param*100);
-     indicador.value=self.value;
-     indicador.
-     }
+     self.value=Math.round(param*10);
+     //indicador.value=self.value;
+     console.log(self.value);
+     console.log(indicador.children[1]);
+     indicador.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
+   }
 
 	var _onDomMouseDown = function(event){
 

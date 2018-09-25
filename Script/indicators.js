@@ -162,8 +162,8 @@ function indicators() {
     }
 
     function setup() {
-      let interactive = [PIXI.Texture.fromFrame("tasa_50.png"),
-                          PIXI.Texture.fromFrame("tasa_50.png"),
+      let interactive = [PIXI.Texture.fromFrame("tasa_5.png"),
+                          PIXI.Texture.fromFrame("tasa_5.png"),
                           PIXI.Texture.fromFrame("venta_50.png")];
       let incPercent = 60,
           decPercent = 40;
@@ -197,6 +197,13 @@ function indicators() {
           things.name = "thing_" + i;
           scenes[j].addChild(things);
 
+          if(j == 1){
+            var slider=document.getElementById("slider_0");
+            let appDiv = document.getElementById("aplicacion");
+            Slider(appDiv,scenes[j], i);
+                //slider.style.display="block";
+          }
+
           if (j == 1) {
             let increment = new PIXI.Graphics();
             increment.beginFill(0xFFFFFF);
@@ -206,8 +213,9 @@ function indicators() {
             increment.interactive = true;
             increment.cursor = "pointer";
             //scenes[j].addChild(increment);
-            var slider=new Slider(appDiv,this);
-            console.log(slider.value)
+
+
+
             increment.on("click", function() {
               slide(incPercent, things);
               incPercent += 10;
@@ -256,6 +264,11 @@ function indicators() {
             rightArrow.buttonMode = true;
             scenes[j].addChild(rightArrow);
             rightArrow.on("click", function() {
+
+              if(i == 0) {
+                var slider=document.getElementById("slider_0");
+                slider.style.display = "block";
+              }
               TweenMax.to(this.parent, 0.2, {pixi: {alpha: 0}, onComplete: () => {
                 this.parent.visible = false;
                 let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
@@ -282,6 +295,9 @@ function indicators() {
     }
 
     contButton.on("click", function() {
+
+
+
       TweenMax.to(intro, 0.2, {pixi: {alpha: 0}});
       TweenMax.to([tasaDeCompra, compraPromedio, venta], 0.8, {y: (app.screen.height * 62) / 220, onComplete: function () {
         intro.visible = false;
@@ -294,6 +310,8 @@ function indicators() {
         tasaDeCompra.cursor = "pointer";
         tasaDeCompra.on("click", function() {
           if(stage[1].visible) {
+
+
             TweenMax.to(stage[1], 0.3, {pixi: {alpha: 0}, onComplete: function() {
               stage[1].visible = false;
               stage[0].visible = true;
@@ -363,6 +381,8 @@ function indicators() {
         venta.interactive = true;
         venta.cursor = "pointer";
         venta.on("click", function() {
+          var slider=document.getElementById("slider_2");
+              slider.style.display="block";
           if(stage[0].visible) {
             TweenMax.to(stage[0], 0.3, {pixi: {alpha: 0}, onComplete: function() {
               stage[0].visible = false;
@@ -395,12 +415,8 @@ function indicators() {
         });
       }});
 
-      let appDiv = document.getElementById("aplicacion");
-      /*
-          var slider_div=document.createElement('div');
-          slider_div.setAttribute("Style","width: 200px;height: 200px;left: 70%;top: 60%;background-color: red;position: absolute;")
-          appDiv.appendChild(slider_div);
-      */
+
+
 
 
 
