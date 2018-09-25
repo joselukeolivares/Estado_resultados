@@ -205,7 +205,9 @@ function indicators() {
             increment.y = app.screen.height / 1.3;
             increment.interactive = true;
             increment.cursor = "pointer";
-            scenes[j].addChild(increment);
+            //scenes[j].addChild(increment);
+            var slider=new Slider(appDiv,this);
+            console.log(slider.value)
             increment.on("click", function() {
               slide(incPercent, things);
               incPercent += 10;
@@ -399,7 +401,7 @@ function indicators() {
           slider_div.setAttribute("Style","width: 200px;height: 200px;left: 70%;top: 60%;background-color: red;position: absolute;")
           appDiv.appendChild(slider_div);
       */
-          Slider(appDiv);
+
 
 
 

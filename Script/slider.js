@@ -1,14 +1,15 @@
-function Slider(father){
+function Slider(father,indicador){
 
 
   var self = this;
+  self.value=0;
 
 
   // Create DOM
   var dom = document.createElement("div");
   dom.className = "slider";
-  dom.style.left = "0px";
-  dom.style.top = "500px";
+  dom.style.left = width*.68+"px";
+  dom.style.top = height*.85+"px";
   dom.style.width = "200px";
   dom.style.height = "50px";
   dom.style.position = "absolute";
@@ -34,13 +35,17 @@ function Slider(father){
   var _mouseToParam=function(event){
 
 
-    var param= (event.clientX - _offsetX-200)/200+"px";
+    var param= (event.clientX- dom.getBoundingClientRect().left - _offsetX)/200;
 
-     console.log(event.clientX);
-     console.log(knob.getBoundingClientRect().left);
-     console.log(param);
+     if(param<0)param=0;
+     if(param>1)param=1;
+     if(param>0&&param<1)
+     knob.style.left=(event.clientX - width*.7-230)+"px";
 
-  }
+     self.value=Math.round(param*100);
+     indicador.value=self.value;
+     indicador.
+     }
 
 	var _onDomMouseDown = function(event){
 
