@@ -14,8 +14,8 @@ function start() {
     self.width = self.app.screen.width;
     self.height = self.app.screen.height;
 
-    self.app.view.style.width = self.width;
-    self.app.view.style.height = self.height;
+    self.app.view.style.width = appDiv.width;
+    self.app.view.style.height = appDiv.height;
 
     appDiv.appendChild(self.app.view);
 
@@ -94,6 +94,7 @@ function start() {
       try {
         shopping().build(app);
       } catch(e) {
+        console.log(e);
         return e;
       }
     }

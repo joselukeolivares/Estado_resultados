@@ -3,14 +3,18 @@ function historia(){
       self={};
 
       self.removeElements=function(){
+try{
+  if(self.app.stage==null)
+     return false;
 
-        if(self.app.stage==null)
-           return false;
+   var app=self.app;
+   while(app.stage.getChildAt[0]) {
+     console.log("Elemntos restantes: "+app.stage.children.length +" de la app de PIXI:Historia")
+     app.stage.removeChildAt(0); }
+}catch(err){
 
-         var app=self.app;
-         while(app.stage.getChildAt[0]) {
-           console.log("Elemntos restantes: "+app.stage.children.length +" de la app de PIXI:Historia")
-           app.stage.removeChildAt(0); }
+}
+
 
 
 
@@ -20,16 +24,12 @@ function historia(){
    self.destroyApp=function(){
      console.log("destruyendo la app Historia");
 
-     if(self.app==null)
-        return self;
-        debugger;
- /*
-        self.app.stage.destroy=true;
-        self.app.stage=null;
-        self.app.render.destroy=true;
-        self.app.render=null;
- */
-        self.app.destroy(true);
+    var div_video=document.getElementById("div_video");
+        div_video.parentNode.removeChild(div_video);
+    var div_button=document.getElementById("div_button");
+        div_button.parentNode.removeChild(div_button)
+
+
 
      return self;
    }
@@ -40,31 +40,30 @@ function historia(){
     console.log("Este script ejecuta la historia");
 
 
-    var aplicacion=document.getElementById('aplicacion');
-  	self.app = new PIXI.Application(width,height,{transparent:true});
 
-  	self.app.view.style.width = aplicacion.width;
-  	self.app.view.style.height = aplicacion.height;
-
-  	aplicacion.appendChild(self.app.view);
-
-    var anim;
-
-    var textureShop_1 = PIXI.Texture.fromImage('assets/ui/dungeon.png');
-
-    var shop = new PIXI.Sprite(textureShop_1);
-
-            shop.x = self.app.screen.width / 2;
-            shop.y = (self.app.screen.height / 2);
-            shop.anchor.set(0.5,0.5);
-
-            shop.interactive = true;
-            shop.buttonMode = true;
+    var videoElement=document.createElement('video');
+    var close_button=document.createElement('div');
+    close_button.style='background-image: url("assets/ui/Bloque_2/close_video.png");width: 50px;height: 50px;position: fixed;top: 50px;right: 15%;background-size: 50px 50px;background-repeat: no-repeat;cursor: pointer;'
+    close_button.title="Cerrar video!";
+    close_button.setAttribute("id","div_button");
+    debugger;
+    close_button.onclick=function(){
 
 
-      //scratcher(document.body);
+      videoElement.parentNode.removeChild(videoElement);
+      this.parentNode.removeChild(this);
+    };
 
-      self.app.stage.addChild(shop);
+
+    videoElement.src='assets/video/videoplayback.mp4';
+    videoElement.setAttribute("id","div_video");
+    videoElement.width=width;
+    videoElement.height=height;
+    videoElement.controls=true;
+    videoElement.load();
+  	aplicacion.appendChild(videoElement);
+    document.body.appendChild(close_button);
+
 
       return self
 

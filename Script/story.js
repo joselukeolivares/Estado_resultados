@@ -19,6 +19,11 @@ function story() {
   self.destroyApp = function () {
     console.log("Destroying the story...");
     if(self.app == null) return self;
+
+		var child_video=self.app.stage.getChildByName("video_sprite");
+		if(child_video!=null)
+		child_video.texture.baseTexture.destroy();
+
     		self.app.destroy(true);
 
     return self;
@@ -69,13 +74,22 @@ var Height = self.height=self.app.screen.height;
       }
 			let coins = new PIXI.Container();
 			app.stage.addChild(coins);
+<<<<<<< HEAD
 			for(let i = 0; i < 99; i++) {
+=======
+			var flag=false;
+			for(let i = 0; i < 90; i++) {
+>>>>>>> master
 
 				var p = i * (self.width/10);
 				var q = i * (self.height/10);
 
 				let coin;
-				if(i%2==0){
+
+
+
+
+				if(i%2==flag){
 					coin= new PIXI.spine.Spine(loader_ctes.resources.cliente_negro.spineData);
 					coin.scale.set((self.height*.2)/950,(self.height*.2)/950);
 					coin.interactive = true;
@@ -83,11 +97,7 @@ var Height = self.height=self.app.screen.height;
 					coin.on('mouseover',function(){
 					  coin.state.setAnimation(0,'animtion0',false);
 					});
-					/*
-					coin.on('mouseout',function(){
-						coin.state.setAnimation(0,'unhappy',false);
-					});
-          */
+
 				}else{
 					coin = new PIXI.extras.AnimatedSprite(self.frames);
 					coin.play();
@@ -97,6 +107,7 @@ var Height = self.height=self.app.screen.height;
 
 				}
 
+<<<<<<< HEAD
 				coin.x = (i % 11) *self.width*.1;
 				coin.y =Math.floor(i / 11) * self.height*.1;
 				coins.addChild(coin);
@@ -109,15 +120,32 @@ var Height = self.height=self.app.screen.height;
 
 
 	var texture = PIXI.Texture.fromImage('assets/1. ROMBO AZUL.png');
+=======
+
+
+				coin.x = (i % 10) *self.width*.1;
+				coin.y =Math.floor(i / 10) * self.height*.1;
+
+				coins.addChild(coin);
+
+
+>>>>>>> master
 
 	var rombo = new PIXI.Sprite(texture);
 
+<<<<<<< HEAD
 					rombo.x = self.app.screen.width / 2;
 					rombo.y = (self.app.screen.height / 1.8);
 					rombo.anchor.set(0.5,0.5);
 					rombo.scale.set((self.height*.45)/950,(self.height*.45)/950);
 
+=======
 
+			}
+>>>>>>> master
+
+			coins.x = (app.screen.width - coins.width) / 1;
+			coins.y = (app.screen.height - coins.height) / 1;
 
 app.stage.addChild(rombo);
 
@@ -243,7 +271,116 @@ app.stage.addChild(text_parrafo_5);
 app.stage.addChild(text_parrafo_6);
 app.stage.addChild(text_parrafo_7);
 
+<<<<<<< HEAD
 */
+=======
+
+			//app.stage.addChild(rect_video);
+
+			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/ERC_video_1.png'));
+			    button_video_1.scale.set(.8,.8);
+					button_video_1.x=width*.05;
+					button_video_1.y=height*.85;
+
+
+
+			let paused=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/pause_play.png'));
+			let next_block=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/explorar_1.png'));
+			let close=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/close_video_2.png'));
+			paused.position.set(width/2,height/2);
+			paused.scale.set(.25,.25);
+			paused.anchor.set(.5,.5);
+			paused.alpha=0;
+			paused.name="paused_button";
+
+			next_block.scale.set(.8,.8);
+			next_block.x=width*.85;
+			next_block.y=height*.85;
+			next_block.name="next_block";
+			next_block.interactive = true;
+			next_block.cursor = "pointer";
+			app.stage.addChild(next_block);
+			next_block.on("pointertap", function() {
+				toSlide("indicators");
+			});
+
+			close.position.set(width*.98,height*.02);
+			close.scale.set(.15,.15);
+			close.anchor.set(.5,.5);
+      close.interactive=true;
+			close.buttonMode=true;
+			close.name="close_video";
+			close.on("pointertap", deleteVideo);
+
+
+
+			let button_video=new PIXI.Container();
+			button_video.addChild(button_video_1);
+
+			button_video.interactive=true;
+			button_video.buttonMode=true;
+
+
+
+
+
+
+			button_video.on('pointertap',function(){
+
+				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADOS DE CTES VIDEO EN MP4.mp4');
+				var videoSprite=new PIXI.Sprite(texture);
+				    videoSprite.width=self.width;
+						videoSprite.height=self.height;
+            videoSprite.interactive=true;
+	  				videoSprite.buttonMode=true;
+						videoSprite.name="video_sprite"
+		  			videoSprite.on('click',pause);
+
+          videoSprite.texture.baseTexture.source.onended=
+					function(){
+							app.stage.removeChild(videoSprite);
+					};
+    				app.stage.addChild(videoSprite);
+						app.stage.addChild(paused);
+						app.stage.addChild(close);
+
+			});
+
+
+
+			app.stage.addChild(button_video);
+
+			function pause(){
+				 var source=this.texture.baseTexture.source;
+
+			 if(source.paused){
+				 source.play();
+				 TweenMax.to(paused,2,{pixi:{alpha:0}});
+			 }else{
+				 source.pause();
+				 TweenMax.to(paused,2,{pixi:{alpha:.9}});
+			 }
+
+		}
+
+		function deleteVideo(){
+
+
+			var child_video=app.stage.getChildByName("video_sprite");
+			var child_close=app.stage.getChildByName("close_video");
+			var paused_button=app.stage.getChildByName("paused_button");
+			debugger;
+			child_video.texture.baseTexture.destroy();
+
+			app.stage.removeChild(child_close);
+		  app.stage.removeChild(child_video);
+			app.stage.removeChild(paused_button);
+
+		}
+
+
+
+>>>>>>> master
 
     }
   }

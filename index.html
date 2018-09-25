@@ -9,7 +9,12 @@
   <link rel="stylesheet" href="CSS/Scratcher.css">
   <link rel="stylesheet" href="CSS/tools.css">
   <link rel="stylesheet" href="CSS/balloon.css">
+<<<<<<< HEAD
   <link rel="stylesheet" href="CSS/style.css">
+=======
+  <link rel="stylesheet" href="CSS/slider.css">
+  <link rel="stylesheet" href="styles/Roboto.css">
+>>>>>>> master
 
 
   <!--librerias
@@ -29,7 +34,8 @@
 <body>
 <script src="Script/shopping.js"></script>
 <script src="Script/story.js"></script>
-<script src="Script/indicadores.js"></script>
+<script src="Script/indicators.js"></script>
+
 <main id="main" align="center" style="position: absolute;left: 50%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)";>
 
 
@@ -38,11 +44,11 @@
   <div id="container" align="center" style="position: absolute;left: 50%;top: 95%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)" >
     <div class="circulos" data-balloon="Inicio!" data-balloon-pos="up" onclick='toSlide("start")'></div>
     <div class="circulos" data-balloon="Historia!" data-balloon-pos="up" onclick='toSlide("story")'></div>
-    <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicadores")'></div>
+    <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicators")'></div>
     <div class="circulos" data-balloon="Segmentación de Cliente! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Simulación! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Escenario! (En construcción)" data-balloon-pos="up" ></div>
-    <div class="circulos" data-balloon="Créditos! (En construcción)" data-balloon-pos="up" ></div>
+    <div class="circulos" data-balloon="Créditos! (En construcción)" data-balloon-pos="up" onclick='toSlide("historia")' ></div>
 
 </footer>
 <script>
@@ -65,21 +71,10 @@
   div.setAttribute("style","width:"+width+"px;height:"+height+"px;");
   main.appendChild(div);
 
-
-
-
-
-
-  actual_app=start().createApp();
-
-
-
-
-
-
 </script>
-
+<script src="Script/loader_pixi.js"></script>
 <script src="Script/menu_puntos.js"></script>
 <script src="Script/Scratcher.js"></script>
+<script src="Script/slider.js"></script>
 </body>
 </html>
