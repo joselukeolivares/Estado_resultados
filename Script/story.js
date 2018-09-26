@@ -1,6 +1,25 @@
 function story() {
 	let self = {};
   self.frames;
+
+	self.hideShowTxt=function(){
+
+		var texts =  document.getElementsByClassName("intro");
+				debugger;
+				if(texts!=null)
+				{
+					for(var i=0;i<texts.length;i++){
+						  if(texts[i].style.display=='none')
+							{
+								texts[i].style.display='block';
+							}else{
+								texts[i].style.display='none';
+							}
+					}
+				}
+
+	}
+
   self.removeElements = function () {
 
 		        if(self.app.stage==null)
@@ -18,14 +37,7 @@ function story() {
 
   self.destroyApp = function () {
 
-		var texts =  document.getElementsByClassName("intro");
-				debugger;
-				if(texts!=null)
-				{
-					for(var i=0;i<texts.length;i++){
-							texts[i].style.display='none';
-					}
-				}
+    self.hideShowTxt();
 
     console.log("Destroying the story...");
     if(self.app == null) return self;
@@ -162,14 +174,18 @@ var style = new PIXI.TextStyle({
 	text_titulo.y=(self.height*48)/950;
 
 	app.stage.addChild(text_titulo);
+if(document.getElementsByClassName('intro').length==0){
+	 debugger;
+	$(function() {
+	$('#main').append('<div class="title intro" align="center" style="font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: 50%;top: 25%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)"><p>HISTORIA</p></div>');
 
-$(function() {
-$('#main').append('<div class="title" align="center" style="font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: 50%;top: 25%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)"><p>HISTORIA</p></div>');
+	$('#main').append('<div class="intro" align="center" style="font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: 50%;top: 55%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)">Los clientes representan el activo <strong>más importante</strong> para las empresas, en el<br>siguiente proyecto queremos ayudarte a entender que los clientes son los que<br> conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados<br>financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias<br>monetarias / entras y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por<br>el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos<br>clientes, sino también en los que ya tiene. Deben estar lo suficientemente<br>satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve<br>muy relevante para el futuro de la organización, además contar con la ayuda de<br>diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma<br>de decisiones en una estrategia enfocada al cliente.<br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
 
-$('#main').append('<div class="intro" align="center" style="font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: 50%;top: 55%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)">Los clientes representan el activo <strong>más importante</strong> para las empresas, en el<br>siguiente proyecto queremos ayudarte a entender que los clientes son los que<br> conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados<br>financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias<br>monetarias / entras y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por<br>el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos<br>clientes, sino también en los que ya tiene. Deben estar lo suficientemente<br>satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve<br>muy relevante para el futuro de la organización, además contar con la ayuda de<br>diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma<br>de decisiones en una estrategia enfocada al cliente.<br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
+	});
 
-});
-
+}else{
+	self.hideShowTxt();
+}
 
 /*
 const text_parrafo_1 = new PIXI.Text('Los clientes representan el activo más importante para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.',style_2);
@@ -257,8 +273,8 @@ app.stage.addChild(text_parrafo_7);
 			paused.alpha=0;
 			paused.name="paused_button";
 
-			next_block.scale.set(.8,.8);
-			next_block.x=width*.85;
+			next_block.scale.set(.7,.7);
+			next_block.x=width*.80;
 			next_block.y=height*.85;
 			next_block.name="next_block";
 			next_block.interactive = true;
@@ -292,14 +308,7 @@ app.stage.addChild(text_parrafo_7);
 			button_video.on('pointertap',function(){
 
 
-				var texts =  document.getElementsByClassName("intro");
-						debugger;
-						if(texts!=null)
-						{
-							for(var i=0;i<texts.length;i++){
-									texts[i].style.display='none';
-							}
-						}
+				self.hideShowTxt();
 
 
 				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADOS DE CTES VIDEO EN MP4.mp4');
@@ -313,6 +322,7 @@ app.stage.addChild(text_parrafo_7);
 
           videoSprite.texture.baseTexture.source.onended=
 					function(){
+						self.hideShowTxt();
 							app.stage.removeChild(videoSprite);
 					};
     				app.stage.addChild(videoSprite);
@@ -340,7 +350,7 @@ app.stage.addChild(text_parrafo_7);
 
 		function deleteVideo(){
 
-
+      self.hideShowTxt();
 			var child_video=app.stage.getChildByName("video_sprite");
 			var child_close=app.stage.getChildByName("close_video");
 			var paused_button=app.stage.getChildByName("paused_button");
