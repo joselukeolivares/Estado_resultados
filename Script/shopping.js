@@ -297,6 +297,11 @@ function LoadButton(){
            function Clicked(){
 
                  toSlide("story");
+
+                 $(function() {
+       $('#main').html('<strong>Ejemplo con html()</strong>');
+  
+     });
            }
             					}
 }

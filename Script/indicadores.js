@@ -35,6 +35,11 @@ function indicadores(){
     }
 
     function createSprite(app){
+
+
+
+
+
       console.log("indicadores: createSprite ");
       var group_1=new PIXI.display.Group(0,false);
       self.app.stage.addChild(new PIXI.display.Layer(group_1));
@@ -376,6 +381,16 @@ try{
     }
 
     self.destroyApp=function(){
+
+
+    var texts =  document.getElementsByClassName("intro");
+        debugger;
+        if(texts!=null)
+        {
+          for(var i=0;i<texts.length;i++){
+              texts[i].style.display='none';
+          }
+        }
 
         self.app.destroy(true);
 

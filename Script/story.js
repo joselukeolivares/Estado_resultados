@@ -17,6 +17,16 @@ function story() {
   };
 
   self.destroyApp = function () {
+
+		var texts =  document.getElementsByClassName("intro");
+				debugger;
+				if(texts!=null)
+				{
+					for(var i=0;i<texts.length;i++){
+							texts[i].style.display='none';
+					}
+				}
+
     console.log("Destroying the story...");
     if(self.app == null) return self;
 
@@ -74,8 +84,7 @@ var Height = self.height=self.app.screen.height;
       }
 			let coins = new PIXI.Container();
 			app.stage.addChild(coins);
-			var flag=false;
-			for(let i = 0; i < 90; i++) {
+			for(let i = 0; i < 99; i++) {
 
 				var p = i * (self.width/10);
 				var q = i * (self.height/10);
@@ -85,7 +94,7 @@ var Height = self.height=self.app.screen.height;
 
 
 
-				if(i%2==flag){
+				if(i%2==0){
 					coin= new PIXI.spine.Spine(loader_ctes.resources.cliente_negro.spineData);
 					coin.scale.set((self.height*.2)/950,(self.height*.2)/950);
 					coin.interactive = true;
@@ -103,22 +112,31 @@ var Height = self.height=self.app.screen.height;
 
 				}
 
-
-
-				coin.x = (i % 10) *self.width*.1;
-				coin.y =Math.floor(i / 10) * self.height*.1;
-
+				coin.x = (i % 11) *self.width*.1;
+				coin.y =Math.floor(i / 11) * self.height*.1;
 				coins.addChild(coin);
-
-
-
-
-
 			}
+
+
 
 			coins.x = (app.screen.width - coins.width) / 1;
 			coins.y = (app.screen.height - coins.height) / 1;
 
+
+	var texture = PIXI.Texture.fromImage('assets/1. ROMBO AZUL.png');
+
+	var rombo = new PIXI.Sprite(texture);
+
+					rombo.x = self.app.screen.width / 2;
+					rombo.y = (self.app.screen.height / 1.8);
+					rombo.anchor.set(0.5,0.5);
+					rombo.scale.set((self.height*.40)/950,(self.height*.40)/950);
+
+
+			coins.x = (app.screen.width - coins.width) / 1;
+			coins.y = (app.screen.height - coins.height) / 1;
+
+app.stage.addChild(rombo);
 
 var style = new PIXI.TextStyle({
 
@@ -142,49 +160,20 @@ var style = new PIXI.TextStyle({
  var text_titulo = new PIXI.Text('Estado de resultados de clientes', style);
   text_titulo.x=(self.width*200)/950;
 	text_titulo.y=(self.height*48)/950;
+
 	app.stage.addChild(text_titulo);
 
-	var texture = PIXI.Texture.fromImage('assets/1. ROMBO AZUL.png');
+$(function() {
+$('#main').append('<div class="title" align="center" style="font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: 50%;top: 25%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)"><p>HISTORIA</p></div>');
 
-	var rombo = new PIXI.Sprite(texture);
+$('#main').append('<div class="intro" align="center" style="font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: 50%;top: 55%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)">Los clientes representan el activo <strong>más importante</strong> para las empresas, en el<br>siguiente proyecto queremos ayudarte a entender que los clientes son los que<br> conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados<br>financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias<br>monetarias / entras y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por<br>el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos<br>clientes, sino también en los que ya tiene. Deben estar lo suficientemente<br>satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve<br>muy relevante para el futuro de la organización, además contar con la ayuda de<br>diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma<br>de decisiones en una estrategia enfocada al cliente.<br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
 
-					rombo.x = self.app.screen.width / 2;
-					rombo.y = (self.app.screen.height / 1.8);
-					rombo.anchor.set(0.5,0.5);
-					rombo.scale.set((self.height*.45)/950,(self.height*.45)/950);
-debugger;
-
-
-app.stage.addChild(rombo);
-
-
-const style_2_2 = new PIXI.TextStyle({
-	align: "center",
-	fill: "white",
-	fontSize: screen.height * 30 / 880,
-	whiteSpace: "pre-line",
-	wordWrap: true,
-	wordWrapWidth: 440
 });
 
 
-const text_parrafo_1_1 = new PIXI.Text('HISTORIA',style_2_2);
-text_parrafo_1_1.x=self.width*.43;
-text_parrafo_1_1.y=self.height*.12;
-
-const style_2 = new PIXI.TextStyle({
-	align: "center",
-	fill: "white",
-	fontSize:  screen.height * 12 / 880,
-	whiteSpace: "pre-line",
-	wordWrap: true,
-	wordWrapWidth: rombo.width * 420 / .42
-});
-
-console.log(rombo.width);
-
+/*
 const text_parrafo_1 = new PIXI.Text('Los clientes representan el activo más importante para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.',style_2);
-text_parrafo_1.x=self.width*.32;
+text_parrafo_1.x=self.width*.35;
 text_parrafo_1.y=self.height/4.2;
 
 const style_3 = new PIXI.TextStyle({
@@ -198,7 +187,7 @@ const style_3 = new PIXI.TextStyle({
 });
 
 const text_parrafo_2 = new PIXI.Text('Actualmente las empresas miden sus resultados a través de los estados financieros que reflejan sólo el incremento en ventas de un periodo (ganancias monetarias / entras y salidas de dinero a la caja).\n\n', style_3);
-text_parrafo_2.x=self.width*.32;
+text_parrafo_2.x=self.width*.35;
 text_parrafo_2.y=self.height/2.8;
 
 const style_4 = new PIXI.TextStyle({
@@ -211,34 +200,34 @@ const style_4 = new PIXI.TextStyle({
 });
 
 const text_parrafo_3 = new PIXI.Text('Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?', style_4);
-text_parrafo_3.x=self.width*.32;
+text_parrafo_3.x=self.width*.35;
 text_parrafo_3.y=self.height/2.15;
 
 const text_parrafo_4 = new PIXI.Text('Hablar de clientes se vuelve un tema mucho más complejo, principalmente por el cambio en el estilo de vida de los clientes.', style_4);
-text_parrafo_4.x=self.width*.32;
+text_parrafo_4.x=self.width*.35;
 text_parrafo_4.y=self.height/1.95;
 
 const text_parrafo_5 = new PIXI.Text('Un negocio que crece de manera exitosa no se basa solo en generar nuevos clientes, sino también en los que ya tiene. Deben estar lo suficientemente satisfechos como para seguir comprando.', style_4);
-text_parrafo_5.x=self.width*.32;
+text_parrafo_5.x=self.width*.35;
 text_parrafo_5.y=self.height/1.7;
 
 const text_parrafo_6 = new PIXI.Text('Por lo que evaluar la pérdida y ganancia de clientes en la empresa se vuelve muy relevante para el futuro de la organización, además contar con la ayuda de diferentes indicadores de monitoreo que nos brinde información para la toma de decisiones en una estrategia enfocada al cliente.', style_4);
-text_parrafo_6.x=self.width*.32;
+text_parrafo_6.x=self.width*.35;
 text_parrafo_6.y=self.height/1.45;
 
 const text_parrafo_7 = new PIXI.Text('El estado de resultados de clientes nos puede ayudar con esto.', style_4);
-text_parrafo_7.x=self.width*.32;
+text_parrafo_7.x=self.width*.35;
 text_parrafo_7.y=self.height/1.2;
 
 
-text_parrafo_1_1.scale.set(1.2,1.2);
-text_parrafo_1.scale.set(1.2,1.2);
-text_parrafo_2.scale.set(1.2,1.2);
-text_parrafo_3.scale.set(1.2,1.2);
-text_parrafo_4.scale.set(1.2,1.2);
-text_parrafo_5.scale.set(1.2,1.2);
-text_parrafo_6.scale.set(1.2,1.2);
-text_parrafo_7.scale.set(1.2,1.2);
+text_parrafo_1_1.scale.set(1,1);
+text_parrafo_1.scale.set(1,1);
+text_parrafo_2.scale.set(1,1);
+text_parrafo_3.scale.set(1,1);
+text_parrafo_4.scale.set(1,1);
+text_parrafo_5.scale.set(1,1);
+text_parrafo_6.scale.set(1,1);
+text_parrafo_7.scale.set(1,1);
 
 app.stage.addChild(text_parrafo_1_1);
 app.stage.addChild(text_parrafo_1);
@@ -251,7 +240,7 @@ app.stage.addChild(text_parrafo_7);
 
 
 			//app.stage.addChild(rect_video);
-
+*/
 			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/ERC_video_1.png'));
 			    button_video_1.scale.set(.8,.8);
 					button_video_1.x=width*.05;
@@ -301,6 +290,17 @@ app.stage.addChild(text_parrafo_7);
 
 
 			button_video.on('pointertap',function(){
+
+
+				var texts =  document.getElementsByClassName("intro");
+						debugger;
+						if(texts!=null)
+						{
+							for(var i=0;i<texts.length;i++){
+									texts[i].style.display='none';
+							}
+						}
+
 
 				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADOS DE CTES VIDEO EN MP4.mp4');
 				var videoSprite=new PIXI.Sprite(texture);
