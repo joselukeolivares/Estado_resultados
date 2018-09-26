@@ -6,7 +6,7 @@ function Slider(father, indicator, iteration) {
   // Create DOM
   var dom = document.createElement("div");
   dom.setAttribute("id","slider_"+iteration);
-  dom.className = "slider slider_indicator";
+  dom.className = "slider";
   dom.style.left = width * .66 + "px";
   dom.style.top = height * .75 + "px";
   dom.style.width = "200px";
@@ -45,14 +45,25 @@ function Slider(father, indicator, iteration) {
      self.value=Math.round(param*10);
      //indicator.value=self.value;
      console.log(indicator);
+     console.log(self.value);
      if (iteration == 0) {
        if (indicator.visible) {
          indicator.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
-       } else if (indicator.visible) {
-         indicator.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
+       } else {
+         var brother=indicator.parent.getChildByName("scene 2");
+
+         debugger;
+         brother.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
        }
      } else if (iteration == 1) {
-       indicator.children[1].setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
+       if (indicator.visible) {
+         indicator.children[1].setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
+       } else {
+         var brother=indicator.parent.getChildByName("scene 2");
+
+         debugger;
+         brother.children[1].setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
+       }
      }
   };
 

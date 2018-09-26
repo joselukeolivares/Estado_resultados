@@ -3,10 +3,17 @@ function indicators() {
 
   self.destroyApp = function() {
 
-    var sliders=document.getElementsByClassName("slider_indicator");
+    var sliders=document.getElementsByClassName("slider");
+    debugger;
+    console.log("Se destruiran "+sliders.length+" sliders.");
     if(sliders!=null){
       for(var i=0;i<sliders.length;i++){
-        sliders[i].parentNode.removeChild(sliders[i]);
+        var parent=sliders[i].parentNode;
+         while(parent.firstChild){
+           parent.removeChild(parent.firstChild);
+         }
+
+
       }
     }
 
