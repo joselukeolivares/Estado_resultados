@@ -78,7 +78,7 @@ function indicators() {
     app.stage.addChild(venta);
 
     let titleStyle = new PIXI.TextStyle({
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fontSize: 34,
       fontWeight: "bold",
       fill: "#FFFFFF",
@@ -94,7 +94,7 @@ function indicators() {
     app.stage.addChild(title);
 
     let subTitle = new PIXI.Text("Indicadores principales", {
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fill: "#FFFFFF",
       fontSize: 22
     });
@@ -105,7 +105,7 @@ function indicators() {
 
     let intro = new PIXI.Container();
     let explanation = new PIXI.Text("El estado de resultados se conforma por una serie de indicadores los cuales monitorean la cantidad de clientes que compran, cuantos nos compran y el volmen de ventas",{
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fill: "#FFFFFF",
       fontSize: 18,
       wordWrap: true,
@@ -118,7 +118,7 @@ function indicators() {
     intro.addChild(explanation);
 
     let letsGo = new PIXI.Text("¡Veamos como funciona!", {
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fill: "#FFFFFF",
       fontSize: 28,
     });
@@ -142,12 +142,12 @@ function indicators() {
     let stage = [];
     let scenes = [];
     let indiStyle = new PIXI.TextStyle({
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fill: "#FFFFFF",
       fontSize: 28
     });
     let indiStyleSub = new PIXI.TextStyle({
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fill: "#FFFFFF",
       fontSize: 18,
       wordWrap: true,
@@ -159,7 +159,7 @@ function indicators() {
                     "Imagine que a mes de Enero la empresa tiene 1,000 Clientes y para Julio nos han comprado el 50% de los Clientes (500). \n Interactuemos y veamos el efecto que tiene un aumento en la Tasa de Compra.",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Tasa de Compra."],
                     ["Indica la compra promedio que realizaron los Clientes (que compraron) en un perido. Se calcula dividiendo las ventas totales sobre el número de Clientes que compraron.",
-                    "De los 500 Clietes que nos han comprado a mes de Julio, cada uno ha comprado en promedio $ 1,000.00 Pesos. \n Interactuemos y veamos el efecto que tienen al aumentar la Compra Promedio.",
+                    "De los 500 Clientes que nos han comprado a mes de Julio, cada uno ha comprado en promedio $ 1,000.00 Pesos. \n Interactuemos y veamos el efecto que tienen al aumentar la Compra Promedio.",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Compra Promedio."],
                     ["Iiahjw asj whfwhe fhwfhwh wh wjfwoioeihf asuihqpwup aiodupaoi awpoidfuu pwoiefupasiodufpawoiu oapufupowi",
                     "fñlajeijoi oawijfeoiaslkdf woifj wofij   awoiijw fpajsdfi wijfajj djfpoqje faisdfwioq ´0ij aposijdf qp aspoief. \n ajskljdfwiojfowjefioasoñdifjwo dlfj  woijf qj jaowjef qj oije fioaeji.",
@@ -216,6 +216,8 @@ function indicators() {
               this.parent.visible = false;
               let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
               uncle.visible = true;
+              uncle.addChild(this.parent.getChildByName('rects_container'));
+
               TweenMax.fromTo(uncle, 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});
             }});
           });
@@ -232,9 +234,10 @@ function indicators() {
           rightArrow.buttonMode = true;
           scenes[j].addChild(rightArrow);
           rightArrow.on("click", function() {
+            let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
             TweenMax.to(this.parent, 0.2, {pixi: {alpha: 0}, onComplete: () => {
               this.parent.visible = false;
-              let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
+
               uncle.visible = true;
               TweenMax.fromTo(uncle, 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});
             }});
@@ -244,6 +247,20 @@ function indicators() {
               slider0.style.display = "block";
             } else if (i == 1) {
               slider1 = document.getElementById("slider_1");
+              debugger;
+              uncle.children[2].children[0].visible=false;
+              uncle.children[2].children[2].visible=false;
+              uncle.children[2].children[3].visible=false;
+              var white_rect=uncle.children[2].children[1];
+                  white_rect.x=-(white_rect.width/2);
+                  //white_rect.width=1.5;
+                  console.log(white_rect.width);
+              //uncle.children[2].children[1].width=uncle.children[2].children[1].width*1.1;
+              uncle.children[2].children[4].x=width*.67;
+              uncle.children[2].children[4].y=height*.765;
+              uncle.children[2].children[4].style={fill:'Black',fontSize:factorScreen(40),fontFamily:'Roboto-Regular'};
+              uncle.children[2].children[4].text="$1,000.00";
+
               slider1.style.display = "block";
             }
           });
@@ -317,6 +334,8 @@ function indicators() {
               slider0.style.display = "none";
               stage[0].children[2].visible = false;
               stage[0].children[2].alpha = 0;
+              debugger;
+              //var yellow_rect=stage[0].children[2].children[2].getChildByName("yellowNumRec")
             } else if (stage[0].children[3].visible) {
               slider0.style.display = "none";
               stage[0].children[3].visible = false;
@@ -351,41 +370,7 @@ function indicators() {
             venta.alpha = 1;
           }
         });
-        /*
-        //Venta boton
-        venta.interactive = true;
-        venta.cursor = "pointer";
-        venta.on("click", function() {
-          if(stage[0].visible) {
-            TweenMax.to(stage[0], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-              stage[0].visible = false;
-              stage[2].visible = true;
-              TweenMax.to(stage[2], 0.3, {pixi: {alpha: 1}});
 
-              scenes[0].visible = true;
-              scenes[0].alpha = 1;
-
-              scenes[1].visible = false;
-              scenes[1].alpha = 0;
-            }});
-            venta.alpha = 0.5;
-            tasaDeCompra.alpha = 1;
-          } else if(stage[1].visible) {
-            TweenMax.to(stage[1], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-              stage[1].visible = false;
-              stage[2].visible = true;
-              TweenMax.to(stage[2], 0.3, {pixi: {alpha: 1}});
-
-              scenes[0].visible = true;
-              scenes[0].alpha = 1;
-
-              scenes[1].visible = false;
-              scenes[1].alpha = 0;
-            }});
-            venta.alpha = 0.5;
-            compraPromedio.alpha = 1;
-          }
-        });*/
       }});
     });
   }

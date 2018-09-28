@@ -1,7 +1,7 @@
 
 .intro {
   font-size: 14px;
-  
+
 }
 
 .title{
@@ -15,6 +15,6 @@
 }
 
 @media (max-width: 1280px)  {
-  .intro{ font-size: 10px; }
-  .title{ font-size: 20px; }
+  .intro{ font-size: 8px; }
+  .title{ font-size: 15px; }
 }
