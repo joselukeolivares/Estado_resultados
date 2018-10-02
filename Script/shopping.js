@@ -300,7 +300,7 @@ function LoadButton(){
 
                  $(function() {
        $('#main').html('<strong>Ejemplo con html()</strong>');
-  
+
      });
            }
             					}

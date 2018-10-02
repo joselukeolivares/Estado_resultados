@@ -8,6 +8,8 @@ function start() {
     return self;
   };
 
+
+
   self.createApp = function() {
     let appDiv = document.getElementById("aplicacion");
     self.app = new PIXI.Application(width, height, {transparent: true});
@@ -19,7 +21,7 @@ function start() {
 
     appDiv.appendChild(self.app.view);
 
-    console.log("createApp:Inicio w:" + appDiv.width + "/h:" + appDiv.height);
+
     createSprite(self.app);
 
      return self;

@@ -25,8 +25,8 @@ function indicators() {
   self.createApp = function() {
     let appDiv = document.getElementById("aplicacion");
     self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
-    self.width = self.app.screen.width;
-    self.height = self.app.screen.height;
+    self.width = width;
+    self.height = height;
     self.app.view.style.width = self.width;
     self.app.view.style.height = self.height;
 
@@ -47,7 +47,7 @@ function indicators() {
   };
 
   function createSprite(app) {
-    let scale1 = (self.height * 1) / 950;
+    let scale1 = factorScreen(.8);
     let scale2 = (self.height * 1.5) / 950;
     let tasaDeCompra = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/tasa_de_compra.png"));
     let compraPromedio = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/compra_promedio.png"));
@@ -78,7 +78,7 @@ function indicators() {
     app.stage.addChild(venta);
 
     let titleStyle = new PIXI.TextStyle({
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fontSize: 34,
       fontWeight: "bold",
       fill: "#FFFFFF",
@@ -94,7 +94,7 @@ function indicators() {
     app.stage.addChild(title);
 
     let subTitle = new PIXI.Text("Indicadores principales", {
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fill: "#FFFFFF",
       fontSize: 22
     });
@@ -105,7 +105,7 @@ function indicators() {
 
     let intro = new PIXI.Container();
     let explanation = new PIXI.Text("El estado de resultados se conforma por una serie de indicadores los cuales monitorean la cantidad de clientes que compran, cuantos nos compran y el volmen de ventas",{
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fill: "#FFFFFF",
       fontSize: 18,
       wordWrap: true,
@@ -118,7 +118,7 @@ function indicators() {
     intro.addChild(explanation);
 
     let letsGo = new PIXI.Text("¡Veamos como funciona!", {
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fill: "#FFFFFF",
       fontSize: 28,
     });
@@ -142,9 +142,18 @@ function indicators() {
     let stage = [];
     let scenes = [];
     let indiStyle = new PIXI.TextStyle({
-      fontFamily: "Roboto",
+      fontFamily: "Roboto-Regular",
       fill: "#FFFFFF",
       fontSize: 28
+    });
+
+    let indiStyleSub = new PIXI.TextStyle({
+      fontFamily: "Roboto-Regular",
+      fill: "#FFFFFF",
+      fontSize: 18,
+      wordWrap: true,
+      wordWrapWidth: 350,
+      align: "center"
     });
 
     let titles = ["Tasa de Compra", "Compra promedio", "Venta"];
@@ -152,7 +161,7 @@ function indicators() {
                     "Imagine que a mes de Enero la empresa tiene 1,000 Clientes y para Julio nos han comprado el 50% de los Clientes (500). \n Interactuemos y veamos el efecto que tiene un aumento en la Tasa de Compra.",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Tasa de Compra."],
                     ["Indica la compra promedio que realizaron los Clientes (que compraron) en un perido. Se calcula dividiendo las ventas totales sobre el número de Clientes que compraron.",
-                    "De los 500 Clietes que nos han comprado a mes de Julio, cada uno ha comprado en promedio $ 1,000.00 Pesos. \n Interactuemos y veamos el efecto que tienen al aumentar la Compra Promedio.",
+                    "De los 500 Clientes que nos han comprado a mes de Julio, cada uno ha comprado en promedio $ 1,000.00 Pesos. \n Interactuemos y veamos el efecto que tienen al aumentar la Compra Promedio.",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Compra Promedio."],
                     ["Indica las ventas totales de Clientes que compraron en un periodo.\nSe calcula multiplicando la compra promedio por el número de Clientes que compraron.",
                     "En el ejemplo actual la compra total es de $500,000.00 Pesos.\nEn una estrategia enfocada al Cliente y planteando dos escenarios diferentes, ¿Cual seria la mejor opción para aumentar las Ventas?...",
@@ -293,6 +302,8 @@ function indicators() {
               this.parent.visible = false;
               let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
               uncle.visible = true;
+              uncle.addChild(this.parent.getChildByName('rects_container'));
+
               TweenMax.fromTo(uncle, 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});
             }});
           });
@@ -313,9 +324,10 @@ function indicators() {
           rightArrow.buttonMode = true;
           scenes[j].addChild(rightArrow);
           rightArrow.on("click", function() {
+            let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
             TweenMax.to(this.parent, 0.2, {pixi: {alpha: 0}, onComplete: () => {
               this.parent.visible = false;
-              let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
+
               uncle.visible = true;
               TweenMax.fromTo(uncle, 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});
             }});
@@ -325,8 +337,23 @@ function indicators() {
               slider0.style.display = "block";
             } else if (i == 1) {
               slider1 = document.getElementById("slider_1");
-              slider1.style.display = "block";
-            } 
+
+              debugger;
+              uncle.children[2].children[0].visible=false;
+              uncle.children[2].children[2].visible=false;
+              uncle.children[2].children[3].visible=false;
+              uncle.children[2].children[1].visible=true;
+
+              uncle.children[2].children[4].x=width*.67;
+              uncle.children[2].children[4].y=height*.77;
+              uncle.children[2].children[4].style={fill:'Black',fontSize:factorScreen(40),fontFamily:'Roboto-Regular'};
+              uncle.children[2].children[4].text="$1,000.00";
+              uncle.children[2].children[4].name="compraPromedioTXT";
+
+
+                 slider1.style.display = "block";
+            }
+
           });
         }
         stage[i].addChild(scenes[j]);
@@ -398,6 +425,8 @@ function indicators() {
               slider0.style.display = "none";
               stage[0].children[2].visible = false;
               stage[0].children[2].alpha = 0;
+              debugger;
+              //var yellow_rect=stage[0].children[2].children[2].getChildByName("yellowNumRec")
             } else if (stage[0].children[3].visible) {
               slider0.style.display = "none";
               stage[0].children[3].visible = false;
@@ -435,6 +464,7 @@ function indicators() {
             venta.alpha = 1;
           }
         });
+
 
         //Venta boton
         venta.interactive = true;
@@ -482,6 +512,7 @@ function indicators() {
             compraPromedio.alpha = 1;
           }
         });
+
       }});
     });
   }
