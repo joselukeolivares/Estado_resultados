@@ -1,4 +1,4 @@
-function Slider(father, indicator, iteration) {
+function Slider(divApp, scene1, iteration) {
   var self = this;
   self.value=0;
 
@@ -27,7 +27,7 @@ function Slider(father, indicator, iteration) {
 
   dom.appendChild(knob);
 
-  father.appendChild(dom);
+  divApp.appendChild(dom);
 
   var _isDragging = false;
   var _offsetX = 0;
@@ -42,34 +42,26 @@ function Slider(father, indicator, iteration) {
      if(param>0&&param<1)
      knob.style.left=(event.clientX - width*.7-230)+"px";
 
-     self.value=Math.round(param*10);
-     //indicator.value=self.value;
-     console.log(indicator);
-     console.log(self.value);
-     if (iteration == 0) {
-       if (indicator.visible) {
-         indicator.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
-       } else {
-         var brother=indicator.parent.getChildByName("scene 2");
+     self.value = Math.round(param*10);
+     let scene2 = scene1.parent.getChildByName("scene 2");
 
-         debugger;
-         brother.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
+     if (iteration == 0) {
+       if (scene1.visible) {
+         scene1.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
+       } else {
+         scene2.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
        }
      } else if (iteration == 1) {
-       if (indicator.visible) {
-         indicator.children[1].setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
+       if (scene1.visible) {
+         scene1.children[1].setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
        } else {
-         var brother=indicator.parent.getChildByName("scene 2");
-
-         debugger;
-         brother.children[1].setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
+         scene2.children[1].setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
        }
      }
   };
 
 	var _onDomMouseDown = function(event){
-
-		_mouseToParam(event);
+    _mouseToParam(event);
 		_isDragging = true;
 		_offsetX = 0;
 	};
