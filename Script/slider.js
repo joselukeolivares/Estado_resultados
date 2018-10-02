@@ -1,4 +1,4 @@
-function Slider(father, indicator, iteration) {
+function Slider(divApp, scene1, iteration) {
   var self = this;
   self.value=4.9;
 
@@ -27,7 +27,7 @@ function Slider(father, indicator, iteration) {
 
   dom.appendChild(knob);
 
-  father.appendChild(dom);
+  divApp.appendChild(dom);
 
   var rects_container=new PIXI.Container();
   rects_container.name="rects_container";
@@ -104,6 +104,7 @@ function Slider(father, indicator, iteration) {
      if(param<0)param=0;
      if(param>1)param=1;
      if(param>0&&param<1)
+
 
      var newValue=Math.round(param*10);
 
@@ -188,13 +189,13 @@ function Slider(father, indicator, iteration) {
          }
 
 
+
        }
      }
   };
 
 	var _onDomMouseDown = function(event){
-
-		_mouseToParam(event);
+    _mouseToParam(event);
 		_isDragging = true;
 		_offsetX = 0;
 	};
