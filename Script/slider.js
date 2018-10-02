@@ -33,23 +33,23 @@ function Slider(father, indicator, iteration) {
   rects_container.name="rects_container";
 
   //PIXI RECTS
-  var yellow_rect=new PIXI.Graphics();
-      yellow_rect.lineStyle(1,0X6a8678);
-      yellow_rect.beginFill(0xe7c82f,.8);
-      yellow_rect.drawRoundedRect(width * .66,height * .74,factorScreen(200),height *.10,35);
-      yellow_rect.name="yellow_rect";
-      yellow_rect.endFill();
+      var roundedRects=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_3/tasa_indicador.png'));
+          roundedRects.x=width * .73;
+          roundedRects.y=height * .75;
+          roundedRects.anchor.set(factorScreen(.5));
+          roundedRects.scale.set(factorScreen(.6));
+          roundedRects.name="roundedRects";
+          rects_container.addChild(roundedRects);
 
-      rects_container.addChild(yellow_rect);
+      var roundedRect=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_3/compraProm_indicador.png'));
+          roundedRect.x=width * .73;
+          roundedRect.y=height * .75;
+          roundedRect.anchor.set(factorScreen(.5));
+          roundedRect.scale.set(factorScreen(.6));
+          roundedRect.name="roundedRect_white";
+          roundedRect.visible=false;
+          rects_container.addChild(roundedRect);
 
-      var white_rect=new PIXI.Graphics();
-          white_rect.lineStyle(1,0xFFFFFF);
-          white_rect.beginFill(0xFFFFFF,.95);
-          white_rect.drawRoundedRect(width * .73,height * .74,factorScreen(200),height *.10,35);
-          white_rect.name="white_rect";
-          white_rect.endFill();
-
-      rects_container.addChild(white_rect);
 
       //PIXI Text and Styles
       let txt_rects_Style = new PIXI.TextStyle({
@@ -68,21 +68,23 @@ function Slider(father, indicator, iteration) {
       align: "center"};
 
       var yellowTxtRec=new PIXI.Text("Clientes",txt_rects_Style);
-         yellowTxtRec.x=(width * .67);
-         yellowTxtRec.y=(height * .795);
+         yellowTxtRec.x=(roundedRects.x)*.88;
+         yellowTxtRec.y=(roundedRects.y)*1.04;
          yellowTxtRec.name="yellowTxtRec";
          rects_container.addChild(yellowTxtRec);
-
+    debugger;
      var yellowNumRec=new PIXI.Text("500",txt_rects_Style);
-        yellowNumRec.x=(width * .68);
-        yellowNumRec.y=(height *.77);
+        yellowNumRec.x=(roundedRects.x)*.89;
+        yellowNumRec.y=(roundedRects.y)*1.01;
         yellowNumRec.name="yellowNumRec";
         rects_container.addChild(yellowNumRec);
 
     var whiteNumRec=new PIXI.Text("50%",{fontFamily: "Roboto-Regular",fontSize: factorScreen(60),fill: "0x175383"});
-       whiteNumRec.x=(width * .77);
-       whiteNumRec.y=(height *.75);
+       whiteNumRec.x=(roundedRects.x);
+       whiteNumRec.y=(roundedRects.y);
        rects_container.addChild(whiteNumRec);
+
+
 
        indicator.addChild(rects_container);
 
@@ -122,6 +124,8 @@ function Slider(father, indicator, iteration) {
            indicator.children[0].style=txt_yellow_style;
            var tl=new TimelineMax({repeat:5,repeatDelay:1});
            tl.to(indicator.children[3],1,{pixi:{alpha:.5}});
+         }else{
+           alert("En este ejercicio solo se puede incrementar el valor del indicador.")
          }
 
        } else {
@@ -140,6 +144,8 @@ function Slider(father, indicator, iteration) {
            tl.to(indicator.parent.parent.children[1],1,{pixi:{alpha:.5},onComplete:function(){
              this.reverse();
            }});
+         }else{
+           alert("En este ejercicio solo se puede decrementar el valor del indicador.")
          }
 
 
@@ -173,12 +179,12 @@ function Slider(father, indicator, iteration) {
 
 
          }else if(newValue<1){
-           console.log(newValue);
+
            brother.children[0].text="Menor Compra Promedio indica un menor volumen de compra. Presiona el boton 'Venta' para continuar con el siguiente indicador.";
            brother.children[0].style=txt_yellow_style;
            alert("En este ejercicio, solo puedes decrementar la compra promedio y haz llegado al minimo. Por favor da click 'Venta'.")
            var tl=new TimelineMax({repeat:5,repeatDelay:1});
-           tl.to(brother.children[3],1,{pixi:{alpha:.5}});
+           tl.to(indicator.parent.parent.children[2],1,{pixi:{alpha:.5}});
          }
 
 

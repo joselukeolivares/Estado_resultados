@@ -25,8 +25,8 @@ function indicators() {
   self.createApp = function() {
     let appDiv = document.getElementById("aplicacion");
     self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
-    self.width = self.app.screen.width;
-    self.height = self.app.screen.height;
+    self.width = width;
+    self.height = height;
     self.app.view.style.width = self.width;
     self.app.view.style.height = self.height;
 
@@ -47,7 +47,7 @@ function indicators() {
   };
 
   function createSprite(app) {
-    let scale1 = (self.height * 1) / 950;
+    let scale1 = factorScreen(.8);
     let scale2 = (self.height * 1.5) / 950;
     let tasaDeCompra = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/tasa_de_compra.png"));
     let compraPromedio = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/compra_promedio.png"));
@@ -251,17 +251,16 @@ function indicators() {
               uncle.children[2].children[0].visible=false;
               uncle.children[2].children[2].visible=false;
               uncle.children[2].children[3].visible=false;
-              var white_rect=uncle.children[2].children[1];
-                  white_rect.x=-(white_rect.width/2);
-                  //white_rect.width=1.5;
-                  console.log(white_rect.width);
-              //uncle.children[2].children[1].width=uncle.children[2].children[1].width*1.1;
+              uncle.children[2].children[1].visible=true;
+
               uncle.children[2].children[4].x=width*.67;
-              uncle.children[2].children[4].y=height*.765;
+              uncle.children[2].children[4].y=height*.77;
               uncle.children[2].children[4].style={fill:'Black',fontSize:factorScreen(40),fontFamily:'Roboto-Regular'};
               uncle.children[2].children[4].text="$1,000.00";
+              uncle.children[2].children[4].name="compraPromedioTXT";
 
-              slider1.style.display = "block";
+
+                 slider1.style.display = "block";
             }
           });
         }

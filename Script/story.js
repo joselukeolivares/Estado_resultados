@@ -82,6 +82,7 @@ var Height = self.height=self.app.screen.height;
 				.add('cliente_negro','assets/CTE NEGRITO LEVANTANDO LOS BRAZOS/CTE NEGRITO LEVANTANDO LOS BRAZOS/CTENEGROMANOSARRIBA.json')
         .load(setup);
     } catch(e) {
+			console.log(e);
       setup();
     }
     function setup() {
@@ -159,8 +160,8 @@ var style = new PIXI.TextStyle({
 	dropShadowColor: "#E7C82F",
 	dropShadowDistance: 4,
 	fill: "#2D5F96",
-	fontFamily: "Arial Black",
-  fontSize: screen.height * 40 / 880,
+	fontFamily: "Roboto-Black",
+  fontSize: screen.height * 35 / 880,
 	lineHeight: 6,
 	miterLimit: 0,
 	stroke: "white",
@@ -170,7 +171,7 @@ var style = new PIXI.TextStyle({
 
 });
  var text_titulo = new PIXI.Text('Estado de resultados de clientes', style);
-  text_titulo.x=(self.width*200)/950;
+  text_titulo.x=(self.width*.25);
 	text_titulo.y=(self.height*48)/950;
 
 	app.stage.addChild(text_titulo);
@@ -258,7 +259,7 @@ app.stage.addChild(text_parrafo_7);
 			//app.stage.addChild(rect_video);
 */
 			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/ERC_video_1.png'));
-			    button_video_1.scale.set(.8,.8);
+			    button_video_1.scale.set(factorScreen(.8));
 					button_video_1.x=width*.05;
 					button_video_1.y=height*.85;
 
@@ -268,12 +269,12 @@ app.stage.addChild(text_parrafo_7);
 			let next_block=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/explorar_1.png'));
 			let close=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/close_video_2.png'));
 			paused.position.set(width/2,height/2);
-			paused.scale.set(.25,.25);
+			paused.scale.set(factorScreen(.25));
 			paused.anchor.set(.5,.5);
 			paused.alpha=0;
 			paused.name="paused_button";
 
-			next_block.scale.set(.7,.7);
+			next_block.scale.set(factorScreen(.7));
 			next_block.x=width*.80;
 			next_block.y=height*.85;
 			next_block.name="next_block";
