@@ -31,7 +31,7 @@ function loader_pixi(){
           "assets/ui/Bloque_3/compraProm_indicador.png",
           "assets/ui/Bloque_3/tasa_indicador.png"
         ])
-        .on("progress",loadProgressHandler)
+        //.on("progress",loadProgressHandler)
         .load(charged);
 /*
         //start.js

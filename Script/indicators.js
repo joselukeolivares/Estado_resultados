@@ -47,6 +47,7 @@ function indicators() {
   };
 
   function createSprite(app) {
+    debugger;
     let scale1 = factorScreen(.8);
     let scale2 = (self.height * 1.5) / 950;
     let tasaDeCompra = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/tasa_de_compra.png"));
