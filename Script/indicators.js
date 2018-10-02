@@ -272,7 +272,7 @@ function indicators() {
 
           if(j == 2) {
             let circle1 = new PIXI.Graphics();
-            circle.beginFill();
+            circle1.beginFill();
           }
 
         }
@@ -326,10 +326,7 @@ function indicators() {
             } else if (i == 1) {
               slider1 = document.getElementById("slider_1");
               slider1.style.display = "block";
-            } else {
-              slider2 = document.getElementById("slider_2");
-              slider2.style.display = "block";
-            }
+            } 
           });
         }
         stage[i].addChild(scenes[j]);
