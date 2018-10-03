@@ -299,10 +299,13 @@ function indicators() {
           retry.cursor = "pointer";
           scenes[j].addChild(retry);
           retry.on("click", function() {
+
             TweenMax.to(this.parent, 0.2, {pixi: {alpha: 0}, onComplete: () => {
               this.parent.visible = false;
+
               let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
               uncle.visible = true;
+              if(i!=2)
               uncle.addChild(this.parent.getChildByName('rects_container'));
 
               TweenMax.fromTo(uncle, 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});

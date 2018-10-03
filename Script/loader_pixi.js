@@ -29,7 +29,10 @@ function loader_pixi(){
           "assets/ui/Bloque_3/retry.png",
           "assets/ui/Bloque_3/rightArrow.png",
           "assets/ui/Bloque_3/compraProm_indicador.png",
-          "assets/ui/Bloque_3/tasa_indicador.png"
+          "assets/ui/Bloque_3/tasa_indicador.png",
+          //slider.js
+          //"assets/ui/Bloque_3/tasa_indicador.png"
+
         ])
         //.on("progress",loadProgressHandler)
         .load(charged);

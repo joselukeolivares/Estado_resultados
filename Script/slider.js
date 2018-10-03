@@ -1,4 +1,4 @@
-function Slider(divApp, scene1, iteration) {
+function Slider(divApp, indicator, iteration) {
   var self = this;
   self.value=4.9;
 
@@ -33,18 +33,19 @@ function Slider(divApp, scene1, iteration) {
   rects_container.name="rects_container";
 
   //PIXI RECTS
-      var roundedRects=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_3/tasa_indicador.png'));
-          roundedRects.x=width * .73;
-          roundedRects.y=height * .75;
-          roundedRects.anchor.set(factorScreen(.5));
+      var loader=PIXI.loader;
+      var roundedRects=new PIXI.Sprite(loader.resources['assets/ui/Bloque_3/tasa_indicador.png'].texture);
+          roundedRects.x=width * .63;
+          roundedRects.y=height*.75;
+          //roundedRects.anchor.set(factorScreen(.6));
           roundedRects.scale.set(factorScreen(.6));
           roundedRects.name="roundedRects";
           rects_container.addChild(roundedRects);
 
       var roundedRect=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_3/compraProm_indicador.png'));
-          roundedRect.x=width * .73;
+          roundedRect.x=width * .66;
           roundedRect.y=height * .75;
-          roundedRect.anchor.set(factorScreen(.5));
+          //roundedRect.anchor.set(factorScreen(.5));
           roundedRect.scale.set(factorScreen(.6));
           roundedRect.name="roundedRect_white";
           roundedRect.visible=false;
@@ -53,9 +54,10 @@ function Slider(divApp, scene1, iteration) {
 
       //PIXI Text and Styles
       let txt_rects_Style = new PIXI.TextStyle({
+        fill: "0x175383",
         fontFamily: "Roboto-Regular",
         fontSize: factorScreen(20),
-        fill: "0x175383"
+
 
       });
 
@@ -68,20 +70,20 @@ function Slider(divApp, scene1, iteration) {
       align: "center"};
 
       var yellowTxtRec=new PIXI.Text("Clientes",txt_rects_Style);
-         yellowTxtRec.x=(roundedRects.x)*.88;
-         yellowTxtRec.y=(roundedRects.y)*1.04;
+         yellowTxtRec.x=roundedRects.x*1.02;
+         yellowTxtRec.y=roundedRects.y*1.08;
          yellowTxtRec.name="yellowTxtRec";
          rects_container.addChild(yellowTxtRec);
     debugger;
      var yellowNumRec=new PIXI.Text("500",txt_rects_Style);
-        yellowNumRec.x=(roundedRects.x)*.89;
-        yellowNumRec.y=(roundedRects.y)*1.01;
+        yellowNumRec.x=roundedRects.x*1.02;
+        yellowNumRec.y=(roundedRects.y)*1.04;
         yellowNumRec.name="yellowNumRec";
         rects_container.addChild(yellowNumRec);
 
     var whiteNumRec=new PIXI.Text("50%",{fontFamily: "Roboto-Regular",fontSize: factorScreen(60),fill: "0x175383"});
-       whiteNumRec.x=(roundedRects.x);
-       whiteNumRec.y=(roundedRects.y);
+       whiteNumRec.x=roundedRects.x+roundedRects.width*.45;
+       whiteNumRec.y=roundedRects.y*1.03;
        rects_container.addChild(whiteNumRec);
 
 
@@ -125,8 +127,6 @@ function Slider(divApp, scene1, iteration) {
            indicator.children[0].style=txt_yellow_style;
            var tl=new TimelineMax({repeat:5,repeatDelay:1});
            tl.to(indicator.children[3],1,{pixi:{alpha:.5}});
-         }else{
-           alert("En este ejercicio solo se puede incrementar el valor del indicador.")
          }
 
        } else {
@@ -145,8 +145,6 @@ function Slider(divApp, scene1, iteration) {
            tl.to(indicator.parent.parent.children[1],1,{pixi:{alpha:.5},onComplete:function(){
              this.reverse();
            }});
-         }else{
-           alert("En este ejercicio solo se puede decrementar el valor del indicador.")
          }
 
 

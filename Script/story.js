@@ -1,6 +1,7 @@
 function story() {
 	let self = {};
   self.frames;
+	self.t;
 
 	self.hideShowTxt=function(){
 
@@ -56,26 +57,25 @@ function story() {
     let app = document.getElementById("aplicacion");
     self.app = new PIXI.Application(width, height, {transparent: true});
 		self.app.renderer.backgroundColor = 0xFFFFFF;
-		console.log(width,height);
-		//self.app.renderer.view.style.position = "absolute";
-		//self.app.renderer.view.style.display = "block";
 		self.app.renderer.autoResize = true;
-		//self.app.renderer.resize(screen.width, screen.height);
-    //elf.app.view.style.width = app.width;
-    //self.app.view.style.height = app.height;
-var	Width =	self.width=self.app.screen.width;
-var Height = self.height=self.app.screen.height;
+		self.app.renderer.plugins.interaction.moveWhenInside = true;
+
+    var	Width =	self.width=self.app.screen.width;
+    var Height = self.height=self.app.screen.height;
 		self.escala_1=(self.height*.4)/950;
     self.escala_2=(self.height*.5)/950;
 
     app.appendChild(self.app.view);
+		self.t=new Tink(PIXI,self.app.view);
+
     createSprite(self.app);
 
     return self;
   };
 
   function createSprite(app) {
-    try {
+/*
+		try {
       PIXI.loader
         .add("assets/ui/Bloque_2/interface.json")
         .add("assets/MONEDA DANDO VUELTAS (1)/spritesheet (2).json")
@@ -83,8 +83,10 @@ var Height = self.height=self.app.screen.height;
         .load(setup);
     } catch(e) {
 			console.log(e);
-      setup();
+
     }
+		*/
+		setup();
     function setup() {
 			var loader_ctes=PIXI.loader;
 			  debugger;
@@ -111,8 +113,12 @@ var Height = self.height=self.app.screen.height;
 					coin= new PIXI.spine.Spine(loader_ctes.resources.cliente_negro.spineData);
 					coin.scale.set((self.height*.2)/950,(self.height*.2)/950);
 					coin.interactive = true;
+
 					//clientes_t[i].state.setAnimation(0,'walk',true);
-					coin.on('mouseover',function(){
+					coin.on('mouseover',function(e){
+						debugger;
+						console.log(e.data.global.x);
+
 					  coin.state.setAnimation(0,'animtion0',false);
 					});
 
@@ -122,6 +128,12 @@ var Height = self.height=self.app.screen.height;
 					coin.animationSpeed = .1;
 					coin.anchor.set(0.5);
 					coin.scale.set(	self.escala_2,	self.escala_2);
+					coin.interactive=true;
+					coin.on('mousemove',function(e){
+						console.log("movin mouse");
+						console.log(e.data.global.x);
+					})
+
 
 				}
 
@@ -297,7 +309,7 @@ app.stage.addChild(text_parrafo_7);
 
 			let button_video=new PIXI.Container();
 			button_video.addChild(button_video_1);
-
+			button_video.draggable=true;
 			button_video.interactive=true;
 			button_video.buttonMode=true;
 
@@ -306,7 +318,7 @@ app.stage.addChild(text_parrafo_7);
 
 
 
-			button_video.on('pointertap',function(){
+			button_video.on('pointertap',function(e){
 
 
 				self.hideShowTxt();
