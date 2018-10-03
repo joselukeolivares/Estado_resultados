@@ -39,9 +39,14 @@ function start() {
   };
 
   function createSprite(app) {
-    let background = new PIXI.Sprite(PIXI.Texture.fromImage("assets/background_coppel.png"));
+    var loader=PIXI.loader;
+    let door1=new PIXI.Sprite(loader.resources["assets/singleDoor.png"].texture);
+    console.log(door1.width);
+    debugger;
+
+    let background= new PIXI.Sprite(PIXI.Texture.fromImage("assets/background_coppel.png"));
     let storeEntrance = new PIXI.Sprite(PIXI.Texture.fromImage("assets/coppel.png"));
-    let door1 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/singleDoor.png"));
+    //let door1 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/singleDoor.png"));
     let door2 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/singleDoor.png"));
     app.stage.addChild(background);
     app.stage.addChild(door1);

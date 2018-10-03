@@ -42,10 +42,12 @@ function loader_pixi(){
           "assets/ui/Bloque_3/tasa-80percent.png",
           "assets/ui/Bloque_3/compraProm_indicador.png",
           "assets/ui/Bloque_3/tasa_indicador.png",
+
           "assets/ui/Bloque_3/b-continue.png",
           "assets/ui/Bloque_3/b-continue-selected.png"
+
         ])
-        .on("progress",loadProgressHandler)
+        //.on("progress",loadProgressHandler)
         .load(charged);
 /*
         //start.js
