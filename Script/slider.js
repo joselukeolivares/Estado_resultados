@@ -1,4 +1,4 @@
-function Slider(divApp, scene1, iteration) {
+function Slider(divApp, indicator, iteration) {
   var self = this;
   self.value=4.9;
 
@@ -72,7 +72,6 @@ function Slider(divApp, scene1, iteration) {
          yellowTxtRec.y=(roundedRects.y)*1.04;
          yellowTxtRec.name="yellowTxtRec";
          rects_container.addChild(yellowTxtRec);
-    debugger;
      var yellowNumRec=new PIXI.Text("500",txt_rects_Style);
         yellowNumRec.x=(roundedRects.x)*.89;
         yellowNumRec.y=(roundedRects.y)*1.01;
@@ -115,7 +114,6 @@ function Slider(divApp, scene1, iteration) {
        if (indicator.visible) {
          if(newValue>self.value){
            knob.style.left=(event.clientX - bg.getBoundingClientRect().x-15)+"px";
-           debugger;
            self.value=newValue;
            indicator.children[1].setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
            whiteNumRec.text=self.value+"0%";

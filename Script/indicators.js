@@ -2,19 +2,14 @@ function indicators() {
   let self = {};
 
   self.destroyApp = function() {
-
     var sliders=document.getElementsByClassName("slider");
-    debugger;
-    console.log("Se destruiran "+sliders.length+" sliders.");
     if(sliders!=null){
       for(var i=0;i<sliders.length;i++){
         var parent=sliders[i].parentNode;
          while(parent.firstChild){
            parent.removeChild(parent.firstChild);
          }
-
-
-      }
+       }
     }
 
     if(self.app == null) return self;
@@ -127,15 +122,23 @@ function indicators() {
     letsGo.anchor.set(0.5);
     intro.addChild(letsGo);
 
-    let contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/continue.png"));
+    let contButton = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue.png")].texture);
     contButton.x = app.screen.width - 100;
     contButton.y = app.screen.height - 50;
     contButton.anchor.set(0.5);
     contButton.scale.set(0.6);
     contButton.interactive = true;
-    contButton.buttonMode = true;
+    contButton.cursor = "pointer";
     intro.addChild(contButton);
     app.stage.addChild(intro);
+
+    // contButton.on("mouseover", function () {
+    //   contButton.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue-selected.png")]);
+    // });
+    //
+    // contButton.on("mouseout", function () {
+    //   contButton.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue.png")]);
+    // });
 
     //Interactivity
 
@@ -147,20 +150,11 @@ function indicators() {
       fontSize: 28
     });
 
-    let indiStyleSub = new PIXI.TextStyle({
-      fontFamily: "Roboto-Regular",
-      fill: "#FFFFFF",
-      fontSize: 18,
-      wordWrap: true,
-      wordWrapWidth: 350,
-      align: "center"
-    });
-
     let titles = ["Tasa de Compra", "Compra promedio", "Venta"];
     let subTitles = [["Indica el número total de Clientes que compra en un periodo determinado. Se calcula dividiendo el número de Clientes que compraron sobre el número de Clientes totales.",
                     "Imagine que a mes de Enero la empresa tiene 1,000 Clientes y para Julio nos han comprado el 50% de los Clientes (500). \n Interactuemos y veamos el efecto que tiene un aumento en la Tasa de Compra.",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Tasa de Compra."],
-                    ["Indica la compra promedio que realizaron los Clientes (que compraron) en un perido. Se calcula dividiendo las ventas totales sobre el número de Clientes que compraron.",
+                    ["Indica la compra promedio que realizaron los Clientes (que compraron) en un periodo. Se calcula dividiendo las ventas totales sobre el número de Clientes que compraron.",
                     "De los 500 Clientes que nos han comprado a mes de Julio, cada uno ha comprado en promedio $ 1,000.00 Pesos. \n Interactuemos y veamos el efecto que tienen al aumentar la Compra Promedio.",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Compra Promedio."],
                     ["Indica las ventas totales de Clientes que compraron en un periodo.\nSe calcula multiplicando la compra promedio por el número de Clientes que compraron.",
@@ -209,14 +203,25 @@ function indicators() {
           } else {
             color = "#FFFFFF";
           }
-          sub = new PIXI.Text(subTitles[i][j], {
-            fontFamily: "Roboto",
-            fill: color,
-            fontSize: 14,
-            wordWrap: true,
-            wordWrapWidth: 750,
-            align: "center"
-          });
+
+          if (j != 2) {
+            sub = new PIXI.Text(subTitles[i][j], {
+              fontFamily: "Roboto",
+              fill: color,
+              fontSize: 14,
+              wordWrap: true,
+              wordWrapWidth: 750,
+              align: "center"
+            });
+          } else {
+            sub = new PIXI.Text(subTitles[i][j], {
+              fontFamily: "Roboto",
+              fill: color,
+              fontSize: 14,
+              wordWrap: true,
+              wordWrapWidth: 580
+            });
+          }
           sub.anchor.set(0.5);
           sub.x = app.screen.width / 2;
           sub.y = app.screen.height / 2;
@@ -244,56 +249,142 @@ function indicators() {
         if (i != 2) {
           scenes[j].addChild(things);
         } else {
-          let tdc = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/img-1.png"));
-          tdc.scale.set(scale2);
+          let tdc = new PIXI.Sprite(PIXI.Texture.fromFrame("tasa_5.png"));
+          tdc.scale.set(scale1);
           tdc.anchor.set(0.5);
-          tdc.x = app.screen.width / 4;
-          tdc.y = app.screen.height / 1.2;
+          tdc.x = app.screen.width / 5;
+          tdc.y = app.screen.height / 1.4;
           scenes[j].addChild(tdc);
 
-          let timg = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/times-img.png"));
-          timg.scale.set(scale2);
-          timg.anchor.set(0.5);
-          timg.x = app.screen.width / 2.45;
-          timg.y = app.screen.height / 1.2;
-          scenes[j].addChild(timg);
+          let tdcPer = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/tasa-50percent.png")].texture);
+          tdcPer.scale.set(scale1 - 0.1);
+          tdcPer.anchor.set(0.5);
+          tdcPer.x = app.screen.width / 5;
+          tdcPer.y = app.screen.height / 1.2;
+          scenes[j].addChild(tdcPer);
 
-          let cp = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/img-2.png"));
-          cp.scale.set(scale2);
+          let timesIc = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-times.png")].texture);
+          timesIc.scale.set(scale1);
+          timesIc.anchor.set(0.5);
+          timesIc.x = app.screen.width / 2.7;
+          timesIc.y = app.screen.height / 1.3;
+          scenes[j].addChild(timesIc);
+
+          let cp = new PIXI.Sprite(PIXI.Texture.fromFrame("compra_5.png"));
+          cp.scale.set(scale1);
           cp.anchor.set(0.5);
-          cp.x = app.screen.width / 1.85;
-          cp.y = app.screen.height / 1.28;
+          cp.x = app.screen.width / 2;
+          cp.y = app.screen.height / 1.4;
           scenes[j].addChild(cp);
 
-          let eimg = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/equals-img.png"));
-          eimg.scale.set(scale2);
-          eimg.anchor.set(0.5);
-          eimg.x = app.screen.width / 1.50;
-          eimg.y = app.screen.height / 1.2;
-          scenes[j].addChild(eimg);
+          cpnom = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/num-mil.png")].texture);
+          cpnom.scale.set(scale1 - 0.1);
+          cpnom.anchor.set(0.5);
+          cpnom.x = app.screen.width / 2;
+          cpnom.y = app.screen.height / 1.15;
+          scenes[j].addChild(cpnom);
 
-          let v = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/img-3.png"));
-          v.scale.set(scale2);
+          let equalsIc = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-equals.png")].texture);
+          equalsIc.scale.set(scale1);
+          equalsIc.anchor.set(0.5);
+          equalsIc.x = app.screen.width / 1.6;
+          equalsIc.y = app.screen.height / 1.3;
+          scenes[j].addChild(equalsIc);
+
+          let v = new PIXI.Sprite(PIXI.Texture.fromFrame("venta_50.png"));
+          v.scale.set(scale1);
           v.anchor.set(0.5);
-          v.x = app.screen.width / 1.25;
-          v.y = app.screen.height / 1.2;
+          v.x = app.screen.width / 1.3;
+          v.y = app.screen.height / 1.4;
           scenes[j].addChild(v);
 
-          if(j == 2) {
-            let circle1 = new PIXI.Graphics();
-            circle1.beginFill();
-          }
+          vNum = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/num-500mil.png")].texture);
+          vNum.scale.set(scale1 - 0.1);
+          vNum.anchor.set(0.5);
+          vNum.x = app.screen.width / 1.3;
+          vNum.y = app.screen.height / 1.15;
+          scenes[j].addChild(vNum);
 
+          if(j == 2) {
+            let icBack = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-left-arrow-circular.png")].texture);
+            icBack.anchor.set(0.5);
+            icBack.x = app.screen.width / 10;
+            icBack.y = app.screen.height / 2.3;
+            icBack.interactive = true;
+            icBack.cursor = "pointer";
+            icBack.visible = false;
+            scenes[j].addChild(icBack);
+
+            icBack.on("click", function () {
+              this.parent.children[0].text = "En el primer escenario mantenemos la Tasa de Compra igual pero aumentamos la Compra Promedio a $2,000.00.\n\nEn el segundo escenario aumentamos la Tasa de Compra al 80% y una Compra Promedio de $1,400.00.";
+              this.parent.children[11].visible = true;
+              this.parent.children[10].visible = true;
+              icBack.visible = false;
+            });
+
+            let circle1 = new PIXI.Graphics();
+            circle1.beginFill(0x175383);
+            circle1.lineStyle(2, 0xE7C82F);
+            circle1.drawCircle(0, 0, 12);
+            circle1.endFill();
+            circle1.x = app.screen.width / 9;
+            circle1.y = app.screen.height / 2.2;
+            scenes[j].addChild(circle1);
+            circle1.interactive = true;
+            circle1.cursor = "pointer";
+            circle1.on("click", function () {
+              cpnom.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-2mil.png")].texture);
+              vNum.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-millon.png")].texture);
+              this.parent.children[0].text = "Incorecto! Si nos enfocamos solamente a que el Cliente nos compre más, corremos el riesgo de no mantenerlo, esto por que no estamos otorgando un servicio adecuado para que más Clientes nos compren.";
+              this.parent.children[11].visible = false;
+              this.parent.children[10].visible = false;
+              icBack.visible = true;
+            });
+
+            let circle2 = new PIXI.Graphics();
+            circle2.beginFill(0x175383);
+            circle2.lineStyle(2, 0xE7C82F);
+            circle2.drawCircle(0, 0, 12);
+            circle2.endFill();
+            circle2.x = app.screen.width / 9;
+            circle2.y = app.screen.height / 1.83;
+            scenes[j].addChild(circle2);
+            circle2.interactive = true;
+            circle2.cursor = "pointer";
+            circle2.on("click", function () {
+              tdcPer.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/tasa-80percent.png")].texture);
+              cpnom.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-mil400.png")].texture);
+              vNum.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-1millon120.png")].texture);
+              this.parent.children[0].text = "Correcto! si otorgamos un mejor servicio al cliente y aumentamos la Tasa de Compra y la Compra Promedio significativamente, el resultado es mejor, además tomamos en cuenta que la posibilidad de que un Cliente continue comprando es más alta.";
+              this.parent.children[11].visible = false;
+              this.parent.children[10].visible = false;
+              icBack.visible = true;
+            });
+          }
         }
         if(j == 1 && i != 2) {
           Slider(document.getElementById("aplicacion"), scenes[j], i);
         }
 
         if (j == 1) {
-          let retry = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/retry.png"));
+          let retry;
+          if (i != 2) {
+            retry = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-retry.png")].texture);
+            retry.x = app.screen.width / 1.05;
+            retry.y = app.screen.height / 1.3;
+          } else {
+            retry = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next.png")].texture);
+            retry.scale.set(scale1);
+            retry.x = app.screen.width / 1.2;
+            retry.y = app.screen.height / 2;
+            retry.on("mouseover", function() {
+              retry.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next-selected.png")].texture);
+            });
+            retry.on("mouseout", function () {
+              retry.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next.png")].texture);
+            });
+          }
           retry.anchor.set(0.5);
-          retry.x = app.screen.width / 1.05;
-          retry.y = app.screen.height / 1.3;
           retry.interactive = true;
           retry.cursor = "pointer";
           scenes[j].addChild(retry);
@@ -302,15 +393,14 @@ function indicators() {
               this.parent.visible = false;
               let uncle = this.parent.parent.getChildByName("scene " + (j + 1));
               uncle.visible = true;
-              uncle.addChild(this.parent.getChildByName('rects_container'));
-
+              if (i != 2) uncle.addChild(this.parent.getChildByName("rects_container"));
               TweenMax.fromTo(uncle, 0.2, {pixi: {alpha: 0}}, {pixi: {alpha: 1}});
             }});
           });
         }
 
         if(j == 0) {
-          let rightArrow = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/rightArrow.png"));
+          let rightArrow = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/ic-right-arrow.png"));
           rightArrow.scale.set(0.5);
           rightArrow.anchor.set(0.5);
           rightArrow.name = "Arrow" + i + "_" + j;
@@ -338,7 +428,6 @@ function indicators() {
             } else if (i == 1) {
               slider1 = document.getElementById("slider_1");
 
-              debugger;
               uncle.children[2].children[0].visible=false;
               uncle.children[2].children[2].visible=false;
               uncle.children[2].children[3].visible=false;
@@ -346,12 +435,10 @@ function indicators() {
 
               uncle.children[2].children[4].x=width*.67;
               uncle.children[2].children[4].y=height*.77;
-              uncle.children[2].children[4].style={fill:'Black',fontSize:factorScreen(40),fontFamily:'Roboto-Regular'};
+              uncle.children[2].children[4].style={fill:"Black",fontSize:factorScreen(40),fontFamily:"Roboto-Regular"};
               uncle.children[2].children[4].text="$1,000.00";
               uncle.children[2].children[4].name="compraPromedioTXT";
-
-
-                 slider1.style.display = "block";
+              slider1.style.display = "block";
             }
 
           });
@@ -425,7 +512,6 @@ function indicators() {
               slider0.style.display = "none";
               stage[0].children[2].visible = false;
               stage[0].children[2].alpha = 0;
-              debugger;
               //var yellow_rect=stage[0].children[2].children[2].getChildByName("yellowNumRec")
             } else if (stage[0].children[3].visible) {
               slider0.style.display = "none";
