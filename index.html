@@ -54,16 +54,7 @@
     <div class="circulos" data-balloon="Simulación! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Escenario! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Créditos! (En construcción)" data-balloon-pos="up" onclick='toSlide("historia")' ></div>
-    <div style="background-image: url('assets/ui/COPYRIGTH_100X100.png');
-                height: 50px;
-                width: 400px;
-                background-repeat: no-repeat;
-                margin: 1%;
-                position: fixed;
-                right: 0%;
-                bottom: 01%;
-                z-index: 2;
-                display: inline;"></div>
+    <div id="COPYRIGTH_"></div>
   </div>
 
 </footer>
@@ -74,6 +65,7 @@
     var width=0,height=0,
         dom={},
         div=document.createElement('div'),
+        dataCSV=null;
         main=document.getElementById('main');
 
                 if(screen.width>1200){

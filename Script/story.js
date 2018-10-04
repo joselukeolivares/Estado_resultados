@@ -115,9 +115,8 @@ function story() {
 					coin.interactive = true;
 
 					//clientes_t[i].state.setAnimation(0,'walk',true);
-					coin.on('mouseover',function(e){
-						debugger;
-						console.log(e.data.global.x);
+					coin.on('mouseover',function(){
+
 
 					  coin.state.setAnimation(0,'animtion0',false);
 					});
@@ -129,10 +128,7 @@ function story() {
 					coin.anchor.set(0.5);
 					coin.scale.set(	self.escala_2,	self.escala_2);
 					coin.interactive=true;
-					coin.on('mousemove',function(e){
-						console.log("movin mouse");
-						console.log(e.data.global.x);
-					})
+			
 
 
 				}
