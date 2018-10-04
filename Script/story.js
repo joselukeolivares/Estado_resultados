@@ -1,6 +1,26 @@
 function story() {
 	let self = {};
   self.frames;
+	self.t;
+
+	self.hideShowTxt=function(){
+
+		var texts =  document.getElementsByClassName("intro");
+				debugger;
+				if(texts!=null)
+				{
+					for(var i=0;i<texts.length;i++){
+						  if(texts[i].style.display=='none')
+							{
+								texts[i].style.display='block';
+							}else{
+								texts[i].style.display='none';
+							}
+					}
+				}
+
+	}
+
   self.removeElements = function () {
 
 		        if(self.app.stage==null)
@@ -18,14 +38,7 @@ function story() {
 
   self.destroyApp = function () {
 
-		var texts =  document.getElementsByClassName("intro");
-				debugger;
-				if(texts!=null)
-				{
-					for(var i=0;i<texts.length;i++){
-							texts[i].style.display='none';
-					}
-				}
+    self.hideShowTxt();
 
 
 
@@ -46,34 +59,36 @@ function story() {
     let app = document.getElementById("aplicacion");
     self.app = new PIXI.Application(width, height, {transparent: true});
 		self.app.renderer.backgroundColor = 0xFFFFFF;
-		console.log(width,height);
-		//self.app.renderer.view.style.position = "absolute";
-		//self.app.renderer.view.style.display = "block";
 		self.app.renderer.autoResize = true;
-		//self.app.renderer.resize(screen.width, screen.height);
-    //elf.app.view.style.width = app.width;
-    //self.app.view.style.height = app.height;
-var	Width =	self.width=self.app.screen.width;
-var Height = self.height=self.app.screen.height;
+		self.app.renderer.plugins.interaction.moveWhenInside = true;
+
+    var	Width =	self.width=self.app.screen.width;
+    var Height = self.height=self.app.screen.height;
 		self.escala_1=(self.height*.4)/950;
     self.escala_2=(self.height*.5)/950;
 
     app.appendChild(self.app.view);
+		self.t=new Tink(PIXI,self.app.view);
+
     createSprite(self.app);
 
     return self;
   };
 
   function createSprite(app) {
-    try {
+/*
+		try {
       PIXI.loader
         .add("assets/ui/Bloque_2/interface.json")
         .add("assets/MONEDA DANDO VUELTAS (1)/spritesheet (2).json")
 				.add('cliente_negro','assets/CTE NEGRITO LEVANTANDO LOS BRAZOS/CTE NEGRITO LEVANTANDO LOS BRAZOS/CTENEGROMANOSARRIBA.json')
         .load(setup);
     } catch(e) {
-      setup();
+			console.log(e);
+
     }
+		*/
+		setup();
     function setup() {
 			var loader_ctes=PIXI.loader;
 			  debugger;
@@ -100,8 +115,12 @@ var Height = self.height=self.app.screen.height;
 					coin= new PIXI.spine.Spine(loader_ctes.resources.cliente_negro.spineData);
 					coin.scale.set((self.height*.2)/950,(self.height*.2)/950);
 					coin.interactive = true;
+
 					//clientes_t[i].state.setAnimation(0,'walk',true);
-					coin.on('mouseover',function(){
+					coin.on('mouseover',function(e){
+						debugger;
+						console.log(e.data.global.x);
+
 					  coin.state.setAnimation(0,'animtion0',false);
 					});
 
@@ -111,6 +130,12 @@ var Height = self.height=self.app.screen.height;
 					coin.animationSpeed = .1;
 					coin.anchor.set(0.5);
 					coin.scale.set(	self.escala_2,	self.escala_2);
+					coin.interactive=true;
+					coin.on('mousemove',function(e){
+						console.log("movin mouse");
+						console.log(e.data.global.x);
+					})
+
 
 				}
 
@@ -149,8 +174,8 @@ var style = new PIXI.TextStyle({
 	dropShadowColor: "#E7C82F",
 	dropShadowDistance: 4,
 	fill: "#2D5F96",
-	fontFamily: "Arial Black",
-  fontSize: screen.height * 40 / 880,
+	fontFamily: "Roboto-Black",
+  fontSize: screen.height * 35 / 880,
 	lineHeight: 6,
 	miterLimit: 0,
 	stroke: "white",
@@ -160,10 +185,15 @@ var style = new PIXI.TextStyle({
 
 });
  var text_titulo = new PIXI.Text('Estado de resultados de clientes', style);
-  text_titulo.x=(self.width*200)/950;
+  text_titulo.x=(self.width*.25);
 	text_titulo.y=(self.height*48)/950;
 
 	app.stage.addChild(text_titulo);
+	/*
+if(document.getElementsByClassName('intro').length==0){
+	 debugger;
+	$(function() {
+	$('#main').append('<div class="title intro" align="center" style="font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: 50%;top: 25%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)"><p>HISTORIA</p></div>');
 
 jQuery(document).ready(function($){
 
@@ -175,7 +205,10 @@ $('#main').append('<div class="intro" align="center" style="font-Family:roboto-r
 
 
 });
-
+}
+}else{
+	self.hideShowTxt();
+}
 
 /*
 const text_parrafo_1 = new PIXI.Text('Los clientes representan el activo más importante para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.',style_2);
@@ -248,7 +281,7 @@ app.stage.addChild(text_parrafo_7);
 			//app.stage.addChild(rect_video);
 */
 			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/ERC_video_1.png'));
-			    button_video_1.scale.set(.8,.8);
+			    button_video_1.scale.set(factorScreen(.8));
 					button_video_1.x=width*.05;
 					button_video_1.y=height*.85;
 
@@ -258,13 +291,13 @@ app.stage.addChild(text_parrafo_7);
 			let next_block=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/explorar_1.png'));
 			let close=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/close_video_2.png'));
 			paused.position.set(width/2,height/2);
-			paused.scale.set(.25,.25);
+			paused.scale.set(factorScreen(.25));
 			paused.anchor.set(.5,.5);
 			paused.alpha=0;
 			paused.name="paused_button";
 
-			next_block.scale.set(.8,.8);
-			next_block.x=width*.85;
+			next_block.scale.set(factorScreen(.7));
+			next_block.x=width*.80;
 			next_block.y=height*.85;
 			next_block.name="next_block";
 			next_block.interactive = true;
@@ -286,7 +319,7 @@ app.stage.addChild(text_parrafo_7);
 
 			let button_video=new PIXI.Container();
 			button_video.addChild(button_video_1);
-
+			button_video.draggable=true;
 			button_video.interactive=true;
 			button_video.buttonMode=true;
 
@@ -295,17 +328,10 @@ app.stage.addChild(text_parrafo_7);
 
 
 
-			button_video.on('pointertap',function(){
+			button_video.on('pointertap',function(e){
 
 
-				var texts =  document.getElementsByClassName("intro");
-						debugger;
-						if(texts!=null)
-						{
-							for(var i=0;i<texts.length;i++){
-									texts[i].style.display='none';
-							}
-						}
+				self.hideShowTxt();
 
 
 				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADOS DE CTES VIDEO EN MP4.mp4');
@@ -319,6 +345,7 @@ app.stage.addChild(text_parrafo_7);
 
           videoSprite.texture.baseTexture.source.onended=
 					function(){
+						self.hideShowTxt();
 							app.stage.removeChild(videoSprite);
 					};
     				app.stage.addChild(videoSprite);
@@ -346,7 +373,7 @@ app.stage.addChild(text_parrafo_7);
 
 		function deleteVideo(){
 
-
+      self.hideShowTxt();
 			var child_video=app.stage.getChildByName("video_sprite");
 			var child_close=app.stage.getChildByName("close_video");
 			var paused_button=app.stage.getChildByName("paused_button");

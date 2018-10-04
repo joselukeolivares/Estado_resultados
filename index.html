@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Click</title>
+  <title>Analitica:ERC</title>
+  <link rel="icon" href="assets/ui/Bloque_2/CTE CON MANOS ARRIBA/cabeza_negra.png">
 </head>
 
 
@@ -12,7 +13,6 @@
   <link rel="stylesheet" href="CSS/slider.css">
   <link rel="stylesheet" href="styles/Roboto.css">
   <link rel="stylesheet" href="CSS/style.css">
-  <link rel="stylesheet" href="CSS/Segmentacion.css">
 
 
   <!--librerias
@@ -25,7 +25,7 @@
   <script src="js/GSAP Class/Tweening Basics/js/gsap/TimelineMax.js"></script>
   <script src="js/GSAP Class/Tweening Basics/js/gsap/TweenMax.js"></script>
   <script src="js/jquery.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script src="js/tink.js"></script>
 
 
 <script src="Script/start.js"></script>
@@ -34,32 +34,56 @@
 <script src="Script/shopping.js"></script>
 <script src="Script/story.js"></script>
 <script src="Script/indicators.js"></script>
-<script src="Script/segmentacion.js"></script>
 
 <main id="main" align="center" style="position: absolute;left: 50%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)";>
 
 
 </main>
 <footer>
-  <div id="container" align="center" style="position: absolute;left: 50%;top: 95%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)" >
+  <div id="container" align="center" >
+    <div style="background-image: url('assets/ui/logo_coppel.png');
+                height: 100%;
+                width: 250px;
+                background-repeat: no-repeat;
+                margin: 1%;
+                position: fixed;"></div>
     <div class="circulos" data-balloon="Inicio!" data-balloon-pos="up" onclick='toSlide("start")'></div>
     <div class="circulos" data-balloon="Historia!" data-balloon-pos="up" onclick='toSlide("story")'></div>
     <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicators")'></div>
-    <div class="circulos" data-balloon="Perfiles de clientes!" data-balloon-pos="up"onclick='toSlide("segmentacion")'></div>
+    <div class="circulos" data-balloon="Segmentación" data-balloon-pos='toSlide(Segmentación)' ></div>
     <div class="circulos" data-balloon="Simulación! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Escenario! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Créditos! (En construcción)" data-balloon-pos="up" onclick='toSlide("historia")' ></div>
+    <div style="background-image: url('assets/ui/COPYRIGTH_100X100.png');
+                height: 50px;
+                width: 400px;
+                background-repeat: no-repeat;
+                margin: 1%;
+                position: fixed;
+                right: 0%;
+                bottom: 01%;
+                z-index: 2;
+                display: inline;"></div>
+  </div>
 
 </footer>
 <script>
 
 
 
-    var width =screen.width-500,
-        height =screen.height-200,
+    var width=0,height=0,
         dom={},
         div=document.createElement('div'),
         main=document.getElementById('main');
+
+                if(screen.width>1200){
+                  width=screen.width-500;
+                  height =screen.height-200;
+                }else{
+                  width=screen.width*.9;
+                  height =screen.height-100;
+                }
+                //880--1080
 
       let  actual_app;
 

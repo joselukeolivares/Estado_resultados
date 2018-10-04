@@ -10,8 +10,11 @@ border-color: white;
 }
 
 #container{
+  position: fixed;
+  bottom: 0%;
   height: 100px;
   width: 100%;
-  background-color: rgb(25,41,26);
+  background-color: #3B3038;
   text-align: center;
+  z-index: 2;
 }

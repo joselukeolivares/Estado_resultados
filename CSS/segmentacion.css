@@ -23,7 +23,7 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
     position: relative;
 	word-break: break-all;
 	hyphens: auto;
-}  
+}
 
 #gsap-anim-text-1 span { /* !important for gsap, has to be in <div> with relative position */
 	position: relative;
@@ -34,8 +34,8 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 	font-weight:bold;
 	word-break: break-all;
 	hyphens: auto;
-	
-	
+
+
 }
 #post-title-text span { /* !important for gsap, has to be in <div> with relative position */
 	position: relative;
@@ -46,9 +46,5 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 	font-weight:bold;
 	word-break: break-all;
 	hyphens: auto;
-	
+
 }
-
-
-
-
