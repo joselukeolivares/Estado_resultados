@@ -48,8 +48,8 @@ function loader_pixi(){
 
         ])
         .on("progress",loadProgressHandler)
-        .load(charged);
 
+        .load(charged);
 
          function loadProgressHandler(loader,resource){
            console.log("Se ha cargado el archivo: "+resource.url);
@@ -57,7 +57,9 @@ function loader_pixi(){
          }
 
         function charged(){
+
           actual_app=start().createApp();
+
         }
 
 

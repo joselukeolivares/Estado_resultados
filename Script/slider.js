@@ -42,7 +42,9 @@ function Slider(divApp, indicator, iteration) {
           roundedRects.name="roundedRects";
           rects_container.addChild(roundedRects);
 
+
       var roundedRect=new PIXI.Sprite(loader.resources['assets/ui/Bloque_3/compraProm_indicador.png'].texture);
+
           roundedRect.x=width * .66;
           roundedRect.y=height * .75;
           //roundedRect.anchor.set(factorScreen(.5));
