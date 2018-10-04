@@ -39,8 +39,8 @@ function start() {
   };
 
   function createSprite(app) {
-    var loader=PIXI.loader;
-    let door1=new PIXI.Sprite(loader.resources["assets/singleDoor.png"].texture);
+    var Loader=PIXI.loader;
+    let door1=new PIXI.Sprite(Loader.resources["assets/singleDoor.png"].texture);
     console.log(door1.width);
     
 
