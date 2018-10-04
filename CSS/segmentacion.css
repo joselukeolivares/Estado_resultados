@@ -1,0 +1,54 @@
+/* GSAP css injections
+=======================*/
+
+/*
+	CSS Reset
+*/
+html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark {
+	vertical-align: baseline;
+}
+
+.gsap-anim-button { /* has to be class="gsap-anim-button", in the same div with id="start-anim" and/or id="exit-anim" */
+	position:relative;      /* !important */
+	display:inline-block;   /* !important */
+	cursor:pointer;        /* !important */
+    border: 1px solid black;
+}
+
+
+#start-anim, #exit-anim { /* has to be in the same div with class="gsap-anim-button" */
+	position: inherit;
+}
+#gsap-anim-text-1, #post-title-text {
+    position: relative;
+	word-break: break-all;
+	hyphens: auto;
+}  
+
+#gsap-anim-text-1 span { /* !important for gsap, has to be in <div> with relative position */
+	position: relative;
+	font-family:roboto-regular;
+	font-size:1.57vw;
+    line-height:40px;
+    color:#000000;
+	font-weight:bold;
+	word-break: break-all;
+	hyphens: auto;
+	
+	
+}
+#post-title-text span { /* !important for gsap, has to be in <div> with relative position */
+	position: relative;
+	font-family:roboto-regular;
+	font-size:1.57vw;
+    line-height:40px;
+    color:#000000;
+	font-weight:bold;
+	word-break: break-all;
+	hyphens: auto;
+	
+}
+
+
+
+

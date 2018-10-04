@@ -8,8 +8,7 @@ function shopping(){
    shop.escala_3=(self.height*.07)/950;
    shop.escala_4=(self.height*.2)/950;
 
-   shop.build=function(app)
-{
+   shop.build=function(app){
   console.log("building shop");
 
   shop.width=app.screen.width;
@@ -130,7 +129,7 @@ try{
 	   //app.stage.addChild(sala);
 
 	   lavanderia = new PIXI.Sprite(id['7. LAVANDERIA.png']);
-	   lavanderia.position.set(-100, shop.height / 3.1);
+	   lavanderia.position.set(-100, shop.height / 2.9);
 	   lavanderia.scale.set(shop.escala_2,shop.escala_2);
      lavanderia.alpha=0;
      lavanderia.parentGroup=group_2;
@@ -298,10 +297,7 @@ function LoadButton(){
 
                  toSlide("story");
 
-                 $(function() {
-       $('#main').html('<strong>Ejemplo con html()</strong>');
-  
-     });
+
            }
             					}
 }
