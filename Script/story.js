@@ -39,8 +39,7 @@ function story() {
   self.destroyApp = function () {
 
     self.hideShowTxt();
-
-    console.log("Destroying the story...");
+		console.log("Destroying the story...");
     if(self.app == null) return self;
 
 		var child_video=self.app.stage.getChildByName("video_sprite");
@@ -128,7 +127,7 @@ function story() {
 					coin.anchor.set(0.5);
 					coin.scale.set(	self.escala_2,	self.escala_2);
 					coin.interactive=true;
-			
+
 
 
 				}
@@ -195,6 +194,7 @@ if(document.getElementsByClassName('intro').length==0){
 }else{
 	self.hideShowTxt();
 }
+
 
 /*
 const text_parrafo_1 = new PIXI.Text('Los clientes representan el activo más importante para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.',style_2);

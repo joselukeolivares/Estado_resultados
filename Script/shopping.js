@@ -2,14 +2,13 @@ function shopping(){
 
 
    var shop={};
-
+   shop.flag_ctes=true;
    shop.escala_1=(self.height*.4)/950;
    shop.escala_2=(self.height*.5)/950;
    shop.escala_3=(self.height*.07)/950;
    shop.escala_4=(self.height*.2)/950;
 
-   shop.build=function(app)
-{
+   shop.build=function(app){
   console.log("building shop");
 
   shop.width=app.screen.width;
@@ -34,23 +33,9 @@ function shopping(){
                app.stage.addChild(new PIXI.display.Layer(group_2));
 
                var container=new PIXI.Container();
-               debugger;
-  /*
-              try{
 
-                      var Loader = PIXI.loader;
-                      Loader
-                            .add('assets/spritesheet.json')
-                            .load(setup);
 
-                  }catch(err){
-                    //console.log(err);
-                    debugger;
-                   setup();
-                }
-                */
-                var Loader = PIXI.loader;
-                Loader.load(setup);
+                setup();
 
    var celulares,
        comedor,
@@ -63,22 +48,7 @@ function shopping(){
 
 
 	function setup(){
-    /*
-try{
-  var loader_ctes=PIXI.loader;
 
-        loader_ctes
-        .add('Cliente_naranja','assets/CTE CAMINANDO/CTECAMINANDO.json')
-        .load(onAssetsLoad);
-
-
-
-}catch(err){
-  debugger;
-
-  Loader.load(onAssetsLoad);
-}
-*/
 
 
       var Cliente_1,
@@ -91,9 +61,10 @@ try{
        Cliente_8,
        Cliente_9;
 
-
+var Loader=PIXI.loader;
 
      var id = Loader.resources['assets/spritesheet.json'].textures;
+
        tvs = new PIXI.Sprite(id['5. TVS.png']);
 	   tvs.position.set(shop.width*.75, shop.height / 4);
 	   tvs.scale.set(shop.escala_1,shop.escala_1);
@@ -130,7 +101,7 @@ try{
 	   //app.stage.addChild(sala);
 
 	   lavanderia = new PIXI.Sprite(id['7. LAVANDERIA.png']);
-	   lavanderia.position.set(-100, shop.height / 3.1);
+	   lavanderia.position.set(-100, shop.height / 2.9);
 	   lavanderia.scale.set(shop.escala_2,shop.escala_2);
      lavanderia.alpha=0;
      lavanderia.parentGroup=group_2;
@@ -163,12 +134,13 @@ try{
      perfumeria.y= app.screen.height / 2.2;
      perfumeria.x= app.screen.width / 2.6;
 
-     //container.addChild(comedor);
-     var loader_ctes=PIXI.loader;
-         Loader.load(onAssetsLoad);
+     onAssetsLoad();
 
 
-function onAssetsLoad(Loader,res){
+
+function onAssetsLoad(){
+
+var loader=PIXI.loader;
 
 var clientes_t=[Cliente_1,Cliente_2,Cliente_3,Cliente_4,Cliente_5,Cliente_6,Cliente_7,Cliente_8];
 var muebles = [sala,tvs,lavanderia,perfumeria,audio,lineablanca,celulares,comedor];
@@ -181,8 +153,8 @@ var muebles = [sala,tvs,lavanderia,perfumeria,audio,lineablanca,celulares,comedo
           for(i=0;i<8;i++){
           var p = i * (shop.width/10);
           var q = i * (shop.height/10);
-
-           clientes_t[i] = new PIXI.spine.Spine(res.Cliente_naranja.spineData);
+debugger;
+           clientes_t[i] = new PIXI.spine.Spine(loader.resources.Cliente_naranja.spineData);
            clientes_t[i].scale.set(shop.escala_4,shop.escala_4);
            clientes_t[i].x =Math.floor((Math.random() * shop.width) + 1);
            clientes_t[i].y = app.screen.height*.2+q;
@@ -199,6 +171,7 @@ var muebles = [sala,tvs,lavanderia,perfumeria,audio,lineablanca,celulares,comedo
           }
 
           container.addChild(clientes_t[0]);
+
           container.addChild(muebles[0]);
           container.addChild(clientes_t[1]);
           container.addChild(muebles[1]);
@@ -214,7 +187,7 @@ var muebles = [sala,tvs,lavanderia,perfumeria,audio,lineablanca,celulares,comedo
           container.addChild(muebles[7]);
           container.addChild(clientes_t[6]);
           container.addChild(clientes_t[7]);
-
+          
        function clicked(){
 
          this.state.setAnimation(0,'happy',false);
@@ -296,13 +269,7 @@ function LoadButton(){
 
            function Clicked(){
 
-                 toSlide("story");
-
-                 $(function() {
-       $('#main').html('<strong>Ejemplo con html()</strong>');
-
-     });
-           }
+                 toSlide("story");           }
             					}
 }
      TweenMax.to([tienda_dentro,sala,tvs,lavanderia,audio,lineablanca,celulares,comedor,perfumeria],4,{alpha:1});
