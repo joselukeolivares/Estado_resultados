@@ -42,14 +42,27 @@ function loader_pixi(){
           "assets/ui/Bloque_3/tasa-80percent.png",
           "assets/ui/Bloque_3/compraProm_indicador.png",
           "assets/ui/Bloque_3/tasa_indicador.png",
-
           "assets/ui/Bloque_3/b-continue.png",
-          "assets/ui/Bloque_3/b-continue-selected.png"
+          "assets/ui/Bloque_3/b-continue-selected.png",
+          "assets/ui/Bloque_4/1. N-15.png",
+          "assets/ui/Bloque_4/clientes/4. ASV.png",
+          "assets/ui/Bloque_4/clientes/7. S-15 2.png",
+          "assets/ui/Bloque_4/clientes/2. N+15.png",
+          "assets/ui/Bloque_4/clientes/5. ACV2.png",
+          "assets/ui/Bloque_4/clientes/8. S+15 2.png",
+          "assets/ui/Bloque_4/clientes/3. GENERADOS.png",
+          "assets/ui/Bloque_4/clientes/6. Z.png",
+          "assets/ui/Bloque_4/clientes/9. QUEBRANTADOS.png",
+          "assets/ui/Bloque_4/globos/1 VDO.png",
+          "assets/ui/Bloque_4/globos/2 VDO.png",
+          "assets/ui/Bloque_4/globos/3 VDO.png",
+          "assets/ui/Bloque_4/globos/4 VDO.png"
 
         ])
         .on("progress",loadProgressHandler)
-
         .load(charged);
+
+
 
          function loadProgressHandler(loader,resource){
            console.log("Se ha cargado el archivo: "+resource.url);
@@ -57,9 +70,7 @@ function loader_pixi(){
          }
 
         function charged(){
-
           actual_app=start().createApp();
-
         }
 
 

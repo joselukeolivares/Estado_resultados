@@ -142,7 +142,7 @@ function createSprite(app){
 
     	app.stage.addChild(text_titulo_2);
 
-      var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/continue.png"));
+      var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
       contButton.x = self.app.screen.width-100;
       contButton.y = self.app.screen.height-50;
       contButton.anchor.set(0.5);
@@ -205,6 +205,7 @@ function createSprite(app){
           });
 
           var i=0;
+
     function click(){
 
           i = i + 1;
@@ -245,7 +246,9 @@ function createSprite(app){
 
          });
 
-         var cliente_nunca_entre15 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/1. N-15.png"));
+         var Loader = PIXI.loader;
+         debugger;
+         var cliente_nunca_entre15 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/1. N-15.png"].texture);
          cliente_nunca_entre15.x = self.app.screen.width/4.5;
          cliente_nunca_entre15.y = self.app.screen.height/3.2;
          cliente_nunca_entre15.anchor.set(0.5);
@@ -253,21 +256,21 @@ function createSprite(app){
          app.stage.addChild(cliente_nunca_entre15);
 
 
-         var activo_sin_vencido = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/4. ASV.png"));
+         var activo_sin_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/4. ASV.png"].texture);
          activo_sin_vencido.x = self.app.screen.width/2;
          activo_sin_vencido.y = self.app.screen.height/3.2;
          activo_sin_vencido.anchor.set(0.5);
          activo_sin_vencido.scale.set(self.app.screen.width*.45/950);
          app.stage.addChild(activo_sin_vencido);
 
-         var cliente_saldado_entre15 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/7. S-15 2.png"));
+         var cliente_saldado_entre15 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/7. S-15 2.png"].texture);
          cliente_saldado_entre15.x = self.app.screen.width/1.3;
          cliente_saldado_entre15.y = self.app.screen.height/3.2;
          cliente_saldado_entre15.anchor.set(0.5);
          cliente_saldado_entre15.scale.set(self.app.screen.width*.45/950);
          app.stage.addChild(cliente_saldado_entre15);
 
-         var cliente_nunca_mas15 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/2. N+15.png"));
+         var cliente_nunca_mas15 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/2. N+15.png"].texture);
          cliente_nunca_mas15.x = self.app.screen.width/4.5;
          cliente_nunca_mas15.y = self.app.screen.height/1.8;
          cliente_nunca_mas15.anchor.set(0.5);
@@ -276,7 +279,7 @@ function createSprite(app){
 
 
 
-         var Loader = PIXI.loader;
+
 
 
 
@@ -286,7 +289,7 @@ function createSprite(app){
          activo_con_vencido.x = self.app.screen.width/2;
          activo_con_vencido.y = self.app.screen.height/1.8;
          activo_con_vencido.anchor.set(.5);
-         activo_con_vencido.scale.set(self.app.screen.width*.45/866);
+         activo_con_vencido.scale.set(self.app.screen.width*.45/950);
          activo_con_vencido.interactive = true;
          activo_con_vencido.buttonMode = true;
 
@@ -368,40 +371,40 @@ function createSprite(app){
           app.stage.addChild(globo_4);
 */
 
-         var clientes_saldado_mas15 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/8. S+15 2.png"));
+         var clientes_saldado_mas15 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/8. S+15 2.png"].texture);
          clientes_saldado_mas15.x = self.app.screen.width/1.3;
          clientes_saldado_mas15.y = self.app.screen.height/1.8;
          clientes_saldado_mas15.anchor.set(0.5);
          clientes_saldado_mas15.scale.set(self.app.screen.width*.45/950);
          app.stage.addChild(clientes_saldado_mas15);
 
-         var generados = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/3. GENERADOS.png"));
+         var generados = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/3. GENERADOS.png"].texture);
          generados.x = self.app.screen.width/4.5;
          generados.y = self.app.screen.height/1.2;
          generados.anchor.set(0.5);
          generados.scale.set(self.app.screen.width*.45/950);
          app.stage.addChild(generados);
 
-         var z = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/6. Z.png"));
+         var z = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/6. Z.png"].texture);
          z.x = self.app.screen.width/2;
          z.y = self.app.screen.height/1.2;
          z.anchor.set(0.5);
          z.scale.set(self.app.screen.width*.45/950);
          app.stage.addChild(z);
 
-         var quebrantados = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/9. QUEBRANTADOS.png"));
+         var quebrantados = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/9. QUEBRANTADOS.png"].texture);
          quebrantados.x = self.app.screen.width/1.3;
          quebrantados.y = self.app.screen.height/1.2;
          quebrantados.anchor.set(0.5);
-         quebrantados.scale.set(.5);
+         quebrantados.scale.set(self.app.screen.width*.45/950);
          app.stage.addChild(quebrantados);
 
 
 
-    var un_vencido = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/globos/1 VDO.png"));
-    var dos_vencido = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/globos/2 VDO.png"));
-    var tres_vencido = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/globos/3 VDO.png"));
-      var cuatro_vencido = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/globos/4 VDO.png"));
+    var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/1 VDO.png"].texture);
+    var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/2 VDO.png"].texture);
+    var tres_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/3 VDO.png"].texture);
+      var cuatro_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/4 VDO.png"].texture);
 
            function MouseOver(event){
 
