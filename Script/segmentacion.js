@@ -23,8 +23,17 @@ self.destroyApp = function() {
 
   });
 
+  if ( document.getElementById('contenedor') ){
 
+document.body.removeChild(contenedor);
 
+}
+
+if ( document.getElementById('contenedor_2') ){
+
+document.body.removeChild(contenedor_2);
+
+}
   if(self.app == null) return self;
   self.app.destroy(true);
 
@@ -158,26 +167,39 @@ function createSprite(app){
       .on("click",click);
 
 
-       var contenedor = document.createElement("DIV");
-        contenedor.setAttribute("id","contenedor");
-        contenedor.setAttribute("style","height:35%;width:35%;position: absolute;left: 80%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
-        document.body.appendChild(contenedor);
-          var x = document.createElement("DIV");
-          var br= document.createElement("br");
-          x.setAttribute("id","gsap-anim-text-1");
-          var t = document.createTextNode("Con el objetivo de profundizar en el estudio y ana- lisis de nuestros clientes, nos dimos ala tarea de crear perfiles de clientes en base a sus compras, vencidos  y  cuenta Perdida. Esto nos  ayudara  a monitorear  y  crear  estrategias especializadas               para cada tipo de cliente Coppel.           ");
-          x.appendChild(t);
-          document.body.appendChild(x);
-          contenedor.appendChild(x);
+      if ( !document.getElementById('contenedor') ){
+
+        var contenedor = document.createElement("DIV");
+         contenedor.setAttribute("id","contenedor");
+         contenedor.setAttribute("style","height:35%;width:35%;position: absolute;left: 80%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
+         document.body.appendChild(contenedor);
 
 
-          var y = document.createElement("DIV");
-          y.setAttribute("id","post-title-text");
-          var s = document.createTextNode("¡Acompañeme a conocer a nuestros clientes..!");
-          y.setAttribute("style", "font-Family:roboto-regular;position: absolute;left: 80%;top: 60%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
-          y.appendChild(s);
-          document.body.appendChild(y);
+           var x = document.createElement("DIV");
+           var br= document.createElement("br");
+           x.setAttribute("id","gsap-anim-text-1");
+           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y ana- lisis de nuestros clientes, nos dimos ala tarea de crear perfiles de clientes en base a sus compras, vencidos  y  cuenta Perdida. Esto nos  ayudara  a monitorear  y  crear  estrategias especializadas               para cada tipo de cliente Coppel.           ");
+           x.appendChild(t);
+           document.body.appendChild(x);
+           contenedor.appendChild(x);
 
+}
+
+    if ( !document.getElementById('contenedor_2') ){
+
+           var contenedor_2 = document.createElement("DIV");
+            contenedor_2.setAttribute("id","contenedor_2");
+            contenedor_2.setAttribute("style","height:10%;width:35%;position: absolute;left: 80%;top: 60%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
+            document.body.appendChild(contenedor_2);
+
+
+           var y = document.createElement("DIV");
+           y.setAttribute("id","post-title-text");
+           var s = document.createTextNode("¡Acompañeme a conocer a nuestros clientes..!");
+           y.appendChild(s);
+           document.body.appendChild(y);
+           contenedor_2.appendChild(y);
+}
 
 
           jQuery(document).ready(function($){
@@ -226,8 +248,7 @@ function createSprite(app){
 
              	app.stage.addChild(text_titulo_2);
 
-
-         jQuery(document).ready(function($){
+       jQuery(document).ready(function($){
 
            var $startAnim = $("#start-anim");
            var $exitAnim = $("#exit-anim");
@@ -245,6 +266,10 @@ function createSprite(app){
               TweenMax.to($postTitleText, 1, {autoAlpha:0});}
 
          });
+
+
+         document.body.removeChild(contenedor);
+         document.body.removeChild(contenedor_2);
 
          var Loader = PIXI.loader;
          debugger;
@@ -509,7 +534,7 @@ function createSprite(app){
 
 
 
-                   toSlide("Simulación");
+                   toSlide("simulador");
 
 
 

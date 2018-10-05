@@ -1,4 +1,5 @@
 function simulador(){
+
 var self={};
   self.createApp=function(){
     var aplicacion=document.getElementById("aplicacion");
@@ -201,4 +202,5 @@ var b_y=height/2;
   }
 
 return self;
+
 }
