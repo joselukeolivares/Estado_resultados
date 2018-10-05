@@ -1,4 +1,5 @@
 function simulador(){
+
 var self={};
   self.createApp=function(){
    console.log(dataCSV);
@@ -10,4 +11,5 @@ var self={};
   }
 
 return self;
+
 }
