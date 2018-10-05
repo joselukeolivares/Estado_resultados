@@ -54,7 +54,7 @@
     <div class="circulos" data-balloon="Historia!" data-balloon-pos="up" onclick='toSlide("story")'></div>
     <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicators")'></div>
     <div class="circulos" data-balloon="Segmentación" data-balloon-pos="up" onclick='toSlide("segmentacion")' ></div>
-    <div class="circulos" data-balloon="Simulación! (En construcción)" data-balloon-pos="up" ></div>
+    <div class="circulos" data-balloon="Simulación! " data-balloon-pos="up" onclick='toSlide("simulador")' ></div>
     <div class="circulos" data-balloon="Escenario! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Créditos! (En construcción)" data-balloon-pos="up" onclick='toSlide("historia")' ></div>
     <div id="COPYRIGTH_"></div>
@@ -94,7 +94,7 @@
             var year;
 
           if(data[i].Fecha==mes_actual){
-            debugger;
+
                datos_obj[0]=data[i];
                year=new Date(datos_obj[0].Fecha).getFullYear();
                if(year-1==new Date(data[i-12].Fecha).getFullYear())

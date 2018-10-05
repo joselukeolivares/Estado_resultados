@@ -56,7 +56,11 @@ function loader_pixi(){
           "assets/ui/Bloque_4/globos/1 VDO.png",
           "assets/ui/Bloque_4/globos/2 VDO.png",
           "assets/ui/Bloque_4/globos/3 VDO.png",
-          "assets/ui/Bloque_4/globos/4 VDO.png"
+          "assets/ui/Bloque_4/globos/4 VDO.png",
+          "assets/ui/Bloque_5/bloque5_ctes.json",
+          "assets/ui/Bloque_5/spritesheet_bloque_5.json"
+
+
 
         ])
         .on("progress",loadProgressHandler)
