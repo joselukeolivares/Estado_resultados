@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="styles/Roboto.css">
   <link rel="stylesheet" href="CSS/style.css">
   <link rel="stylesheet" href="CSS/segmentacion.css">
+  <link rel="stylesheet" href="CSS/loading-bar.css">
+
 
 
   <!--librerias
@@ -27,6 +29,7 @@
   <script src="js/GSAP Class/Tweening Basics/js/gsap/TweenMax.js"></script>
   <script src="js/jquery.js"></script>
   <script src="js/tink.js"></script>
+  <script src="js/loading-bar.js"></script>
 
 
 <script src="Script/start.js"></script>
@@ -52,7 +55,7 @@
     <div class="circulos" data-balloon="Historia!" data-balloon-pos="up" onclick='toSlide("story")'></div>
     <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicators")'></div>
     <div class="circulos" data-balloon="Segmentación" data-balloon-pos="up" onclick='toSlide("segmentacion")' ></div>
-    <div class="circulos" data-balloon="Simulación! (En construcción)" data-balloon-pos="up" ></div>
+    <div class="circulos" data-balloon="Simulación! (En construcción)" data-balloon-pos="up" onclick='toSlide("simulador")' ></div>
     <div class="circulos" data-balloon="Escenario! (En construcción)" data-balloon-pos="up" ></div>
     <div class="circulos" data-balloon="Créditos! (En construcción)" data-balloon-pos="up" onclick='toSlide("historia")' ></div>
     <div id="COPYRIGTH_"></div>
@@ -94,5 +97,6 @@
 <script src="Script/Scratcher.js"></script>
 <script src="Script/slider.js"></script>
 <script src="Script/segmentacion.js"></script>
+<script src="Script/simulador.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 function loader_pixi(){
 
   var Loader = PIXI.loader;
@@ -56,7 +57,8 @@ function loader_pixi(){
           "assets/ui/Bloque_4/globos/1 VDO.png",
           "assets/ui/Bloque_4/globos/2 VDO.png",
           "assets/ui/Bloque_4/globos/3 VDO.png",
-          "assets/ui/Bloque_4/globos/4 VDO.png"
+          "assets/ui/Bloque_4/globos/4 VDO.png",
+          "assets/ui/Bloque_4/LEVANTANDO_LA_ MANO.png"
 
         ])
         .on("progress",loadProgressHandler)
@@ -64,10 +66,32 @@ function loader_pixi(){
 
 
 
+        var progreso = document.createElement("DIV");
+        progreso.setAttribute("class","ldBar");
+        progreso.setAttribute("style","height:35%;width:35%;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
+        progreso.setAttribute("data-value","0");
+        document.body.appendChild(progreso);
+
+
          function loadProgressHandler(loader,resource){
+           /*
            console.log("Se ha cargado el archivo: "+resource.url);
            console.log("Progreso: "+loader.progress+"%");
+           */
+           var t = new ldBar('.ldBar');
+           var s =  document.getElementsByClassName('ldBar').ldBar;
+               t.set(loader.progress);
+
+               progreso.setAttribute("data-value","0");
+           if(loader.progress > 99.9999999999999)
+           {
+             document.body.removeChild(progreso);
+           }
+
          }
+
+     var v = document.getElementsByClassName('ldBar-label');
+
 
         function charged(){
           actual_app=start().createApp();

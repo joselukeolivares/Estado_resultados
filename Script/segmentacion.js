@@ -23,8 +23,17 @@ self.destroyApp = function() {
 
   });
 
+  if ( document.getElementById('contenedor') ){
 
+document.body.removeChild(contenedor);
 
+}
+
+if ( document.getElementById('contenedor_2') ){
+
+document.body.removeChild(contenedor_2);
+
+}
   if(self.app == null) return self;
   self.app.destroy(true);
 
@@ -35,7 +44,7 @@ self.destroyApp = function() {
 
 self.createApp = function(appDiv) {
   let app = document.getElementById("aplicacion");
-  self.app = new PIXI.Application(width, height, {backgroundColor: 0xffffff});
+  self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
   self.width = self.app.screen.width;
   self.height = self.app.screen.height;
   self.app.view.style.width = self.width;
@@ -100,7 +109,7 @@ function createSprite(app){
 
 
   });
-   var text_titulo = new PIXI.Text('Estado de resultados de clientes', style);
+   var text_titulo = new PIXI.Text('Estado de resultados de clientes', style_alter);
     text_titulo.x=(self.app.screen.width*200)/950;
   	text_titulo.y=(self.app.screen.height*48)/950;
 
@@ -136,7 +145,7 @@ function createSprite(app){
 
 
     });
-     var text_titulo_2 = new PIXI.Text('Perfil de clientes', style_2);
+     var text_titulo_2 = new PIXI.Text('Perfil de clientes', style_2_alter);
       text_titulo_2.x=self.app.screen.width/2.5;
     	text_titulo_2.y=self.app.screen.height/8.5;
 
@@ -151,33 +160,54 @@ function createSprite(app){
       contButton.buttonMode = true;
 
 
-
       app.stage.addChild(contButton);
+
+
+    var Loader = PIXI.loader;
+     var background  = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/LEVANTANDO_LA_ MANO.png"].texture);
+     background.scale.set(self.app.screen.width*.40/950);
+     background.y = self.app.screen.height/4;
+     background.x = self.app.screen.height/16;
+     app.stage.addChild(background);
+
 
       contButton
       .on("click",click);
 
 
-       var contenedor = document.createElement("DIV");
-        contenedor.setAttribute("id","contenedor");
-        contenedor.setAttribute("style","height:35%;width:35%;position: absolute;left: 80%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
-        document.body.appendChild(contenedor);
-          var x = document.createElement("DIV");
-          var br= document.createElement("br");
-          x.setAttribute("id","gsap-anim-text-1");
-          var t = document.createTextNode("Con el objetivo de profundizar en el estudio y ana- lisis de nuestros clientes, nos dimos ala tarea de crear perfiles de clientes en base a sus compras, vencidos  y  cuenta Perdida. Esto nos  ayudara  a monitorear  y  crear  estrategias especializadas               para cada tipo de cliente Coppel.           ");
-          x.appendChild(t);
-          document.body.appendChild(x);
-          contenedor.appendChild(x);
+      if ( !document.getElementById('contenedor') ){
+
+        var contenedor = document.createElement("DIV");
+         contenedor.setAttribute("id","contenedor");
+         contenedor.setAttribute("style","height:35%;width:37%;position: absolute;left: 64%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
+         document.body.appendChild(contenedor);
 
 
-          var y = document.createElement("DIV");
-          y.setAttribute("id","post-title-text");
-          var s = document.createTextNode("¡Acompañeme a conocer a nuestros clientes..!");
-          y.setAttribute("style", "font-Family:roboto-regular;position: absolute;left: 80%;top: 60%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
-          y.appendChild(s);
-          document.body.appendChild(y);
+           var x = document.createElement("DIV");
+           var br= document.createElement("br");
+           x.setAttribute("id","gsap-anim-text-1");
+           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y analisis de nuestros clientes, nos dimos ala tarea de crear perfiles de clientes en base a sus compras, vencidos  y  cuenta Perdida. Esto nos  ayudara  a monitorear  y  crear  estrategias especializadas  para cada tipo de                                               Cliente Coppel.           ");
+           x.appendChild(t);
+           document.body.appendChild(x);
+           contenedor.appendChild(x);
 
+}
+
+    if ( !document.getElementById('contenedor_2') ){
+
+           var contenedor_2 = document.createElement("DIV");
+            contenedor_2.setAttribute("id","contenedor_2");
+            contenedor_2.setAttribute("style","height:10%;width:35%;position: absolute;left: 69%;top: 60%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
+            document.body.appendChild(contenedor_2);
+
+
+           var y = document.createElement("DIV");
+           y.setAttribute("id","post-title-text");
+           var s = document.createTextNode("¡Acompañeme a conocer a nuestros clientes..!");
+           y.appendChild(s);
+           document.body.appendChild(y);
+           contenedor_2.appendChild(y);
+}
 
 
           jQuery(document).ready(function($){
@@ -208,26 +238,27 @@ function createSprite(app){
 
     function click(){
 
+      app.stage.removeChild(background);
+
           i = i + 1;
           console.log(i);
         if(i==1){
 
-          app.renderer.backgroundColor = 0x175383;
+          //app.renderer.backgroundColor = 0x175383;
 
              text_titulo = new PIXI.Text('Estado de resultados de clientes', style_alter);
               text_titulo.x=(self.app.screen.width*200)/950;
             	text_titulo.y=(self.app.screen.height*48)/950;
 
-              app.stage.addChild(text_titulo);
+              //app.stage.addChild(text_titulo);
 
                text_titulo_2 = new PIXI.Text('Perfil de clientes', style_2_alter);
                text_titulo_2.x=self.app.screen.width/2.5;
              	 text_titulo_2.y=self.app.screen.height/8.5;
 
-             	app.stage.addChild(text_titulo_2);
+             	//app.stage.addChild(text_titulo_2);
 
-
-         jQuery(document).ready(function($){
+       jQuery(document).ready(function($){
 
            var $startAnim = $("#start-anim");
            var $exitAnim = $("#exit-anim");
@@ -245,6 +276,10 @@ function createSprite(app){
               TweenMax.to($postTitleText, 1, {autoAlpha:0});}
 
          });
+
+
+         document.body.removeChild(contenedor);
+         document.body.removeChild(contenedor_2);
 
          var Loader = PIXI.loader;
          debugger;
@@ -509,7 +544,7 @@ function createSprite(app){
 
 
 
-                   toSlide("Simulación");
+                   toSlide("simulador");
 
 
 
