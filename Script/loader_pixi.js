@@ -74,10 +74,10 @@ function loader_pixi(){
 
 
          function loadProgressHandler(loader,resource){
-           /*
+
            console.log("Se ha cargado el archivo: "+resource.url);
            console.log("Progreso: "+loader.progress+"%");
-           */
+
            var t = new ldBar('.ldBar');
            var s =  document.getElementsByClassName('ldBar').ldBar;
                t.set(loader.progress);
@@ -94,10 +94,10 @@ function loader_pixi(){
 
 
         function charged(){
-          actual_app=start().createApp();
+           actual_app=start().createApp();
         }
+      debugger;
 
 
 }
-
 loader_pixi();
