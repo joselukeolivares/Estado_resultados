@@ -17,8 +17,7 @@
   <link rel="stylesheet" href="CSS/loading-bar.css">
 
 
-  <!--librerias
-  -->
+  <!--librerias-->
   <script src="js/pixi.min.js"></script>
   <script src="js/pixi-layers.js"></script>
   <script src="js/pixi.spine.js"></script>
@@ -36,7 +35,7 @@
 <script src="Script/shopping.js"></script>
 <script src="Script/story.js"></script>
 <script src="Script/indicators.js"></script>
-<script src="Script/loader_pixi.js"></script>
+
 <script src="Script/simulador.js"></script>
 
 <main id="main" align="center" style="position: absolute;left: 50%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)";>
@@ -85,33 +84,6 @@
 
       console.log(width,height);
 
-      d3.csv("data/Estado de Resultados Mx .csv",funcion);
-
-      function funcion(data){
-
-        var mes_actual=d3.max(data,function(d){return d.Fecha});
-        var datos_obj=[];
-        for(var i=0;i<data.length;i++){
-            var year;
-
-          if(data[i].Fecha==mes_actual){
-            debugger;
-               datos_obj[0]=data[i];
-               year=new Date(datos_obj[0].Fecha).getFullYear();
-               if(year-1==new Date(data[i-12].Fecha).getFullYear())
-               datos_obj[1]=data[i-12];
-            }
-
-
-        }
-
-        console.log(datos_obj[0]);
-        console.log(datos_obj[1]);
-        dataCSV=data;
-        loader_pixi();
-
-
-      }
 
 
 
@@ -120,7 +92,7 @@
   main.appendChild(div);
 
 </script>
-
+<script src="Script/loader_pixi.js"></script>
 <script src="Script/menu_puntos.js"></script>
 <script src="Script/Scratcher.js"></script>
 <script src="Script/slider.js"></script>

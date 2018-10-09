@@ -179,18 +179,12 @@ function createSprite(app){
 
         var contenedor = document.createElement("DIV");
          contenedor.setAttribute("id","contenedor");
-<<<<<<< HEAD
          contenedor.setAttribute("style","height:35%;width:37%;position: absolute;left: 64%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
-=======
-         contenedor.setAttribute("style","height:35%;width:35%;position: absolute;left: 80%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
->>>>>>> 8a446046eafa8e6aad424721c8e1236d93121d71
          document.body.appendChild(contenedor);
-
 
            var x = document.createElement("DIV");
            var br= document.createElement("br");
            x.setAttribute("id","gsap-anim-text-1");
-<<<<<<< HEAD
            var t = document.createTextNode("Con el objetivo de profundizar en el estudio y analisis de nuestros clientes, nos dimos ala tarea de crear perfiles de clientes en base a sus compras, vencidos  y  cuenta Perdida. Esto nos  ayudara  a monitorear  y  crear  estrategias especializadas  para cada tipo de                                               Cliente Coppel.           ");
            x.appendChild(t);
            document.body.appendChild(x);
@@ -198,24 +192,11 @@ function createSprite(app){
 
 }
 
-=======
-           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y ana- lisis de nuestros clientes, nos dimos ala tarea de crear perfiles de clientes en base a sus compras, vencidos  y  cuenta Perdida. Esto nos  ayudara  a monitorear  y  crear  estrategias especializadas               para cada tipo de cliente Coppel.           ");
-           x.appendChild(t);
-           document.body.appendChild(x);
-           contenedor.appendChild(x);
-
-}
-
->>>>>>> 8a446046eafa8e6aad424721c8e1236d93121d71
     if ( !document.getElementById('contenedor_2') ){
 
            var contenedor_2 = document.createElement("DIV");
             contenedor_2.setAttribute("id","contenedor_2");
-<<<<<<< HEAD
             contenedor_2.setAttribute("style","height:10%;width:35%;position: absolute;left: 69%;top: 60%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
-=======
-            contenedor_2.setAttribute("style","height:10%;width:35%;position: absolute;left: 80%;top: 60%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
->>>>>>> 8a446046eafa8e6aad424721c8e1236d93121d71
             document.body.appendChild(contenedor_2);
 
 
@@ -274,11 +255,7 @@ function createSprite(app){
                text_titulo_2.x=self.app.screen.width/2.5;
              	 text_titulo_2.y=self.app.screen.height/8.5;
 
-<<<<<<< HEAD
              	//app.stage.addChild(text_titulo_2);
-=======
-             	app.stage.addChild(text_titulo_2);
->>>>>>> 8a446046eafa8e6aad424721c8e1236d93121d71
 
        jQuery(document).ready(function($){
 

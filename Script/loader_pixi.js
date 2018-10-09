@@ -100,3 +100,5 @@ function loader_pixi(){
 
 
 }
+
+loader_pixi();
