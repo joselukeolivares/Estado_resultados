@@ -596,7 +596,7 @@ function characters_erc(name,tc,cpa,position,numCtes){
   this.position=position;
   this.countCtes=numCtes;
   this.sale=function(){
-    return this.cpa*this.tc;
+    return this.cpa*this.tc*this.countCtes;
   };
 
 

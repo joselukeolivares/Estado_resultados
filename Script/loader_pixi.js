@@ -60,6 +60,7 @@ function loader_pixi(){
           "assets/ui/Bloque_4/globos/4 VDO.png",
           "assets/ui/Bloque_4/LEVANTANDO_LA_ MANO.png",
           "assets/ui/Bloque_5/bloque5_ctes.json",
+          "assets/ui/Bloque_5/spritesheet_bloque_5.json",
           "assets/ui/Bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png",
           "assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"
 
