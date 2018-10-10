@@ -42,7 +42,6 @@ function indicators() {
   };
 
   function createSprite(app) {
-    debugger;
     let scale1 = factorScreen(.8);
     let scale2 = (self.height * 1.5) / 950;
     let tasaDeCompra = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/tasa_de_compra.png"));
@@ -199,28 +198,24 @@ function indicators() {
         sub.y = app.screen.height / 1.5;
         if (i == 2) {
           let color;
-          if (j != 0) {
-            color = "#E7C82F";
-          } else {
-            color = "#FFFFFF";
-          }
+          j != 0 ? color = "#E7C82F" : color = "#FFFFFF";
 
           if (j != 2) {
             sub = new PIXI.Text(subTitles[i][j], {
-              fontFamily: "Roboto",
+              fontFamily: "Roboto-Regular",
               fill: color,
-              fontSize: 14,
+              fontSize: 18,
               wordWrap: true,
-              wordWrapWidth: 750,
+              wordWrapWidth: 650,
               align: "center"
             });
           } else {
             sub = new PIXI.Text(subTitles[i][j], {
-              fontFamily: "Roboto",
+              fontFamily: "Roboto-Regular",
               fill: color,
-              fontSize: 14,
+              fontSize: 18,
               wordWrap: true,
-              wordWrapWidth: 580
+              wordWrapWidth: 650
             });
           }
           sub.anchor.set(0.5);
@@ -309,7 +304,7 @@ function indicators() {
           if(j == 2) {
             let icBack = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-left-arrow-circular.png")].texture);
             icBack.anchor.set(0.5);
-            icBack.x = app.screen.width / 10;
+            icBack.x = app.screen.width / 14;
             icBack.y = app.screen.height / 2.3;
             icBack.interactive = true;
             icBack.cursor = "pointer";
@@ -328,8 +323,8 @@ function indicators() {
             circle1.lineStyle(2, 0xE7C82F);
             circle1.drawCircle(0, 0, 12);
             circle1.endFill();
-            circle1.x = app.screen.width / 9;
-            circle1.y = app.screen.height / 2.2;
+            circle1.x = app.screen.width / 15;
+            circle1.y = app.screen.height / 2.3;
             scenes[j].addChild(circle1);
             circle1.interactive = true;
             circle1.cursor = "pointer";
@@ -347,7 +342,7 @@ function indicators() {
             circle2.lineStyle(2, 0xE7C82F);
             circle2.drawCircle(0, 0, 12);
             circle2.endFill();
-            circle2.x = app.screen.width / 9;
+            circle2.x = app.screen.width / 15;
             circle2.y = app.screen.height / 1.83;
             scenes[j].addChild(circle2);
             circle2.interactive = true;
@@ -376,8 +371,8 @@ function indicators() {
           } else {
             retry = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next.png")].texture);
             retry.scale.set(scale1);
-            retry.x = app.screen.width / 1.2;
-            retry.y = app.screen.height / 2;
+            retry.x = app.screen.width / 1.4;
+            retry.y = app.screen.height / 1.75;
             retry.on("mouseover", function() {
               retry.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next-selected.png")].texture);
             });

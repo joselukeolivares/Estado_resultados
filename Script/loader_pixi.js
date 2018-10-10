@@ -58,7 +58,11 @@ function loader_pixi(){
           "assets/ui/Bloque_4/globos/2 VDO.png",
           "assets/ui/Bloque_4/globos/3 VDO.png",
           "assets/ui/Bloque_4/globos/4 VDO.png",
-          "assets/ui/Bloque_4/LEVANTANDO_LA_ MANO.png"
+          "assets/ui/Bloque_4/LEVANTANDO_LA_ MANO.png",
+          "assets/ui/Bloque_5/bloque5_ctes.json",
+          "assets/ui/Bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png",
+          "assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"
+
 
         ])
         .on("progress",loadProgressHandler)
@@ -83,7 +87,7 @@ function loader_pixi(){
                t.set(loader.progress);
 
                progreso.setAttribute("data-value","0");
-           if(loader.progress > 99.9999999999999)
+           if(loader.progress > 99.99)
            {
              document.body.removeChild(progreso);
            }
@@ -100,5 +104,3 @@ function loader_pixi(){
 
 
 }
-
-loader_pixi();
