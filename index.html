@@ -68,7 +68,8 @@
     var width=0,height=0,
         dom={},
         div=document.createElement('div'),
-        dataCSV=null;
+        dataCSV=null,
+        dataMax,dataMaxMMA;
         main=document.getElementById('main');
 
                 if(screen.width>1200){
@@ -104,8 +105,8 @@
 
         }
 
-        console.log(datos_obj[0]);
-        console.log(datos_obj[1]);
+        dataMax=mes_actual;
+        dataMaxMMA=datos_obj[1];
         dataCSV=data;
         loader_pixi();
 
