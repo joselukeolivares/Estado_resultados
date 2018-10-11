@@ -132,6 +132,14 @@ function indicators() {
     intro.addChild(contButton);
     app.stage.addChild(intro);
 
+    contButton.on("mouseover", function () {
+      contButton.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue-selected.png")].texture);
+    });
+    contButton.on("mouseout", function () {
+      contButton.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue.png")].texture);
+    });
+
+
     // contButton.on("mouseover", function () {
     //   contButton.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue-selected.png")]);
     // });
@@ -336,6 +344,20 @@ function indicators() {
               this.parent.children[10].visible = false;
               icBack.visible = true;
             });
+            circle1.on("mouseover", function () {
+              circle1.clear();
+              circle1.beginFill(0xE7C82F);
+              circle1.lineStyle(2, 0xE7C82F);
+              circle1.drawCircle(0, 0, 12);
+              scenes[j].addChild(circle1);
+            });
+            circle1.on("mouseout", function () {
+              circle1.clear();
+              circle1.beginFill(0x175383);
+              circle1.lineStyle(2, 0xE7C82F);
+              circle1.drawCircle(0, 0, 12);
+              scenes[j].addChild(circle1);
+            });
 
             let circle2 = new PIXI.Graphics();
             circle2.beginFill(0x175383);
@@ -355,6 +377,20 @@ function indicators() {
               this.parent.children[11].visible = false;
               this.parent.children[10].visible = false;
               icBack.visible = true;
+            });
+            circle2.on("mouseover", function () {
+              circle2.clear();
+              circle2.beginFill(0xE7C82F);
+              circle2.lineStyle(2, 0xE7C82F);
+              circle2.drawCircle(0, 0, 12);
+              scenes[j].addChild(circle2);
+            });
+            circle2.on("mouseout", function () {
+              circle2.clear();
+              circle2.beginFill(0x175383);
+              circle2.lineStyle(2, 0xE7C82F);
+              circle2.drawCircle(0, 0, 12);
+              scenes[j].addChild(circle2);
             });
           }
         }
@@ -474,7 +510,6 @@ function indicators() {
               stage[1].visible = false;
               stage[0].visible = true;
               TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
-
               stage[0].children[1].visible = true;
               stage[0].children[1].alpha = 1;
             }});
