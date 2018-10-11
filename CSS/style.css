@@ -9,6 +9,15 @@
 
 }
 
+.sin_margen{
+  margin: 0 0 0 0;
+  font-family: "Roboto-Regular";
+}
+
+.recuadro_blanco{
+
+}
+
 @media (min-width:1101px)  {
   .intro{ font-size: 14px; }
   .title{ font-size: 40px; }

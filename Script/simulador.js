@@ -104,20 +104,20 @@ var b_y=height/2;
 
              buttonOK.on("click",function(){
                this.visible=false;
-               this.parent.getChildAt(this.parent.getChildIndex(this)+1).visible=true;
+               //this.alpha=0;
+               var brother=this.parent.getChildAt(this.parent.getChildIndex(this)+1);
+               brother.visible=true;
+               //setTimeout(function(){brother.visible=false;},500);
                debugger;
                addCharacter(this.numero);
              });
+
 
              button_pressed.on("click",function(){
                this.visible=false;
                this.parent.getChildAt(this.parent.getChildIndex(this)-1).visible=true;
                removeCharacter(this.numero);
              });
-
-
-
-
 
 
     }
@@ -181,18 +181,53 @@ var b_y=height/2;
 */
 
      var atlasBlock5=PIXI.loader.resources['assets/ui/Bloque_5/spritesheet_bloque_5.json'].textures;
+     var atlasCtes5=PIXI.loader.resources['assets/ui/Bloque_5/bloque5_ctes.json'].textures;
+
          //Espacios para indicar la selección de personajes con botones con nombre de la segmentacion
          //Solo podrán seleccionar dos segmentos
-     var grayCte=new PIXI.Sprite(atlasBlock5['16. MONITO GRIS 1.png']);
-         grayCte.x=width*.10;
-         grayCte.y=height/2;
-         grayCte.scale.set(.6);
-         self.app.stage.addChild(grayCte);
-     var grayCte_2=new PIXI.Sprite(atlasBlock5['17. MONITO GRIS 2.png']);
-         grayCte_2.x=width*.85;
-         grayCte_2.y=height/2;
-         grayCte_2.scale.set(.6);
-         self.app.stage.addChild(grayCte_2);
+         var grayCte=new PIXI.Sprite(atlasBlock5['16. MONITO GRIS 1.png']);
+                  grayCte.x=width*.10;
+                  grayCte.y=height/2;
+                  grayCte.scale.set(.6);
+                  grayCte.name="leftCteGray";
+                  self.app.stage.addChild(grayCte);
+              var grayCte_2=new PIXI.Sprite(atlasBlock5['17. MONITO GRIS 2.png']);
+                  grayCte_2.x=width*.85;
+                  grayCte_2.y=height/2;
+                  grayCte_2.scale.set(.6);
+                  grayCte_2.name="rightCteGray";
+                  self.app.stage.addChild(grayCte_2);
+         var ctes=[
+           "9. N-15 500x350",
+           "10. N+15 500x350",
+           "5. ASV 500x350",
+           "6. ACV 500x350",
+           "7. S-15 500x350",
+           "8. S+15 500x350",
+           "3. Z 500x350",
+           "4. QUEBRANTADOS  500x350",
+           "2. GENERADOS 500x350"
+
+         ]
+
+for(var i=0;i<ctes.length;i++){
+  debugger;
+  var leftCte=new PIXI.Sprite(atlasCtes5[ctes[i]+".png"]);
+         leftCte.x=width*.10;
+         leftCte.y=height/2;
+         leftCte.scale.set(.3);
+         leftCte.name="leftCte"+i;
+         //leftCte.positionG="leftCte"+i;
+         leftCte.visible=false;
+         self.app.stage.addChild(leftCte);
+     var rightCte=new PIXI.Sprite(atlasCtes5[ctes[i]+" 2.png"]);
+         rightCte.x=width*.85;
+         rightCte.y=height/2;
+         rightCte.scale.set(.3);
+         rightCte.name="rightCte"+i;
+         //rightCte.positionG="rightCte"+i;
+         rightCte.visible=false;
+         self.app.stage.addChild(rightCte);}
 
          //Botones para Iniciar simulación (botones activo e inactivo)
      var iniciarButton=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE INICIAR.png']);
@@ -200,7 +235,7 @@ var b_y=height/2;
          iniciarButton.y=height/2;
          iniciarButton.scale.set(.6);
          self.app.stage.addChild(iniciarButton);
-     var iniciarButtonOff=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE REINICIAR.png']);
+     var iniciarButtonOff=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE INICIAR 2.png']);
          iniciarButtonOff.x=width*.45;
          iniciarButtonOff.y=height/2;
          iniciarButtonOff.scale.set(.6);
@@ -212,7 +247,41 @@ var b_y=height/2;
          reIniciarButton.x=width*.45;
          reIniciarButton.y=height*.6;
          reIniciarButton.scale.set(.6);
+         reIniciarButton.buttonMode=true;
+         reIniciarButton.interactive=true;
+         reIniciarButton.on('pointerdown',function(){
+           var app=self.app.stage;
+               app.getChildByName('leftCteGray').visible=true;
+               app.getChildByName('rightCteGray').visible=true;
+
+            try{   if(self.characters.length>=1){
+                 app.getChildByName('leftCte'+self.characters[0].name).visible=false;
+                 app.getChildByName('rightCte'+self.characters[0].name).visible=false;
+                 if(self.characters.length==2){
+                   debugger;
+                   app.getChildByName('leftCte'+self.characters[1].name).visible=false;
+                   app.getChildByName('rightCte'+self.characters[1].name).visible=false;
+                 }
+                 self.characters=[];
+               }
+
+               document.getElementById("ctes_numero0").innerHTML=0;
+               document.getElementById("cpa_pTag0").innerHTML=0;
+               document.getElementById("vta_pTag0").innerHTML=0;
+               document.getElementById("ctes_numero1").innerHTML=0;
+               document.getElementById("cpa_pTag1").innerHTML=0;
+               document.getElementById("vta_pTag1").innerHTML=0;
+               document.getElementById("vtaTotal_pTag").innerHTML=0;
+
+
+
+             }catch(e){
+               console.log(e);
+             }
+
+         })
          self.app.stage.addChild(reIniciarButton);
+     var fontSizeVTATC=factorScreen(40);
      var reIniciarButtonOff=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE REINICIAR 2.png']);
          reIniciarButtonOff.x=width*.45;
          reIniciarButtonOff.y=height*.6;
@@ -221,35 +290,73 @@ var b_y=height/2;
          self.app.stage.addChild(reIniciarButtonOff);
 
          //Recuadros donde se colocará la Tasa de Compra de dos diferentes segmentos desde CSV al ultimo mes
-     var tc_base=new PIXI.Sprite(atlasBlock5['13. RECUADRO DE TASA DE COMPRA.png']);
-         tc_base.x=width*.22;
-         tc_base.y=height/2;
-         tc_base.scale.set(1);
-         self.app.stage.addChild(tc_base);
-
-         var tc_test=document.createElement("p");
-         tc_test.innerHTML="100";
-         tc_test.setAttribute("id","tc_test")
-         tc_test.setAttribute("style","position:absolute;top:"+tc_base.y+"px;left:"+tc_base.x+"px;");
-         tc_test.typeObj=1;
+     var tc_sprite=new PIXI.Sprite(atlasBlock5['13. RECUADRO DE TASA DE COMPRA.png']);
+         tc_sprite.x=width*.22;
+         tc_sprite.y=height/2;
+         tc_sprite.scale.set(1);
+         self.app.stage.addChild(tc_sprite);
+        //<p>con TC, numero de clientes y "clientes" tag de primer personaje seleccionado
          var aplicacion=document.getElementById("aplicacion");
-             aplicacion.appendChild(tc_test);
-        SliderB5B6(document.getElementById("aplicacion"),tc_test,"slider1","slider_fam",.25,.56,self);
+
+         var tc_pTag=document.createElement("p");
+         tc_pTag.innerHTML="100%";
+         tc_pTag.setAttribute("id","tc_pTag0")
+         tc_pTag.setAttribute("class","recuadro_blanco sin_margen");
+         tc_pTag.setAttribute("style","font-size:40px;position:absolute;top:"+tc_sprite.y+"px;left:"+(tc_sprite.x+tc_sprite.width*.5)+"px;");
+         tc_pTag.typeObj=1;
+
+         var ctes_numero=document.createElement("p");
+         ctes_numero.innerHTML="0";
+         ctes_numero.setAttribute("id","ctes_numero0")
+         ctes_numero.setAttribute("class","recuadro_blanco sin_margen");
+         ctes_numero.setAttribute("style","position:absolute;top:"+tc_sprite.y+"px;left:"+(tc_sprite.x+tc_sprite.width*.1)+"px;");
+         ctes_numero.typeObj=1;
+
+         var ctes_pTag=document.createElement("p");
+         ctes_pTag.innerHTML="Clientes";
+         ctes_pTag.setAttribute("id","ctes_pTag0")
+         ctes_pTag.setAttribute("class","recuadro_blanco sin_margen");
+         ctes_pTag.setAttribute("style","position:absolute;top:"+(tc_sprite.y+tc_sprite.height/2)+"px;left:"+(tc_sprite.x+tc_sprite.width*.1)+"px;");
+         ctes_pTag.typeObj=1;
+
+
+             aplicacion.appendChild(tc_pTag);
+             aplicacion.appendChild(ctes_numero);
+             aplicacion.appendChild(ctes_pTag);
+        //Se inserta slider en div id:"aplciacion"
+        SliderB5B6(document.getElementById("aplicacion"),tc_pTag,"slider1","slider_fam",.25,.56,self);
 
      var tc_base2=new PIXI.Sprite(atlasBlock5['13. RECUADRO DE TASA DE COMPRA.png']);
          tc_base2.x=width*.63;
          tc_base2.y=height/2;
          tc_base2.scale.set(1);
          self.app.stage.addChild(tc_base2);
+         //<p>con TC, numero de clientes y "clientes" tag de segundo personaje seleccionado
+         var tc_pTag2=document.createElement("p");
+         tc_pTag2.innerHTML="100%";
+         tc_pTag2.setAttribute("id","tc_pTag1")
+         tc_pTag2.setAttribute("class","recuadro_blanco sin_margen");
+         tc_pTag2.setAttribute("style","font-size:40px;position:absolute;top:"+tc_base2.y+"px;left:"+(tc_base2.x+tc_base2.width*.5)+"px;");
+         tc_pTag2.typeObj=1;
+         var ctes_numero2=document.createElement("p");
+         ctes_numero2.innerHTML="0";
+         ctes_numero2.setAttribute("id","ctes_numero1")
+         ctes_numero2.setAttribute("class","recuadro_blanco sin_margen");
+         ctes_numero2.setAttribute("style","position:absolute;top:"+tc_base2.y+"px;left:"+(tc_base2.x+tc_base2.width*.1)+"px;");
+         ctes_numero2.typeObj=1;
 
-         var tc_test2=document.createElement("p");
-         tc_test2.innerHTML="100";
-         tc_test2.setAttribute("id","tc_test2")
-         tc_test2.setAttribute("style","position:absolute;top:"+tc_base2.y+"px;left:"+tc_base2.x+"px;");
-         tc_test2.typeObj=1;
-         var aplicacion=document.getElementById("aplicacion");
-             aplicacion.appendChild(tc_test2);
-        SliderB5B6(document.getElementById("aplicacion"),tc_test2,"slider1","slider_fam",.67,.56,self);
+         var ctes_pTag2=document.createElement("p");
+         ctes_pTag2.innerHTML="Clientes";
+         ctes_pTag2.setAttribute("id","ctes_pTag1")
+         ctes_pTag2.setAttribute("class","recuadro_blanco sin_margen");
+         ctes_pTag2.setAttribute("style","position:absolute;top:"+(tc_base2.y+tc_base2.height/2)+"px;left:"+(tc_base2.x+tc_base2.width*.1)+"px;");
+         ctes_pTag2.typeObj=1;
+
+
+             aplicacion.appendChild(tc_pTag2);
+             aplicacion.appendChild(ctes_numero2);
+             aplicacion.appendChild(ctes_pTag2);
+        SliderB5B6(document.getElementById("aplicacion"),tc_pTag2,"slider1","slider_fam",.67,.56,self);
 
          //Textos para recuadros de Tasa de Compra
          var estilo1={
@@ -269,35 +376,60 @@ var b_y=height/2;
 
          //Recuadros para colocar cifras de CPA y Venta de 2 diferentes segmentos de datos precargados desde CSV
          //Primer Segmento seleccionado por usuario
-     var CPA_caja1=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
-         CPA_caja1.x=width*.3;
-         CPA_caja1.y=height*.6;
-         CPA_caja1.scale.set(.7);
-         self.app.stage.addChild(CPA_caja1);
+     var CPA_sprite=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
+         CPA_sprite.x=width*.3;
+         CPA_sprite.y=height*.6;
+         CPA_sprite.scale.set(.7);
+         self.app.stage.addChild(CPA_sprite);
+         //<p> CPA para 1er personaje seleccionado
+         var fontSizeCPAVta=factorScreen(28);
+         var cpa_pTag=document.createElement("p");
+         cpa_pTag.innerHTML="0";
+         cpa_pTag.setAttribute("id","cpa_pTag0")
+         cpa_pTag.setAttribute("class","recuadro_blanco sin_margen");
+         cpa_pTag.setAttribute("style","position:absolute;top:"+CPA_sprite.y+"px;left:"+(CPA_sprite.x+CPA_sprite.width*.1)+"px;font-size:"+fontSizeCPAVta+"px;");
+                  aplicacion.appendChild(cpa_pTag);
 
-         var tc_test3=document.createElement("p");
-         tc_test3.innerHTML="100";
-         tc_test3.setAttribute("id","tc_test3")
-         tc_test3.setAttribute("style","position:absolute;top:"+CPA_caja1.y+"px;left:"+CPA_caja1.x+"px;");
-         var aplicacion=document.getElementById("aplicacion");
-             aplicacion.appendChild(tc_test3);
+     var Vta_sprite=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
+         Vta_sprite.x=width*.3;
+         Vta_sprite.y=height*.65;
+         Vta_sprite.scale.set(.7);
+         self.app.stage.addChild(Vta_sprite);
+         //<p> vta para 1er personaje seleccionado
+         var vta_pTag=document.createElement("p");
+         vta_pTag.innerHTML="0";
+         vta_pTag.setAttribute("id","vta_pTag0")
+         vta_pTag.setAttribute("class","recuadro_blanco sin_margen");
+         vta_pTag.setAttribute("style","position:absolute;top:"+Vta_sprite.y+"px;left:"+(Vta_sprite.x+Vta_sprite.width*.1)+"px;font-size:"+fontSizeCPAVta+"px;");
+         vta_pTag.typeObj=1;
+         aplicacion.appendChild(vta_pTag);
 
-     var CPA_caja2=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
-         CPA_caja2.x=width*.3;
-         CPA_caja2.y=height*.65;
-         CPA_caja2.scale.set(.7);
-         self.app.stage.addChild(CPA_caja2);
          //Segundo Segmento seleccionado por usuario
-     var VTA_caja3=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
-         VTA_caja3.x=width*.7;
-         VTA_caja3.y=height*.6;
-         VTA_caja3.scale.set(.7);
-         self.app.stage.addChild(VTA_caja3);
-     var VTA_caja4=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
-         VTA_caja4.x=width*.7;
-         VTA_caja4.y=height*.65;
-         VTA_caja4.scale.set(.7);
-         self.app.stage.addChild(VTA_caja4);
+     var CPA_sprite2=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
+         CPA_sprite2.x=width*.7;
+         CPA_sprite2.y=height*.6;
+         CPA_sprite2.scale.set(.7);
+         self.app.stage.addChild(CPA_sprite2);
+         //<p> CPA para 2do personaje seleccionado
+         var cpa_pTag2=document.createElement("p");
+         cpa_pTag2.innerHTML="0";
+         cpa_pTag2.setAttribute("id","cpa_pTag1")
+         cpa_pTag2.setAttribute("class","recuadro_blanco sin_margen");
+         cpa_pTag2.setAttribute("style","position:absolute;top:"+CPA_sprite2.y+"px;left:"+(CPA_sprite2.x+CPA_sprite2.width*.1)+"px;font-size:"+fontSizeCPAVta+"px;");
+                  aplicacion.appendChild(cpa_pTag2);
+
+         var Vta_sprite2=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
+         Vta_sprite2.x=width*.7;
+         Vta_sprite2.y=height*.65;
+         Vta_sprite2.scale.set(.7);
+         self.app.stage.addChild(Vta_sprite2);
+         //<p> CPA para 2do personaje seleccionado
+         var vta_pTag2=document.createElement("p");
+         vta_pTag2.innerHTML="0";
+         vta_pTag2.setAttribute("id","vta_pTag1")
+         vta_pTag2.setAttribute("class","recuadro_blanco sin_margen");
+         vta_pTag2.setAttribute("style","position:absolute;top:"+Vta_sprite2.y+"px;left:"+(Vta_sprite2.x+Vta_sprite2.width*.1)+"px;font-size:"+fontSizeCPAVta+"px;");
+                  aplicacion.appendChild(vta_pTag2);
          //Texto para recuadros de CPA y Venta en ambos personajes seleccionados
          var cpa_TXT=new PIXI.Text("C.P.A",estilo1);
              cpa_TXT.x=width*.23;
@@ -333,6 +465,13 @@ var b_y=height/2;
          resultado_caja.y=height*.8;
          resultado_caja.scale.set(.6);
          self.app.stage.addChild(resultado_caja);
+         //<p> para Vento Total
+         var vtaTotal=document.createElement("p");
+         vtaTotal.innerHTML="0";
+         vtaTotal.setAttribute("id","vtaTotal_pTag")
+         vtaTotal.setAttribute("class","recuadro_blanco sin_margen");
+         vtaTotal.setAttribute("style","position:absolute;top:"+resultado_caja.y+"px;left:"+(resultado_caja.x)+"px;font-size:"+fontSizeVTATC+"px;");
+                  aplicacion.appendChild(vtaTotal);
          //Texto para recuadros de resultados
          var vta_TXT=new PIXI.Text("VENTA",estilo1);
              vta_TXT.x=resultado_caja.x+resultado_caja.width/3;
@@ -350,21 +489,92 @@ var b_y=height/2;
 
   function addCharacter(index){
     //alert(index);
+    var segmentos=[
+      "Nunca015",
+      "Nunca+15",
+      "Activos SinVdo",
+      "Vencidos1",
+      "Saldado015",
+      "Saldado+15",
+      "ClientesZ",
+      "Quebrantados",
+      "Generados"
+    ]
+
+
     if(self.characters.length<2){
-      self.characters.push(new characters_erc("C1",.50,1900))
+      var toDate=(dataCSV[dataCSV.length-1]);
+      self.characters.push(new characters_erc(
+        index,
+        toDate["TC \n"+segmentos[index]],
+        toDate["CPA \n"+segmentos[index]],
+        "NA",
+        toDate["Numero de clientes \n"+segmentos[index]]
+      ));
+
+      if(self.characters.length==1){
+        var cte1=self.app.stage.getChildByName("leftCte"+index);
+        self.characters[0].side="leftCte";
+            cte1.visible=true;
+            document.getElementById("ctes_numero0").innerHTML=numberWithCommas(self.characters[0].countCtes);
+            document.getElementById("cpa_pTag0").innerHTML="$"+numberWithCommas(self.characters[0].cpa);
+            document.getElementById("vta_pTag0").innerHTML="$"+numberWithCommas(self.characters[0].sale());
+
+        self.app.stage.getChildByName("leftCteGray").visible=false;
+      }else{
+        self.characters[1].side="rightCte";
+        self.app.stage.getChildByName("rightCte"+index).visible=true;
+        document.getElementById("ctes_numero1").innerHTML=numberWithCommas(self.characters[0].countCtes);
+        document.getElementById("cpa_pTag1").innerHTML="$"+numberWithCommas(self.characters[0].cpa);
+        document.getElementById("vta_pTag1").innerHTML="$"+numberWithCommas(self.characters[0].sale());
+        self.app.stage.getChildByName("rightCteGray").visible=false;
+      }
     }
-    console.log(self.characters);
+    //console.log(self.characters);
   }
 
   function removeCharacter(index){
-    //alert(index);
+    for(var i=0;i<self.characters.length;i++){
+        if(self.characters[i].name==index){
+          self.app.stage.getChildByName(self.characters[i].side+index).visible=false;
+          self.app.stage.getChildByName(self.characters[i].side+"Gray").visible=true;
+
+          document.getElementById("ctes_numero"+i).innerHTML=0;
+          document.getElementById("cpa_pTag"+i).innerHTML=0;
+          document.getElementById("vta_pTag"+i).innerHTML=0;
+
+          var vta=document.getElementById("vtaTotal_pTag");
+          var a=parseInt(vta.innerHTML.replace("$", ''));
+          var b=self.characters[i].sale();
+          debugger;
+              vta.innerHTML=a-b;
+
+
+          self.characters.splice(i,1);
+        }
+    }
+
   }
 
   self.updateTotal=function(value){
       console.log("updating total")
 
-      var tc=document.getElementById('tc_test3');
-          tc.innerHTML=value*2;
+      let vtaTotal=0;
+      for(var i=0;i<self.characters.length;i++){
+        debugger;
+        //obtenemos la tasa de compra modificada por slider
+        var tc=document.getElementById('tc_pTag'+i);
+
+        //Calculamos datos para cada personaje seleccionado
+          var cte=self.characters[i];
+              cte.tc=parseInt(tc.innerHTML);
+              vtaTotal+=cte.sale();
+
+
+          tc.innerHTML=cte.tc+"%";
+      }
+
+      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(vtaTotal);
 
       return self;
   }
@@ -379,12 +589,14 @@ return self;
 
 }
 
-function characters_erc(name,tc,cpa){
+function characters_erc(name,tc,cpa,position,numCtes){
   this.name=name;
-  this.cpa=cpa;
+  this.cpa=parseInt(cpa);
   this.tc=tc;
+  this.position=position;
+  this.countCtes=numCtes;
   this.sale=function(){
-    return this.cpa*this.cp;
+    return this.cpa*this.tc*this.countCtes;
   };
 
 
