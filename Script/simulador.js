@@ -132,7 +132,7 @@ var b_y=height/2;
      followme_txt.y=height*.8;
      self.app.stage.addChild(followme_txt);
 
-     var contButton=new PIXI.Sprite(PIXI.loader.resources['assets/ui/Bloque_3/b-continue.png'].texture);
+     var contButton=new PIXI.Sprite( );
 
      contButton.x = width*.9;
      contButton.y = height*.95;
@@ -364,7 +364,11 @@ for(var i=0;i<ctes.length;i++){
            fontSize:30,
            fill:"#FFFFFF"
          }
-
+         var estilo1={
+           fontFamily:'Roboto-Bold',
+           fontSize:self.app.screen.height * 100 / 950,
+           fill:"#FFFFFF"
+         }
          var tc_TXT=new PIXI.Text("T.C",estilo1);
              tc_TXT.x=width*.18;
              tc_TXT.y=height/2;
