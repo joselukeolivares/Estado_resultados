@@ -11,6 +11,8 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
 //update es el objeto que tiene un metodo llamado updateTotal, se invoca cada vez que se mueve el slider y actualizar la información con el nuevo valor del slider.
   var self = this;
   self.value=4.9;
+  DivHeight=factorScreen(DivHeight);
+  divWidth=factorScreen(divWidth);
 
    debugger;
 
@@ -28,7 +30,7 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
   // Background
   var bg = document.createElement("div");
   bg.className = "slider_bg";
-  //bg.style.height=30+"px";
+  bg.style.height=factorScreen(30)+"px";
   dom.appendChild(bg);
 
   // Knob

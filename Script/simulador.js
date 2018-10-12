@@ -307,14 +307,14 @@ for(var i=0;i<ctes.length;i++){
          ctes_numero.innerHTML="0";
          ctes_numero.setAttribute("id","ctes_numero0")
          ctes_numero.setAttribute("class","recuadro_blanco sin_margen");
-         ctes_numero.setAttribute("style","position:absolute;top:"+tc_sprite.y+"px;left:"+(tc_sprite.x+tc_sprite.width*.05)+"px;");
+         ctes_numero.setAttribute("style","position:absolute;top:"+tc_sprite.y+"px;left:"+(tc_sprite.x+tc_sprite.width*.05)+"px;font-size:"+factorScreen(16)+"px");
          ctes_numero.typeObj=1;
 
          var ctes_pTag=document.createElement("p");
          ctes_pTag.innerHTML="Clientes";
          ctes_pTag.setAttribute("id","ctes_pTag0")
          ctes_pTag.setAttribute("class","recuadro_blanco sin_margen");
-         ctes_pTag.setAttribute("style","position:absolute;top:"+(tc_sprite.y+tc_sprite.height/2)+"px;left:"+(tc_sprite.x+tc_sprite.width*.1)+"px;");
+         ctes_pTag.setAttribute("style","position:absolute;top:"+(tc_sprite.y+tc_sprite.height/2)+"px;left:"+(tc_sprite.x+tc_sprite.width*.1)+"px;font-size:"+factorScreen(16)+"px");
          ctes_pTag.typeObj=1;
 
 
@@ -340,14 +340,14 @@ for(var i=0;i<ctes.length;i++){
          ctes_numero2.innerHTML="0";
          ctes_numero2.setAttribute("id","ctes_numero1")
          ctes_numero2.setAttribute("class","recuadro_blanco sin_margen");
-         ctes_numero2.setAttribute("style","position:absolute;top:"+tc_base2.y+"px;left:"+(tc_base2.x+tc_base2.width*.05)+"px;");
+         ctes_numero2.setAttribute("style","position:absolute;top:"+tc_base2.y+"px;left:"+(tc_base2.x+tc_base2.width*.05)+"px;font-size:"+factorScreen(16)+"px");
          ctes_numero2.typeObj=1;
 
          var ctes_pTag2=document.createElement("p");
          ctes_pTag2.innerHTML="Clientes";
          ctes_pTag2.setAttribute("id","ctes_pTag1")
          ctes_pTag2.setAttribute("class","recuadro_blanco sin_margen");
-         ctes_pTag2.setAttribute("style","position:absolute;top:"+(tc_base2.y+tc_base2.height/2)+"px;left:"+(tc_base2.x+tc_base2.width*.1)+"px;");
+         ctes_pTag2.setAttribute("style","position:absolute;top:"+(tc_base2.y+tc_base2.height/2)+"px;left:"+(tc_base2.x+tc_base2.width*.1)+"px;font-size:"+factorScreen(16)+"px");
          ctes_pTag2.typeObj=1;
 
 
@@ -450,11 +450,11 @@ for(var i=0;i<ctes.length;i++){
 
           //Texto para variaciones en personajes seleccionados
              var vta_TXT=new PIXI.Text("0%",estilo1);
-                 vta_TXT.x=width*.4;
+                 vta_TXT.x=Vta_sprite.x+Vta_sprite.width*1.05;
                  vta_TXT.y=height*.65;
                  self.app.stage.addChild(vta_TXT);
              var vta_TXT2=new PIXI.Text("0%",estilo1);
-                 vta_TXT2.x=width*.8;
+                 vta_TXT2.x=Vta_sprite2.x+Vta_sprite2.width*1.05;
                  vta_TXT2.y=height*.65;
                  self.app.stage.addChild(vta_TXT2);
 
