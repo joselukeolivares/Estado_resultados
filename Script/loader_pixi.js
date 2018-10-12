@@ -62,7 +62,9 @@ function loader_pixi(){
           "assets/ui/Bloque_5/bloque5_ctes.json",
           "assets/ui/Bloque_5/spritesheet_bloque_5.json",
           "assets/ui/Bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png",
-          "assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"
+          "assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png",
+          "assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png",
+          "assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"
 
 
         ])
