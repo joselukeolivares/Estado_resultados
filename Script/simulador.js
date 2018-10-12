@@ -74,8 +74,9 @@ var self={};
     ] ;
 
     var buttons_container=new PIXI.Container();
+        buttons_container.name="buttons_container";
     self.app.stage.addChild(buttons_container);
-var b_x=width/6;
+var b_x=width/8;
 var b_y=height/2;
 
     for(var i=0;i<buttons.length;i++){
@@ -85,8 +86,8 @@ var b_y=height/2;
              buttonOK.y=b_y;
              buttonOK.x=b_x;
              b_x+=(buttonOK.width+(15));
-             buttonOK.interactive=true;
-             buttonOK.buttonMode=true;
+             //buttonOK.interactive=true;
+             //buttonOK.buttonMode=true;
              buttonOK.name="buttonOK"+i;
              buttonOK.numero=i;
              buttons_container.addChild(buttonOK);
@@ -95,21 +96,21 @@ var b_y=height/2;
              button_pressed.scale.set(factorScreen(.65));
              button_pressed.y=buttonOK.y;
              button_pressed.x=buttonOK.x;
-             button_pressed.buttonMode=true;
-             button_pressed.interactive=true;
+             //button_pressed.buttonMode=true;
+             //button_pressed.interactive=true;
              button_pressed.visible=false;
-             button_pressed.name=i;
+             button_pressed.name="button_pressed"+i;
              button_pressed.numero=i;
              buttons_container.addChild(button_pressed);
 
              buttonOK.on("click",function(){
-               this.visible=false;
-               //this.alpha=0;
+               if(self.characters.length<2){
+                   this.visible=false;
                var brother=this.parent.getChildAt(this.parent.getChildIndex(this)+1);
-               brother.visible=true;
-               //setTimeout(function(){brother.visible=false;},500);
-               debugger;
-               addCharacter(this.numero);
+                   brother.visible=true;
+                   addCharacter(this.numero);}else{
+                     alert("Solo puedes seleccionar 2 Perfiles de cliente a la vez,haz click en su boton para liberarlo o presiona el boton 'Reiniciar.'");
+                   }
              });
 
 
@@ -137,11 +138,21 @@ var b_y=height/2;
      contButton.x = width*.9;
      contButton.y = height*.95;
      contButton.anchor.set(0.5);
-     contButton.scale.set(0.6);
+     contButton.scale.set(factorScreen(0.6));
      contButton.interactive = true;
      contButton.cursor = "pointer";
-     contButton.on('click',function(){
 
+     var contButton2=new PIXI.Sprite(PIXI.loader.resources['assets/ui/Bloque_3/b-continue-selected.png'].texture);
+
+     contButton2.x = width*.9;
+     contButton2.y = height*.95;
+     contButton2.anchor.set(0.5);
+     contButton2.scale.set(factorScreen(0.6));
+     contButton2.visible=false;
+
+     contButton.on('click',function(){
+       this.buttonMode=false;
+       this.interactive=false;
 
        TweenMax.to([followme_txt,descript_txt],1,{pixi:{alpha:0},onComplete:function(){
          self.app.stage.removeChild(followme_txt);
@@ -150,12 +161,22 @@ var b_y=height/2;
        }})
 
        TweenMax.to(buttons_container.children,2,{pixi:{y:height/4},onComplete:function(){
+            var container_buttons=self.app.stage.getChildByName("buttons_container");
+                debugger;
+                for(var i=0;i<container_buttons.children.length;i++){
+                  container_buttons.children[i].interactive=true;
+                  container_buttons.children[i].buttonMode=true;
+                }
+            this.visible=false;
+
+            contButton2.visible=true;
             simulacion();
 
        }})
 
      });
      self.app.stage.addChild(contButton);
+     self.app.stage.addChild(contButton2);
 
    console.log(dataCSV);
    return self;
@@ -188,13 +209,13 @@ var b_y=height/2;
          var grayCte=new PIXI.Sprite(atlasBlock5['16. MONITO GRIS 1.png']);
                   grayCte.x=width*.10;
                   grayCte.y=height/2;
-                  grayCte.scale.set(.6);
+                  grayCte.scale.set(factorScreen(.6));
                   grayCte.name="leftCteGray";
                   self.app.stage.addChild(grayCte);
               var grayCte_2=new PIXI.Sprite(atlasBlock5['17. MONITO GRIS 2.png']);
                   grayCte_2.x=width*.85;
                   grayCte_2.y=height/2;
-                  grayCte_2.scale.set(.6);
+                  grayCte_2.scale.set(factorScreen(.6));
                   grayCte_2.name="rightCteGray";
                   self.app.stage.addChild(grayCte_2);
          var ctes=[
@@ -215,7 +236,7 @@ for(var i=0;i<ctes.length;i++){
   var leftCte=new PIXI.Sprite(atlasCtes5[ctes[i]+".png"]);
          leftCte.x=width*.10;
          leftCte.y=height/2;
-         leftCte.scale.set(.3);
+         leftCte.scale.set(factorScreen(.3));
          leftCte.name="leftCte"+i;
          //leftCte.positionG="leftCte"+i;
          leftCte.visible=false;
@@ -223,7 +244,7 @@ for(var i=0;i<ctes.length;i++){
      var rightCte=new PIXI.Sprite(atlasCtes5[ctes[i]+" 2.png"]);
          rightCte.x=width*.85;
          rightCte.y=height/2;
-         rightCte.scale.set(.3);
+         rightCte.scale.set(factorScreen(.3));
          rightCte.name="rightCte"+i;
          //rightCte.positionG="rightCte"+i;
          rightCte.visible=false;
@@ -233,12 +254,12 @@ for(var i=0;i<ctes.length;i++){
      var iniciarButton=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE INICIAR.png']);
          iniciarButton.x=width*.45;
          iniciarButton.y=height/2;
-         iniciarButton.scale.set(.6);
+         iniciarButton.scale.set(factorScreen(.6));
          self.app.stage.addChild(iniciarButton);
      var iniciarButtonOff=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE INICIAR 2.png']);
          iniciarButtonOff.x=width*.45;
          iniciarButtonOff.y=height/2;
-         iniciarButtonOff.scale.set(.6);
+         iniciarButtonOff.scale.set(factorScreen(.6));
          iniciarButtonOff.visible=false;
          self.app.stage.addChild(iniciarButtonOff);
 
@@ -246,38 +267,15 @@ for(var i=0;i<ctes.length;i++){
      var reIniciarButton=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE REINICIAR.png']);
          reIniciarButton.x=width*.45;
          reIniciarButton.y=height*.6;
-         reIniciarButton.scale.set(.6);
+         reIniciarButton.scale.set(factorScreen(.6));
          reIniciarButton.buttonMode=true;
          reIniciarButton.interactive=true;
          reIniciarButton.on('pointerdown',function(){
-           var app=self.app.stage;
-               app.getChildByName('leftCteGray').visible=true;
-               app.getChildByName('rightCteGray').visible=true;
+           debugger;
 
-            try{   if(self.characters.length>=1){
-                 app.getChildByName('leftCte'+self.characters[0].name).visible=false;
-                 app.getChildByName('rightCte'+self.characters[0].name).visible=false;
-                 if(self.characters.length==2){
-                   debugger;
-                   app.getChildByName('leftCte'+self.characters[1].name).visible=false;
-                   app.getChildByName('rightCte'+self.characters[1].name).visible=false;
-                 }
-                 self.characters=[];
-               }
-
-               document.getElementById("ctes_numero0").innerHTML=0;
-               document.getElementById("cpa_pTag0").innerHTML=0;
-               document.getElementById("vta_pTag0").innerHTML=0;
-               document.getElementById("ctes_numero1").innerHTML=0;
-               document.getElementById("cpa_pTag1").innerHTML=0;
-               document.getElementById("vta_pTag1").innerHTML=0;
-               document.getElementById("vtaTotal_pTag").innerHTML=0;
-
-
-
-             }catch(e){
-               console.log(e);
-             }
+              while(self.characters.length!=0){
+                  removeCharacter(self.characters[0].name);
+              }
 
          })
          self.app.stage.addChild(reIniciarButton);
@@ -285,7 +283,7 @@ for(var i=0;i<ctes.length;i++){
      var reIniciarButtonOff=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE REINICIAR 2.png']);
          reIniciarButtonOff.x=width*.45;
          reIniciarButtonOff.y=height*.6;
-         reIniciarButtonOff.scale.set(.6);
+         reIniciarButtonOff.scale.set(factorScreen(.6));
          reIniciarButtonOff.visible=false;
          self.app.stage.addChild(reIniciarButtonOff);
 
@@ -293,23 +291,23 @@ for(var i=0;i<ctes.length;i++){
      var tc_sprite=new PIXI.Sprite(atlasBlock5['13. RECUADRO DE TASA DE COMPRA.png']);
          tc_sprite.x=width*.22;
          tc_sprite.y=height/2;
-         tc_sprite.scale.set(1);
+         tc_sprite.scale.set(factorScreen(1));
          self.app.stage.addChild(tc_sprite);
         //<p>con TC, numero de clientes y "clientes" tag de primer personaje seleccionado
          var aplicacion=document.getElementById("aplicacion");
 
          var tc_pTag=document.createElement("p");
-         tc_pTag.innerHTML="100%";
+         tc_pTag.innerHTML="0%";
          tc_pTag.setAttribute("id","tc_pTag0")
          tc_pTag.setAttribute("class","recuadro_blanco sin_margen");
-         tc_pTag.setAttribute("style","font-size:40px;position:absolute;top:"+tc_sprite.y+"px;left:"+(tc_sprite.x+tc_sprite.width*.5)+"px;");
+         tc_pTag.setAttribute("style","font-size:"+factorScreen(40)+"px;position:absolute;top:"+tc_sprite.y+"px;left:"+(tc_sprite.x+tc_sprite.width*.5)+"px;");
          tc_pTag.typeObj=1;
 
          var ctes_numero=document.createElement("p");
          ctes_numero.innerHTML="0";
          ctes_numero.setAttribute("id","ctes_numero0")
          ctes_numero.setAttribute("class","recuadro_blanco sin_margen");
-         ctes_numero.setAttribute("style","position:absolute;top:"+tc_sprite.y+"px;left:"+(tc_sprite.x+tc_sprite.width*.1)+"px;");
+         ctes_numero.setAttribute("style","position:absolute;top:"+tc_sprite.y+"px;left:"+(tc_sprite.x+tc_sprite.width*.05)+"px;");
          ctes_numero.typeObj=1;
 
          var ctes_pTag=document.createElement("p");
@@ -323,26 +321,26 @@ for(var i=0;i<ctes.length;i++){
              aplicacion.appendChild(tc_pTag);
              aplicacion.appendChild(ctes_numero);
              aplicacion.appendChild(ctes_pTag);
-        //Se inserta slider en div id:"aplciacion"
-        SliderB5B6(document.getElementById("aplicacion"),tc_pTag,"slider1","slider_fam",.25,.56,self);
+        //Se inserta slider en div id:"aplciacion" (informacion de los parametros en el script sliderB5B6)
+        SliderB5B6(document.getElementById("aplicacion"),tc_pTag,"slider0","slider_fam",.25,.56,200,50,self);
 
      var tc_base2=new PIXI.Sprite(atlasBlock5['13. RECUADRO DE TASA DE COMPRA.png']);
          tc_base2.x=width*.63;
          tc_base2.y=height/2;
-         tc_base2.scale.set(1);
+         tc_base2.scale.set(factorScreen(1));
          self.app.stage.addChild(tc_base2);
          //<p>con TC, numero de clientes y "clientes" tag de segundo personaje seleccionado
          var tc_pTag2=document.createElement("p");
-         tc_pTag2.innerHTML="100%";
+         tc_pTag2.innerHTML="0%";
          tc_pTag2.setAttribute("id","tc_pTag1")
          tc_pTag2.setAttribute("class","recuadro_blanco sin_margen");
-         tc_pTag2.setAttribute("style","font-size:40px;position:absolute;top:"+tc_base2.y+"px;left:"+(tc_base2.x+tc_base2.width*.5)+"px;");
+         tc_pTag2.setAttribute("style","font-size:"+factorScreen(40)+"px;position:absolute;top:"+tc_base2.y+"px;left:"+(tc_base2.x+tc_base2.width*.5)+"px;");
          tc_pTag2.typeObj=1;
          var ctes_numero2=document.createElement("p");
          ctes_numero2.innerHTML="0";
          ctes_numero2.setAttribute("id","ctes_numero1")
          ctes_numero2.setAttribute("class","recuadro_blanco sin_margen");
-         ctes_numero2.setAttribute("style","position:absolute;top:"+tc_base2.y+"px;left:"+(tc_base2.x+tc_base2.width*.1)+"px;");
+         ctes_numero2.setAttribute("style","position:absolute;top:"+tc_base2.y+"px;left:"+(tc_base2.x+tc_base2.width*.05)+"px;");
          ctes_numero2.typeObj=1;
 
          var ctes_pTag2=document.createElement("p");
@@ -356,12 +354,14 @@ for(var i=0;i<ctes.length;i++){
              aplicacion.appendChild(tc_pTag2);
              aplicacion.appendChild(ctes_numero2);
              aplicacion.appendChild(ctes_pTag2);
-        SliderB5B6(document.getElementById("aplicacion"),tc_pTag2,"slider1","slider_fam",.67,.56,self);
+
+        //Se inserta slider en div id:"aplciacion" (informacion de los parametros en el script sliderB5B6)
+        SliderB5B6(document.getElementById("aplicacion"),tc_pTag2,"slider1","slider_fam",.67,.56,200,50,self);
 
          //Textos para recuadros de Tasa de Compra
          var estilo1={
            fontFamily:'Roboto-Bold',
-           fontSize:30,
+           fontSize:factorScreen(30),
            fill:"#FFFFFF"
          }
 
@@ -379,28 +379,28 @@ for(var i=0;i<ctes.length;i++){
      var CPA_sprite=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
          CPA_sprite.x=width*.3;
          CPA_sprite.y=height*.6;
-         CPA_sprite.scale.set(.7);
+         CPA_sprite.scale.set(factorScreen(1));
          self.app.stage.addChild(CPA_sprite);
          //<p> CPA para 1er personaje seleccionado
-         var fontSizeCPAVta=factorScreen(28);
+         var fontSizeCPAVta=factorScreen(24);
          var cpa_pTag=document.createElement("p");
          cpa_pTag.innerHTML="0";
          cpa_pTag.setAttribute("id","cpa_pTag0")
          cpa_pTag.setAttribute("class","recuadro_blanco sin_margen");
-         cpa_pTag.setAttribute("style","position:absolute;top:"+CPA_sprite.y+"px;left:"+(CPA_sprite.x+CPA_sprite.width*.1)+"px;font-size:"+fontSizeCPAVta+"px;");
+         cpa_pTag.setAttribute("style","position:absolute;top:"+CPA_sprite.y+"px;left:"+(CPA_sprite.x+CPA_sprite.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
                   aplicacion.appendChild(cpa_pTag);
 
      var Vta_sprite=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
          Vta_sprite.x=width*.3;
          Vta_sprite.y=height*.65;
-         Vta_sprite.scale.set(.7);
+         Vta_sprite.scale.set(factorScreen(1));
          self.app.stage.addChild(Vta_sprite);
          //<p> vta para 1er personaje seleccionado
          var vta_pTag=document.createElement("p");
          vta_pTag.innerHTML="0";
          vta_pTag.setAttribute("id","vta_pTag0")
          vta_pTag.setAttribute("class","recuadro_blanco sin_margen");
-         vta_pTag.setAttribute("style","position:absolute;top:"+Vta_sprite.y+"px;left:"+(Vta_sprite.x+Vta_sprite.width*.1)+"px;font-size:"+fontSizeCPAVta+"px;");
+         vta_pTag.setAttribute("style","position:absolute;top:"+Vta_sprite.y+"px;left:"+(Vta_sprite.x+Vta_sprite.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
          vta_pTag.typeObj=1;
          aplicacion.appendChild(vta_pTag);
 
@@ -408,27 +408,27 @@ for(var i=0;i<ctes.length;i++){
      var CPA_sprite2=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
          CPA_sprite2.x=width*.7;
          CPA_sprite2.y=height*.6;
-         CPA_sprite2.scale.set(.7);
+         CPA_sprite2.scale.set(factorScreen(1));
          self.app.stage.addChild(CPA_sprite2);
          //<p> CPA para 2do personaje seleccionado
          var cpa_pTag2=document.createElement("p");
          cpa_pTag2.innerHTML="0";
          cpa_pTag2.setAttribute("id","cpa_pTag1")
          cpa_pTag2.setAttribute("class","recuadro_blanco sin_margen");
-         cpa_pTag2.setAttribute("style","position:absolute;top:"+CPA_sprite2.y+"px;left:"+(CPA_sprite2.x+CPA_sprite2.width*.1)+"px;font-size:"+fontSizeCPAVta+"px;");
+         cpa_pTag2.setAttribute("style","position:absolute;top:"+CPA_sprite2.y+"px;left:"+(CPA_sprite2.x+CPA_sprite2.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
                   aplicacion.appendChild(cpa_pTag2);
 
          var Vta_sprite2=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
          Vta_sprite2.x=width*.7;
          Vta_sprite2.y=height*.65;
-         Vta_sprite2.scale.set(.7);
+         Vta_sprite2.scale.set(factorScreen(1));
          self.app.stage.addChild(Vta_sprite2);
          //<p> CPA para 2do personaje seleccionado
          var vta_pTag2=document.createElement("p");
          vta_pTag2.innerHTML="0";
          vta_pTag2.setAttribute("id","vta_pTag1")
          vta_pTag2.setAttribute("class","recuadro_blanco sin_margen");
-         vta_pTag2.setAttribute("style","position:absolute;top:"+Vta_sprite2.y+"px;left:"+(Vta_sprite2.x+Vta_sprite2.width*.1)+"px;font-size:"+fontSizeCPAVta+"px;");
+         vta_pTag2.setAttribute("style","position:absolute;top:"+Vta_sprite2.y+"px;left:"+(Vta_sprite2.x+Vta_sprite2.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
                   aplicacion.appendChild(vta_pTag2);
          //Texto para recuadros de CPA y Venta en ambos personajes seleccionados
          var cpa_TXT=new PIXI.Text("C.P.A",estilo1);
@@ -440,11 +440,11 @@ for(var i=0;i<ctes.length;i++){
              cpa_TXT2.y=height*.6;
              self.app.stage.addChild(cpa_TXT2);
          var vta_TXT=new PIXI.Text("VENTA",estilo1);
-             vta_TXT.x=width*.23;
+             vta_TXT.x=width*.22;
              vta_TXT.y=height*.65;
              self.app.stage.addChild(vta_TXT);
          var vta_TXT2=new PIXI.Text("VENTA",estilo1);
-             vta_TXT2.x=width*.63;
+             vta_TXT2.x=width*.62;
              vta_TXT2.y=height*.65;
              self.app.stage.addChild(vta_TXT2);
 
@@ -463,7 +463,7 @@ for(var i=0;i<ctes.length;i++){
      var resultado_caja=new PIXI.Sprite(atlasBlock5['12. RECUADRO DE RESULTADOS FINALES.png']);
          resultado_caja.x=width*.45;
          resultado_caja.y=height*.8;
-         resultado_caja.scale.set(.6);
+         resultado_caja.scale.set(factorScreen(1));
          self.app.stage.addChild(resultado_caja);
          //<p> para Vento Total
          var vtaTotal=document.createElement("p");
@@ -503,32 +503,67 @@ for(var i=0;i<ctes.length;i++){
 
 
     if(self.characters.length<2){
+
       var toDate=(dataCSV[dataCSV.length-1]);
-      self.characters.push(new characters_erc(
+      var character=new characters_erc(
         index,
         toDate["TC \n"+segmentos[index]],
         toDate["CPA \n"+segmentos[index]],
         "NA",
         toDate["Numero de clientes \n"+segmentos[index]]
-      ));
+      );
 
-      if(self.characters.length==1){
+      var flag=false;//Bandera para indicar que aunque será agregado un segundo personaje,
+                    // debe agregarse como personaje a la ziquierda y el primero en el arreglo self.characters
+
+      if(self.characters.length==1&&self.characters[0].side=="rightCte"){
+        self.characters.push("");
+        self.characters[1]=self.characters[0];
+        self.characters[0]=character;
+        flag=true;
+      }
+
+      self.characters.push(character);
+
+
+
+      if(self.characters.length==1||flag){
         var cte1=self.app.stage.getChildByName("leftCte"+index);
         self.characters[0].side="leftCte";
             cte1.visible=true;
             document.getElementById("ctes_numero0").innerHTML=numberWithCommas(self.characters[0].countCtes);
+            document.getElementById("ctes_numero0").innerHTML=numberWithCommas(self.characters[0].countCtes);
             document.getElementById("cpa_pTag0").innerHTML="$"+numberWithCommas(self.characters[0].cpa);
-            document.getElementById("vta_pTag0").innerHTML="$"+numberWithCommas(self.characters[0].sale());
+            document.getElementById("vta_pTag0").innerHTML="$"+numberWithCommas(Math.round(self.characters[0].sale()));
+            document.getElementById("tc_pTag0").innerHTML=self.characters[0].tc+"%";
+
+        var slider0=document.getElementById("slider0");
+        var SlideBG=slider0.childNodes[0];
+        var knob=slider0.childNodes[1];
+        knob.style.left=((slider0.getBoundingClientRect().width*self.characters[0].tc/100)-(parseInt(knob.style.width)/2))+"px";
+
 
         self.app.stage.getChildByName("leftCteGray").visible=false;
-      }else{
+      }else if(self.characters.length==2){
         self.characters[1].side="rightCte";
         self.app.stage.getChildByName("rightCte"+index).visible=true;
-        document.getElementById("ctes_numero1").innerHTML=numberWithCommas(self.characters[0].countCtes);
-        document.getElementById("cpa_pTag1").innerHTML="$"+numberWithCommas(self.characters[0].cpa);
-        document.getElementById("vta_pTag1").innerHTML="$"+numberWithCommas(self.characters[0].sale());
+        document.getElementById("ctes_numero1").innerHTML=numberWithCommas(self.characters[1].countCtes);
+        document.getElementById("cpa_pTag1").innerHTML="$"+numberWithCommas(self.characters[1].cpa);
+        document.getElementById("vta_pTag1").innerHTML="$"+numberWithCommas(Math.round(self.characters[1].sale()));
+        document.getElementById("tc_pTag1").innerHTML=self.characters[1].tc+"%";
+        var slider0=document.getElementById("slider1");
+        var SlideBG=slider0.childNodes[0];
+        var knob=slider0.childNodes[1];
+        knob.style.left=((slider0.getBoundingClientRect().width*self.characters[1].tc/100)-(parseInt(knob.style.width)/2))+"px";
         self.app.stage.getChildByName("rightCteGray").visible=false;
       }
+
+      var vtaTotal=0;
+      for(var i=0;i<self.characters.length;i++){
+        vtaTotal+=self.characters[i].sale();
+      }
+      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
+
     }
     //console.log(self.characters);
   }
@@ -536,21 +571,31 @@ for(var i=0;i<ctes.length;i++){
   function removeCharacter(index){
     for(var i=0;i<self.characters.length;i++){
         if(self.characters[i].name==index){
+
+          var cteSide=0;
+          if(self.characters[i].side=="rightCte")
+            cteSide=1;
+
           self.app.stage.getChildByName(self.characters[i].side+index).visible=false;
           self.app.stage.getChildByName(self.characters[i].side+"Gray").visible=true;
+          var buttonContainer=self.app.stage.getChildByName("buttons_container");
+          buttonContainer.getChildByName(("button_pressed"+self.characters[i].name)).visible=false;
+          buttonContainer.getChildByName(("buttonOK"+self.characters[i].name)).visible=true;
 
-          document.getElementById("ctes_numero"+i).innerHTML=0;
-          document.getElementById("cpa_pTag"+i).innerHTML=0;
-          document.getElementById("vta_pTag"+i).innerHTML=0;
+          document.getElementById("ctes_numero"+cteSide).innerHTML=0;
+          document.getElementById("cpa_pTag"+cteSide).innerHTML=0;
+          document.getElementById("vta_pTag"+cteSide).innerHTML=0;
+          document.getElementById("tc_pTag"+cteSide).innerHTML="0%";
 
           var vta=document.getElementById("vtaTotal_pTag");
-          var a=parseInt(vta.innerHTML.replace("$", ''));
-          var b=self.characters[i].sale();
+          var a=Math.round(vta.innerHTML.replace(/[,$]/g, ''));
+          var b=Math.round(self.characters[i].sale());
           debugger;
-              vta.innerHTML=a-b;
+          if(a-b<0)
+              {vta.innerHTML=0;}else{vta.innerHTML="$"+numberWithCommas(a-b)}
 
 
-          self.characters.splice(i,1);
+              self.characters.splice(i,1);
         }
     }
 
@@ -568,13 +613,15 @@ for(var i=0;i<ctes.length;i++){
         //Calculamos datos para cada personaje seleccionado
           var cte=self.characters[i];
               cte.tc=parseInt(tc.innerHTML);
+              debugger;
+              var vta=document.getElementById('vta_pTag'+i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
               vtaTotal+=cte.sale();
 
 
           tc.innerHTML=cte.tc+"%";
       }
 
-      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(vtaTotal);
+      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
 
       return self;
   }
@@ -582,7 +629,27 @@ for(var i=0;i<ctes.length;i++){
 
 
   self.destroyApp=function(){
+
+
+    if(self.app == null) return self;
+
+		self.app.destroy(true);
+    self.removeText();
+
     return self;
+  }
+
+  self.removeElements=function(){
+    return self;
+  }
+
+  self.removeText=function(){
+    debugger;
+
+    var app=document.getElementById("aplicacion");
+    while(app.firstChild){
+      app.removeChild(app.firstChild);
+    }
   }
 
 return self;
@@ -592,11 +659,12 @@ return self;
 function characters_erc(name,tc,cpa,position,numCtes){
   this.name=name;
   this.cpa=parseInt(cpa);
-  this.tc=tc;
+  this.tc=parseFloat(tc);
   this.position=position;
-  this.countCtes=numCtes;
+  this.countCtes=parseInt(numCtes);
   this.sale=function(){
-    return this.cpa*this.tc*this.countCtes;
+    debugger;
+    return this.cpa*((this.tc)/100)*this.countCtes;
   };
 
 

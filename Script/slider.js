@@ -18,11 +18,13 @@ function Slider(divApp, indicator, iteration) {
   // Background
   var bg = document.createElement("div");
   bg.className = "slider_bg";
+  bg.setAttribute("id","sliderBackground")
   dom.appendChild(bg);
 
   // Knob
   var knob = document.createElement("div");
   knob.className = "slider_knob";
+  knob.setAttribute("id","knob");
   knob.style.left=((200-30)/2)+"px";
 
   dom.appendChild(knob);
