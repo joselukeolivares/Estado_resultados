@@ -505,17 +505,21 @@ for(var i=0;i<ctes.length;i++){
     if(self.characters.length<2){
 
       var toDate=(dataCSV[dataCSV.length-1]);
+      var tc=toDate["TC \n"+segmentos[index]],
+          cpa=toDate["CPA \n"+segmentos[index]],
+          side="NA",noCtes=toDate["Numero de clientes \n"+segmentos[index]];
+
       var character=new characters_erc(
         index,
-        toDate["TC \n"+segmentos[index]],
-        toDate["CPA \n"+segmentos[index]],
-        "NA",
-        toDate["Numero de clientes \n"+segmentos[index]]
+        tc,
+        cpa,
+        side,
+        noCtes
       );
 
       var flag=false;//Bandera para indicar que aunque será agregado un segundo personaje,
                     // debe agregarse como personaje a la ziquierda y el primero en el arreglo self.characters
-
+       debugger;
       if(self.characters.length==1&&self.characters[0].side=="rightCte"){
         self.characters.push("");
         self.characters[1]=self.characters[0];
