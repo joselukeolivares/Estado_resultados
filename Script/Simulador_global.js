@@ -2,10 +2,12 @@ function simulador_global(){
 
   var self = {};
   self.characters = [];
+
+
   self.createApp = function(){
-var miapp = document.getElementById("aplicacion");
+var app = document.getElementById("aplicacion");
 self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
-  miapp.appendChild(self.app.renderer.view);
+  app.appendChild(self.app.renderer.view);
 
   var Loader = PIXI.loader;
 
@@ -202,7 +204,7 @@ for(var i = 0 ;i<characters.length;i++){
 
 
 
-     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1","slider_fam",(character.parent.x+character.x+character.width*1.5)/width,(character.y+character.height*.25+character.parent.y)/height,self);
+     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1","slider_fam",(character.parent.x+character.x+character.width*1.5)/width,(character.y+character.height*.25+character.parent.y)/height,cpa.width,cpa.height,self);
 
 }
 
@@ -275,10 +277,215 @@ var aplicacion=document.getElementById("aplicacion");
     var aplicacion=document.getElementById("aplicacion");
         aplicacion.appendChild(totalventa_test);
 
+        var tctotalclientes_test=document.createElement("p");
+        tctotalclientes_test.innerHTML="0";
+        tctotalclientes_test.setAttribute("id","tctotalclientes_test")
+        tctotalclientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width/6)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+        tctotalclientes_test.typeObj=1;
+        var aplicacion=document.getElementById("aplicacion");
+            aplicacion.appendChild(tctotalclientes_test);
+
+            var clientes_test=document.createElement("p");
+            clientes_test.innerHTML="Clientes";
+            clientes_test.setAttribute("id","clientes_test")
+            clientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y+16)+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+            clientes_test.typeObj=1;
+            var aplicacion=document.getElementById("aplicacion");
+                aplicacion.appendChild(clientes_test);
+
+
 self.app.stage.addChild(total_tc);
 self.app.stage.addChild(total_vta);
 
 
+var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
+contButton.x = self.app.screen.width-100;
+contButton.y = self.app.screen.height-50;
+contButton.anchor.set(0.5);
+contButton.scale.set(self.app.screen.width*.45/950);
+contButton.interactive = true;
+contButton.buttonMode = true;
+
+
+var globo_1 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1.png"].texture);
+var globo_2 =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2.png"].texture);
+var globo_3 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3.png"].texture);
+var globo_4 =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
+
+var container_globos = new PIXI.Container();
+
+
+self.app.stage.addChild(container_globos);
+
+//container_globos.scale.set(self.app.screen.width*.35/950);
+container_globos.width=100;
+container_globos.x=self.app.screen.width/2.6;
+container_globos.y=self.app.screen.height/1.65;
+container_globos.scale.set(self.app.screen.width*.50/950);
+
+globo_1.x=25;
+globo_1.scale.set(self.app.screen.width*.45/950);
+globo_1.interactive = true;
+globo_1.buttonMode = true;
+
+globo_2.x=50;
+globo_2.scale.set(self.app.screen.width*.45/950);
+globo_2.interactive = true;
+globo_2.buttonMode = true;
+
+globo_3.x=75;
+globo_3.scale.set(self.app.screen.width*.45/950);
+globo_3.interactive = true;
+globo_3.buttonMode = true;
+
+globo_4.x=100;
+globo_4.scale.set(self.app.screen.width*.45/950);
+globo_4.interactive = true;
+globo_4.buttonMode = true;
+
+
+globo_1
+.on("click",click_1);
+
+globo_2
+.on("click",click_2);
+
+globo_3
+.on("click",click_3);
+
+globo_4
+.on("click",click_4);
+
+function click_1(){
+
+console.log("click");
+
+
+
+}
+
+
+function click_2(){
+
+console.log("click");
+
+
+
+}
+
+
+function click_3(){
+
+console.log("click");
+
+
+
+}
+
+
+
+function click_4(){
+
+console.log("click");
+
+
+
+}
+
+container_globos.addChild(globo_1);
+container_globos.addChild(globo_2);
+container_globos.addChild(globo_3);
+container_globos.addChild(globo_4);
+
+
+
+
+
+
+self.app.stage.addChild(contButton);
+
+contButton
+.on("click",click);
+
+function click (){
+
+toSlide("#");
+
+}
+
+var regresar = PIXI.Texture.fromImage("assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png");
+var clear = PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 1.png");
+var regresar_2 =PIXI.Texture.fromImage("assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png");
+var clear_2 =PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 2.png");
+
+var button = new PIXI.Sprite(regresar);
+
+button.x = self.app.screen.width/1.4;
+button.y = self.app.screen.height-50;
+button.scale.set(self.app.screen.width*.35/950);
+button.interactive = true;
+button.buttonMode = true;
+self.app.stage.addChild(button);
+
+var button_2 = new PIXI.Sprite(clear);
+
+button_2.x = self.app.screen.width/1.3;
+button_2.y = self.app.screen.height-50;
+button_2.scale.set(self.app.screen.width*.35/950);
+button_2.interactive = true;
+button_2.buttonMode = true;
+self.app.stage.addChild(button_2);
+
+
+button
+ .on("mouseover",mouseover_regresar)
+ .on("mouseout",borrar_regresar);
+
+
+ function mouseover_regresar(){
+
+   this.Over = true;
+    if(this.isdown){
+    return;
+    }
+    this.texture = regresar_2;
+
+
+ }
+
+ function borrar_regresar(){
+   this.Over = false;
+   if(this.isdown){
+   return;
+   }
+   this.texture = regresar;
+
+ }
+
+ button_2
+ .on("mouseover",mouseover_clear)
+ .on("mouseout",borrar_clear);
+
+
+ function mouseover_clear(){
+
+   this.Over = true;
+    if(this.isdown){
+    return;
+    }
+    this.texture = clear_2;
+
+
+ }
+
+ function borrar_clear(){
+   this.Over = false;
+   if(this.isdown){
+   return;
+   }
+   this.texture = clear;
+
+ }
 
  return self;
     }

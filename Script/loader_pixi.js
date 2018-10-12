@@ -64,7 +64,12 @@ function loader_pixi(){
           "assets/ui/Bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png",
           "assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png",
           "assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png",
-          "assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"
+          "assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png",
+          "assets/ui/Bloque_4/clientes/globo1.png",
+          "assets/ui/Bloque_4/clientes/globo2.png",
+          "assets/ui/Bloque_4/clientes/globo3.png",
+          "assets/ui/Bloque_4/clientes/globo4.png"
+
 
 
         ])
