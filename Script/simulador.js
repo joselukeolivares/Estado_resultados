@@ -2,6 +2,23 @@ function simulador(){
 
 var self={};
     self.characters=[];
+    var estilo1={
+      fontFamily:'Roboto-Bold',
+      fontSize:factorScreen(30),
+      fill:"#FFFFFF"
+    }
+    var estilo2={
+      fontFamily:'Roboto-Bold',
+      fontSize:factorScreen(30),
+      fill:"#27ad1b"
+    }
+    var estilo3={
+      fontFamily:'Roboto-Bold',
+      fontSize:factorScreen(30),
+      fill:"#d82215"
+    }
+
+
   self.createApp=function(){
     var aplicacion=document.getElementById("aplicacion");
     self.app=new PIXI.Application(width,height,{backgroundColor: 0x175383});
@@ -359,12 +376,6 @@ for(var i=0;i<ctes.length;i++){
         SliderB5B6(document.getElementById("aplicacion"),tc_pTag2,"slider1","slider_fam",.67,.56,200,50,self);
 
          //Textos para recuadros de Tasa de Compra
-         var estilo1={
-           fontFamily:'Roboto-Bold',
-           fontSize:factorScreen(30),
-           fill:"#FFFFFF"
-         }
-
          var tc_TXT=new PIXI.Text("T.C",estilo1);
              tc_TXT.x=width*.18;
              tc_TXT.y=height/2;
@@ -392,7 +403,7 @@ for(var i=0;i<ctes.length;i++){
 
      var Vta_sprite=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
          Vta_sprite.x=width*.3;
-         Vta_sprite.y=height*.65;
+         Vta_sprite.y=height*.70;
          Vta_sprite.scale.set(factorScreen(1));
          self.app.stage.addChild(Vta_sprite);
          //<p> vta para 1er personaje seleccionado
@@ -420,7 +431,7 @@ for(var i=0;i<ctes.length;i++){
 
          var Vta_sprite2=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
          Vta_sprite2.x=width*.7;
-         Vta_sprite2.y=height*.65;
+         Vta_sprite2.y=height*.7;
          Vta_sprite2.scale.set(factorScreen(1));
          self.app.stage.addChild(Vta_sprite2);
          //<p> CPA para 2do personaje seleccionado
@@ -441,21 +452,23 @@ for(var i=0;i<ctes.length;i++){
              self.app.stage.addChild(cpa_TXT2);
          var vta_TXT=new PIXI.Text("VENTA",estilo1);
              vta_TXT.x=width*.22;
-             vta_TXT.y=height*.65;
+             vta_TXT.y=height*.7;
              self.app.stage.addChild(vta_TXT);
          var vta_TXT2=new PIXI.Text("VENTA",estilo1);
              vta_TXT2.x=width*.62;
-             vta_TXT2.y=height*.65;
+             vta_TXT2.y=height*.7;
              self.app.stage.addChild(vta_TXT2);
 
           //Texto para variaciones en personajes seleccionados
              var vta_TXT=new PIXI.Text("0%",estilo1);
                  vta_TXT.x=Vta_sprite.x+Vta_sprite.width*1.05;
-                 vta_TXT.y=height*.65;
+                 vta_TXT.y=Vta_sprite.y;
+                 vta_TXT.name="vtaTXT_PIXI0";
                  self.app.stage.addChild(vta_TXT);
              var vta_TXT2=new PIXI.Text("0%",estilo1);
                  vta_TXT2.x=Vta_sprite2.x+Vta_sprite2.width*1.05;
-                 vta_TXT2.y=height*.65;
+                 vta_TXT2.y=Vta_sprite2.y;
+                 vta_TXT2.name="vtaTXT_PIXI1";
                  self.app.stage.addChild(vta_TXT2);
 
 
@@ -473,13 +486,17 @@ for(var i=0;i<ctes.length;i++){
          vtaTotal.setAttribute("style","position:absolute;top:"+resultado_caja.y+"px;left:"+(resultado_caja.x)+"px;font-size:"+fontSizeVTATC+"px;");
                   aplicacion.appendChild(vtaTotal);
          //Texto para recuadros de resultados
+
+
          var vta_TXT=new PIXI.Text("VENTA",estilo1);
              vta_TXT.x=resultado_caja.x+resultado_caja.width/3;
              vta_TXT.y=height*.75;
+             //vta_TXT.name="vtaTXT_PIXI0";
              self.app.stage.addChild(vta_TXT);
          var vta_TXT2=new PIXI.Text("TOTAL",estilo1);
              vta_TXT2.x=width*.38;
              vta_TXT2.y=height*.8;
+             //vta_TXT2.name="vtaTXT_PIXI1"
              self.app.stage.addChild(vta_TXT2);
 
 
@@ -505,12 +522,14 @@ for(var i=0;i<ctes.length;i++){
     if(self.characters.length<2){
 
       var toDate=(dataCSV[dataCSV.length-1]);
+      var mmAA=(dataCSV[dataCSV.length-13]);//mismo mes año anterior
       var character=new characters_erc(
         index,
         toDate["TC \n"+segmentos[index]],
         toDate["CPA \n"+segmentos[index]],
         "NA",
-        toDate["Numero de clientes \n"+segmentos[index]]
+        toDate["Numero de clientes \n"+segmentos[index]],
+        mmAA["Venta \n"+segmentos[index]]
       );
 
       var flag=false;//Bandera para indicar que aunque será agregado un segundo personaje,
@@ -543,6 +562,7 @@ for(var i=0;i<ctes.length;i++){
         knob.style.left=((slider0.getBoundingClientRect().width*self.characters[0].tc/100)-(parseInt(knob.style.width)/2))+"px";
 
 
+
         self.app.stage.getChildByName("leftCteGray").visible=false;
       }else if(self.characters.length==2){
         self.characters[1].side="rightCte";
@@ -560,6 +580,14 @@ for(var i=0;i<ctes.length;i++){
 
       var vtaTotal=0;
       for(var i=0;i<self.characters.length;i++){
+        var cte=self.characters[i];
+
+        var variacion=(parseInt(cte.sale())-parseInt(cte.vtaMMAA))/parseInt(cte.vtaMMAA)*100;
+
+        var txtPIXI=self.app.stage.getChildByName("vtaTXT_PIXI"+i);
+            if(variacion<0)
+            {txtPIXI.style=estilo3;}else{txtPIXI.style=estilo2;}
+            txtPIXI.text=(Math.round(variacion))+"%";
         vtaTotal+=self.characters[i].sale();
       }
       document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
@@ -615,6 +643,13 @@ for(var i=0;i<ctes.length;i++){
               cte.tc=parseInt(tc.innerHTML);
               debugger;
               var vta=document.getElementById('vta_pTag'+i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
+
+              var variacion=(parseInt(cte.sale())-parseInt(cte.vtaMMAA))/parseInt(cte.vtaMMAA)*100;
+
+              var txtPIXI=self.app.stage.getChildByName("vtaTXT_PIXI"+i);
+              if(variacion<0)
+              {txtPIXI.style=estilo3;}else{txtPIXI.style=estilo2;}
+              txtPIXI.text=(Math.round(variacion))+"%";
               vtaTotal+=cte.sale();
 
 
@@ -656,12 +691,13 @@ return self;
 
 }
 
-function characters_erc(name,tc,cpa,position,numCtes){
+function characters_erc(name,tc,cpa,position,numCtes,vtaMMAA){
   this.name=name;
   this.cpa=parseInt(cpa);
   this.tc=parseFloat(tc);
   this.position=position;
   this.countCtes=parseInt(numCtes);
+  this.vtaMMAA=vtaMMAA;
   this.sale=function(){
     debugger;
     return this.cpa*((this.tc)/100)*this.countCtes;
