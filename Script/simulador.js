@@ -522,6 +522,7 @@ for(var i=0;i<ctes.length;i++){
     if(self.characters.length<2){
 
       var toDate=(dataCSV[dataCSV.length-1]);
+
       var mmAA=(dataCSV[dataCSV.length-13]);//mismo mes año anterior
       var character=new characters_erc(
         index,
@@ -530,11 +531,12 @@ for(var i=0;i<ctes.length;i++){
         "NA",
         toDate["Numero de clientes \n"+segmentos[index]],
         mmAA["Venta \n"+segmentos[index]]
+
       );
 
       var flag=false;//Bandera para indicar que aunque será agregado un segundo personaje,
                     // debe agregarse como personaje a la ziquierda y el primero en el arreglo self.characters
-
+       debugger;
       if(self.characters.length==1&&self.characters[0].side=="rightCte"){
         self.characters.push("");
         self.characters[1]=self.characters[0];
