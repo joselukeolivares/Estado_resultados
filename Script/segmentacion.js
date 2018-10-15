@@ -185,7 +185,7 @@ function createSprite(app){
            var x = document.createElement("DIV");
            var br= document.createElement("br");
            x.setAttribute("id","gsap-anim-text-1");
-           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y analisis de nuestros clientes, nos dimos ala tarea de crear perfiles de clientes en base a sus compras, vencidos  y  cuenta Perdida. Esto nos  ayudara  a monitorear  y  crear  estrategias especializadas  para cada tipo de                                               Cliente Coppel.           ");
+           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y analisis de nuestros clientes, se crearon perfiles en base  al ciclo de vida del Cliente. Esto nos ayuda  a monitorear y crear perfiles en base al ciclo de vida  del Cliente. Esto nos ayuda a monitorear y crear estrategias especializadas para cada                                             tipo de cliente Coppel.         ");
            x.appendChild(t);
            document.body.appendChild(x);
            contenedor.appendChild(x);
