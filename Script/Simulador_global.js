@@ -151,7 +151,7 @@ for(var i = 0 ;i<characters.length;i++){
      cpa.name="cpa"+i;
      subContainer2.addChild(cpa);
 
-     vta.scale.set(self.app.screen.width*.45/950);
+     vta.scale.set(self.app.screen.width*.50/950);
      vta.x=venta_TXT.x+venta_TXT.width*1.1;
      vta.y=venta_TXT.y;
      vta.name="vta"+i;
@@ -515,7 +515,7 @@ contButton
 
 function click (){
 
-toSlide("#");
+toSlide("conclusiones");
 
 }
 
