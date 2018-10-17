@@ -14,7 +14,6 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
   DivHeight=factorScreen(DivHeight);
   divWidth=factorScreen(divWidth);
 
-   debugger;
 
   // Create DOM
   var dom = document.createElement("div");
@@ -55,7 +54,6 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
      if(param<0)param=0;
      if(param>1)param=1;
      if(param>0&&param<1){
-       debugger;
        var newValue=Math.round(param*100);
        knob.style.left=(event.clientX - bg.getBoundingClientRect().x-(DivHeight*.6/2))+"px";
 
@@ -64,7 +62,6 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
 
        if(target1.typeObj==1)
        target1.innerHTML=newValue;
-
        try{update.updateTotal(newValue);}catch(e){console.log("No se encontro funcion updateTotal:\n"+e)}
      }
 
