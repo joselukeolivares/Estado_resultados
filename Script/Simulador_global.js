@@ -13,7 +13,6 @@ function simulador_global(){
 
 
   var atlasBlock6  = Loader.resources["assets/ui/Bloque_5/spritesheet.json"].textures;
-  var vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
 
 
 //  var atlasBlock6_2 = Loader.resources['assets/ui/Bloque_5/spritesheet_bloque_5.json'].textures;
