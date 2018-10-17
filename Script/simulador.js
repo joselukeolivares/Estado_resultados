@@ -19,7 +19,6 @@ var self={};
     }
 
 
-
   self.createApp=function(){
     var aplicacion=document.getElementById("aplicacion");
     self.app=new PIXI.Application(width,height,{backgroundColor: 0x175383});
@@ -57,7 +56,6 @@ var self={};
     subtitle.y=height/8;
     descript_txt.x=width/5.5;
     descript_txt.y=height/3;
-    descript_txt.name="descript_txt";
 
 
     self.app.stage.addChild(title);
@@ -139,24 +137,6 @@ var b_y=height/2;
                removeCharacter(this.numero);
              });
 
-             var button_palomita=new PIXI.Sprite(atlasBlock5['10.PALOMITA.png']);
-                 button_palomita.scale.set(factorScreen(.65));
-                 button_palomita.y=buttonOK.y;
-                 button_palomita.x=buttonOK.x;
-                 button_palomita.visible=false;
-                 button_palomita.name="button_palomita"+i;
-                 button_palomita.numero=i;
-                 buttons_container.addChild(button_palomita);
-
-             var button_tacha=new PIXI.Sprite(atlasBlock5['11. TACHA.png']);
-                 button_tacha.scale.set(factorScreen(.65));
-                 button_tacha.y=buttonOK.y;
-                 button_tacha.x=buttonOK.x;
-                 button_tacha.visible=false;
-                 button_tacha.name="button_tacha"+i;
-                 button_tacha.numero=i;
-                 buttons_container.addChild(button_tacha);
-
 
     }
 
@@ -171,7 +151,7 @@ var b_y=height/2;
      self.app.stage.addChild(followme_txt);
 
      var contButton=new PIXI.Sprite(PIXI.loader.resources['assets/ui/Bloque_3/b-continue.png'].texture);
-     contButton.name="continue_button"
+
      contButton.x = width*.9;
      contButton.y = height*.95;
      contButton.anchor.set(0.5);
@@ -180,14 +160,14 @@ var b_y=height/2;
      contButton.cursor = "pointer";
 
      var contButton2=new PIXI.Sprite(PIXI.loader.resources['assets/ui/Bloque_3/b-continue-selected.png'].texture);
-     contButton2.name="continue_button_pressed"
+
      contButton2.x = width*.9;
      contButton2.y = height*.95;
      contButton2.anchor.set(0.5);
      contButton2.scale.set(factorScreen(0.6));
      contButton2.visible=false;
 
-     contButton.on('pointerdown',function(){
+     contButton.on('click',function(){
        this.buttonMode=false;
        this.interactive=false;
 
@@ -519,21 +499,13 @@ for(var i=0;i<ctes.length;i++){
              //vta_TXT2.name="vtaTXT_PIXI1"
              self.app.stage.addChild(vta_TXT2);
 
-        var var_vtaTotal=document.createElement("p");
-            var_vtaTotal.innerHTML="0%";
-            var_vtaTotal.setAttribute("id","varVtaTotal");
-            var_vtaTotal.setAttribute("class","recuadro_blanco sin_margen");
-            var_vtaTotal.setAttribute("style","fontFamily;font-size:"+factorScreen(40)+"px;position:absolute;top:"+resultado_caja.y+"px;left:"+(resultado_caja.x+resultado_caja.width)+"px");
-
-            aplicacion.appendChild(var_vtaTotal);
-
 
 
 
   }
 
   function addCharacter(index){
-
+    //alert(index);
     var segmentos=[
       "Nunca015",
       "Nunca+15",
@@ -564,16 +536,14 @@ for(var i=0;i<ctes.length;i++){
 
       var flag=false;//Bandera para indicar que aunque será agregado un segundo personaje,
                     // debe agregarse como personaje a la ziquierda y el primero en el arreglo self.characters
-
+       debugger;
       if(self.characters.length==1&&self.characters[0].side=="rightCte"){
         self.characters.push("");
         self.characters[1]=self.characters[0];
         self.characters[0]=character;
         flag=true;
-        debugger;
       }
 
-      if(!flag)
       self.characters.push(character);
 
 
@@ -592,8 +562,10 @@ for(var i=0;i<ctes.length;i++){
         var SlideBG=slider0.childNodes[0];
         var knob=slider0.childNodes[1];
         knob.style.left=((slider0.getBoundingClientRect().width*self.characters[0].tc/100)-(parseInt(knob.style.width)/2))+"px";
-        self.app.stage.getChildByName("leftCteGray").visible=false;
 
+
+
+        self.app.stage.getChildByName("leftCteGray").visible=false;
       }else if(self.characters.length==2){
         self.characters[1].side="rightCte";
         self.app.stage.getChildByName("rightCte"+index).visible=true;
@@ -606,51 +578,20 @@ for(var i=0;i<ctes.length;i++){
         var knob=slider0.childNodes[1];
         knob.style.left=((slider0.getBoundingClientRect().width*self.characters[1].tc/100)-(parseInt(knob.style.width)/2))+"px";
         self.app.stage.getChildByName("rightCteGray").visible=false;
-
-
-      }
-
-      if(self.characters.length==2){
-        var continue_button=self.app.stage.getChildByName("continue_button");
-        var continue_button_pressed=self.app.stage.getChildByName("continue_button_pressed");
-            continue_button.visible=true;
-            continue_button.interactive=true;
-            continue_button.buttonMode=true;
-            continue_button_pressed.visible=false;
-            continue_button.removeAllListeners();
-            continue_button.on('pointerdown',function(){
-              var buttonsContainer=self.app.stage.getChildByName("continue_button_pressed");
-              var indexContainer=self.app.stage.getChildIndex(buttonsContainer);
-              for(var i=indexContainer+1;i<self.app.stage.children.length;i++){
-                self.app.stage.removeChildren(i);
-                self.remove_p_tags();
-                self.remove_Sliders();
-                cuestionario();
-              }
-            })
       }
 
       var vtaTotal=0;
-      var vtaTotalMMAA=0;
       for(var i=0;i<self.characters.length;i++){
         var cte=self.characters[i];
 
         var variacion=(parseInt(cte.sale())-parseInt(cte.vtaMMAA))/parseInt(cte.vtaMMAA)*100;
-            vtaTotalMMAA+=parseInt(cte.vtaMMAA);
-            debugger;
+
         var txtPIXI=self.app.stage.getChildByName("vtaTXT_PIXI"+i);
             if(variacion<0)
             {txtPIXI.style=estilo3;}else{txtPIXI.style=estilo2;}
             txtPIXI.text=(Math.round(variacion))+"%";
         vtaTotal+=self.characters[i].sale();
       }
-      var variacionTotal=((vtaTotal-vtaTotalMMAA)/vtaTotalMMAA)*100;
-      var varTotal_p=document.getElementById("varVtaTotal");
-      varTotal_p.style.color="green";
-      if(variacionTotal<0)
-      varTotal_p.style.color="red";
-     debugger;
-      varTotal_p.innerHTML=numberWithCommas(Math.round(variacionTotal))+"%";
       document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
 
     }
@@ -658,7 +599,6 @@ for(var i=0;i<ctes.length;i++){
   }
 
   function removeCharacter(index){
-
     for(var i=0;i<self.characters.length;i++){
         if(self.characters[i].name==index){
 
@@ -671,12 +611,11 @@ for(var i=0;i<ctes.length;i++){
           var buttonContainer=self.app.stage.getChildByName("buttons_container");
           buttonContainer.getChildByName(("button_pressed"+self.characters[i].name)).visible=false;
           buttonContainer.getChildByName(("buttonOK"+self.characters[i].name)).visible=true;
-          self.app.stage.getChildByName("vtaTXT_PIXI"+cteSide).text="0%";
+
           document.getElementById("ctes_numero"+cteSide).innerHTML=0;
           document.getElementById("cpa_pTag"+cteSide).innerHTML=0;
           document.getElementById("vta_pTag"+cteSide).innerHTML=0;
           document.getElementById("tc_pTag"+cteSide).innerHTML="0%";
-          document.getElementById("varVtaTotal").innerHTML="";
 
           var vta=document.getElementById("vtaTotal_pTag");
           var a=Math.round(vta.innerHTML.replace(/[,$]/g, ''));
@@ -690,29 +629,21 @@ for(var i=0;i<ctes.length;i++){
         }
     }
 
-    var buttonContainer=self.app.stage;
-
-    var continue_button=buttonContainer.getChildByName("continue_button");
-    var continue_button_pressed=buttonContainer.getChildByName("continue_button_pressed");
-        continue_button.visible=false;
-        continue_button_pressed.visible=true;
-
-
   }
 
   self.updateTotal=function(value){
       console.log("updating total")
 
-      let vtaTotal=0,vtaTotalMMAA=0;
+      let vtaTotal=0;
       for(var i=0;i<self.characters.length;i++){
-
+        debugger;
         //obtenemos la tasa de compra modificada por slider
         var tc=document.getElementById('tc_pTag'+i);
 
         //Calculamos datos para cada personaje seleccionado
           var cte=self.characters[i];
               cte.tc=parseInt(tc.innerHTML);
-              vtaTotalMMAA+=parseInt(cte.vtaMMAA);
+              debugger;
               var vta=document.getElementById('vta_pTag'+i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
 
               var variacion=(parseInt(cte.sale())-parseInt(cte.vtaMMAA))/parseInt(cte.vtaMMAA)*100;
@@ -726,14 +657,6 @@ for(var i=0;i<ctes.length;i++){
 
           tc.innerHTML=cte.tc+"%";
       }
-
-      var variacionTotal=((vtaTotal-vtaTotalMMAA)/vtaTotalMMAA)*100;
-      var varTotal_p=document.getElementById("varVtaTotal");
-      varTotal_p.style.color="#27ad1b";
-      if(variacionTotal<0)
-      varTotal_p.style.color="#d82215";
-
-      varTotal_p.innerHTML=numberWithCommas(Math.round(variacionTotal))+"%";
 
       document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
 
@@ -765,105 +688,6 @@ for(var i=0;i<ctes.length;i++){
       app.removeChild(app.firstChild);
     }
   }
-
-  self.remove_p_tags=function(){
-
-        var p=document.getElementsByTagName('p');
-        var sliders
-        var app=document.getElementById("aplicacion");
-        while(p.length!=0){
-          app.removeChild(p[0]);
-        }
-  }
-
-  self.remove_Sliders=function(){
-        var app=document.getElementById("aplicacion");
-        var sliders=app.getElementsByClassName('slider');
-        while(sliders.length!=0){
-          app.removeChild(sliders[0]);
-        }
-  }
-
-  function cuestionario(){
-    var app=self.app.stage;
-    var descript_txt=app.getChildByName("descript_txt");
-    var respuesta=document.createElement('p');
-        respuesta.innerHTML="Respuesta correcta!"
-        respuesta.setAttribute("id","respuesta_p")
-        respuesta.setAttribute("class","sin_margen")
-        respuesta.setAttribute("style","font-size:"+factorScreen(30)+"px;position:absolute;top:70%;left:30%;");
-        respuesta.style.color="rgb(231,200,47)"
-        document.getElementById("aplicacion").appendChild(respuesta);
-    var bateria=[
-      {pregunta:"¿Pregunta número 1?",respuesta1:"Respuesta a pregunta número 2 es el boton 2.",respuesta2:"Respuesta alterna o incorrecta a pregunta número 1 .",botonOk:1},
-      {pregunta:"Pregunta número 2?",respuesta1:"Respuesta a pregunta número 2 es el boton 4.",respuesta2:"Respuesta alterna o incorrecta a pregunta número 2.",botonOk:3},
-      {pregunta:"Pregunta número 3?",respuesta1:"Respuesta a pregunta número 2 es el boton 7.",respuesta2:"Respuesta alterna o incorrecta a pregunta número 3.",botonOk:6}
-    ],index=0;
-
-
-    var container_buttons=app.getChildByName("buttons_container");
-    var button_continue=app.getChildByName("continue_button");
-        button_continue.visible=false;
-        button_continue.removeAllListeners();
-        button_continue.on('pointerdown',function(){
-          index++;
-          for(var i=0;i<9;i++){
-
-            var buttonOK=container_buttons.getChildByName("buttonOK"+i).visible=true;
-            var buttonOK=container_buttons.getChildByName("button_pressed"+i).visible=false;
-            var buttonOK=container_buttons.getChildByName("button_palomita"+i).visible=false;
-            var buttonOK=container_buttons.getChildByName("button_tacha"+i).visible=false;
-            this.visible=false;
-            app.getChildByName("continue_button_pressed").visible=true;
-            descript_txt.text=bateria[index].pregunta;
-          }
-        })
-    var continue_pressed=app.getChildByName("continue_button_pressed");
-        continue_pressed.visible=true;
-
-
-    descript_txt.text=bateria[index].pregunta;
-    TweenMax.to(container_buttons,1,{pixi:{y:height*.2},onComplete:function(){
-        for(var j=0;j<9;j++){
-          var buttonOK=container_buttons.getChildByName("buttonOK"+j);
-          buttonOK.visible=true;
-          buttonOK.removeAllListeners();
-          var button_pressed=container_buttons.getChildByName("button_pressed"+j);
-          button_pressed.visible=false;
-          button_pressed.removeAllListeners();
-          buttonOK.on('pointerdown',function(){
-            this.visible=false;
-            container_buttons.getChildByName("button_pressed"+this.numero).visible=true;
-            if(bateria[index].botonOk==this.numero){
-              container_buttons.getChildByName("button_palomita"+this.numero).visible=true;
-              document.getElementById("respuesta_p").innerHTML=bateria[index].respuesta1;
-
-               if(index==bateria.length-1){
-                 var continue_button=self.app.stage.getChildByName("continue_button");
-                 continue_button.visible=true;
-                 continue_button.removeAllListeners();
-                 continue_button.on('pointerdown',function(){
-                   self.remove_p_tags();
-                   toSlide('simulador_global');});
-
-               }
-
-
-                 app.getChildByName("continue_button").visible=true;
-                 app.getChildByName("continue_button_pressed").visible=false;
-
-            }else{
-              document.getElementById("respuesta_p").innerHTML=bateria[index].respuesta2;
-              container_buttons.getChildByName("button_tacha"+this.numero).visible=true;
-            }
-          })
-        }
-    }})
-
-
-  }
-
-
 
 return self;
 
