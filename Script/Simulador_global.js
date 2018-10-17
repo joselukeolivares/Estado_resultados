@@ -2,17 +2,17 @@ function simulador_global(){
 
   var self = {};
   self.characters = [];
+  let app = document.getElementById("aplicacion");
 
 
   self.createApp = function(){
-var app = document.getElementById("aplicacion");
-self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
-  app.appendChild(self.app.renderer.view);
+    self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
+    app.appendChild(self.app.renderer.view);
 
   var Loader = PIXI.loader;
 
 
-  var atlasBlock6  = Loader.resources['assets/ui/Bloque_5/spritesheet.json'].textures;
+  var atlasBlock6  = Loader.resources["assets/ui/Bloque_5/spritesheet.json"].textures;
   var vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
 
 
@@ -69,16 +69,16 @@ self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
 
 
        var estilo1={
-         fontFamily:'Roboto-Bold',
+         fontFamily:"Roboto-Bold",
          fontSize:self.app.screen.width*16/950,
          fill:"#FFFFFF"
-       }
+       };
 
        var estilo2={
-         fontFamily:'Roboto-Bold',
+         fontFamily:"Roboto-Bold",
          fontSize:40,
          fill:"#FFFFFF"
-       }
+       };
 
           // tc_TXT.x=width*.18;
           //tc_TXT.y=height/2;
@@ -158,63 +158,50 @@ for(var i = 0 ;i<characters.length;i++){
      vta.name="vta"+i;
      subContainer2.addChild(vta);
 
-     //porcent.x=vta.width+200;
-     //vta.addChild(porcent);
-
-
      var tc_test=document.createElement("p");
      tc_test.innerHTML="0%";
      tc_test.setAttribute("id","tc_test"+i);
      tc_test.setAttribute("style","position:absolute;top:"+(tc.y-8)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
      tc_test.typeObj=1;
-      var aplicacion=document.getElementById("aplicacion");
-         aplicacion.appendChild(tc_test);
+     app.appendChild(tc_test);
 
          var tc_clientes=document.createElement("p");
          tc_clientes.innerHTML="0";
-         tc_clientes.setAttribute("id","tc_clientes"+i)
+         tc_clientes.setAttribute("id","tc_clientes"+i);
          tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y-(tc.height/4))+"px;left:"+(tc.x+tc.width/5)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
          tc_clientes.typeObj=1;
-         var aplicacion=document.getElementById("aplicacion");
-             aplicacion.appendChild(tc_clientes);
+             app.appendChild(tc_clientes);
 
              var tc_clientestxt=document.createElement("p");
              tc_clientestxt.innerHTML="Clientes";
-             tc_clientestxt.setAttribute("id","tc_clientestxt"+i)
+             tc_clientestxt.setAttribute("id","tc_clientestxt" + i);
              tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
              tc_clientestxt.typeObj=1;
-             var aplicacion=document.getElementById("aplicacion");
-                 aplicacion.appendChild(tc_clientestxt);
+             app.appendChild(tc_clientestxt);
 
          var cpa_test=document.createElement("p");
          cpa_test.innerHTML="$"+"0";
-         cpa_test.setAttribute("id","cpa_test2"+i)
+         cpa_test.setAttribute("id","cpa_test2"+i);
          cpa_test.setAttribute("style","position:absolute;top:"+(cpa.y-8)+"px;left:"+(cpa.x+cpa.width/2.5)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
          cpa_test.typeObj=1;
-         var aplicacion=document.getElementById("aplicacion");
-             aplicacion.appendChild(cpa_test);
+             app.appendChild(cpa_test);
 
              var vta_test=document.createElement("p");
              vta_test.innerHTML = "$" + "0";
              vta_test.setAttribute("id","vta-tag-" + i);
              vta_test.setAttribute("style","position:absolute;top:"+(vta.y-16)+"px;left:"+(vta.x+vta.width/8)+"px;font-Family:roboto-regular;font-Size:1.10vw;font-weight:bold;");
              vta_test.typeObj=1;
-             var aplicacion=document.getElementById("aplicacion");
-                 aplicacion.appendChild(vta_test);
+             app.appendChild(vta_test);
 
                  var vta_porcent=document.createElement("p");
                  vta_porcent.innerHTML=""+"%";
-                 vta_porcent.setAttribute("id","vta_porcent"+i)
+                 vta_porcent.setAttribute("id","vta_porcent"+i);
                  vta_porcent.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width+8)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;color:#FFFFFF");
                  vta_porcent.typeObj=1;
-                 var aplicacion=document.getElementById("aplicacion");
-                     aplicacion.appendChild(vta_porcent);
+                 app.appendChild(vta_porcent);
 
 
-     SliderB5B6(document.getElementById("aplicacion"),tc_test,"slider1","slider_fam",(character.parent.x+character.x+character.width*1.5)/width,(character.y+character.height*.25+character.parent.y)/height,cpa.width,cpa.height,self);
-
-     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1"+i,"slider_fam",(character.parent.x+character.x+character.width*1.8)/width,(character.y+character.height*.35+character.parent.y)/height,cpa.width,cpa.height,self);
-
+     SliderB5B6(app, tc_test, "slider1", "slider_fam", (character.parent.x+character.x+character.width*1.5)/width,(character.y+character.height*.25+character.parent.y)/height,cpa.width,cpa.height,self);
 }
 
 
@@ -272,57 +259,39 @@ self.app.stage.addChild(venta_ptxt);
 
 var tctotal_test=document.createElement("p");
 tctotal_test.innerHTML="0"+"%";
-tctotal_test.setAttribute("id","tctotal_test")
+tctotal_test.setAttribute("id","tctotal_test");
 tctotal_test.setAttribute("style","position:absolute;top:"+(total_tc.y-16)+"px;left:"+(total_tc.x+total_tc.width/2)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
 tctotal_test.typeObj=1;
-var aplicacion=document.getElementById("aplicacion");
-    aplicacion.appendChild(tctotal_test);
+app.appendChild(tctotal_test);
 
 
     var totalventa_test=document.createElement("p");
     totalventa_test.innerHTML="0"+"%";
     totalventa_test.setAttribute("id","total-vta-tag");
     totalventa_test.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width/2.5)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
-  totalventa_test.typeObj=1;
-
-    var aplicacion=document.getElementById("aplicacion");
-        aplicacion.appendChild(totalventa_test);
+    totalventa_test.typeObj=1;
+    app.appendChild(totalventa_test);
 
         var tctotalclientes_test=document.createElement("p");
         tctotalclientes_test.innerHTML="0";
-        tctotalclientes_test.setAttribute("id","tctotalclientes_test")
+        tctotalclientes_test.setAttribute("id","tctotalclientes_test");
         tctotalclientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width/6)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
         tctotalclientes_test.typeObj=1;
-        var aplicacion=document.getElementById("aplicacion");
-            aplicacion.appendChild(tctotalclientes_test);
+        app.appendChild(tctotalclientes_test);
 
             var clientes_test=document.createElement("p");
             clientes_test.innerHTML="Clientes";
-            clientes_test.setAttribute("id","clientes_test")
+            clientes_test.setAttribute("id","clientes_test");
             clientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y+16)+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
             clientes_test.typeObj=1;
-            var aplicacion=document.getElementById("aplicacion");
-                aplicacion.appendChild(clientes_test);
+            app.appendChild(clientes_test);
 
                 var venta_increment=document.createElement("p");
                 venta_increment.innerHTML="+"+"8"+"%";
                 venta_increment.setAttribute("id","venta_increment");
                 venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
                 venta_increment.typeObj=1;
-                var aplicacion=document.getElementById("aplicacion");
-                    aplicacion.appendChild(venta_increment);
-
-        venta_increment = document.getElementById("venta_increment").innerHTML;
-
-    console.log(venta_increment);
-
-          if(venta_increment>0){
-               debugger;
-              //self.venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
-
-
-
-          }
+                app.appendChild(venta_increment);
 
 self.app.stage.addChild(total_tc);
 self.app.stage.addChild(total_vta);
@@ -406,7 +375,6 @@ globo_4
 
 function click_1(){
 
-console.log("click");
 
 
 globo1_click.x=25;
@@ -448,7 +416,6 @@ function click_2(){
    container_globos.removeChild(globo3_click);
     container_globos.removeChild(globo4_click);
 
-console.log("click");
 
 
 
@@ -469,7 +436,6 @@ function mouseover_2(){
 
 function click_3(){
 
-console.log("click");
 
 globo3_click.x=75;
 globo3_click.scale.set(self.app.screen.width*.45/950);
@@ -499,7 +465,6 @@ function mouseover_3(){
 
 function click_4(){
 
-console.log("click");
 globo4_click.x=100;
 globo4_click.scale.set(self.app.screen.width*.45/950);
 globo4_click.interactive = true;
@@ -630,7 +595,7 @@ button
  }
 
  return self;
-    }
+    };
 
 function addCharacter(index) {
   let segmentos = [
@@ -699,20 +664,17 @@ self.destroyApp=function(){
   self.removeText();
 
   return self;
-}
+};
 
 self.removeElements=function(){
   return self;
-}
+};
 
 self.removeText=function(){
-  debugger;
-
-  var app=document.getElementById("aplicacion");
   while(app.firstChild){
     app.removeChild(app.firstChild);
   }
-}
+};
 
 return self;
 }
