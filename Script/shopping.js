@@ -187,7 +187,7 @@ debugger;
           container.addChild(muebles[7]);
           container.addChild(clientes_t[6]);
           container.addChild(clientes_t[7]);
-          
+
        function clicked(){
 
          this.state.setAnimation(0,'happy',false);
@@ -228,6 +228,18 @@ setTimeout(function () {LoadButton()}, 1000);
 
 function LoadButton(){
 
+
+  var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
+  contButton.x = app.screen.width-100;
+  contButton.y = app.screen.height-50;
+  contButton.anchor.set(0.5);
+  contButton.scale.set(app.screen.width*.45/950);
+  contButton.interactive = true;
+  contButton.buttonMode = true;
+  app.stage.addChild(contButton);
+
+
+
   var btn = PIXI.Texture.fromImage('assets/Button_3.png');
   var btn_2 = PIXI.Texture.fromImage('assets/Botton_1.png');
 
@@ -266,6 +278,11 @@ function LoadButton(){
 					this.texture = btn;
 
 					}
+
+
+
+          contButton
+          .on("click",Clicked);
 
            function Clicked(){
 

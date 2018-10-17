@@ -12,7 +12,7 @@ self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
   var Loader = PIXI.loader;
 
 
-  var atlasBlock6  = Loader.resources['assets/ui/Bloque_5/bloque5_ctes.json'].textures;
+  var atlasBlock6  = Loader.resources['assets/ui/Bloque_5/spritesheet.json'].textures;
   var vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
 
 
@@ -70,7 +70,7 @@ self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
 
        var estilo1={
          fontFamily:'Roboto-Bold',
-         fontSize:self.app.screen.width*18/950,
+         fontSize:self.app.screen.width*16/950,
          fill:"#FFFFFF"
        }
 
@@ -129,13 +129,12 @@ for(var i = 0 ;i<characters.length;i++){
      subContainer2.addChild(tc_TXT);
 
      cpa_TXT.x=(i % 3) * self.app.screen.width/3.5+width/6;
-     cpa_TXT.y=Math.floor(i / 3) * self.app.screen.height/4.5+height/3.3;
-
+     cpa_TXT.y=Math.floor(i / 3) * self.app.screen.height/4.5+height/3.1;
      cpa_TXT.name="cpa_TXT"+i;
      subContainer2.addChild(cpa_TXT);
 
      venta_TXT.x=(i % 3) * self.app.screen.width/3.5+width/6;
-     venta_TXT.y=Math.floor(i / 3) * self.app.screen.height/4.5+height/2.8;
+     venta_TXT.y=Math.floor(i / 3) * self.app.screen.height/4.5+height/2.6  ;
      venta_TXT.name="venta_TXT"+i;
      subContainer2.addChild(venta_TXT);
 
@@ -165,7 +164,7 @@ for(var i = 0 ;i<characters.length;i++){
      var tc_test=document.createElement("p");
      tc_test.innerHTML="0"+"%";
      tc_test.setAttribute("id","tc_test"+i);
-     tc_test.setAttribute("style","position:absolute;top:"+(tc.y-16)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:1.10vw;font-weight:bold;");
+     tc_test.setAttribute("style","position:absolute;top:"+(tc.y-8)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
      tc_test.typeObj=1;
       var aplicacion=document.getElementById("aplicacion");
          aplicacion.appendChild(tc_test);
@@ -189,7 +188,7 @@ for(var i = 0 ;i<characters.length;i++){
          var cpa_test=document.createElement("p");
          cpa_test.innerHTML="$"+"0";
          cpa_test.setAttribute("id","cpa_test2"+i)
-         cpa_test.setAttribute("style","position:absolute;top:"+(cpa.y-16)+"px;left:"+(cpa.x+cpa.width/2.5)+"px;font-Family:roboto-regular;font-Size:1.10vw;font-weight:bold;");
+         cpa_test.setAttribute("style","position:absolute;top:"+(cpa.y-8)+"px;left:"+(cpa.x+cpa.width/2.5)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
          cpa_test.typeObj=1;
          var aplicacion=document.getElementById("aplicacion");
              aplicacion.appendChild(cpa_test);
@@ -197,21 +196,30 @@ for(var i = 0 ;i<characters.length;i++){
              var vta_test=document.createElement("p");
              vta_test.innerHTML="$"+"9,999,00";
              vta_test.setAttribute("id","cpa_test2"+i)
-             vta_test.setAttribute("style","position:absolute;top:"+(vta.y-16)+"px;left:"+(vta.x+vta.width/8)+"px;font-Family:roboto-regular;font-Size:1.10vw;font-weight:bold;");
+             vta_test.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width/8)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
              vta_test.typeObj=1;
              var aplicacion=document.getElementById("aplicacion");
                  aplicacion.appendChild(vta_test);
 
+                 var vta_porcent=document.createElement("p");
+                 vta_porcent.innerHTML=""+"%";
+                 vta_porcent.setAttribute("id","vta_porcent"+i)
+                 vta_porcent.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width+8)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;color:#FFFFFF");
+                 vta_porcent.typeObj=1;
+                 var aplicacion=document.getElementById("aplicacion");
+                     aplicacion.appendChild(vta_porcent);
 
 
-     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1","slider_fam",(character.parent.x+character.x+character.width*1.5)/width,(character.y+character.height*.25+character.parent.y)/height,cpa.width,cpa.height,self);
+
+     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1"+i,"slider_fam",(character.parent.x+character.x+character.width*1.8)/width,(character.y+character.height*.35+character.parent.y)/height,cpa.width,cpa.height,self);
 
 }
 
 
-
 var total_tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png"].texture);
 var total_vta =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"].texture);
+
+
 
 total_tc.x = self.app.screen.width/4;
 total_tc.y =self.app.screen.height/1.1;
@@ -293,6 +301,25 @@ var aplicacion=document.getElementById("aplicacion");
             var aplicacion=document.getElementById("aplicacion");
                 aplicacion.appendChild(clientes_test);
 
+                var venta_increment=document.createElement("p");
+                venta_increment.innerHTML="+"+"8"+"%";
+                venta_increment.setAttribute("id","venta_increment");
+                venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
+                venta_increment.typeObj=1;
+                var aplicacion=document.getElementById("aplicacion");
+                    aplicacion.appendChild(venta_increment);
+
+        venta_increment = document.getElementById("venta_increment").innerHTML;
+
+    console.log(venta_increment);
+
+          if(venta_increment>0){
+               debugger;
+              //self.venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
+
+
+
+          }
 
 self.app.stage.addChild(total_tc);
 self.app.stage.addChild(total_vta);
@@ -311,6 +338,17 @@ var globo_1 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/glob
 var globo_2 =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2.png"].texture);
 var globo_3 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3.png"].texture);
 var globo_4 =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
+
+var globo1_click = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1_click.png"].texture);
+var globo2_click =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2_click.png"].texture);
+var globo3_click = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3_click.png"].texture);
+var globo4_click =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4_click.png"].texture);
+
+var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/1 VDO.png"].texture);
+var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/2 VDO.png"].texture);
+var tres_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/3 VDO.png"].texture);
+var cuatro_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/4 VDO.png"].texture);
+
 
 var container_globos = new PIXI.Container();
 
@@ -343,22 +381,51 @@ globo_4.scale.set(self.app.screen.width*.45/950);
 globo_4.interactive = true;
 globo_4.buttonMode = true;
 
-
 globo_1
-.on("click",click_1);
+.on("click",click_1)
+.on("mouseover",mouseover_1)
+.on("mouseout",MouseOut);
 
 globo_2
-.on("click",click_2);
+.on("click",click_2)
+.on("mouseover",mouseover_2)
+.on("mouseout",MouseOut);
 
 globo_3
-.on("click",click_3);
+.on("click",click_3)
+.on("mouseover",mouseover_3)
+.on("mouseout",MouseOut);
 
 globo_4
-.on("click",click_4);
+.on("click",click_4)
+.on("mouseover",mouseover_4)
+.on("mouseout",MouseOut);
 
 function click_1(){
 
 console.log("click");
+
+
+globo1_click.x=25;
+globo1_click.scale.set(self.app.screen.width*.45/950);
+globo1_click.interactive = true;
+globo1_click.buttonMode = true;
+container_globos.addChild(globo1_click);
+
+
+ container_globos.removeChild(globo2_click);
+  container_globos.removeChild(globo3_click);
+   container_globos.removeChild(globo4_click);
+
+}
+
+function mouseover_1(){
+
+  un_vencido.x = self.app.screen.width/2.3;
+  un_vencido.y = self.app.screen.height/1.5;
+  un_vencido.anchor.set(0.5);
+  un_vencido.scale.set(self.app.screen.width*.15/950);
+  self.app.stage.addChild(un_vencido);
 
 
 
@@ -367,7 +434,30 @@ console.log("click");
 
 function click_2(){
 
+
+  globo2_click.x=50;
+  globo2_click.scale.set(self.app.screen.width*.45/950);
+  globo2_click.interactive = true;
+  globo2_click.buttonMode = true;
+  container_globos.addChild(globo2_click);
+
+  container_globos.removeChild(globo1_click);
+   container_globos.removeChild(globo3_click);
+    container_globos.removeChild(globo4_click);
+
 console.log("click");
+
+
+
+}
+
+function mouseover_2(){
+
+  dos_vencido.x = self.app.screen.width/2.35;
+  dos_vencido.y = self.app.screen.height/1.5;
+  dos_vencido.anchor.set(0.5);
+  dos_vencido.scale.set(self.app.screen.width*.15/950);
+  self.app.stage.addChild(dos_vencido);
 
 
 
@@ -378,6 +468,26 @@ function click_3(){
 
 console.log("click");
 
+globo3_click.x=75;
+globo3_click.scale.set(self.app.screen.width*.45/950);
+globo3_click.interactive = true;
+globo3_click.buttonMode = true;
+container_globos.addChild(globo3_click);
+
+container_globos.removeChild(globo1_click);
+ container_globos.removeChild(globo2_click);
+  container_globos.removeChild(globo4_click);
+
+}
+
+function mouseover_3(){
+
+
+  tres_vencido.x = self.app.screen.width/2.4;
+  tres_vencido.y = self.app.screen.height/1.5;
+  tres_vencido.anchor.set(0.5);
+  tres_vencido.scale.set(self.app.screen.width*.15/950);
+  self.app.stage.addChild(tres_vencido);
 
 
 }
@@ -387,8 +497,37 @@ console.log("click");
 function click_4(){
 
 console.log("click");
+globo4_click.x=100;
+globo4_click.scale.set(self.app.screen.width*.45/950);
+globo4_click.interactive = true;
+globo4_click.buttonMode = true;
+container_globos.addChild(globo4_click);
+
+container_globos.removeChild(globo1_click);
+ container_globos.removeChild(globo2_click);
+  container_globos.removeChild(globo3_click);
 
 
+}
+
+
+function mouseover_4 (){
+
+  cuatro_vencido.x = self.app.screen.width/2.45;
+  cuatro_vencido.y = self.app.screen.height/1.5;
+  cuatro_vencido.anchor.set(0.5);
+  cuatro_vencido.scale.set(self.app.screen.width*.15/950);
+ self.app.stage.addChild(cuatro_vencido);
+
+
+}
+
+function MouseOut (){
+
+ self.app.stage.removeChild(un_vencido);
+  self.app.stage.removeChild(dos_vencido);
+   self.app.stage.removeChild(tres_vencido);
+    self.app.stage.removeChild(cuatro_vencido);
 
 }
 
@@ -421,7 +560,7 @@ var clear_2 =PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 2.png");
 var button = new PIXI.Sprite(regresar);
 
 button.x = self.app.screen.width/1.4;
-button.y = self.app.screen.height-50;
+button.y = self.app.screen.height/1.1;
 button.scale.set(self.app.screen.width*.35/950);
 button.interactive = true;
 button.buttonMode = true;
@@ -430,7 +569,7 @@ self.app.stage.addChild(button);
 var button_2 = new PIXI.Sprite(clear);
 
 button_2.x = self.app.screen.width/1.3;
-button_2.y = self.app.screen.height-50;
+button_2.y = self.app.screen.height/1.1;
 button_2.scale.set(self.app.screen.width*.35/950);
 button_2.interactive = true;
 button_2.buttonMode = true;
@@ -490,12 +629,34 @@ button
  return self;
     }
 
-
-
 self.updateTotal=function(){
 
 };
 
+
+self.destroyApp=function(){
+
+
+  if(self.app == null) return self;
+
+  self.app.destroy(true);
+  self.removeText();
+
+  return self;
+}
+
+self.removeElements=function(){
+  return self;
+}
+
+self.removeText=function(){
+  debugger;
+
+  var app=document.getElementById("aplicacion");
+  while(app.firstChild){
+    app.removeChild(app.firstChild);
+  }
+}
 
 return self;
 }
