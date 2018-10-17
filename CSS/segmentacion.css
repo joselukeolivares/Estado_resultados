@@ -28,7 +28,7 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 #gsap-anim-text-1 span { /* !important for gsap, has to be in <div> with relative position */
 	position: relative;
 	font-family:roboto-regular;
-	font-size:1.25vw;
+	font-size:1.15vw;
     line-height:35px;
     color:#FFFFFF;
 	font-weight:bold;
@@ -40,7 +40,7 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 #post-title-text span { /* !important for gsap, has to be in <div> with relative position */
 	position: relative;
 	font-family:roboto-regular;
-	font-size:1.25vw;
+	font-size:1.15vw;
     line-height:35px;
     color:#FFFFFF;
 	font-weight:bold;

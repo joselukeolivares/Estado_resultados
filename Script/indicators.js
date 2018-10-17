@@ -416,6 +416,19 @@ function indicators() {
               retry.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next.png")].texture);
             });
           }
+
+
+          retry = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next.png")].texture);
+          retry.scale.set(scale1);
+          retry.x = app.screen.width / 1.4;
+          retry.y = app.screen.height / 1.75;
+          retry.on("mouseover", function() {
+            retry.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next-selected.png")].texture);
+          });
+          retry.on("mouseout", function () {
+            retry.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next.png")].texture);
+          });
+
           retry.anchor.set(0.5);
           retry.interactive = true;
           retry.cursor = "pointer";
