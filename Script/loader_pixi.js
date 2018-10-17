@@ -68,7 +68,13 @@ function loader_pixi(){
           "assets/ui/Bloque_4/clientes/globo1.png",
           "assets/ui/Bloque_4/clientes/globo2.png",
           "assets/ui/Bloque_4/clientes/globo3.png",
-          "assets/ui/Bloque_4/clientes/globo4.png"
+          "assets/ui/Bloque_4/clientes/globo4.png",
+          "assets/ui/Bloque_5/spritesheet.json",
+          "assets/ui/Bloque_4/clientes/globo1_click.png",
+          "assets/ui/Bloque_4/clientes/globo2_click.png",
+          "assets/ui/Bloque_4/clientes/globo3_click.png",
+          "assets/ui/Bloque_4/clientes/globo4_click.png"
+
 
 
 

@@ -12,7 +12,7 @@ self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
   var Loader = PIXI.loader;
 
 
-  var atlasBlock6  = Loader.resources['assets/ui/Bloque_5/bloque5_ctes.json'].textures;
+  var atlasBlock6  = Loader.resources['assets/ui/Bloque_5/spritesheet.json'].textures;
   var vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
 
 
@@ -201,13 +201,19 @@ for(var i = 0 ;i<characters.length;i++){
              var aplicacion=document.getElementById("aplicacion");
                  aplicacion.appendChild(vta_test);
 
+                 var vta_porcent=document.createElement("p");
+                 vta_porcent.innerHTML=""+"%";
+                 vta_porcent.setAttribute("id","vta_porcent"+i)
+                 vta_porcent.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width+8)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;color:#FFFFFF");
+                 vta_porcent.typeObj=1;
+                 var aplicacion=document.getElementById("aplicacion");
+                     aplicacion.appendChild(vta_porcent);
 
 
-     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1","slider_fam",(character.parent.x+character.x+character.width*1.8)/width,(character.y+character.height*.25+character.parent.y)/height,cpa.width,cpa.height,self);
+
+     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1"+i,"slider_fam",(character.parent.x+character.x+character.width*1.8)/width,(character.y+character.height*.35+character.parent.y)/height,cpa.width,cpa.height,self);
 
 }
-
-
 
 
 var total_tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png"].texture);
@@ -297,12 +303,23 @@ var aplicacion=document.getElementById("aplicacion");
 
                 var venta_increment=document.createElement("p");
                 venta_increment.innerHTML="+"+"8"+"%";
-                venta_increment.setAttribute("id","venta_increment")
+                venta_increment.setAttribute("id","venta_increment");
                 venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
                 venta_increment.typeObj=1;
                 var aplicacion=document.getElementById("aplicacion");
                     aplicacion.appendChild(venta_increment);
 
+        venta_increment = document.getElementById("venta_increment").innerHTML;
+
+    console.log(venta_increment);
+
+          if(venta_increment>0){
+               debugger;
+              //self.venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
+
+
+
+          }
 
 self.app.stage.addChild(total_tc);
 self.app.stage.addChild(total_vta);
@@ -321,6 +338,11 @@ var globo_1 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/glob
 var globo_2 =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2.png"].texture);
 var globo_3 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3.png"].texture);
 var globo_4 =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
+
+var globo1_click = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1_click.png"].texture);
+var globo2_click =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2_click.png"].texture);
+var globo3_click = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3_click.png"].texture);
+var globo4_click =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4_click.png"].texture);
 
 var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/1 VDO.png"].texture);
 var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/2 VDO.png"].texture);
@@ -359,7 +381,6 @@ globo_4.scale.set(self.app.screen.width*.45/950);
 globo_4.interactive = true;
 globo_4.buttonMode = true;
 
-
 globo_1
 .on("click",click_1)
 .on("mouseover",mouseover_1)
@@ -385,6 +406,16 @@ function click_1(){
 console.log("click");
 
 
+globo1_click.x=25;
+globo1_click.scale.set(self.app.screen.width*.45/950);
+globo1_click.interactive = true;
+globo1_click.buttonMode = true;
+container_globos.addChild(globo1_click);
+
+
+ container_globos.removeChild(globo2_click);
+  container_globos.removeChild(globo3_click);
+   container_globos.removeChild(globo4_click);
 
 }
 
@@ -402,6 +433,17 @@ function mouseover_1(){
 
 
 function click_2(){
+
+
+  globo2_click.x=50;
+  globo2_click.scale.set(self.app.screen.width*.45/950);
+  globo2_click.interactive = true;
+  globo2_click.buttonMode = true;
+  container_globos.addChild(globo2_click);
+
+  container_globos.removeChild(globo1_click);
+   container_globos.removeChild(globo3_click);
+    container_globos.removeChild(globo4_click);
 
 console.log("click");
 
@@ -426,7 +468,15 @@ function click_3(){
 
 console.log("click");
 
+globo3_click.x=75;
+globo3_click.scale.set(self.app.screen.width*.45/950);
+globo3_click.interactive = true;
+globo3_click.buttonMode = true;
+container_globos.addChild(globo3_click);
 
+container_globos.removeChild(globo1_click);
+ container_globos.removeChild(globo2_click);
+  container_globos.removeChild(globo4_click);
 
 }
 
@@ -447,10 +497,19 @@ function mouseover_3(){
 function click_4(){
 
 console.log("click");
+globo4_click.x=100;
+globo4_click.scale.set(self.app.screen.width*.45/950);
+globo4_click.interactive = true;
+globo4_click.buttonMode = true;
+container_globos.addChild(globo4_click);
 
+container_globos.removeChild(globo1_click);
+ container_globos.removeChild(globo2_click);
+  container_globos.removeChild(globo3_click);
 
 
 }
+
 
 function mouseover_4 (){
 
@@ -501,7 +560,7 @@ var clear_2 =PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 2.png");
 var button = new PIXI.Sprite(regresar);
 
 button.x = self.app.screen.width/1.4;
-button.y = self.app.screen.height-50;
+button.y = self.app.screen.height/1.1;
 button.scale.set(self.app.screen.width*.35/950);
 button.interactive = true;
 button.buttonMode = true;
@@ -510,7 +569,7 @@ self.app.stage.addChild(button);
 var button_2 = new PIXI.Sprite(clear);
 
 button_2.x = self.app.screen.width/1.3;
-button_2.y = self.app.screen.height-50;
+button_2.y = self.app.screen.height/1.1;
 button_2.scale.set(self.app.screen.width*.35/950);
 button_2.interactive = true;
 button_2.buttonMode = true;
