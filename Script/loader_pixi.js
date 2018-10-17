@@ -73,7 +73,9 @@ function loader_pixi(){
           "assets/ui/Bloque_4/clientes/globo1_click.png",
           "assets/ui/Bloque_4/clientes/globo2_click.png",
           "assets/ui/Bloque_4/clientes/globo3_click.png",
-          "assets/ui/Bloque_4/clientes/globo4_click.png"
+          "assets/ui/Bloque_4/clientes/globo4_click.png",
+          "assets/ui/Bloque_6/2 FONDO.png"
+
 
 
 
