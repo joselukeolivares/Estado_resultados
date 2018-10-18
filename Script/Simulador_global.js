@@ -2,18 +2,17 @@ function simulador_global(){
 
   var self = {};
   self.characters = [];
+  let app = document.getElementById("aplicacion");
 
 
   self.createApp = function(){
-var app = document.getElementById("aplicacion");
-self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
-  app.appendChild(self.app.renderer.view);
+    self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
+    app.appendChild(self.app.renderer.view);
 
   var Loader = PIXI.loader;
 
 
-  var atlasBlock6  = Loader.resources['assets/ui/Bloque_5/spritesheet.json'].textures;
-  var vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
+  var atlasBlock6  = Loader.resources["assets/ui/Bloque_5/spritesheet.json"].textures;
 
 
 //  var atlasBlock6_2 = Loader.resources['assets/ui/Bloque_5/spritesheet_bloque_5.json'].textures;
@@ -69,22 +68,117 @@ self.app = new PIXI.Application(width,height,{backgroundColor: 0x175383});
 
 
        var estilo1={
-         fontFamily:'Roboto-Bold',
+         fontFamily:"Roboto-Bold",
          fontSize:self.app.screen.width*16/950,
          fill:"#FFFFFF"
-       }
+       };
 
        var estilo2={
-         fontFamily:'Roboto-Bold',
+         fontFamily:"Roboto-Bold",
          fontSize:40,
          fill:"#FFFFFF"
-       }
+       };
+
+       var estilo3 = {
+         fontFamily:"Roboto-Bold",
+         fontSize:factorScreen(30),
+         fill:"#d82215"
+       };
 
           // tc_TXT.x=width*.18;
           //tc_TXT.y=height/2;
           // self.app.stage.addChild(tc_TXT);
 
+          var total_tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png"].texture);
+          var total_vta =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"].texture);
 
+
+
+          total_tc.x = self.app.screen.width/4;
+          total_tc.y =self.app.screen.height/1.1;
+          total_tc.scale.set(self.app.screen.width*.45/950);
+
+
+          total_vta.x = self.app.screen.width/2;
+          total_vta.y =self.app.screen.height/1.1;
+          total_vta.scale.set(self.app.screen.width*.45/950);
+
+          var total_ptxt=new PIXI.Text("TOTAL",{
+            fontSize: screen.height * 30 / 880,
+            fontFamily: "Roboto-Black",
+            fill: "#FFFFFF",
+            dropShadowColor: "#09102C",
+            dropShadowDistance: 5,
+            dropShadowAngle: Math.PI / 20
+          });
+          total_ptxt.x=(self.app.screen.width/8);
+          total_ptxt.y=(self.app.screen.height/1.1);
+          self.app.stage.addChild(total_ptxt);
+
+
+          var tc_ptxt=new PIXI.Text("T.C",{
+            fontSize: screen.height * 15 / 880,
+            fontFamily: "Roboto-Black",
+            fill: "#FFFFFF",
+            dropShadowColor: "#09102C",
+            dropShadowDistance: 5,
+            dropShadowAngle: Math.PI / 20
+          });
+          tc_ptxt.x=(self.app.screen.width/2.5);
+          tc_ptxt.y=(self.app.screen.height/1.15);
+          self.app.stage.addChild(tc_ptxt);
+
+          var venta_ptxt=new PIXI.Text("VENTA",{
+            fontSize: screen.height * 15 / 880,
+            fontFamily: "Roboto-Black",
+            fill: "#FFFFFF",
+            dropShadowColor: "#09102C",
+            dropShadowDistance: 5,
+            dropShadowAngle: Math.PI / 20
+          });
+          venta_ptxt.x=(self.app.screen.width/1.8);
+          venta_ptxt.y=(self.app.screen.height/1.15);
+          self.app.stage.addChild(venta_ptxt);
+
+
+          var tctotal_test=document.createElement("p");
+          tctotal_test.innerHTML="0"+"%";
+          tctotal_test.setAttribute("id","tctotal_test");
+          tctotal_test.setAttribute("style","position:absolute;top:"+(total_tc.y-16)+"px;left:"+(total_tc.x+total_tc.width/2)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
+          tctotal_test.typeObj=1;
+          app.appendChild(tctotal_test);
+
+
+              var totalventa_test=document.createElement("p");
+              totalventa_test.innerHTML="0"+"%";
+              totalventa_test.setAttribute("id","total-vta-tag");
+              totalventa_test.setAttribute("style","position:absolute;top:"+(total_vta.y - 16)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
+              totalventa_test.typeObj=1;
+              app.appendChild(totalventa_test);
+
+                  var tctotalclientes_test=document.createElement("p");
+                  tctotalclientes_test.innerHTML="0";
+                  tctotalclientes_test.setAttribute("id","ctes-total-tag");
+                  tctotalclientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width/6)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+                  tctotalclientes_test.typeObj=1;
+                  app.appendChild(tctotalclientes_test);
+
+                      var clientes_test=document.createElement("p");
+                      clientes_test.innerHTML="Clientes";
+                      clientes_test.setAttribute("id","clientes_test");
+                      clientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y+16)+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+                      clientes_test.typeObj=1;
+                      app.appendChild(clientes_test);
+
+                          var venta_increment=document.createElement("p");
+                          venta_increment.innerHTML="0%";
+                          venta_increment.setAttribute("id","venta_increment");
+                          venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
+                          venta_increment.typeObj=1;
+                          app.appendChild(venta_increment);
+
+          self.app.stage.addChild(total_tc);
+          self.app.stage.addChild(total_vta);
 
 for(var i = 0 ;i<characters.length;i++){
 
@@ -163,56 +257,52 @@ for(var i = 0 ;i<characters.length;i++){
 
      var tc_test=document.createElement("p");
      tc_test.innerHTML="0"+"%";
-     tc_test.setAttribute("id","tc_test"+i);
+     tc_test.setAttribute("id","tc-tag-"+i);
      tc_test.setAttribute("style","position:absolute;top:"+(tc.y-8)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
      tc_test.typeObj=1;
-      var aplicacion=document.getElementById("aplicacion");
-         aplicacion.appendChild(tc_test);
+         app.appendChild(tc_test);
 
          var tc_clientes=document.createElement("p");
          tc_clientes.innerHTML="0";
          tc_clientes.setAttribute("id","tc_clientes"+i)
          tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y-(tc.height/4))+"px;left:"+(tc.x+tc.width/5)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
          tc_clientes.typeObj=1;
-         var aplicacion=document.getElementById("aplicacion");
-             aplicacion.appendChild(tc_clientes);
+             app.appendChild(tc_clientes);
 
              var tc_clientestxt=document.createElement("p");
              tc_clientestxt.innerHTML="Clientes";
              tc_clientestxt.setAttribute("id","tc_clientestxt"+i)
              tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
              tc_clientestxt.typeObj=1;
-             var aplicacion=document.getElementById("aplicacion");
-                 aplicacion.appendChild(tc_clientestxt);
+                 app.appendChild(tc_clientestxt);
 
          var cpa_test=document.createElement("p");
          cpa_test.innerHTML="$"+"0";
-         cpa_test.setAttribute("id","cpa_test2"+i)
+         cpa_test.setAttribute("id","cpa-tag-"+i)
          cpa_test.setAttribute("style","position:absolute;top:"+(cpa.y-8)+"px;left:"+(cpa.x+cpa.width/2.5)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
          cpa_test.typeObj=1;
-         var aplicacion=document.getElementById("aplicacion");
-             aplicacion.appendChild(cpa_test);
+             app.appendChild(cpa_test);
 
              var vta_test=document.createElement("p");
              vta_test.innerHTML="$"+"9,999,000,000,00";
-             vta_test.setAttribute("id","cpa_test2"+i)
+             vta_test.setAttribute("id","vta-tag-"+i)
              vta_test.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width/24)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
              vta_test.typeObj=1;
-             var aplicacion=document.getElementById("aplicacion");
-                 aplicacion.appendChild(vta_test);
+                 app.appendChild(vta_test);
 
                  var vta_porcent=document.createElement("p");
                  vta_porcent.innerHTML=""+"%";
                  vta_porcent.setAttribute("id","vta_porcent"+i)
                  vta_porcent.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width+8)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;color:#FFFFFF");
                  vta_porcent.typeObj=1;
-                 var aplicacion=document.getElementById("aplicacion");
-                     aplicacion.appendChild(vta_porcent);
+                     app.appendChild(vta_porcent);
 
 
 
-     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1"+i,"slider_fam",(tc.x)/width,(character.y+character.height*.35+character.parent.y)/height,tc.width,cpa.height,self);
+     SliderB5B6(app, tc_test,"slider1"+i,"slider_fam",(tc.x)/width,(character.y+character.height*.35+character.parent.y)/height,tc.width,cpa.height,self);
+     addCharacter(i);
 }
+
 
 
 var total_tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png"].texture);
@@ -322,6 +412,7 @@ var aplicacion=document.getElementById("aplicacion");
 
 self.app.stage.addChild(total_tc);
 self.app.stage.addChild(total_vta);
+
 
 
 var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
@@ -628,10 +719,91 @@ button
  return self;
     }
 
-self.updateTotal=function(){
+    let ventaTotal = 0;
+let ctesTotal = 0;
+let ventaTotalMMAA = 0;
 
+function addCharacter(index) {
+  let segmentos = [
+    "Nunca015",
+    "Activos SinVdo",
+    "Saldado015",
+    "Nunca+15",
+    "Vencidos1",
+    "Saldado+15",
+    "Generados",
+    "ClientesZ",
+    "Quebrantados"
+  ];
+
+  let toDate = (dataCSV[dataCSV.length - 1]);
+  let mmaa = (dataCSV[dataCSV.length - 13]);
+  let char = new characters_erc(
+    index,
+    toDate["TC \n" + segmentos[index]],
+    toDate["CPA \n" + segmentos[index]],
+    "NA",
+    toDate["Numero de clientes \n" + segmentos[index]],
+    mmaa["Venta \n" + segmentos[index]]
+  );
+
+  console.log(dataCSV[dataCSV.length - 1]);
+
+  self.characters.push(char);
+
+  ventaTotal += self.characters[index].sale();
+  ventaTotalMMAA += self.characters[index].vtaMMAA;
+  ctesTotal += self.characters[index].countCtes;
+
+  document.getElementById("tc_clientes" + index).innerHTML = numberWithCommas(self.characters[index].countCtes);
+  document.getElementById("cpa-tag-" + index).innerHTML = "$" + numberWithCommas(self.characters[index].cpa);
+  document.getElementById("vta-tag-" + index).innerHTML = "$"+ numberWithCommas(Math.round(self.characters[index].sale()));
+  document.getElementById("tc-tag-" + index).innerHTML = self.characters[index].tc + "%";
+  document.getElementById("tctotal_test").innerHTML = toDate["TC \nTotal"] + "%";
+  if(index == 8)  {
+    document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(ventaTotal));
+    document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(ctesTotal);
+    let variacion = ((ventaTotal - ventaTotalMMAA) / ventaTotalMMAA) * 100;
+    document.getElementById("venta_increment").innerHTML = (Math.round(variacion)) + "%";
+  }
+
+  var sliders = document.getElementsByClassName("slider");
+  var knob = sliders[index].childNodes[1];
+  knob.style.left = ((sliders[index].getBoundingClientRect().width * self.characters[index].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+}
+
+self.updateTotal = function () {
+  let vtaTotal = 0, vtaTotalMMAA = 0;
+  for(let i = 0; i < self.characters.length; i++) {
+    let tc = document.getElementById("tc-tag-" + i);
+    let cte=self.characters[i];
+    cte.tc = parseFloat(tc.innerHTML);
+    tc.innerHTML = cte.tc + "%";
+
+    document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
+    vtaTotal += cte.sale();
+    vtaTotalMMAA += cte.vtaMMAA;
+  }
+  document.getElementById("total-vta-tag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
+  let variacion = ((vtaTotal - vtaTotalMMAA) / vtaTotalMMAA) * 100;
+  let varElm = document.getElementById("venta_increment");
+  if(variacion < 0) { varElm.style.color = "red"; } else { varElm.style.color = "green"; }
+  varElm.innerHTML = (Math.round(variacion)) + "%";
+
+  return self;
 };
 
+function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA) {
+  this.index = index;
+  this.cpa = parseInt(cpa);
+  this.tc = parseFloat(tc);
+  this.position = position;
+  this.countCtes = parseInt(numCtes);
+  this.vtaMMAA = parseInt(vtaMMAA);
+  this.sale = function() {
+    return this.cpa*((this.tc)/100)*this.countCtes;
+  };
+}
 
 self.destroyApp=function(){
 
