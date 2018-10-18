@@ -12,7 +12,7 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
   var self = this;
   self.value=4.9;
   DivHeight=factorScreen(DivHeight);
-  divWidth=factorScreen(divWidth);
+  //divWidth=factorScreen(divWidth);
 
    debugger;
 
@@ -36,7 +36,7 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
   // Knob
   var knob = document.createElement("div");
   knob.className = "slider_knob";
-  knob.style.height=(DivHeight*.6)+"px";
+  knob.style.height=factorScreen(30)+"px";
   knob.style.width=knob.style.height;
   knob.style.left=((divWidth-(DivHeight*.6))/2)+"px";
 

@@ -3,7 +3,7 @@ var div=document.createElement("div");
     div.setAttribute("class","Scratcher_div");
     div.style.width=(screen.width*.995)+"px";
     div.style.display="none";
-    div.style.height=height*.987+"px";
+    div.style.height="90%";
 
 
     document.body.appendChild(div);
@@ -29,7 +29,7 @@ var scratching=function (num){
 
                   div.style.backgroundPosition=(num==1?0:100)+"%"+(frame*-100)+"%";
 
-                },50);
+                },40);
 
         });
 

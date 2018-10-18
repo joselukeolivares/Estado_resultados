@@ -377,6 +377,17 @@ function indicators() {
               this.parent.children[11].visible = false;
               this.parent.children[10].visible = false;
               icBack.visible = true;
+              var continue_button=new PIXI.Sprite(PIXI.loader.resources["assets/ui/Bloque_3/b-continue.png"].texture);
+
+                  continue_button.x=app.screen.width*.85;
+                  continue_button.y=app.screen.height*.9;
+                  continue_button.buttonMode=true;
+                  continue_button.interactive=true;
+                  continue_button.scale.set(.6);
+                  continue_button.on("pointerdown",function(){
+                        toSlide('segmentacion');
+                  });
+                  self.app.stage.addChild(continue_button);
             });
             circle2.on("mouseover", function () {
               circle2.clear();
@@ -402,12 +413,12 @@ function indicators() {
           let retry;
           if (i != 2) {
             retry = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-retry.png")].texture);
-            retry.x = app.screen.width / 1.05;
+            retry.x = app.screen.width *.9;
             retry.y = app.screen.height / 1.3;
           } else {
             retry = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next.png")].texture);
             retry.scale.set(scale1);
-            retry.x = app.screen.width / 1.4;
+            retry.x = app.screen.width *.9;
             retry.y = app.screen.height / 1.75;
             retry.on("mouseover", function() {
               retry.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next-selected.png")].texture);
@@ -420,7 +431,7 @@ function indicators() {
 
           retry = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next.png")].texture);
           retry.scale.set(scale1);
-          retry.x = app.screen.width / 1.4;
+          retry.x = app.screen.width *.9;
           retry.y = app.screen.height / 1.75;
           retry.on("mouseover", function() {
             retry.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/ic-next-selected.png")].texture);

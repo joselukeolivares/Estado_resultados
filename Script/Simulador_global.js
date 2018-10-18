@@ -303,6 +303,118 @@ for(var i = 0 ;i<characters.length;i++){
      addCharacter(i);
 }
 
+
+
+var total_tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png"].texture);
+var total_vta =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"].texture);
+
+
+
+total_tc.x = self.app.screen.width/4;
+total_tc.y =self.app.screen.height/1.1;
+total_tc.scale.set(self.app.screen.width*.45/950);
+
+
+total_vta.x = self.app.screen.width/2;
+total_vta.y =self.app.screen.height/1.1;
+total_vta.scale.set(self.app.screen.width*.45/950);
+
+var total_ptxt=new PIXI.Text("TOTAL",{
+  fontSize: screen.height * 30 / 880,
+  fontFamily: "Roboto-Black",
+  fill: "#FFFFFF",
+  dropShadowColor: "#09102C",
+  dropShadowDistance: 5,
+  dropShadowAngle: Math.PI / 20
+});
+total_ptxt.x=(self.app.screen.width/8);
+total_ptxt.y=(self.app.screen.height/1.1);
+self.app.stage.addChild(total_ptxt);
+
+
+var tc_ptxt=new PIXI.Text("T.C",{
+  fontSize: screen.height * 15 / 880,
+  fontFamily: "Roboto-Black",
+  fill: "#FFFFFF",
+  dropShadowColor: "#09102C",
+  dropShadowDistance: 5,
+  dropShadowAngle: Math.PI / 20
+});
+tc_ptxt.x=(self.app.screen.width/2.5);
+tc_ptxt.y=(self.app.screen.height/1.15);
+self.app.stage.addChild(tc_ptxt);
+
+var venta_ptxt=new PIXI.Text("VENTA",{
+  fontSize: screen.height * 15 / 880,
+  fontFamily: "Roboto-Black",
+  fill: "#FFFFFF",
+  dropShadowColor: "#09102C",
+  dropShadowDistance: 5,
+  dropShadowAngle: Math.PI / 20
+});
+venta_ptxt.x=(self.app.screen.width/1.8);
+venta_ptxt.y=(self.app.screen.height/1.15);
+self.app.stage.addChild(venta_ptxt);
+
+
+var tctotal_test=document.createElement("p");
+tctotal_test.innerHTML="0"+"%";
+tctotal_test.setAttribute("id","tctotal_test")
+tctotal_test.setAttribute("style","position:absolute;top:"+(total_tc.y-16)+"px;left:"+(total_tc.x+total_tc.width/2)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
+tctotal_test.typeObj=1;
+var aplicacion=document.getElementById("aplicacion");
+    aplicacion.appendChild(tctotal_test);
+
+
+    var totalventa_test=document.createElement("p");
+    totalventa_test.innerHTML="0"+"%";
+    totalventa_test.setAttribute("id","tctotal_test")
+    totalventa_test.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width/24)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
+  totalventa_test.typeObj=1;
+    var aplicacion=document.getElementById("aplicacion");
+        aplicacion.appendChild(totalventa_test);
+
+        var tctotalclientes_test=document.createElement("p");
+        tctotalclientes_test.innerHTML="0";
+        tctotalclientes_test.setAttribute("id","tctotalclientes_test")
+        tctotalclientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width/6)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+        tctotalclientes_test.typeObj=1;
+        var aplicacion=document.getElementById("aplicacion");
+            aplicacion.appendChild(tctotalclientes_test);
+
+            var clientes_test=document.createElement("p");
+            clientes_test.innerHTML="Clientes";
+            clientes_test.setAttribute("id","clientes_test")
+            clientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y+16)+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+            clientes_test.typeObj=1;
+            var aplicacion=document.getElementById("aplicacion");
+                aplicacion.appendChild(clientes_test);
+
+                var venta_increment=document.createElement("p");
+                venta_increment.innerHTML="+"+"8"+"%";
+                venta_increment.setAttribute("id","venta_increment");
+                venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
+                venta_increment.typeObj=1;
+                var aplicacion=document.getElementById("aplicacion");
+                    aplicacion.appendChild(venta_increment);
+
+        venta_increment = document.getElementById("venta_increment").innerHTML;
+
+    console.log(venta_increment);
+
+          if(venta_increment>0){
+               debugger;
+              //self.venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
+
+
+
+          }
+
+self.app.stage.addChild(total_tc);
+self.app.stage.addChild(total_vta);
+
+
+
 var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
 contButton.x = self.app.screen.width-100;
 contButton.y = self.app.screen.height-50;
@@ -709,7 +821,7 @@ self.removeElements=function(){
 }
 
 self.removeText=function(){
-  debugger;
+
 
   var app=document.getElementById("aplicacion");
   while(app.firstChild){
