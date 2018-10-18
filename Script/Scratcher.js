@@ -29,7 +29,7 @@ var scratching=function (num){
 
                   div.style.backgroundPosition=(num==1?0:100)+"%"+(frame*-100)+"%";
 
-                },50);
+                },40);
 
         });
 
