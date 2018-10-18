@@ -74,7 +74,17 @@ function loader_pixi(){
           "assets/ui/Bloque_4/clientes/globo2_click.png",
           "assets/ui/Bloque_4/clientes/globo3_click.png",
           "assets/ui/Bloque_4/clientes/globo4_click.png",
-          "assets/ui/Bloque_6/2 FONDO.png"
+          "assets/ui/Bloque_7/2 FONDO.png",
+          "assets/ui/Bloque_7/EQUIPOCREADO FONDO.png",
+          "assets/ui/Bloque_7/EQUIPOCREADO 1.png",
+          "assets/ui/Bloque_7/EQUIPOCREADO 2.png",
+          "assets/ui/Bloque_7/EQUIPOCREADO 3.png",
+          "assets/ui/Bloque_7/EQUIPOCREADO 4.png",
+          "assets/ui/Bloque_7/EQUIPOCREADO 5.png",
+          "assets/ui/Bloque_7/EQUIPOCREADO 6.png",
+          "assets/ui/Bloque_7/EQUIPOCREADO 7.png",
+          "assets/ui/Bloque_7/EQUIPOCREADO 8.png"
+
 
 
 
