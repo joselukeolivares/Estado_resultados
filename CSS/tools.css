@@ -1,18 +1,18 @@
 .circulos{
-  border-radius: 40px;
+  border-radius: 50%;
 background-color: white;
-width: 30px;
-height: 30px;
+width: 2.5%;
+height: 45%;
 align-self: center;
 display: inline-block;
-margin: 30px 10px 10px 10px;
+margin: 1.6% 1% 2% 1%;
 border-color: white;
 }
 
 #container{
   position: fixed;
   bottom: 0%;
-  height: 100px;
+  height: 10%;
   width: 100%;
   background-color: #3B3038;
   text-align: center;

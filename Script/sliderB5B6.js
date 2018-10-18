@@ -12,7 +12,7 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
   var self = this;
   self.value=4.9;
   DivHeight=factorScreen(DivHeight);
-  divWidth=factorScreen(divWidth);
+  //divWidth=factorScreen(divWidth);
 
    debugger;
 

@@ -36,6 +36,12 @@
     display: inline;
 
   }
+
+  #CoppelLogo{
+    margin: .5% 1% 1% 1%;;
+    background-size:100%;
+    width: 20%;
+  }
 }
 
 @media  (max-width: 1100px)  {
@@ -48,12 +54,18 @@
     height: 50px;
     width: 400px;
     background-repeat: no-repeat;
-    margin: 1%;
+    margin: 0.5%;
     position: fixed;
     right: 0%;
     bottom: 01%;
     z-index: 2;
     display: inline;
 
+  }
+
+  #CoppelLogo{
+    margin: 0;
+    background-size:100%;
+    width: 20%;
   }
 }
