@@ -152,7 +152,7 @@ function simulador_global(){
               var totalventa_test=document.createElement("p");
               totalventa_test.innerHTML="0"+"%";
               totalventa_test.setAttribute("id","total-vta-tag");
-              totalventa_test.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width/2.5)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
+              totalventa_test.setAttribute("style","position:absolute;top:"+(total_vta.y - 16)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
               totalventa_test.typeObj=1;
               app.appendChild(totalventa_test);
 
@@ -262,14 +262,14 @@ for(var i = 0 ;i<characters.length;i++){
          var tc_clientes=document.createElement("p");
          tc_clientes.innerHTML="0";
          tc_clientes.setAttribute("id","tc_clientes"+i);
-         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y-(tc.height/4))+"px;left:"+(tc.x+tc.width/5)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y-(tc.height/2.5))+"px;left:"+(tc.x+tc.width/15)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
          tc_clientes.typeObj=1;
              app.appendChild(tc_clientes);
 
              var tc_clientestxt=document.createElement("p");
              tc_clientestxt.innerHTML="Clientes";
              tc_clientestxt.setAttribute("id","tc_clientestxt" + i);
-             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width/15)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
              tc_clientestxt.typeObj=1;
              app.appendChild(tc_clientestxt);
 
@@ -283,7 +283,7 @@ for(var i = 0 ;i<characters.length;i++){
              var vta_test=document.createElement("p");
              vta_test.innerHTML = "$" + "0";
              vta_test.setAttribute("id","vta-tag-" + i);
-             vta_test.setAttribute("style","position:absolute;top:"+(vta.y-16)+"px;left:"+(vta.x+vta.width/8)+"px;font-Family:roboto-regular;font-Size:1.10vw;font-weight:bold;");
+             vta_test.setAttribute("style","position:absolute;top:"+(vta.y - 5)+"px;left:"+(vta.x+vta.width/8)+"px;font-Family:roboto-regular; font-Size: 0.75vw;font-weight:bold;");
              vta_test.typeObj=1;
              app.appendChild(vta_test);
 
@@ -294,8 +294,8 @@ for(var i = 0 ;i<characters.length;i++){
                  vta_porcent.typeObj=1;
                  app.appendChild(vta_porcent);
 
-    addCharacter(i);
     SliderB5B6(app, tc_test, "slider1", "slider_fam", (character.parent.x+character.x+character.width*1.5)/width,(character.y+character.height*.25+character.parent.y)/height,cpa.width,cpa.height,self);
+    addCharacter(i);
 }
 
 
@@ -603,6 +603,7 @@ button
     };
 let ventaTotal = 0;
 let ctesTotal = 0;
+let ventaTotalMMAA = 0;
 function addCharacter(index) {
   let segmentos = [
     "Nunca015",
@@ -630,16 +631,24 @@ function addCharacter(index) {
   self.characters.push(char);
 
   ventaTotal += self.characters[index].sale();
+  ventaTotalMMAA += self.characters[index].vtaMMAA;
   ctesTotal += self.characters[index].countCtes;
 
   document.getElementById("tc_clientes" + index).innerHTML = numberWithCommas(self.characters[index].countCtes);
   document.getElementById("cpa-tag-" + index).innerHTML = "$" + numberWithCommas(self.characters[index].cpa);
   document.getElementById("vta-tag-" + index).innerHTML = "$"+ numberWithCommas(Math.round(self.characters[index].sale()));
   document.getElementById("tc-tag-" + index).innerHTML = self.characters[index].tc + "%";
+  document.getElementById("tctotal_test").innerHTML = toDate["TC \nTotal"] + "%";
   if(index == 8)  {
     document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(ventaTotal));
     document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(ctesTotal);
+    let variacion = ((ventaTotal - ventaTotalMMAA) / ventaTotalMMAA) * 100;
+    document.getElementById("venta_increment").innerHTML = (Math.round(variacion)) + "%";
   }
+
+  var sliders = document.getElementsByClassName("slider");
+  var knob = sliders[index].childNodes[1];
+  knob.style.left = ((sliders[index].getBoundingClientRect().width * self.characters[index].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
 }
 
 self.updateTotal = function () {
@@ -647,7 +656,7 @@ self.updateTotal = function () {
   for(let i = 0; i < self.characters.length; i++) {
     let tc = document.getElementById("tc-tag-" + i);
     let cte=self.characters[i];
-    cte.tc = parseInt(tc.innerHTML);
+    cte.tc = parseFloat(tc.innerHTML);
     tc.innerHTML = cte.tc + "%";
 
     document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
@@ -655,8 +664,7 @@ self.updateTotal = function () {
     vtaTotalMMAA += cte.vtaMMAA;
   }
   document.getElementById("total-vta-tag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
-  let variacion = (vtaTotal - vtaTotalMMAA) / vtaTotalMMAA * 100;
-  console.log(variacion);
+  let variacion = ((vtaTotal - vtaTotalMMAA) / vtaTotalMMAA) * 100;
   let varElm = document.getElementById("venta_increment");
   if(variacion < 0) { varElm.style.color = "red"; } else { varElm.style.color = "green"; }
   varElm.innerHTML = (Math.round(variacion)) + "%";
@@ -670,7 +678,7 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA) {
   this.tc = parseFloat(tc);
   this.position = position;
   this.countCtes = parseInt(numCtes);
-  this.vtaMMAA = vtaMMAA;
+  this.vtaMMAA = parseInt(vtaMMAA);
   this.sale = function() {
     return this.cpa*((this.tc)/100)*this.countCtes;
   };
