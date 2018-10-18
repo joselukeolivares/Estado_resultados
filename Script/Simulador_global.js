@@ -151,7 +151,7 @@ for(var i = 0 ;i<characters.length;i++){
      cpa.name="cpa"+i;
      subContainer2.addChild(cpa);
 
-     vta.scale.set(self.app.screen.width*.45/950);
+     vta.scale.set(self.app.screen.width*.50/950);
      vta.x=venta_TXT.x+venta_TXT.width*1.1;
      vta.y=venta_TXT.y;
      vta.name="vta"+i;
@@ -194,9 +194,9 @@ for(var i = 0 ;i<characters.length;i++){
              aplicacion.appendChild(cpa_test);
 
              var vta_test=document.createElement("p");
-             vta_test.innerHTML="$"+"9,999,00";
+             vta_test.innerHTML="$"+"9,999,000,000,00";
              vta_test.setAttribute("id","cpa_test2"+i)
-             vta_test.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width/8)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
+             vta_test.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width/24)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
              vta_test.typeObj=1;
              var aplicacion=document.getElementById("aplicacion");
                  aplicacion.appendChild(vta_test);
@@ -211,8 +211,7 @@ for(var i = 0 ;i<characters.length;i++){
 
 
 
-     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1"+i,"slider_fam",(character.parent.x+character.x+character.width*1.8)/width,(character.y+character.height*.35+character.parent.y)/height,cpa.width,cpa.height,self);
-
+     SliderB5B6(document.getElementById("aplicacion"),document.createElement('p'),"slider1"+i,"slider_fam",(tc.x)/width,(character.y+character.height*.35+character.parent.y)/height,tc.width,cpa.height,self);
 }
 
 
@@ -548,7 +547,7 @@ contButton
 
 function click (){
 
-toSlide("#");
+toSlide("conclusiones");
 
 }
 
