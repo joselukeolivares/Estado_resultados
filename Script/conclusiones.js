@@ -190,7 +190,7 @@ self.createApp = function(){
                   var text4 = document.createElement("div");
                   text4.innerHTML="Licencia: Texture Package (Crear sprites y atlas de imágenes)";
                   text4.setAttribute("style","position:absolute;left: 50%;top: 74%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);background:#ffffff;color : #ffffff;color:#000000;font-Family:Roboto-bold;font-Size:.80vw;");
-                  text4.setAttribute("id","text3");
+                  text4.setAttribute("id","text4");
                   text4.typeObj=1;
                   var aplicacion=document.getElementById("aplicacion");
                   aplicacion.appendChild(text4);
@@ -230,15 +230,62 @@ self.createApp = function(){
                   var text9 = document.createElement("div");
                   text9.innerHTML="licencia: GreenSock (manipulacion eficiente de elementos HTML) ";
                   text9.setAttribute("style","position:absolute;left: 50%;top: 89%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);background:#ffffff;color : #ffffff;color:#000000;font-Family:Roboto-bold;font-Size:.80vw;");
-                  text9.setAttribute("id","text8");
+                  text9.setAttribute("id","text9");
                   text9.typeObj=1;
                   var aplicacion=document.getElementById("aplicacion");
                   aplicacion.appendChild(text9);
+
+                  var text10 = document.createElement("div");
+                  text10.innerHTML="DESARROLLO PÁGINAS WEB";
+                  text10.setAttribute("style","position:absolute;left: 50%;top: 92%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);background:#ffffff;color : #ffffff;color:#483d8b;font-Family:Roboto-bold;font-Size:1vw;");
+                  text10.setAttribute("id","text10");
+                  text10.typeObj=1;
+                  var aplicacion=document.getElementById("aplicacion");
+                  aplicacion.appendChild(text10);
+
+                  var text11 = document.createElement("div");
+                  text11.innerHTML="Libre: HTML5 y JavaScript (Web), CSS (Hojas de estilo),JQuery. ";
+                  text11.setAttribute("style","position:absolute;left: 50%;top: 95%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);background:#ffffff;color : #ffffff;color:#000000;font-Family:Roboto-bold;font-Size:.80vw;");
+                  text11.setAttribute("id","text11");
+                  text11.typeObj=1;
+                  var aplicacion=document.getElementById("aplicacion");
+                  aplicacion.appendChild(text11);
 
 
        }
       return self;
      }
+
+     self.updateTotal=function(){
+
+     };
+
+
+     self.destroyApp=function(){
+
+
+       if(self.app == null) return self;
+
+       self.app.destroy(true);
+       self.removeText();
+
+       return self;
+     }
+
+     self.removeElements=function(){
+       return self;
+     }
+
+     self.removeText=function(){
+
+
+       var app=document.getElementById("aplicacion");
+       while(app.firstChild){
+         app.removeChild(app.firstChild);
+       }
+     }
+
+
 
 return self;
 }

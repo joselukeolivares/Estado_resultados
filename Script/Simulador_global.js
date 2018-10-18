@@ -279,7 +279,7 @@ var aplicacion=document.getElementById("aplicacion");
     var totalventa_test=document.createElement("p");
     totalventa_test.innerHTML="0"+"%";
     totalventa_test.setAttribute("id","tctotal_test")
-    totalventa_test.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width/2.5)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
+    totalventa_test.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width/24)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
   totalventa_test.typeObj=1;
     var aplicacion=document.getElementById("aplicacion");
         aplicacion.appendChild(totalventa_test);
@@ -649,7 +649,7 @@ self.removeElements=function(){
 }
 
 self.removeText=function(){
-  debugger;
+
 
   var app=document.getElementById("aplicacion");
   while(app.firstChild){
