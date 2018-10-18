@@ -18,6 +18,17 @@ var self={};
       fill:"#d82215"
     }
 
+    var segmentos=[
+  "Nunca015",
+  "Nunca+15",
+  "Activos SinVdo",
+  "Vencidos1",
+  "Saldado015",
+  "Saldado+15",
+  "ClientesZ",
+  "Quebrantados",
+  "Generados"
+  ]
 
 
   self.createApp=function(){
@@ -788,16 +799,40 @@ for(var i=0;i<ctes.length;i++){
     var app=self.app.stage;
     var descript_txt=app.getChildByName("descript_txt");
     var respuesta=document.createElement('p');
-        respuesta.innerHTML="Respuesta correcta!"
+        respuesta.innerHTML="Responde a la pregunta superior presionando los botones!";
         respuesta.setAttribute("id","respuesta_p")
         respuesta.setAttribute("class","sin_margen")
-        respuesta.setAttribute("style","font-size:"+factorScreen(30)+"px;position:absolute;top:70%;left:30%;");
+        respuesta.setAttribute("style","font-size:"+factorScreen(30)+"px;position:absolute;top:70%;left:20%;");
         respuesta.style.color="rgb(231,200,47)"
         document.getElementById("aplicacion").appendChild(respuesta);
+
+
+     var tcAll=[];
+
+     var toDate=(dataCSV[dataCSV.length-1]);
+     for(var i=0;i<segmentos.length;i++){
+       var obj={tc:parseFloat(toDate["TC \n"+segmentos[i]]),index:i,segmento:segmentos[i]};
+       tcAll.push(obj);
+     }
+
+     tcAll.sort(function(a,b){
+          if (a.tc > b.tc) {
+            return 1;
+          }
+          if (a.tc < b.tc) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+     });
+     console.log(tcAll);
+
+var mayores=tcAll[tcAll.length-1].segmento+","+tcAll[tcAll.length-2].segmento+","+tcAll[tcAll.length-3].segmento;
+var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
     var bateria=[
-      {pregunta:"¿Pregunta número 1?",respuesta1:"Respuesta a pregunta número 2 es el boton 2.",respuesta2:"Respuesta alterna o incorrecta a pregunta número 1 .",botonOk:1},
-      {pregunta:"Pregunta número 2?",respuesta1:"Respuesta a pregunta número 2 es el boton 4.",respuesta2:"Respuesta alterna o incorrecta a pregunta número 2.",botonOk:3},
-      {pregunta:"Pregunta número 3?",respuesta1:"Respuesta a pregunta número 2 es el boton 7.",respuesta2:"Respuesta alterna o incorrecta a pregunta número 3.",botonOk:6}
+      {pregunta:"¿Cuáles son los 3 Perfiles de Clientes  con mayor Tasa de Compra?",respuesta1:"Correcto: "+mayores,respuesta2:"Incorecto: la respuesta correcta es "+mayores,botonOk:[tcAll[tcAll.length-1].index,tcAll[tcAll.length-2].index,tcAll[tcAll.length-3].index]},
+      {pregunta:"¿Cuáles son los 3 Perfiles de Clientes con menor Tasa de Compra? ",respuesta1:"Correcto: "+menores,respuesta2:"Incorecto: la respuesta correcta es "+menores,botonOk:[tcAll[0].index,tcAll[1].index,tcAll[2].index]}
+
     ],index=0;
 
 
@@ -807,6 +842,8 @@ for(var i=0;i<ctes.length;i++){
         button_continue.removeAllListeners();
         button_continue.on('pointerdown',function(){
           index++;
+          descript_txt.text=bateria[index].pregunta;
+          respuesta.innerHTML="Responde a la pregunta superior presionando los botones!";
           for(var i=0;i<9;i++){
 
             var buttonOK=container_buttons.getChildByName("buttonOK"+i).visible=true;
@@ -815,15 +852,16 @@ for(var i=0;i<ctes.length;i++){
             var buttonOK=container_buttons.getChildByName("button_tacha"+i).visible=false;
             this.visible=false;
             app.getChildByName("continue_button_pressed").visible=true;
-            descript_txt.text=bateria[index].pregunta;
+
           }
         })
-    var continue_pressed=app.getChildByName("continue_button_pressed");
+        var continue_pressed=app.getChildByName("continue_button_pressed");
         continue_pressed.visible=true;
 
 
     descript_txt.text=bateria[index].pregunta;
     TweenMax.to(container_buttons,1,{pixi:{y:height*.2},onComplete:function(){
+      var aciertos=0;
         for(var j=0;j<9;j++){
           var buttonOK=container_buttons.getChildByName("buttonOK"+j);
           buttonOK.visible=true;
@@ -834,7 +872,7 @@ for(var i=0;i<ctes.length;i++){
           buttonOK.on('pointerdown',function(){
             this.visible=false;
             container_buttons.getChildByName("button_pressed"+this.numero).visible=true;
-            if(bateria[index].botonOk==this.numero){
+            if(bateria[index].botonOk[0]==this.numero||bateria[index].botonOk[1]==this.numero||bateria[index].botonOk[2]==this.numero){
               container_buttons.getChildByName("button_palomita"+this.numero).visible=true;
               document.getElementById("respuesta_p").innerHTML=bateria[index].respuesta1;
 
@@ -847,10 +885,11 @@ for(var i=0;i<ctes.length;i++){
                    toSlide('simulador_global');});
 
                }
-
-
+               aciertos++;
+               if(aciertos==3){
+                 aciertos=0;
                  app.getChildByName("continue_button").visible=true;
-                 app.getChildByName("continue_button_pressed").visible=false;
+                 app.getChildByName("continue_button_pressed").visible=false;}
 
             }else{
               document.getElementById("respuesta_p").innerHTML=bateria[index].respuesta2;
