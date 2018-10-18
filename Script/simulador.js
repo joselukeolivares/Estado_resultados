@@ -572,7 +572,7 @@ for(var i=0;i<ctes.length;i++){
         mmAA["Venta \n"+segmentos[index]]
 
       );
-
+      debugger;
       var flag=false;//Bandera para indicar que aunque será agregado un segundo personaje,
                     // debe agregarse como personaje a la ziquierda y el primero en el arreglo self.characters
 
