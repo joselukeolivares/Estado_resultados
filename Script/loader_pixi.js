@@ -126,7 +126,6 @@ function loader_pixi(){
         function charged(){
            actual_app=start().createApp();
         }
-      debugger;
 
 
 }
