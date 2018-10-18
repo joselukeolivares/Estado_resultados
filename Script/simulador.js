@@ -18,6 +18,17 @@ var self={};
       fill:"#d82215"
     }
 
+    var segmentos=[
+  "Nunca015",
+  "Nunca+15",
+  "Activos SinVdo",
+  "Vencidos1",
+  "Saldado015",
+  "Saldado+15",
+  "ClientesZ",
+  "Quebrantados",
+  "Generados"
+  ]
 
   self.createApp=function(){
     var aplicacion=document.getElementById("aplicacion");
