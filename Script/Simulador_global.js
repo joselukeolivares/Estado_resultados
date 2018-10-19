@@ -75,7 +75,7 @@ function simulador_global() {
      var total_vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"].texture);
      total_vta.x = self.app.screen.width / 2;
      total_vta.y = self.app.screen.height / 1.1;
-     total_vta.scale.set(self.app.screen.width * .45 / 950);
+     total_vta.scale.set(factorScreen(.8),self.app.screen.width * .45 / 950);
 
      var total_ptxt=new PIXI.Text("TOTAL", {
        fontSize: screen.height * 30 / 880,
@@ -127,14 +127,14 @@ function simulador_global() {
 
      var tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
-     tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width/6)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+     tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
 
      var ctesElm=document.createElement("p");
      ctesElm.innerHTML="Clientes";
      ctesElm.setAttribute("id", "ctesElm");
-     ctesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y+16)+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+     ctesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y+16)+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
      ctesElm.typeObj=1;
      app.appendChild(ctesElm);
 
@@ -514,7 +514,7 @@ var clear_2 =PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 2.png");
 
 var button = new PIXI.Sprite(regresar);
 
-button.x = self.app.screen.width/1.4;
+button.x = self.app.screen.width*.75;
 button.y = self.app.screen.height/1.1;
 button.scale.set(self.app.screen.width*.35/950);
 button.interactive = true;
@@ -523,7 +523,7 @@ self.app.stage.addChild(button);
 
 var button_2 = new PIXI.Sprite(clear);
 
-button_2.x = self.app.screen.width/1.3;
+button_2.x = self.app.screen.width*.8;
 button_2.y = self.app.screen.height/1.1;
 button_2.scale.set(self.app.screen.width*.35/950);
 button_2.interactive = true;
@@ -638,13 +638,14 @@ function addCharacter(index) {
 }
 
 self.updateTotal = function () {
-  let vtaTotal = 0, vtaTotalMMAA = 0;
+  let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0;
   for(let i = 0; i < self.characters.length; i++) {
     let tc = document.getElementById("tc-tag-" + i);
     let cte=self.characters[i];
     cte.tc = parseFloat(tc.innerHTML);
     tc.innerHTML = cte.tc + "%";
-
+    ctsTotal+=cte.countCtes;
+    ctsXtc+=cte.tc*cte.countCtes;
     var variacion_cte=(parseInt(cte.sale())-parseInt(cte.vtaMMAA))/parseInt(cte.vtaMMAA)*100;
     var var_Seg=document.getElementById("vta_porcent" + i);
         var_Seg.innerHTML=Math.round(variacion_cte)+"%";
@@ -661,6 +662,11 @@ self.updateTotal = function () {
   let varElm = document.getElementById("var-global");
   if(variacion < 0) { varElm.style.color = "red"; } else { varElm.style.color = "green"; }
   varElm.innerHTML = (Math.round(variacion)) + "%";
+  var varTotal=document.getElementById("tc-total-tag")
+      varTotal.innerHTML=Math.round(ctsXtc/ctsTotal)+"%";
+      varTotal.style.color="green";
+      if(varTotal<0)
+      varTotal.style.color="red";
 
   return self;
 };
