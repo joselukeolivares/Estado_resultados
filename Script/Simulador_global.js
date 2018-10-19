@@ -1,6 +1,6 @@
 function simulador_global() {
-  let self = {};
-  let app = document.getElementById("aplicacion");
+  var self = {};
+  var app = document.getElementById("aplicacion");
   self.characters = [];
   self.stepBack=[];
   self.historyFlag=true;
@@ -362,7 +362,6 @@ globo_4
 
 function click_1(){
 
-console.log("click");
 
 
 globo1_click.x=25;
@@ -404,7 +403,6 @@ function click_2(){
    container_globos.removeChild(globo3_click);
     container_globos.removeChild(globo4_click);
 
-console.log("click");
 
 
 
@@ -425,7 +423,6 @@ function mouseover_2(){
 
 function click_3(){
 
-console.log("click");
 
 globo3_click.x=75;
 globo3_click.scale.set(self.app.screen.width*.45/950);
@@ -455,7 +452,6 @@ function mouseover_3(){
 
 function click_4(){
 
-console.log("click");
 globo4_click.x=100;
 globo4_click.scale.set(self.app.screen.width*.45/950);
 globo4_click.interactive = true;
@@ -512,10 +508,7 @@ toSlide("conclusiones");
 }
 
 var regresar = PIXI.Texture.fromImage("assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png");
-var clear = PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 1.png");
 var regresar_2 =PIXI.Texture.fromImage("assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png");
-var clear_2 =PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 2.png");
-
 var button = new PIXI.Sprite(regresar);
 
 button.x = self.app.screen.width*.75;
@@ -524,15 +517,6 @@ button.scale.set(self.app.screen.width*.35/950);
 button.interactive = true;
 button.buttonMode = true;
 self.app.stage.addChild(button);
-
-var button_2 = new PIXI.Sprite(clear);
-
-button_2.x = self.app.screen.width*.8;
-button_2.y = self.app.screen.height/1.1;
-button_2.scale.set(self.app.screen.width*.35/950);
-button_2.interactive = true;
-button_2.buttonMode = true;
-self.app.stage.addChild(button_2);
 
 
 button
@@ -574,37 +558,69 @@ button
 
  }
 
- button_2
- .on("mouseover",mouseover_clear)
- .on("mouseout",borrar_clear);
+ var clear = PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 1.png");
+ var clearSelected = PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 2.png");
+ var clearButton = new PIXI.Sprite(clear);
 
+ console.log(width);
 
- function mouseover_clear(){
+ clearButton.x = self.app.screen.width / 1.3;
+ clearButton.y = self.app.screen.height/1.1;
+ clearButton.scale.set(self.app.screen.width*.35/950);
+ clearButton.interactive = true;
+ clearButton.buttonMode = true;
+ self.app.stage.addChild(clearButton);
 
+ clearButton
+   .on("mouseover",onMouseOverClear)
+   .on("mouseout", onMouseOutClear)
+   .on("click", onClickClear);
+
+ function onMouseOverClear() {
    this.Over = true;
-    if(this.isdown){
-    return;
-    }
-    this.texture = clear_2;
-
-
+   if(this.isdown){
+     return;
+   }
+   this.texture = clearSelected;
  }
 
- function borrar_clear(){
+ function  onMouseOutClear() {
    this.Over = false;
    if(this.isdown){
-   return;
+     return;
    }
    this.texture = clear;
-
  }
+
+ function onClickClear() {
+   console.log(defaultVals);
+   for(let i = 0; i < defaultVals.length; i++) {
+     document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(defaultVals[i].nCtes);
+     document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(defaultVals[i].cpa);
+     document.getElementById("vta-tag-" + i).innerHTML = "$"+ numberWithCommas(Math.round(defaultVals[i].sale()));
+     document.getElementById("tc-tag-" + i).innerHTML = defaultVals[i].tc + "%";
+     if(i == 8)  {
+       document.getElementById("tc-total-tag").innerHTML = defaultVals[i].tcTotal + "%";
+       document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(defaultVals[i].vtaTotal));
+       document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal);
+       document.getElementById("var-global").innerHTML = (Math.round(defaultVals[i].variacionGlob)) + "%";
+     }
+
+     var sliders = document.getElementsByClassName("slider");
+     var knob = sliders[i].childNodes[1];
+     knob.style.left = ((sliders[i].getBoundingClientRect().width * defaultVals[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+   }
+ }
+
+
+
 
  return self;
     }
 
-    let ventaTotal = 0;
-let ctesTotal = 0;
+let ventaTotal = 0;
 let ventaTotalMMAA = 0;
+let defaultVals = [];
 
 function addCharacter(index) {
   let segmentos = [
@@ -629,14 +645,10 @@ function addCharacter(index) {
     toDate["Numero de clientes \n" + segmentos[index]],
     mmaa["Venta \n" + segmentos[index]]
   );
-
-  console.log(dataCSV[dataCSV.length - 1]);
-
   self.characters.push(char);
 
   ventaTotal += self.characters[index].sale();
   ventaTotalMMAA += self.characters[index].vtaMMAA;
-  ctesTotal += self.characters[index].countCtes;
 
   document.getElementById("tc_clientes" + index).innerHTML = numberWithCommas(self.characters[index].countCtes);
   document.getElementById("cpa-tag-" + index).innerHTML = "$" + numberWithCommas(self.characters[index].cpa);
@@ -645,15 +657,30 @@ function addCharacter(index) {
   document.getElementById("tc-total-tag").innerHTML = toDate["TC \nTotal"] + "%";
   if(index == 8)  {
     document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(ventaTotal));
-    document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(ctesTotal);
-    let variacion = ((ventaTotal - ventaTotalMMAA) / ventaTotalMMAA) * 100;
-    document.getElementById("var-global").innerHTML = (Math.round(variacion)) + "%";
+    document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(toDate["Total de \nClientes"]);
+    var variacionGlob = ((ventaTotal - ventaTotalMMAA) / ventaTotalMMAA) * 100;
+    document.getElementById("var-global").innerHTML = (Math.round(variacionGlob)) + "%";
   }
 
   var sliders = document.getElementsByClassName("slider");
   var knob = sliders[index].childNodes[1];
   knob.style.left = ((sliders[index].getBoundingClientRect().width * self.characters[index].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
 
+  let defaultChar = new function() {
+    this.index = index;
+    this.tc = toDate["TC \n" + segmentos[index]];
+    this.cpa = toDate["CPA \n" + segmentos[index]];
+    this.nCtes = toDate["Numero de clientes \n" + segmentos[index]];
+    this.vtaMMAA = mmaa["Venta \n" + segmentos[index]];
+    this.vtaTotal = ventaTotal;
+    this.variacionGlob = variacionGlob;
+    this.nCtesTotal = toDate["Total de \nClientes"];
+    this.sale = function() {
+      return this.cpa * (this.tc / 100) * this.nCtes;
+    };
+    this.tcTotal = toDate["TC \nTotal"];
+  };
+  defaultVals.push(defaultChar);
 
 }
 
@@ -721,29 +748,23 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA) {
   };
 }
 
-self.destroyApp=function(){
+  self.destroyApp = function() {
+    if(self.app == null) return self;
+    self.app.destroy(true);
+    self.removeText();
 
+    return self;
+  };
 
-  if(self.app == null) return self;
+  self.removeElements = function() {
+    return self;
+  };
 
-  self.app.destroy(true);
-  self.removeText();
+  self.removeText = function() {
+    while(app.firstChild) {
+      app.removeChild(app.firstChild);
+    }
+  };
 
   return self;
-}
-
-self.removeElements=function(){
-  return self;
-}
-
-self.removeText=function(){
-
-
-  var app=document.getElementById("aplicacion");
-  while(app.firstChild){
-    app.removeChild(app.firstChild);
-  }
-}
-
-return self;
 }
