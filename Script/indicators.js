@@ -52,24 +52,18 @@ function indicators() {
     tasaDeCompra.x = app.screen.width / 5;
     tasaDeCompra.y = app.screen.height / 2;
     tasaDeCompra.scale.set(scale1);
-    //tasaDeCompra.interactive = true;
-    //tasaDeCompra.buttonMode = true;
     app.stage.addChild(tasaDeCompra);
 
     compraPromedio.anchor.set(0.5);
     compraPromedio.x = app.screen.width / 2;
     compraPromedio.y = app.screen.height / 2;
     compraPromedio.scale.set(scale1);
-    compraPromedio.interactive = true;
-    compraPromedio.buttonMode = true;
     app.stage.addChild(compraPromedio);
 
     venta.anchor.set(0.5);
     venta.x = app.screen.width / 1.25;
     venta.y = app.screen.height / 2;
     venta.scale.set(scale1);
-    venta.interactive = true;
-    venta.buttonMode = true;
     app.stage.addChild(venta);
 
     let titleStyle = new PIXI.TextStyle({
@@ -518,7 +512,7 @@ function indicators() {
 
         //Tasa de compra boton
         // tasaDeCompra.interactive = true;
-        // tasaDeCompra.cursor = "pointer";
+        // tasaDeCompra.buttonMode = true;
         // tasaDeCompra.on("click", function() {
         //   if(stage[1].visible) {
         //     if(stage[1].children[2].visible) {
@@ -563,6 +557,8 @@ function indicators() {
         // });
 
         //Compra promedio boton
+        compraPromedio.interactive = true;
+        compraPromedio.buttonMode = true;
         compraPromedio.on("click", function() {
           if(stage[0].visible) {
             if(stage[0].children[2].visible) {
@@ -610,6 +606,8 @@ function indicators() {
 
 
         //Venta boton
+        venta.interactive = true;
+        venta.buttonMode = true;
         venta.on("click", function() {
           if(stage[0].visible) {
             if(stage[0].children[2].visible) {
