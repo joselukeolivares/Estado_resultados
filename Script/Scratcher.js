@@ -3,7 +3,7 @@ var div=document.createElement("div");
     div.setAttribute("class","Scratcher_div");
     div.style.width=(screen.width*.995)+"px";
     div.style.display="none";
-    div.style.height="90%";
+    div.style.height=height*.95+"px";
 
 
     document.body.appendChild(div);
