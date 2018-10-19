@@ -564,7 +564,7 @@ button
 
  console.log(width);
 
- clearButton.x = self.app.screen.width / 1.3;
+ clearButton.x = self.app.screen.width*.8;
  clearButton.y = self.app.screen.height/1.1;
  clearButton.scale.set(self.app.screen.width*.35/950);
  clearButton.interactive = true;
