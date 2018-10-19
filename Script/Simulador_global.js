@@ -5,12 +5,12 @@ function simulador_global() {
   self.stepBack=[];
   self.historyFlag=true;
   self.indexHistory=0;
+  let Loader = PIXI.loader;
 
   self.createApp = function () {
     self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
     app.appendChild(self.app.renderer.view);
 
-    var Loader = PIXI.loader;
     var atlasBlock6  = Loader.resources["assets/ui/Bloque_5/spritesheet.json"].textures;
     var characters = ["9. N-15 500x350.png",
                     "5. ASV 500x350.png",
@@ -152,12 +152,6 @@ function simulador_global() {
 
      for(let i = 0 ; i < characters.length; i++){
 
-  var Loader = PIXI.loader;
-
-  //container_characters.x=self.app.screen.width/8;
-  //container_characters.y=self.app.screen.height/5;
-
-
    var character = new PIXI.Sprite(atlasBlock6[characters[i]]);
    var tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png"].texture);
    var cpa =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
@@ -228,7 +222,6 @@ function simulador_global() {
      var tc_test=document.createElement("p");
      tc_test.setAttribute("id","tc-tag-"+i);
      tc_test.setAttribute("class","sin_margen")
-     console.log(tc.y);
      tc_test.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
      tc_test.typeObj=1;
          app.appendChild(tc_test);
@@ -280,28 +273,24 @@ function simulador_global() {
 
 self.stepBack.push(JSON.stringify(self.characters));
 
-
-
-
-
 var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
-contButton.x = self.app.screen.width-100;
-contButton.y = self.app.screen.height-50;
+contButton.x = self.app.screen.width * .9;
+contButton.y = self.app.screen.height * .93;
 contButton.anchor.set(0.5);
 contButton.scale.set(self.app.screen.width*.45/950);
 contButton.interactive = true;
 contButton.buttonMode = true;
 
 
-var globo_1 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1.png"].texture);
-var globo_2 =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2.png"].texture);
-var globo_3 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3.png"].texture);
-var globo_4 =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
+var unVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1.png"].texture);
+var dosVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2.png"].texture);
+var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3.png"].texture);
+var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
 
-var globo1_click = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1_click.png"].texture);
-var globo2_click =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2_click.png"].texture);
-var globo3_click = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3_click.png"].texture);
-var globo4_click =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4_click.png"].texture);
+var unVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1_click.png"].texture);
+var dosVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2_click.png"].texture);
+var tresVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3_click.png"].texture);
+var cuatroVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4_click.png"].texture);
 
 var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/1 VDO.png"].texture);
 var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/2 VDO.png"].texture);
@@ -321,191 +310,190 @@ container_globos.x=self.app.screen.width/2.6;
 container_globos.y=self.app.screen.height/1.65;
 container_globos.scale.set(self.app.screen.width*.50/950);
 
-globo_1.x=25;
-globo_1.scale.set(self.app.screen.width*.45/950);
-globo_1.interactive = true;
-globo_1.buttonMode = true;
 
-
-
-globo_2.x=50;
-globo_2.scale.set(self.app.screen.width*.45/950);
-globo_2.interactive = true;
-globo_2.buttonMode = true;
-
-globo_3.x=75;
-globo_3.scale.set(self.app.screen.width*.45/950);
-globo_3.interactive = true;
-globo_3.buttonMode = true;
-
-globo_4.x=100;
-globo_4.scale.set(self.app.screen.width*.45/950);
-globo_4.interactive = true;
-globo_4.buttonMode = true;
-
-globo_1
-.on("click",click_1)
-.on("mouseover",mouseover_1)
-.on("mouseout",MouseOut);
-
-globo_2
-.on("click",click_2)
-.on("mouseover",mouseover_2)
-.on("mouseout",MouseOut);
-
-globo_3
-.on("click",click_3)
-.on("mouseover",mouseover_3)
-.on("mouseout",MouseOut);
-
-globo_4
-.on("click",click_4)
-.on("mouseover",mouseover_4)
-.on("mouseout",MouseOut);
-
-
-
-
-function click_1(){
-
-
-
-
-globo1_click.x=25;
-globo1_click.scale.set(self.app.screen.width*.45/950);
-globo1_click.interactive = true;
-globo1_click.buttonMode = true;
-container_globos.addChild(globo1_click);
-
-
- container_globos.removeChild(globo2_click);
-  container_globos.removeChild(globo3_click);
-   container_globos.removeChild(globo4_click);
-
-}
-
-function mouseover_1(){
-
-  un_vencido.x = self.app.screen.width/2.3;
-  un_vencido.y = self.app.screen.height/1.5;
-  un_vencido.anchor.set(0.5);
-  un_vencido.scale.set(self.app.screen.width*.15/950);
-  self.app.stage.addChild(un_vencido);
-
-
-
-}
-
-
-function click_2(){
-
-
-  globo2_click.x=50;
-  globo2_click.scale.set(self.app.screen.width*.45/950);
-  globo2_click.interactive = true;
-  globo2_click.buttonMode = true;
-  container_globos.addChild(globo2_click);
-
-  container_globos.removeChild(globo1_click);
-   container_globos.removeChild(globo3_click);
-    container_globos.removeChild(globo4_click);
-
-
-
-
-}
-
-function mouseover_2(){
-
-  dos_vencido.x = self.app.screen.width/2.35;
-  dos_vencido.y = self.app.screen.height/1.5;
-  dos_vencido.anchor.set(0.5);
-  dos_vencido.scale.set(self.app.screen.width*.15/950);
-  self.app.stage.addChild(dos_vencido);
-
-
-
-}
-
-
-function click_3(){
-
-
-globo3_click.x=75;
-globo3_click.scale.set(self.app.screen.width*.45/950);
-globo3_click.interactive = true;
-globo3_click.buttonMode = true;
-container_globos.addChild(globo3_click);
-
-container_globos.removeChild(globo1_click);
- container_globos.removeChild(globo2_click);
-  container_globos.removeChild(globo4_click);
-
-}
-
-function mouseover_3(){
-
-
-  tres_vencido.x = self.app.screen.width/2.4;
-  tres_vencido.y = self.app.screen.height/1.5;
-  tres_vencido.anchor.set(0.5);
-  tres_vencido.scale.set(self.app.screen.width*.15/950);
-  self.app.stage.addChild(tres_vencido);
-
-
-}
-
-
-
-function click_4(){
-
-globo4_click.x=100;
-globo4_click.scale.set(self.app.screen.width*.45/950);
-globo4_click.interactive = true;
-globo4_click.buttonMode = true;
-container_globos.addChild(globo4_click);
-
-container_globos.removeChild(globo1_click);
- container_globos.removeChild(globo2_click);
-  container_globos.removeChild(globo3_click);
-
-
-}
-
-
-function mouseover_4 (){
-
-  cuatro_vencido.x = self.app.screen.width/2.45;
-  cuatro_vencido.y = self.app.screen.height/1.5;
-  cuatro_vencido.anchor.set(0.5);
-  cuatro_vencido.scale.set(self.app.screen.width*.15/950);
- self.app.stage.addChild(cuatro_vencido);
-
-
-}
-
-function MouseOut (){
-
- self.app.stage.removeChild(un_vencido);
-  self.app.stage.removeChild(dos_vencido);
-   self.app.stage.removeChild(tres_vencido);
+unVdoB.x=25;
+unVdoB.scale.set(self.app.screen.width*.45/950);
+unVdoB.interactive = true;
+unVdoB.buttonMode = true;
+unVdoB.visible = false;
+
+unVdoClked.x = 25;
+unVdoClked.scale.set(self.app.screen.width * .45 / 950);
+unVdoClked.interactive = true;
+unVdoClked.buttonMode = true;
+
+dosVdoB.x=50;
+dosVdoB.scale.set(self.app.screen.width*.45/950);
+dosVdoB.interactive = true;
+dosVdoB.buttonMode = true;
+
+tresVdoB.x=75;
+tresVdoB.scale.set(self.app.screen.width*.45/950);
+tresVdoB.interactive = true;
+tresVdoB.buttonMode = true;
+
+cuatroVdoB.x=100;
+cuatroVdoB.scale.set(self.app.screen.width*.45/950);
+cuatroVdoB.interactive = true;
+cuatroVdoB.buttonMode = true;
+
+unVdoB
+.on("click", onClick1)
+.on("mouseover",mouseOver1)
+.on("mouseout",onMouseOut);
+
+dosVdoB
+.on("click", onClick2)
+.on("mouseover",mouseOver2)
+.on("mouseout",onMouseOut);
+
+tresVdoB
+.on("click", onClick3)
+.on("mouseover",mouseOver3)
+.on("mouseout",onMouseOut);
+
+cuatroVdoB
+.on("click", onClick4)
+.on("mouseover",mouseOver4)
+.on("mouseout",onMouseOut);
+
+  function onClick1() {
+    container_globos.addChild(unVdoClked);
+
+    container_globos.removeChild(dosVdoClked);
+    container_globos.removeChild(tresVdoClked);
+    container_globos.removeChild(cuatroVdoClked);
+
+    let dataSet = (dataCSV[dataCSV.length - 1]);
+    console.log(self.characters[4].tc);
+    self.characters[4].tc = dataSet["TC \nVencidos1"];
+    document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
+    self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos1"];
+    document.getElementById("tc_clientes4" ).innerHTML = numberWithCommas(self.characters[4].countCtes);
+    self.characters[4].cpa = dataSet["CPA \nVencidos1"];
+    document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
+
+    self.updateTotal();
+  }
+
+
+  function mouseOver1() {
+    un_vencido.x = self.app.screen.width / 2.3;
+    un_vencido.y = self.app.screen.height / 1.5;
+    un_vencido.anchor.set(0.5);
+    un_vencido.scale.set(self.app.screen.width * .15 / 950);
+    self.app.stage.addChild(un_vencido);
+  }
+
+
+  function onClick2() {
+    unVdoB.visible = true;
+    dosVdoClked.x=50;
+    dosVdoClked.scale.set(self.app.screen.width*.45/950);
+    dosVdoClked.interactive = true;
+    dosVdoClked.buttonMode = true;
+    container_globos.addChild(dosVdoClked);
+
+    container_globos.removeChild(unVdoClked);
+    container_globos.removeChild(tresVdoClked);
+    container_globos.removeChild(cuatroVdoClked);
+
+    let dataSet = (dataCSV[dataCSV.length - 1]);
+    console.log(self.characters[4].tc);
+    self.characters[4].tc = dataSet["TC \nVencidos2"];
+    document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
+    self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos2"];
+    document.getElementById("tc_clientes4" ).innerHTML = numberWithCommas(self.characters[4].countCtes);
+    self.characters[4].cpa = dataSet["CPA \nVencidos2"];
+    document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
+
+    self.updateTotal();
+  }
+
+  function mouseOver2() {
+    dos_vencido.x = self.app.screen.width/2.35;
+    dos_vencido.y = self.app.screen.height/1.5;
+    dos_vencido.anchor.set(0.5);
+    dos_vencido.scale.set(self.app.screen.width*.15/950);
+    self.app.stage.addChild(dos_vencido);
+  }
+
+  function onClick3() {
+    unVdoB.visible = true;
+    tresVdoClked.x=75;
+    tresVdoClked.scale.set(self.app.screen.width*.45/950);
+    tresVdoClked.interactive = true;
+    tresVdoClked.buttonMode = true;
+    container_globos.addChild(tresVdoClked);
+
+    container_globos.removeChild(unVdoClked);
+    container_globos.removeChild(dosVdoClked);
+    container_globos.removeChild(cuatroVdoClked);
+
+    let dataSet = (dataCSV[dataCSV.length - 1]);
+    console.log(self.characters[4].tc);
+    self.characters[4].tc = dataSet["TC \nVencidos3"];
+    document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
+    self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos3"];
+    document.getElementById("tc_clientes4" ).innerHTML = numberWithCommas(self.characters[4].countCtes);
+    self.characters[4].cpa = dataSet["CPA \nVencidos3"];
+    document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
+
+    self.updateTotal();
+  }
+
+  function mouseOver3(){
+    tres_vencido.x = self.app.screen.width/2.4;
+    tres_vencido.y = self.app.screen.height/1.5;
+    tres_vencido.anchor.set(0.5);
+    tres_vencido.scale.set(self.app.screen.width*.15/950);
+    self.app.stage.addChild(tres_vencido);
+  }
+
+  function onClick4() {
+    unVdoB.visible = true;
+    cuatroVdoClked.x=100;
+    cuatroVdoClked.scale.set(self.app.screen.width*.45/950);
+    cuatroVdoClked.interactive = true;
+    cuatroVdoClked.buttonMode = true;
+    container_globos.addChild(cuatroVdoClked);
+
+    container_globos.removeChild(unVdoClked);
+    container_globos.removeChild(dosVdoClked);
+    container_globos.removeChild(tresVdoClked);
+
+    let dataSet = (dataCSV[dataCSV.length - 1]);
+    self.characters[4].tc = dataSet["TC \nVencidos+4"];
+    document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
+    self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos+4"];
+    document.getElementById("tc_clientes4").innerHTML = numberWithCommas(self.characters[4].countCtes);
+    self.characters[4].cpa = dataSet["CPA \nVencidos+4"];
+    document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
+
+    self.updateTotal();
+  }
+
+  function mouseOver4() {
+    cuatro_vencido.x = self.app.screen.width/2.45;
+    cuatro_vencido.y = self.app.screen.height/1.5;
+    cuatro_vencido.anchor.set(0.5);
+    cuatro_vencido.scale.set(self.app.screen.width*.15/950);
+    self.app.stage.addChild(cuatro_vencido);
+  }
+
+  function onMouseOut() {
+    self.app.stage.removeChild(un_vencido);
+    self.app.stage.removeChild(dos_vencido);
+    self.app.stage.removeChild(tres_vencido);
     self.app.stage.removeChild(cuatro_vencido);
-
-}
-
-container_globos.addChild(globo_1);
-
-globo1_click.x=25;
-globo1_click.scale.set(self.app.screen.width*.45/950);
-container_globos.addChild(globo1_click);
-
-container_globos.addChild(globo_2);
-container_globos.addChild(globo_3);
-container_globos.addChild(globo_4);
+  }
 
 
-
-
+  container_globos.addChild(unVdoClked);
+  container_globos.addChild(unVdoB);
+  container_globos.addChild(dosVdoB);
+  container_globos.addChild(tresVdoB);
+  container_globos.addChild(cuatroVdoB);
 
 
 self.app.stage.addChild(contButton);
@@ -534,9 +522,7 @@ self.app.stage.addChild(button);
 button
  .on("mouseover",mouseover_regresar)
  .on("pointerdown",function(){
-   console.log("history");
    self.historyFlag=false;
-   debugger;
    if(self.indexHistory!=0)
    self.indexHistory--;
    self.characters=JSON.parse(self.stepBack[self.indexHistory]);
@@ -574,10 +560,9 @@ button
  var clearSelected = PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 2.png");
  var clearButton = new PIXI.Sprite(clear);
 
- console.log(width);
+ clearButton.x = self.app.screen.width * .8;
+ clearButton.y = self.app.screen.height / 1.1;
 
- clearButton.x = self.app.screen.width*.8;
- clearButton.y = self.app.screen.height/1.1;
  clearButton.scale.set(self.app.screen.width*.35/950);
  clearButton.interactive = true;
  clearButton.buttonMode = true;
@@ -605,7 +590,6 @@ button
  }
 
  function onClickClear() {
-   console.log(defaultVals);
    for(let i = 0; i < defaultVals.length; i++) {
      document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(defaultVals[i].nCtes);
      document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(defaultVals[i].cpa);
@@ -697,7 +681,6 @@ function addCharacter(index) {
 }
 
 self.updateTotal = function () {
-  debugger;
   let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0;
   for(let i = 0; i < self.characters.length; i++) {
     let tc = document.getElementById("tc-tag-" + i);
@@ -733,7 +716,6 @@ self.updateTotal = function () {
       varTotal.style.color="#00CD00";
       if(varTotal<0)
       varTotal.style.color="red";
-debugger;
 if(self.historyFlag&&self.stepBack.length<100){
   self.stepBack.push(JSON.stringify(self.characters));
   self.indexHistory++;
@@ -742,9 +724,6 @@ if(self.historyFlag&&self.stepBack.length<100){
   //self.indexHistory--;
   self.historyFlag=true;
 }
-  console.log(self.characters[0]);
-  console.log(self.stepBack.length);
-
   return self;
 };
 
