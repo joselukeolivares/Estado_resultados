@@ -2,6 +2,9 @@ function simulador_global() {
   let self = {};
   let app = document.getElementById("aplicacion");
   self.characters = [];
+  self.stepBack=[];
+  self.historyFlag=true;
+  self.indexHistory=0;
 
   self.createApp = function () {
     self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
@@ -275,6 +278,7 @@ function simulador_global() {
      addCharacter(i);
 }
 
+self.stepBack.push(JSON.stringify(self.characters));
 
 
 
@@ -533,6 +537,20 @@ self.app.stage.addChild(button_2);
 
 button
  .on("mouseover",mouseover_regresar)
+ .on("pointerdown",function(){
+   console.log("history");
+   self.historyFlag=false;
+   debugger;
+   if(self.indexHistory!=0)
+   self.indexHistory--;
+   self.characters=JSON.parse(self.stepBack[self.indexHistory]);
+   for(var i=0;i<9;i++){
+     self.characters[i].sale = function() {
+         return this.cpa*((this.tc)/100)*this.countCtes;
+       };
+   }
+   self.updateTotal();
+ })
  .on("mouseout",borrar_regresar);
 
 
@@ -635,14 +653,23 @@ function addCharacter(index) {
   var sliders = document.getElementsByClassName("slider");
   var knob = sliders[index].childNodes[1];
   knob.style.left = ((sliders[index].getBoundingClientRect().width * self.characters[index].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+
+
 }
 
 self.updateTotal = function () {
+  debugger;
   let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0;
   for(let i = 0; i < self.characters.length; i++) {
     let tc = document.getElementById("tc-tag-" + i);
     let cte=self.characters[i];
-    cte.tc = parseFloat(tc.innerHTML);
+
+    if(self.historyFlag)
+    {cte.tc = parseFloat(tc.innerHTML);}else{
+      var sliders = document.getElementsByClassName("slider");
+      var knob = sliders[i].childNodes[1];
+      knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+    }
     tc.innerHTML = cte.tc + "%";
     ctsTotal+=cte.countCtes;
     ctsXtc+=cte.tc*cte.countCtes;
@@ -667,6 +694,17 @@ self.updateTotal = function () {
       varTotal.style.color="green";
       if(varTotal<0)
       varTotal.style.color="red";
+debugger;
+if(self.historyFlag&&self.stepBack.length<100){
+  self.stepBack.push(JSON.stringify(self.characters));
+  self.indexHistory++;
+}else {
+  //self.indexHistory=self.stepBack.length-1;
+  //self.indexHistory--;
+  self.historyFlag=true;
+}
+  console.log(self.characters[0]);
+  console.log(self.stepBack.length);
 
   return self;
 };
