@@ -245,7 +245,7 @@ for(var i = 0 ;i<characters.length;i++){
      cpa.name="cpa"+i;
      subContainer2.addChild(cpa);
 
-     vta.scale.set(self.app.screen.width*.50/950);
+     vta.scale.set(factorScreen(1),self.app.screen.width*.50/950);
      vta.x=venta_TXT.x+venta_TXT.width*1.1;
      vta.y=venta_TXT.y;
      vta.name="vta"+i;
@@ -258,41 +258,48 @@ for(var i = 0 ;i<characters.length;i++){
      var tc_test=document.createElement("p");
      tc_test.innerHTML="0"+"%";
      tc_test.setAttribute("id","tc-tag-"+i);
-     tc_test.setAttribute("style","position:absolute;top:"+(tc.y-8)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
+     tc_test.setAttribute("class","sin_margen")
+     console.log(tc.y);
+     tc_test.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
      tc_test.typeObj=1;
          app.appendChild(tc_test);
 
          var tc_clientes=document.createElement("p");
          tc_clientes.innerHTML="0";
+         tc_clientes.setAttribute("class","sin_margen")
          tc_clientes.setAttribute("id","tc_clientes"+i)
-         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y-(tc.height/4))+"px;left:"+(tc.x+tc.width/5)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
          tc_clientes.typeObj=1;
              app.appendChild(tc_clientes);
 
              var tc_clientestxt=document.createElement("p");
              tc_clientestxt.innerHTML="Clientes";
+             tc_clientestxt.setAttribute("class","sin_margen")
              tc_clientestxt.setAttribute("id","tc_clientestxt"+i)
-             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width/10)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
              tc_clientestxt.typeObj=1;
                  app.appendChild(tc_clientestxt);
 
          var cpa_test=document.createElement("p");
          cpa_test.innerHTML="$"+"0";
+         cpa_test.setAttribute("class","sin_margen")
          cpa_test.setAttribute("id","cpa-tag-"+i)
-         cpa_test.setAttribute("style","position:absolute;top:"+(cpa.y-8)+"px;left:"+(cpa.x+cpa.width/2.5)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
+         cpa_test.setAttribute("style","position:absolute;top:"+(cpa.y)+"px;left:"+(cpa.x+cpa.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
          cpa_test.typeObj=1;
              app.appendChild(cpa_test);
 
              var vta_test=document.createElement("p");
              vta_test.innerHTML="$"+"9,999,000,000,00";
              vta_test.setAttribute("id","vta-tag-"+i)
-             vta_test.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width/24)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
+             vta_test.setAttribute("class","sin_margen")
+             vta_test.setAttribute("style","position:absolute;top:"+(vta.y)+"px;left:"+(vta.x)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
              vta_test.typeObj=1;
                  app.appendChild(vta_test);
 
                  var vta_porcent=document.createElement("p");
                  vta_porcent.innerHTML=""+"%";
                  vta_porcent.setAttribute("id","vta_porcent"+i)
+                 vta_porcent.setAttribute("class","sin_margen")
                  vta_porcent.setAttribute("style","position:absolute;top:"+(vta.y-8)+"px;left:"+(vta.x+vta.width+8)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;color:#FFFFFF");
                  vta_porcent.typeObj=1;
                      app.appendChild(vta_porcent);
@@ -360,6 +367,7 @@ self.app.stage.addChild(venta_ptxt);
 var tctotal_test=document.createElement("p");
 tctotal_test.innerHTML="0"+"%";
 tctotal_test.setAttribute("id","tctotal_test")
+tctotal_test.setAttribute("class","sin_margen")
 tctotal_test.setAttribute("style","position:absolute;top:"+(total_tc.y-16)+"px;left:"+(total_tc.x+total_tc.width/2)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
 tctotal_test.typeObj=1;
 var aplicacion=document.getElementById("aplicacion");
@@ -369,6 +377,7 @@ var aplicacion=document.getElementById("aplicacion");
     var totalventa_test=document.createElement("p");
     totalventa_test.innerHTML="0"+"%";
     totalventa_test.setAttribute("id","tctotal_test")
+    totalventa_test.setAttribute("class","sin_margen")
     totalventa_test.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width/24)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
   totalventa_test.typeObj=1;
     var aplicacion=document.getElementById("aplicacion");
@@ -377,6 +386,7 @@ var aplicacion=document.getElementById("aplicacion");
         var tctotalclientes_test=document.createElement("p");
         tctotalclientes_test.innerHTML="0";
         tctotalclientes_test.setAttribute("id","tctotalclientes_test")
+        tctotalclientes_test.setAttribute("class","sin_margen")
         tctotalclientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width/6)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
         tctotalclientes_test.typeObj=1;
         var aplicacion=document.getElementById("aplicacion");
@@ -385,6 +395,7 @@ var aplicacion=document.getElementById("aplicacion");
             var clientes_test=document.createElement("p");
             clientes_test.innerHTML="Clientes";
             clientes_test.setAttribute("id","clientes_test")
+            clientes_test.setAttribute("class","sin_margen")
             clientes_test.setAttribute("style","position:absolute;top:"+(total_tc.y+16)+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
             clientes_test.typeObj=1;
             var aplicacion=document.getElementById("aplicacion");
@@ -393,6 +404,7 @@ var aplicacion=document.getElementById("aplicacion");
                 var venta_increment=document.createElement("p");
                 venta_increment.innerHTML="+"+"8"+"%";
                 venta_increment.setAttribute("id","venta_increment");
+                venta_increment.setAttribute("class","sin_margen")
                 venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
                 venta_increment.typeObj=1;
                 var aplicacion=document.getElementById("aplicacion");
@@ -403,7 +415,8 @@ var aplicacion=document.getElementById("aplicacion");
     console.log(venta_increment);
 
           if(venta_increment>0){
-               debugger;
+
+
               //self.venta_increment.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
 
 
