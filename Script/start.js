@@ -42,7 +42,7 @@ function start() {
     var Loader=PIXI.loader;
     let door1=new PIXI.Sprite(Loader.resources["assets/singleDoor.png"].texture);
     console.log(door1.width);
-    
+
 
     let background= new PIXI.Sprite(PIXI.Texture.fromImage("assets/background_coppel.png"));
     let storeEntrance = new PIXI.Sprite(PIXI.Texture.fromImage("assets/coppel.png"));

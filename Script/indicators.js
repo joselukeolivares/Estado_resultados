@@ -502,7 +502,7 @@ function indicators() {
       app.stage.addChild(stage[i]);
     }
 
-    contButton.on("click", function() {
+    contButton.on("pointertap", function() {
       TweenMax.to(intro, 0.2, {pixi: {alpha: 0}});
       TweenMax.to([tasaDeCompra, compraPromedio, venta], 0.8, {y: (app.screen.height * 62) / 220, onComplete: function () {
         intro.visible = false;

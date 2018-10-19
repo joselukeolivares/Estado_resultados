@@ -321,7 +321,7 @@ app.stage.addChild(text_parrafo_7);
             videoSprite.interactive=true;
 	  				videoSprite.buttonMode=true;
 						videoSprite.name="video_sprite"
-		  			videoSprite.on('click',pause);
+		  			videoSprite.on('pointertap',pause);
 
           videoSprite.texture.baseTexture.source.onended=
 					function(){
