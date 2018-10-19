@@ -143,7 +143,7 @@ function simulador_global() {
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
-     varGlobalElm.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#008000;");
+     varGlobalElm.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#00CD00;");
      varGlobalElm.typeObj=1;
      app.appendChild(varGlobalElm);
 
@@ -237,7 +237,7 @@ function simulador_global() {
          tc_clientes.innerHTML="0";
          tc_clientes.setAttribute("class","sin_margen")
          tc_clientes.setAttribute("id","tc_clientes"+i)
-         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(10)+"px;font-weight:bold;color:#175383;");
          tc_clientes.typeObj=1;
              app.appendChild(tc_clientes);
 
@@ -245,7 +245,7 @@ function simulador_global() {
              tc_clientestxt.innerHTML="Clientes";
              tc_clientestxt.setAttribute("class","sin_margen")
              tc_clientestxt.setAttribute("id","tc_clientestxt"+i)
-             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width/10)+"px;font-Family:roboto-regular;font-Size:.50vw;font-weight:bold;color:#175383;");
+             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(10)+"px;font-weight:bold;color:#175383;");
              tc_clientestxt.typeObj=1;
                  app.appendChild(tc_clientestxt);
 
@@ -314,6 +314,7 @@ var container_globos = new PIXI.Container();
 
 self.app.stage.addChild(container_globos);
 
+
 //container_globos.scale.set(self.app.screen.width*.35/950);
 container_globos.width=100;
 container_globos.x=self.app.screen.width/2.6;
@@ -324,6 +325,8 @@ globo_1.x=25;
 globo_1.scale.set(self.app.screen.width*.45/950);
 globo_1.interactive = true;
 globo_1.buttonMode = true;
+
+
 
 globo_2.x=50;
 globo_2.scale.set(self.app.screen.width*.45/950);
@@ -360,7 +363,11 @@ globo_4
 .on("mouseover",mouseover_4)
 .on("mouseout",MouseOut);
 
+
+
+
 function click_1(){
+
 
 
 
@@ -487,6 +494,11 @@ function MouseOut (){
 }
 
 container_globos.addChild(globo_1);
+
+globo1_click.x=25;
+globo1_click.scale.set(self.app.screen.width*.45/950);
+container_globos.addChild(globo1_click);
+
 container_globos.addChild(globo_2);
 container_globos.addChild(globo_3);
 container_globos.addChild(globo_4);
@@ -703,7 +715,7 @@ self.updateTotal = function () {
     var variacion_cte=(parseInt(cte.sale())-parseInt(cte.vtaMMAA))/parseInt(cte.vtaMMAA)*100;
     var var_Seg=document.getElementById("vta_porcent" + i);
         var_Seg.innerHTML=Math.round(variacion_cte)+"%";
-        var_Seg.style.color="green";
+        var_Seg.style.color="#00CD00";
         if(variacion_cte<0)
           var_Seg.style.color="red";
 
@@ -714,11 +726,11 @@ self.updateTotal = function () {
   document.getElementById("total-vta-tag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
   let variacion = ((vtaTotal - vtaTotalMMAA) / vtaTotalMMAA) * 100;
   let varElm = document.getElementById("var-global");
-  if(variacion < 0) { varElm.style.color = "red"; } else { varElm.style.color = "green"; }
+  if(variacion < 0) { varElm.style.color = "red"; } else { varElm.style.color = "#00CD00"; }
   varElm.innerHTML = (Math.round(variacion)) + "%";
   var varTotal=document.getElementById("tc-total-tag")
       varTotal.innerHTML=Math.round(ctsXtc/ctsTotal)+"%";
-      varTotal.style.color="green";
+      varTotal.style.color="#00CD00";
       if(varTotal<0)
       varTotal.style.color="red";
 debugger;
