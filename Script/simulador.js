@@ -783,7 +783,10 @@ for(var i=0;i<ctes.length;i++){
         var sliders
         var app=document.getElementById("aplicacion");
         while(p.length!=0){
-          app.removeChild(p[0]);
+
+            p[0].parentNode.removeChild(p[0]);
+
+
         }
   }
 
