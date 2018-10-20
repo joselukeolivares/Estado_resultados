@@ -52,24 +52,18 @@ function indicators() {
     tasaDeCompra.x = app.screen.width / 5;
     tasaDeCompra.y = app.screen.height / 2;
     tasaDeCompra.scale.set(scale1);
-    tasaDeCompra.interactive = true;
-    //tasaDeCompra.buttonMode = true;
     app.stage.addChild(tasaDeCompra);
 
     compraPromedio.anchor.set(0.5);
     compraPromedio.x = app.screen.width / 2;
     compraPromedio.y = app.screen.height / 2;
     compraPromedio.scale.set(scale1);
-    compraPromedio.interactive = true;
-    //compraPromedio.buttonMode = true;
     app.stage.addChild(compraPromedio);
 
     venta.anchor.set(0.5);
     venta.x = app.screen.width / 1.25;
     venta.y = app.screen.height / 2;
     venta.scale.set(scale1);
-    venta.interactive = true;
-    //venta.buttonMode = true;
     app.stage.addChild(venta);
 
     let titleStyle = new PIXI.TextStyle({
@@ -517,54 +511,54 @@ function indicators() {
         tasaDeCompra.alpha = 0.5;
 
         //Tasa de compra boton
-        tasaDeCompra.interactive = true;
-        tasaDeCompra.cursor = "pointer";
-        tasaDeCompra.on("click", function() {
-          if(stage[1].visible) {
-            if(stage[1].children[2].visible) {
-              slider1.style.display = "none";
-              stage[1].children[2].visible = false;
-              stage[1].children[2].alpha = 0;
-            } else if (stage[1].children[3].visible) {
-              slider1.style.display = "none";
-              stage[1].children[3].visible = false;
-              stage[1].children[3].alpha = 0;
-            }
-            TweenMax.to(stage[1], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-              stage[1].visible = false;
-              stage[0].visible = true;
-              TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
-              stage[0].children[1].visible = true;
-              stage[0].children[1].alpha = 1;
-            }});
-            tasaDeCompra.alpha = 0.5;
-            compraPromedio.alpha = 1;
-          } else if(stage[2].visible) {
-            if(stage[2].children[2].visible) {
-              //slider2.style.display = "none";
-              stage[2].children[2].visible = false;
-              stage[2].children[2].alpha = 0;
-            } else if(stage[2].children[3].visible) {
-              //slider2.style.display = "none";
-              stage[2].children[3].visible = false;
-              stage[2].children[3].alpha = 0;
-            }
-            TweenMax.to(stage[2], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-              stage[2].visible = false;
-              stage[0].visible = true;
-              TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
-
-              stage[0].children[1].visible = true;
-              stage[0].children[1].alpha = 1;
-            }});
-            tasaDeCompra.alpha = 0.5;
-            venta.alpha = 1;
-          }
-        });
+        // tasaDeCompra.interactive = true;
+        // tasaDeCompra.buttonMode = true;
+        // tasaDeCompra.on("click", function() {
+        //   if(stage[1].visible) {
+        //     if(stage[1].children[2].visible) {
+        //       slider1.style.display = "none";
+        //       stage[1].children[2].visible = false;
+        //       stage[1].children[2].alpha = 0;
+        //     } else if (stage[1].children[3].visible) {
+        //       slider1.style.display = "none";
+        //       stage[1].children[3].visible = false;
+        //       stage[1].children[3].alpha = 0;
+        //     }
+        //     TweenMax.to(stage[1], 0.3, {pixi: {alpha: 0}, onComplete: function() {
+        //       stage[1].visible = false;
+        //       stage[0].visible = true;
+        //       TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
+        //       stage[0].children[1].visible = true;
+        //       stage[0].children[1].alpha = 1;
+        //     }});
+        //     tasaDeCompra.alpha = 0.5;
+        //     compraPromedio.alpha = 1;
+        //   } else if(stage[2].visible) {
+        //     if(stage[2].children[2].visible) {
+        //       //slider2.style.display = "none";
+        //       stage[2].children[2].visible = false;
+        //       stage[2].children[2].alpha = 0;
+        //     } else if(stage[2].children[3].visible) {
+        //       //slider2.style.display = "none";
+        //       stage[2].children[3].visible = false;
+        //       stage[2].children[3].alpha = 0;
+        //     }
+        //     TweenMax.to(stage[2], 0.3, {pixi: {alpha: 0}, onComplete: function() {
+        //       stage[2].visible = false;
+        //       stage[0].visible = true;
+        //       TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
+        //
+        //       stage[0].children[1].visible = true;
+        //       stage[0].children[1].alpha = 1;
+        //     }});
+        //     tasaDeCompra.alpha = 0.5;
+        //     venta.alpha = 1;
+        //   }
+        // });
 
         //Compra promedio boton
         compraPromedio.interactive = true;
-        compraPromedio.cursor = "pointer";
+        compraPromedio.buttonMode = true;
         compraPromedio.on("click", function() {
           if(stage[0].visible) {
             if(stage[0].children[2].visible) {
@@ -613,7 +607,7 @@ function indicators() {
 
         //Venta boton
         venta.interactive = true;
-        venta.cursor = "pointer";
+        venta.buttonMode = true;
         venta.on("click", function() {
           if(stage[0].visible) {
             if(stage[0].children[2].visible) {
@@ -656,6 +650,8 @@ function indicators() {
             venta.alpha = 0.5;
             compraPromedio.alpha = 1;
           }
+          compraPromedio.interactive = false;
+          compraPromedio.buttonMode = false;
         });
 
       }});
