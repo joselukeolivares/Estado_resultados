@@ -168,7 +168,7 @@ function simulador_global() {
              subContainer.width=200;
           //   subContainer.height=200;
 
-     character.scale.set(self.app.screen.width*.15/950)
+     character.scale.set(self.app.screen.width*.15/950);
       if(i==0)
      character.scale.set(self.app.screen.width*.145/950);
      character.x = (i % 3) * self.app.screen.width/3.5+width/10;
@@ -221,46 +221,46 @@ function simulador_global() {
 
      var tc_test=document.createElement("p");
      tc_test.setAttribute("id","tc-tag-"+i);
-     tc_test.setAttribute("class","sin_margen")
+     tc_test.setAttribute("class","sin_margen");
      tc_test.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
      tc_test.typeObj=1;
          app.appendChild(tc_test);
 
          var tc_clientes=document.createElement("p");
          tc_clientes.innerHTML="0";
-         tc_clientes.setAttribute("class","sin_margen")
-         tc_clientes.setAttribute("id","tc_clientes"+i)
+         tc_clientes.setAttribute("class","sin_margen");
+         tc_clientes.setAttribute("id","tc_clientes"+i);
          tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(10)+"px;font-weight:bold;color:#175383;");
          tc_clientes.typeObj=1;
              app.appendChild(tc_clientes);
 
              var tc_clientestxt=document.createElement("p");
              tc_clientestxt.innerHTML="Clientes";
-             tc_clientestxt.setAttribute("class","sin_margen")
-             tc_clientestxt.setAttribute("id","tc_clientestxt"+i)
+             tc_clientestxt.setAttribute("class","sin_margen");
+             tc_clientestxt.setAttribute("id","tc_clientestxt"+i);
              tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(10)+"px;font-weight:bold;color:#175383;");
              tc_clientestxt.typeObj=1;
                  app.appendChild(tc_clientestxt);
 
          var cpa_test=document.createElement("p");
          cpa_test.innerHTML="$"+"0";
-         cpa_test.setAttribute("class","sin_margen")
-         cpa_test.setAttribute("id","cpa-tag-"+i)
+         cpa_test.setAttribute("class","sin_margen");
+         cpa_test.setAttribute("id","cpa-tag-"+i);
          cpa_test.setAttribute("style","position:absolute;top:"+(cpa.y)+"px;left:"+(cpa.x+cpa.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
          cpa_test.typeObj=1;
              app.appendChild(cpa_test);
 
              var vta_test=document.createElement("p");
-             vta_test.setAttribute("id","vta-tag-"+i)
-             vta_test.setAttribute("class","sin_margen")
+             vta_test.setAttribute("id","vta-tag-"+i);
+             vta_test.setAttribute("class","sin_margen");
              vta_test.setAttribute("style","position:absolute;top:"+(vta.y)+"px;left:"+(vta.x)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
              vta_test.typeObj=1;
                  app.appendChild(vta_test);
 
                  var vta_porcent=document.createElement("p");
                  vta_porcent.innerHTML=""+"%";
-                 vta_porcent.setAttribute("id","vta_porcent"+i)
-                 vta_porcent.setAttribute("class","sin_margen")
+                 vta_porcent.setAttribute("id","vta_porcent"+i);
+                 vta_porcent.setAttribute("class","sin_margen");
                  vta_porcent.setAttribute("style","position:absolute;top:"+(vta.y+vta.height/2)+"px;left:"+(vta.x+vta.width+8)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;color:#FFFFFF");
                  vta_porcent.typeObj=1;
                      app.appendChild(vta_porcent);
@@ -365,7 +365,6 @@ cuatroVdoB
     container_globos.removeChild(cuatroVdoClked);
 
     let dataSet = (dataCSV[dataCSV.length - 1]);
-    console.log(self.characters[4].tc);
     self.characters[4].tc = dataSet["TC \nVencidos1"];
     document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
     self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos1"];
@@ -399,7 +398,6 @@ cuatroVdoB
     container_globos.removeChild(cuatroVdoClked);
 
     let dataSet = (dataCSV[dataCSV.length - 1]);
-    console.log(self.characters[4].tc);
     self.characters[4].tc = dataSet["TC \nVencidos2"];
     document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
     self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos2"];
@@ -431,7 +429,6 @@ cuatroVdoB
     container_globos.removeChild(cuatroVdoClked);
 
     let dataSet = (dataCSV[dataCSV.length - 1]);
-    console.log(self.characters[4].tc);
     self.characters[4].tc = dataSet["TC \nVencidos3"];
     document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
     self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos3"];
@@ -525,8 +522,8 @@ button
    self.historyFlag=false;
    if(self.indexHistory!=0)
    self.indexHistory--;
-   self.characters=JSON.parse(self.stepBack[self.indexHistory]);
-   for(var i=0;i<9;i++){
+   self.characters = JSON.parse(self.stepBack[self.indexHistory]);
+   for(var i = 0; i < 9; i++) {
      self.characters[i].sale = function() {
          return this.cpa*((this.tc)/100)*this.countCtes;
        };
@@ -590,6 +587,12 @@ button
  }
 
  function onClickClear() {
+   container_globos.addChild(unVdoClked);
+
+   container_globos.removeChild(dosVdoClked);
+   container_globos.removeChild(tresVdoClked);
+   container_globos.removeChild(cuatroVdoClked);
+
    for(let i = 0; i < defaultVals.length; i++) {
      document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(defaultVals[i].nCtes);
      document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(defaultVals[i].cpa);
@@ -612,7 +615,7 @@ button
 
 
  return self;
-    }
+    };
 
 let ventaTotal = 0;
 let ventaTotalMMAA = 0;
@@ -662,20 +665,21 @@ function addCharacter(index) {
   var knob = sliders[index].childNodes[1];
   knob.style.left = ((sliders[index].getBoundingClientRect().width * self.characters[index].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
 
-  let defaultChar = new function() {
-    this.index = index;
-    this.tc = toDate["TC \n" + segmentos[index]];
-    this.cpa = toDate["CPA \n" + segmentos[index]];
-    this.nCtes = toDate["Numero de clientes \n" + segmentos[index]];
-    this.vtaMMAA = mmaa["Venta \n" + segmentos[index]];
-    this.vtaTotal = ventaTotal;
-    this.variacionGlob = variacionGlob;
-    this.nCtesTotal = toDate["Total de \nClientes"];
-    this.sale = function() {
+  let defaultChar =  {
+    index: index,
+    tc: toDate["TC \n" + segmentos[index]],
+    cpa: toDate["CPA \n" + segmentos[index]],
+    nCtes: toDate["Numero de clientes \n" + segmentos[index]],
+    vtaMMAA: mmaa["Venta \n" + segmentos[index]],
+    vtaTotal: ventaTotal,
+    variacionGlob: variacionGlob,
+    nCtesTotal: toDate["Total de \nClientes"],
+    sale: function() {
       return this.cpa * (this.tc / 100) * this.nCtes;
-    };
-    this.tcTotal = toDate["TC \nTotal"];
+    },
+    tcTotal: toDate["TC \nTotal"],
   };
+
   defaultVals.push(defaultChar);
 
 }
@@ -711,7 +715,7 @@ self.updateTotal = function () {
   let varElm = document.getElementById("var-global");
   if(variacion < 0) { varElm.style.color = "red"; } else { varElm.style.color = "#00CD00"; }
   varElm.innerHTML = (Math.round(variacion)) + "%";
-  var varTotal=document.getElementById("tc-total-tag")
+  var varTotal=document.getElementById("tc-total-tag");
       varTotal.innerHTML=Math.round(ctsXtc/ctsTotal)+"%";
       varTotal.style.color="#00CD00";
       if(varTotal<0)
@@ -719,7 +723,7 @@ self.updateTotal = function () {
 if(self.historyFlag&&self.stepBack.length<100){
   self.stepBack.push(JSON.stringify(self.characters));
   self.indexHistory++;
-}else {
+} else {
   //self.indexHistory=self.stepBack.length-1;
   //self.indexHistory--;
   self.historyFlag=true;
