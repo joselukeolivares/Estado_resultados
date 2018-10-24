@@ -270,7 +270,24 @@ function simulador_global() {
      SliderB5B6(app, tc_test,"slider1"+i,"slider_fam",(tc.x)/width,(character.y+character.height*.35+character.parent.y)/height,tc.width,cpa.height,self);
      addCharacter(i);
 }
+var vencidos=["Vencidos2","Vencidos3","Vencidos+4"]
 
+for(var j=0;j<vencidos.length;j++){
+  let toDate = (dataCSV[dataCSV.length - 1]);
+  let mmaa = (dataCSV[dataCSV.length - 13]);
+  self.characters.push(new characters_erc(
+    self.characters.length+j,
+    toDate["TC \n" + vencidos[j]],
+    toDate["CPA \n" + vencidos[j]],
+    "NA",
+    toDate["Numero de clientes \n" + vencidos[j]],
+    mmaa["Venta \n" + vencidos[j]],
+    toDate["Venta \n" + vencidos[j]]
+  ));
+
+  self.characters[self.characters.length-1].vencido=j+2;
+}
+ self.updateTotal();
 self.stepBack.push(JSON.stringify(self.characters));
 
 var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
@@ -288,9 +305,17 @@ var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/glo
 var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
 
 var unVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1_click.png"].texture);
+    unVdoClked.name="unVdoClkedSprite";
 var dosVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2_click.png"].texture);
+    dosVdoClked.name="dosVdoClkedSprite";
+    dosVdoClked.visible=false;
 var tresVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3_click.png"].texture);
+    tresVdoClked.name="tresVdoClkedSprite";
+    tresVdoClked.visible=false;
 var cuatroVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4_click.png"].texture);
+    cuatroVdoClked.name="cuatroVdoClkedSprite";
+    cuatroVdoClked.visible=false;
+
 
 var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/1 VDO.png"].texture);
 var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/2 VDO.png"].texture);
@@ -299,6 +324,7 @@ var cuatro_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos
 
 
 var container_globos = new PIXI.Container();
+    container_globos.name="container_globos";
 
 
 self.app.stage.addChild(container_globos);
@@ -312,6 +338,7 @@ container_globos.scale.set(self.app.screen.width*.50/950);
 
 
 unVdoB.x=25;
+unVdoB.name="unVdoB";
 unVdoB.scale.set(self.app.screen.width*.45/950);
 unVdoB.interactive = true;
 unVdoB.buttonMode = true;
@@ -319,43 +346,102 @@ unVdoB.visible = false;
 
 unVdoClked.x = 25;
 unVdoClked.scale.set(self.app.screen.width * .45 / 950);
-unVdoClked.interactive = true;
-unVdoClked.buttonMode = true;
+dosVdoClked.scale.set(self.app.screen.width * .45 / 950);
+tresVdoClked.scale.set(self.app.screen.width * .45 / 950);
+cuatroVdoClked.scale.set(self.app.screen.width * .45 / 950);
+//unVdoClked.interactive = true;
+//unVdoClked.buttonMode = true;
 
 dosVdoB.x=50;
+dosVdoB.name="dosVdoB";
 dosVdoB.scale.set(self.app.screen.width*.45/950);
 dosVdoB.interactive = true;
 dosVdoB.buttonMode = true;
 
 tresVdoB.x=75;
+tresVdoB.name="tresVdoB";
 tresVdoB.scale.set(self.app.screen.width*.45/950);
 tresVdoB.interactive = true;
 tresVdoB.buttonMode = true;
 
 cuatroVdoB.x=100;
+cuatroVdoB.name="cuatroVdoB";
 cuatroVdoB.scale.set(self.app.screen.width*.45/950);
 cuatroVdoB.interactive = true;
 cuatroVdoB.buttonMode = true;
 
 unVdoB
-.on("click", onClick1)
+//.on("click", onClick1)
+.on("pointerdown", changeVdo)
 .on("mouseover",mouseOver1)
 .on("mouseout",onMouseOut);
 
 dosVdoB
-.on("click", onClick2)
+//.on("click", onClick2)
+.on("pointerdown", changeVdo)
 .on("mouseover",mouseOver2)
 .on("mouseout",onMouseOut);
 
 tresVdoB
-.on("click", onClick3)
+//.on("click", onClick3)
+.on("pointerdown", changeVdo)
 .on("mouseover",mouseOver3)
 .on("mouseout",onMouseOut);
 
 cuatroVdoB
-.on("click", onClick4)
+//.on("click", onClick4)
+.on("pointerdown", changeVdo)
 .on("mouseover",mouseOver4)
 .on("mouseout",onMouseOut);
+
+function changeVdo(){
+  console.log("Activado por:"+this.name);
+  var button=((this.name).substring(0,this.name.length-1));
+  var mesVencido=0;
+   var buttons=["unVdoClkedSprite","dosVdoClkedSprite","tresVdoClkedSprite","cuatroVdoClkedSprite"]
+  for(var i=0;i<buttons.length;i++){
+
+    var clicked=container_globos.getChildByName(buttons[i]);
+    clicked.visible=false;
+    var txt=buttons[i].substring(0,buttons[i].length-11);
+
+    var unClicked=container_globos.getChildByName(buttons[i].substring(0,buttons[i].length-11)+"B");
+        unClicked.visible=true;
+
+        if(button==txt)
+         mesVencido=i+1;
+  }
+  var nameClicked="";
+  var clicked=container_globos.getChildByName(button+"ClkedSprite");
+      clicked.visible=true;
+      this.visible=false;
+      console.log("Mes Vencido seleccionado"+mesVencido);
+var characters=self.characters;
+let dataSet = (dataCSV[dataCSV.length - 1]);
+  for(var k=0;k<characters.length;k++){
+      if(characters[k].vencido==mesVencido){
+        console.log("Lo encontramos en la posicion:"+k);
+        var aux=characters[4];
+        characters[4]=characters[k];
+        characters[k]=aux;
+
+        document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
+        self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos1"];
+        document.getElementById("tc_clientes4" ).innerHTML = numberWithCommas(self.characters[4].countCtes);
+        self.characters[4].cpa = dataSet["CPA \nVencidos1"];
+        document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
+
+        //self.updateTotal();
+      }
+  }
+
+  if(self.stepBack.length<100){
+    self.stepBack.push(JSON.stringify(self.characters));
+    self.indexHistory++;
+  }
+  debugger;
+
+}
 
   function onClick1() {
     container_globos.addChild(unVdoClked);
@@ -487,6 +573,12 @@ cuatroVdoB
 
 
   container_globos.addChild(unVdoClked);
+  dosVdoClked.x=50;
+  container_globos.addChild(dosVdoClked);
+  tresVdoClked.x=75;
+  container_globos.addChild(tresVdoClked);
+  cuatroVdoClked.x=100;
+  container_globos.addChild(cuatroVdoClked);
   container_globos.addChild(unVdoB);
   container_globos.addChild(dosVdoB);
   container_globos.addChild(tresVdoB);
@@ -523,11 +615,31 @@ button
    if(self.indexHistory!=0)
    self.indexHistory--;
    self.characters = JSON.parse(self.stepBack[self.indexHistory]);
-   for(var i = 0; i < 9; i++) {
+   for(var i = 0; i < self.characters.length; i++) {
      self.characters[i].sale = function() {
          return this.cpa*((this.tc)/100)*this.countCtes;
        };
    }
+   var vencSelected=self.characters[4].vencido;
+
+   var buttons=["unVdoClkedSprite","dosVdoClkedSprite","tresVdoClkedSprite","cuatroVdoClkedSprite"]
+              for(var i=0;i<buttons.length;i++){
+
+                var clicked=container_globos.getChildByName(buttons[i]);
+                clicked.visible=false;
+                if(i+1==vencSelected)
+                clicked.visible=true;
+                var txt=buttons[i].substring(0,buttons[i].length-11);
+
+                var unClicked=container_globos.getChildByName(buttons[i].substring(0,buttons[i].length-11)+"B");
+                    unClicked.visible=true;
+                    if(i+1==vencSelected)
+                    unClicked.visible=false;
+
+              }
+
+
+
    self.updateTotal();
  })
  .on("mouseout",borrar_regresar);
@@ -645,6 +757,8 @@ function addCharacter(index) {
     mmaa["Venta \n" + segmentos[index]],
     toDate["Venta \n" + segmentos[index]]
   );
+  if(index==4)
+  char.vencido=1;
   self.characters.push(char);
 
   ventaTotal += self.characters[index].sale();
@@ -688,9 +802,12 @@ function addCharacter(index) {
 
 self.updateTotal = function () {
   let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0,CtesBuyTotal=0,ctesTotal=0,CtesBuyTotalOriginal=0;
+  debugger;
   for(let i = 0; i < self.characters.length; i++) {
-    let tc = document.getElementById("tc-tag-" + i);
     let cte=self.characters[i];
+    if(i<self.characters.length-3){
+    let tc = document.getElementById("tc-tag-" + i);
+
 
     if(self.historyFlag)
     {cte.tc = parseFloat(tc.innerHTML);}else{
@@ -703,7 +820,7 @@ self.updateTotal = function () {
     ctsXtc+=cte.tc*cte.countCtes;
     var variacion_cte=(parseInt(cte.sale())/parseInt(cte.vtaOriginal)-1)*100;
     if(cte.tc==cte.tcOriginal)
-      variacion_cte=(parseInt(cte.sale())/parseInt(cte.vtaMMAA)-1)*100;
+      variacion_cte=0;
     var var_Seg=document.getElementById("vta_porcent" + i);
         var_Seg.innerHTML=Math.round(variacion_cte)+"%";
         var_Seg.style.color="#00CD00";
@@ -711,7 +828,11 @@ self.updateTotal = function () {
           var_Seg.style.color="red";
 
     document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
+  }//end if i<characters.leng-3
+
     vtaTotal += cte.sale();
+    console.log("Cliente "+i+": "+cte.sale());
+    console.log("Venta total: "+vtaTotal);
     vtaTotalMMAA += cte.vtaMMAA;
     CtesBuyTotal+=cte.tc/100*cte.countCtes;
     ctesTotal+=cte.countCtes;
@@ -742,9 +863,7 @@ self.updateTotal = function () {
   varElm.innerHTML = (Math.round(variacion)) + "%";
   var varTotal=document.getElementById("tc-total-tag");
       varTotal.innerHTML=Math.round(ctsXtc/ctsTotal)+"%";
-      varTotal.style.color="#00CD00";
-      if(varTotal<0)
-      varTotal.style.color="red";
+
 if(self.historyFlag&&self.stepBack.length<100){
   self.stepBack.push(JSON.stringify(self.characters));
   self.indexHistory++;
