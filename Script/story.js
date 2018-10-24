@@ -314,7 +314,7 @@ app.stage.addChild(text_parrafo_7);
 				self.hideShowTxt();
 
 
-				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADOS DE CTES VIDEO EN MP4.mp4');
+				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADO.mp4');
 				var videoSprite=new PIXI.Sprite(texture);
 				    videoSprite.width=self.width;
 						videoSprite.height=self.height;

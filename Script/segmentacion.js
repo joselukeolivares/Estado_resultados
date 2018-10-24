@@ -179,13 +179,13 @@ function createSprite(app){
 
         var contenedor = document.createElement("DIV");
          contenedor.setAttribute("id","contenedor");
-         contenedor.setAttribute("style","height:35%;width:37%;position: absolute;left: 64%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
+         contenedor.setAttribute("style","height: 40%;width: 35%;position: absolute;left: 50%;top: 25%;");
          document.body.appendChild(contenedor);
 
            var x = document.createElement("DIV");
            var br= document.createElement("br");
            x.setAttribute("id","gsap-anim-text-1");
-           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y analisis de nuestros clientes, se crearon perfiles en base  al ciclo de vida del Cliente. Esto nos ayuda a monitorear y crear perfiles en base al ciclo de vida del Cliente. Esto nos ayuda a monitorear y crear estrategias especializadas para cada                                             tipo de cliente Coppel.         ");
+           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y análisis de nuestros  clientes, se crearon perfiles en base al ciclo de vida del cliente.        Esto nos ayudara a monitorear y crear estrategias especializadas  para cada tipo de cliente Coppel.");
            x.appendChild(t);
            document.body.appendChild(x);
            contenedor.appendChild(x);
@@ -196,13 +196,13 @@ function createSprite(app){
 
            var contenedor_2 = document.createElement("DIV");
             contenedor_2.setAttribute("id","contenedor_2");
-            contenedor_2.setAttribute("style","height:10%;width:35%;position: absolute;left: 69%;top: 60%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)");
+            contenedor_2.setAttribute("style","width:35%;position: absolute;left: 50%;top: 50%;");
             document.body.appendChild(contenedor_2);
 
 
            var y = document.createElement("DIV");
            y.setAttribute("id","post-title-text");
-           var s = document.createTextNode("¡Acompañeme a conocer a nuestros clientes..!");
+           var s = document.createTextNode("¡Acompáñame a conocer a nuestros clientes...!");
            y.appendChild(s);
            document.body.appendChild(y);
            contenedor_2.appendChild(y);

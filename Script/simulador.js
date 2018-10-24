@@ -370,7 +370,7 @@ for(var i=0;i<ctes.length;i++){
              aplicacion.appendChild(ctes_numero);
              aplicacion.appendChild(ctes_pTag);
         //Se inserta slider en div id:"aplciacion" (informacion de los parametros en el script sliderB5B6)
-        SliderB5B6(document.getElementById("aplicacion"),tc_pTag,"slider0","slider_fam",.25,.56,200,50,self);
+        SliderB5B6(document.getElementById("aplicacion"),tc_pTag,"slider0","slider_fam",tc_sprite.x/width,.56,tc_sprite.width,50,self);
 
      var tc_base2=new PIXI.Sprite(atlasBlock5['13. RECUADRO DE TASA DE COMPRA.png']);
          tc_base2.x=width*.63;
@@ -404,7 +404,8 @@ for(var i=0;i<ctes.length;i++){
              aplicacion.appendChild(ctes_pTag2);
 
         //Se inserta slider en div id:"aplciacion" (informacion de los parametros en el script sliderB5B6)
-        SliderB5B6(document.getElementById("aplicacion"),tc_pTag2,"slider1","slider_fam",.67,.56,200,50,self);
+        debugger;
+        SliderB5B6(document.getElementById("aplicacion"),tc_pTag2,"slider1","slider_fam",tc_base2.x/width,.56,tc_base2.width,50,self);
 
          //Textos para recuadros de Tasa de Compra
          var tc_TXT=new PIXI.Text("T.C",estilo1);
@@ -569,7 +570,8 @@ for(var i=0;i<ctes.length;i++){
         toDate["CPA \n"+segmentos[index]],
         "NA",
         toDate["Numero de clientes \n"+segmentos[index]],
-        mmAA["Venta \n"+segmentos[index]]
+        mmAA["Venta \n"+segmentos[index]],
+        toDate["Venta \n"+segmentos[index]]
 
       );
       debugger;
@@ -714,7 +716,7 @@ for(var i=0;i<ctes.length;i++){
   self.updateTotal=function(value){
       console.log("updating total")
 
-      let vtaTotal=0,vtaTotalMMAA=0;
+      let vtaTotal=0,vtaTotalMMAA=0,CtesBuyTotal=0,CtesBuyTotalOriginal=0,ctesTotal=0;
       for(var i=0;i<self.characters.length;i++){
 
         //obtenemos la tasa de compra modificada por slider
@@ -722,31 +724,51 @@ for(var i=0;i<ctes.length;i++){
 
         //Calculamos datos para cada personaje seleccionado
           var cte=self.characters[i];
-              cte.tc=parseInt(tc.innerHTML);
+              cte.tc=parseFloat(tc.innerHTML);
               vtaTotalMMAA+=parseInt(cte.vtaMMAA);
               var vta=document.getElementById('vta_pTag'+i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
 
-              var variacion=(parseInt(cte.sale())-parseInt(cte.vtaMMAA))/parseInt(cte.vtaMMAA)*100;
-
+              var variacion=(parseInt(cte.sale())/parseInt(cte.vtaOriginal)-1)*100;
+              if(cte.tc==cte.tcOriginal)
+                variacion=(parseInt(cte.sale())/parseInt(cte.vtaMMAA)-1)*100;
               var txtPIXI=self.app.stage.getChildByName("vtaTXT_PIXI"+i);
               if(variacion<0)
               {txtPIXI.style=estilo3;}else{txtPIXI.style=estilo2;}
               txtPIXI.text=(Math.round(variacion))+"%";
               vtaTotal+=cte.sale();
-
+              debugger;
+              CtesBuyTotal+=cte.tc/100*cte.countCtes;
+              ctesTotal+=cte.countCtes;
+              CtesBuyTotalOriginal+=cte.tcOriginal/100*cte.countCtes;
 
           tc.innerHTML=cte.tc+"%";
       }
 
-      var variacionTotal=((vtaTotal-vtaTotalMMAA)/vtaTotalMMAA)*100;
-      var varTotal_p=document.getElementById("varVtaTotal");
-      varTotal_p.style.color="#27ad1b";
-      if(variacionTotal<0)
-      varTotal_p.style.color="#d82215";
 
-      varTotal_p.innerHTML=numberWithCommas(Math.round(variacionTotal))+"%";
+      var ponderadores=[],ponderadoresReal=[];
+      for(var j=0;j<self.characters.length;j++){
+          var cte=self.characters[j];
+          ponderadores[j]=(cte.tc/100*cte.countCtes)/CtesBuyTotal;
+          ponderadoresReal[j]=(cte.tcOriginal/100*cte.countCtes)/CtesBuyTotalOriginal;
 
-      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
+      }
+
+      var TotalCPA=0,TotalCPAOriginal=0;
+      for(var j=0;j<self.characters.length;j++){
+        var cte=self.characters[j];
+          TotalCPA+=ponderadores[j]*cte.cpa;
+          TotalCPAOriginal+=ponderadoresReal[j]*cte.cpa;
+      }
+
+      if(self.characters.length>0){
+        var variacionTotal=(((CtesBuyTotal*TotalCPA)/(CtesBuyTotalOriginal*TotalCPAOriginal))-1)*100;
+        var varTotal_p=document.getElementById("varVtaTotal");
+        varTotal_p.style.color="#27ad1b";
+        if(variacionTotal<0)
+          varTotal_p.style.color="#d82215";
+          varTotal_p.innerHTML=numberWithCommas(Math.round(variacionTotal))+"%";}
+          debugger;
+      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(Math.round(TotalCPA*CtesBuyTotal));
 
       return self;
   }
@@ -911,16 +933,17 @@ return self;
 
 }
 
-function characters_erc(name,tc,cpa,position,numCtes,vtaMMAA){
+function characters_erc(name,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal){
   this.name=name;
   this.cpa=parseInt(cpa);
   this.tc=parseFloat(tc);
   this.position=position;
   this.countCtes=parseInt(numCtes);
   this.vtaMMAA=vtaMMAA;
+  this.vtaOriginal=vtaOriginal;
+  this.tcOriginal=parseFloat(tc);
   this.sale=function(){
-    debugger;
-    return this.cpa*((this.tc)/100)*this.countCtes;
+        return this.cpa*((this.tc)/100)*this.countCtes;
   };
 
 

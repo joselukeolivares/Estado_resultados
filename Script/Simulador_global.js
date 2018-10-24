@@ -222,7 +222,7 @@ function simulador_global() {
      var tc_test=document.createElement("p");
      tc_test.setAttribute("id","tc-tag-"+i);
      tc_test.setAttribute("class","sin_margen")
-     tc_test.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
+     tc_test.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
      tc_test.typeObj=1;
          app.appendChild(tc_test);
 
@@ -639,7 +639,8 @@ function addCharacter(index) {
     toDate["CPA \n" + segmentos[index]],
     "NA",
     toDate["Numero de clientes \n" + segmentos[index]],
-    mmaa["Venta \n" + segmentos[index]]
+    mmaa["Venta \n" + segmentos[index]],
+    toDate["Venta \n" + segmentos[index]]
   );
   self.characters.push(char);
 
@@ -651,6 +652,7 @@ function addCharacter(index) {
   document.getElementById("vta-tag-" + index).innerHTML = "$"+ numberWithCommas(Math.round(self.characters[index].sale()));
   document.getElementById("tc-tag-" + index).innerHTML = self.characters[index].tc + "%";
   document.getElementById("tc-total-tag").innerHTML = toDate["TC \nTotal"] + "%";
+  document.getElementById("vta_porcent"+ index).innerHTML = 0 + "%";
   if(index == 8)  {
     document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(ventaTotal));
     document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(toDate["Total de \nClientes"]);
@@ -681,7 +683,7 @@ function addCharacter(index) {
 }
 
 self.updateTotal = function () {
-  let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0;
+  let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0,CtesBuyTotal=0,ctesTotal=0,CtesBuyTotalOriginal=0;
   for(let i = 0; i < self.characters.length; i++) {
     let tc = document.getElementById("tc-tag-" + i);
     let cte=self.characters[i];
@@ -695,7 +697,9 @@ self.updateTotal = function () {
     tc.innerHTML = cte.tc + "%";
     ctsTotal+=cte.countCtes;
     ctsXtc+=cte.tc*cte.countCtes;
-    var variacion_cte=(parseInt(cte.sale())-parseInt(cte.vtaMMAA))/parseInt(cte.vtaMMAA)*100;
+    var variacion_cte=(parseInt(cte.sale())/parseInt(cte.vtaOriginal)-1)*100;
+    if(cte.tc==cte.tcOriginal)
+      variacion_cte=(parseInt(cte.sale())/parseInt(cte.vtaMMAA)-1)*100;
     var var_Seg=document.getElementById("vta_porcent" + i);
         var_Seg.innerHTML=Math.round(variacion_cte)+"%";
         var_Seg.style.color="#00CD00";
@@ -705,9 +709,30 @@ self.updateTotal = function () {
     document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
     vtaTotal += cte.sale();
     vtaTotalMMAA += cte.vtaMMAA;
+    CtesBuyTotal+=cte.tc/100*cte.countCtes;
+    ctesTotal+=cte.countCtes;
+    CtesBuyTotalOriginal+=cte.tcOriginal/100*cte.countCtes;
   }
+
+  var ponderadores=[],ponderadoresReal=[];
+  for(var j=0;j<self.characters.length;j++){
+      var cte=self.characters[j];
+      ponderadores[j]=(cte.tc/100*cte.countCtes)/CtesBuyTotal;
+      ponderadoresReal[j]=(cte.tcOriginal/100*cte.countCtes)/CtesBuyTotalOriginal;
+
+  }
+
+  var TotalCPA=0,TotalCPAOriginal=0;
+  for(var j=0;j<self.characters.length;j++){
+    var cte=self.characters[j];
+      TotalCPA+=ponderadores[j]*cte.cpa;
+      TotalCPAOriginal+=ponderadoresReal[j]*cte.cpa;
+  }
+
+
+
   document.getElementById("total-vta-tag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
-  let variacion = ((vtaTotal - vtaTotalMMAA) / vtaTotalMMAA) * 100;
+  let variacion = (((CtesBuyTotal*TotalCPA)/(CtesBuyTotalOriginal*TotalCPAOriginal))-1)*100;
   let varElm = document.getElementById("var-global");
   if(variacion < 0) { varElm.style.color = "red"; } else { varElm.style.color = "#00CD00"; }
   varElm.innerHTML = (Math.round(variacion)) + "%";
@@ -727,13 +752,15 @@ if(self.historyFlag&&self.stepBack.length<100){
   return self;
 };
 
-function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA) {
+function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal) {
   this.index = index;
   this.cpa = parseInt(cpa);
   this.tc = parseFloat(tc);
   this.position = position;
   this.countCtes = parseInt(numCtes);
   this.vtaMMAA = parseInt(vtaMMAA);
+  this.vtaOriginal=vtaOriginal;
+  this.tcOriginal=parseFloat(tc);
   this.sale = function() {
     return this.cpa*((this.tc)/100)*this.countCtes;
   };
