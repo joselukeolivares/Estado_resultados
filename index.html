@@ -29,10 +29,10 @@
   <script src="js/tink.js"></script>
   <script src="js/loading-bar.js"></script>
   <script src="js/d3v4/d3v4.js"></script>
-
-<script src="Script/start.js"></script>
+</head>
 
 <body>
+<script src="Script/start.js"></script>
 <script src="Script/shopping.js"></script>
 <script src="Script/story.js"></script>
 <script src="Script/indicators.js"></script>
@@ -41,11 +41,11 @@
 <script src="Script/Simulador_global.js"></script>
 <script src="Script/conclusiones.js"></script>
 
-<main id="main" align="center" style="position: absolute;left: 50%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%)";>
+<main id="main" align="center" style="z-index:0;position:absolute;left: 50%;top: 45%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%) ";>
 
 
 </main>
-<footer>
+<footer style="z-index:2;">
   <div id="container" align="center" >
     <div id="CoppelLogo" style="background-image: url('assets/ui/logo_coppel.png');
                 height: 100%;
@@ -56,7 +56,7 @@
     <div class="circulos" data-balloon="Inicio!" data-balloon-pos="up" onclick='toSlide("start")'></div>
     <div class="circulos" data-balloon="Historia!" data-balloon-pos="up" onclick='toSlide("story")'></div>
     <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicators")'></div>
-    <div class="circulos" data-balloon="Segmentación" data-balloon-pos="up" onclick='toSlide("segmentacion")' ></div>
+    <div class="circulos" data-balloon="Perfil de Clientes" data-balloon-pos="up" onclick='toSlide("segmentacion")' ></div>
     <div class="circulos" data-balloon="Simulación! " data-balloon-pos="up" onclick='toSlide("simulador")' ></div>
     <div class="circulos" data-balloon="Escenario! " data-balloon-pos="up" onclick='toSlide("simulador_global")' ></div>
     <div class="circulos" data-balloon="Créditos!" data-balloon-pos="up" onclick='toSlide("conclusiones")' ></div>
@@ -77,10 +77,10 @@
 
                 if(screen.width>1200){
                   width=screen.width-500;
-                  height =screen.height-200;
+                  height =screen.height*.81;
                 }else{
                   width=screen.width;
-                  height =screen.height-100;
+                  height =screen.height*.9;
                 }
                 //880--1080
 
@@ -89,7 +89,7 @@
       console.log(width,height);
 
 
-      d3.csv("data/Estado de Resultados Mx .csv",funcion);
+      d3.csv("data/Estado de Resultados Mx_sep18.csv",funcion);
 
       function funcion(data){
       try{
