@@ -155,7 +155,7 @@ function createSprite(app){
       contButton.x = self.app.screen.width-100;
       contButton.y = self.app.screen.height-50;
       contButton.anchor.set(0.5);
-      contButton.scale.set(0.6);
+      contButton.scale.set(factorScreen(0.6));
       contButton.interactive = true;
       contButton.buttonMode = true;
 
@@ -179,7 +179,7 @@ function createSprite(app){
 
         var contenedor = document.createElement("DIV");
          contenedor.setAttribute("id","contenedor");
-         contenedor.setAttribute("style","height: 40%;width: 35%;position: absolute;left: 50%;top: 25%;");
+         contenedor.setAttribute("style","height: 40%;width: 36%;position: absolute;left: 50%;top: 25%;");
          document.body.appendChild(contenedor);
 
            var x = document.createElement("DIV");
@@ -196,7 +196,8 @@ function createSprite(app){
 
            var contenedor_2 = document.createElement("DIV");
             contenedor_2.setAttribute("id","contenedor_2");
-            contenedor_2.setAttribute("style","width:35%;position: absolute;left: 50%;top: 50%;");
+            debugger;
+            contenedor_2.setAttribute("style","width:40%;position: absolute;left: 50%;top:"+(parseInt(contenedor.style.top)+(parseInt(contenedor.style.height)/2))+"%;");
             document.body.appendChild(contenedor_2);
 
 

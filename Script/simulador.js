@@ -599,7 +599,7 @@ for(var i=0;i<ctes.length;i++){
             document.getElementById("ctes_numero0").innerHTML=numberWithCommas(self.characters[0].countCtes);
             document.getElementById("cpa_pTag0").innerHTML="$"+numberWithCommas(self.characters[0].cpa);
             document.getElementById("vta_pTag0").innerHTML="$"+numberWithCommas(Math.round(self.characters[0].sale()));
-            document.getElementById("tc_pTag0").innerHTML=self.characters[0].tc+"%";
+            document.getElementById("tc_pTag0").innerHTML=(self.characters[0].tc).toFixed(2)+"%";
 
         var slider0=document.getElementById("slider0");
         var SlideBG=slider0.childNodes[0];
@@ -613,7 +613,7 @@ for(var i=0;i<ctes.length;i++){
         document.getElementById("ctes_numero1").innerHTML=numberWithCommas(self.characters[1].countCtes);
         document.getElementById("cpa_pTag1").innerHTML="$"+numberWithCommas(self.characters[1].cpa);
         document.getElementById("vta_pTag1").innerHTML="$"+numberWithCommas(Math.round(self.characters[1].sale()));
-        document.getElementById("tc_pTag1").innerHTML=self.characters[1].tc+"%";
+        document.getElementById("tc_pTag1").innerHTML=(self.characters[1].tc).toFixed(2)+"%";
         var slider0=document.getElementById("slider1");
         var SlideBG=slider0.childNodes[0];
         var knob=slider0.childNodes[1];
@@ -713,18 +713,23 @@ for(var i=0;i<ctes.length;i++){
 
   }
 
-  self.updateTotal=function(value){
+  self.updateTotal=function(value,target){
       console.log("updating total")
 
       let vtaTotal=0,vtaTotalMMAA=0,CtesBuyTotal=0,CtesBuyTotalOriginal=0,ctesTotal=0;
       for(var i=0;i<self.characters.length;i++){
 
         //obtenemos la tasa de compra modificada por slider
-        var tc=document.getElementById('tc_pTag'+i);
+
 
         //Calculamos datos para cada personaje seleccionado
           var cte=self.characters[i];
-              cte.tc=parseFloat(tc.innerHTML);
+              if(target==i){
+                cte.tc=value;
+                var tc=document.getElementById("tc_pTag"+target);
+                    tc.innerHTML=((cte.tc).toFixed(2))+"%";
+              }
+
               vtaTotalMMAA+=parseInt(cte.vtaMMAA);
               var vta=document.getElementById('vta_pTag'+i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
 
@@ -736,12 +741,12 @@ for(var i=0;i<ctes.length;i++){
               {txtPIXI.style=estilo3;}else{txtPIXI.style=estilo2;}
               txtPIXI.text=(Math.round(variacion))+"%";
               vtaTotal+=cte.sale();
-              debugger;
+
               CtesBuyTotal+=cte.tc/100*cte.countCtes;
               ctesTotal+=cte.countCtes;
               CtesBuyTotalOriginal+=cte.tcOriginal/100*cte.countCtes;
 
-          tc.innerHTML=cte.tc+"%";
+
       }
 
 

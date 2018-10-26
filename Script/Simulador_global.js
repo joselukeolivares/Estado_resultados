@@ -101,7 +101,7 @@ function simulador_global() {
        dropShadowAngle: Math.PI / 20
      });
      tc_ptxt.x = self.app.screen.width / 2.5;
-     tc_ptxt.y = self.app.screen.height / 1.15;
+     tc_ptxt.y = self.app.screen.height / 1.13;
      self.app.stage.addChild(tc_ptxt);
 
      var venta_ptxt=new PIXI.Text("VENTA", {
@@ -113,23 +113,26 @@ function simulador_global() {
        dropShadowAngle: Math.PI / 20
      });
      venta_ptxt.x = self.app.screen.width / 1.8;
-     venta_ptxt.y = self.app.screen.height / 1.15;
+     venta_ptxt.y = self.app.screen.height / 1.13;
      self.app.stage.addChild(venta_ptxt);
 
      var tcTotalElm = document.createElement("p");
      tcTotalElm.setAttribute("id", "tc-total-tag");
-     tcTotalElm.setAttribute("style", "position: absolute; top: " + (total_tc.y - 16) + "px; left: " + (total_tc.x + total_tc.width / 2) + "px; font-Family: roboto-regular; font-Size: 1.50vw; font-weight: bold;");
+     tcTotalElm.setAttribute("class","sin_margen");
+     tcTotalElm.setAttribute("style", "position: absolute; top: " + (total_tc.y) + "px; left: " + (total_tc.x + total_tc.width / 2) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(28)+"px; font-weight: bold;");
      tcTotalElm.typeObj = 1;
      app.appendChild(tcTotalElm);
 
      var totalVentaElm = document.createElement("p");
      totalVentaElm.setAttribute("id", "total-vta-tag");
-     totalVentaElm.setAttribute("style", "position:absolute;top:"+(total_vta.y - 16)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
+     totalVentaElm.setAttribute("class","sin_margen");
+     totalVentaElm.setAttribute("style", "position:absolute;top:"+(total_vta.y)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(28)+"px;font-weight:bold;");
      totalVentaElm.typeObj=1;
      app.appendChild(totalVentaElm);
 
      var tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
+     tcTotalCtesElm.setAttribute("class","sin_margen");
      tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
@@ -137,7 +140,8 @@ function simulador_global() {
      var ctesElm=document.createElement("p");
      ctesElm.innerHTML="Clientes";
      ctesElm.setAttribute("id", "ctesElm");
-     ctesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y+16)+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
+     ctesElm.setAttribute("class","sin_margen");
+     ctesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y+(total_tc.height/2))+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
      ctesElm.typeObj=1;
      app.appendChild(ctesElm);
 
@@ -284,17 +288,18 @@ for(var j=0;j<vencidos.length;j++){
     mmaa["Venta \n" + vencidos[j]],
     toDate["Venta \n" + vencidos[j]]
   ));
-
+  debugger;
   self.characters[self.characters.length-1].vencido=j+2;
 }
- self.updateTotal();
+
+self.updateTotal(99999,"NA");
 self.stepBack.push(JSON.stringify(self.characters));
 
 var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
-contButton.x = self.app.screen.width * .9;
-contButton.y = self.app.screen.height * .93;
+contButton.x = width*.90;
+contButton.y = height*.95;
 contButton.anchor.set(0.5);
-contButton.scale.set(self.app.screen.width*.45/950);
+contButton.scale.set(factorScreen(.6));
 contButton.interactive = true;
 contButton.buttonMode = true;
 
@@ -424,14 +429,14 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
         var aux=characters[4];
         characters[4]=characters[k];
         characters[k]=aux;
-
+/*
         document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
         self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos1"];
         document.getElementById("tc_clientes4" ).innerHTML = numberWithCommas(self.characters[4].countCtes);
         self.characters[4].cpa = dataSet["CPA \nVencidos1"];
         document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
-
-        //self.updateTotal();
+*/
+        self.updateTotal(99999,"NA");
       }
   }
 
@@ -458,7 +463,7 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
     self.characters[4].cpa = dataSet["CPA \nVencidos1"];
     document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
 
-    self.updateTotal();
+    self.updateTotal(99999,"NA");
   }
 
 
@@ -491,7 +496,7 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
     self.characters[4].cpa = dataSet["CPA \nVencidos2"];
     document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
 
-    self.updateTotal();
+    self.updateTotal(99999,"NA");
   }
 
   function mouseOver2() {
@@ -522,7 +527,7 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
     self.characters[4].cpa = dataSet["CPA \nVencidos3"];
     document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
 
-    self.updateTotal();
+    self.updateTotal(99999,"NA");
   }
 
   function mouseOver3(){
@@ -553,7 +558,7 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
     self.characters[4].cpa = dataSet["CPA \nVencidos+4"];
     document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
 
-    self.updateTotal();
+    self.updateTotal(99999,"NA");
   }
 
   function mouseOver4() {
@@ -640,7 +645,7 @@ button
 
 
 
-   self.updateTotal();
+   self.updateTotal(99999,"NA");
  })
  .on("mouseout",borrar_regresar);
 
@@ -765,14 +770,14 @@ function addCharacter(index) {
   ventaTotalMMAA += self.characters[index].vtaMMAA;
 
   document.getElementById("tc_clientes" + index).innerHTML = numberWithCommas(self.characters[index].countCtes);
-  document.getElementById("cpa-tag-" + index).innerHTML = "$" + numberWithCommas(self.characters[index].cpa);
+  document.getElementById("cpa-tag-" + index).innerHTML = "$" + numberWithCommas(Math.round(self.characters[index].cpa));
   document.getElementById("vta-tag-" + index).innerHTML = "$"+ numberWithCommas(Math.round(self.characters[index].sale()));
   document.getElementById("tc-tag-" + index).innerHTML = self.characters[index].tc + "%";
   document.getElementById("tc-total-tag").innerHTML = toDate["TC \nTotal"] + "%";
   document.getElementById("vta_porcent"+ index).innerHTML = 0 + "%";
   if(index == 8)  {
     document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(ventaTotal));
-    document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(toDate["Total de \nClientes"]);
+    document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(Math.round(toDate["Total de \nClientes"]));
     var variacionGlob = ((ventaTotal - ventaTotalMMAA) / ventaTotalMMAA) * 100;
     document.getElementById("var-global").innerHTML = (Math.round(variacionGlob)) + "%";
   }
@@ -800,22 +805,28 @@ function addCharacter(index) {
 
 }
 
-self.updateTotal = function () {
+self.updateTotal = function (newTC,target) {
   let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0,CtesBuyTotal=0,ctesTotal=0,CtesBuyTotalOriginal=0;
-  debugger;
+
   for(let i = 0; i < self.characters.length; i++) {
     let cte=self.characters[i];
     if(i<self.characters.length-3){
-    let tc = document.getElementById("tc-tag-" + i);
 
+    let tc = self.characters[i].tc;
+    if(i==target){
+      debugger;
+       tc = newTC;
+       self.characters[i].tc=newTC;
+     }
 
     if(self.historyFlag)
-    {cte.tc = parseFloat(tc.innerHTML);}else{
+    {/*Pendiente revisar*/}else{
       var sliders = document.getElementsByClassName("slider");
       var knob = sliders[i].childNodes[1];
       knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
     }
-    tc.innerHTML = cte.tc + "%";
+    let tc_pTag = document.getElementById("tc-tag-" + i);
+    tc_pTag.innerHTML = (cte.tc).toFixed(2) + "%";
     ctsTotal+=cte.countCtes;
     ctsXtc+=cte.tc*cte.countCtes;
     var variacion_cte=(parseInt(cte.sale())/parseInt(cte.vtaOriginal)-1)*100;
@@ -829,7 +840,7 @@ self.updateTotal = function () {
 
     document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
   }//end if i<characters.leng-3
-
+    debugger;
     vtaTotal += cte.sale();
     console.log("Cliente "+i+": "+cte.sale());
     console.log("Venta total: "+vtaTotal);
@@ -877,7 +888,7 @@ if(self.historyFlag&&self.stepBack.length<100){
 
 function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal) {
   this.index = index;
-  this.cpa = parseInt(cpa);
+  this.cpa = parseFloat(cpa);
   this.tc = parseFloat(tc);
   this.position = position;
   this.countCtes = parseInt(numCtes);
@@ -885,6 +896,9 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal) {
   this.vtaOriginal=vtaOriginal;
   this.tcOriginal=parseFloat(tc);
   this.sale = function() {
+    console.log("CPA: "+this.cpa);
+    console.log("TC: "+this.tc);
+    console.log("Ctes: "+this.countCtes);
     return this.cpa*((this.tc)/100)*this.countCtes;
   };
 }

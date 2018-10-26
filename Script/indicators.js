@@ -120,7 +120,7 @@ function indicators() {
     contButton.x = app.screen.width - 100;
     contButton.y = app.screen.height - 50;
     contButton.anchor.set(0.5);
-    contButton.scale.set(0.6);
+    contButton.scale.set(factorScreen(0.6));
     contButton.interactive = true;
     contButton.cursor = "pointer";
     intro.addChild(contButton);
