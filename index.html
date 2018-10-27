@@ -70,10 +70,13 @@
         dataCSV=null,
         dataMax,dataMaxMMA;
         main=document.getElementById('main');
-
-                if(screen.width>1200){
-                  width=screen.width-500;
+console.log(screen.width,screen.height);
+                if(screen.width>1500){
+                  width=1420;
                   height =screen.height*.81;
+                }else if(screen.width>1200&&screen.width<1500){
+                  width=1080;
+                  height =screen.height*.9;
                 }else{
                   width=screen.width;
                   height =screen.height*.9;
