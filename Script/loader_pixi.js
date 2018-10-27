@@ -108,8 +108,8 @@ function loader_pixi(){
 
          function loadProgressHandler(loader,resource){
 
-           console.log("Se ha cargado el archivo: "+resource.url);
-           console.log("Progreso: "+loader.progress+"%");
+          //console.log("Se ha cargado el archivo: "+resource.url);
+         //console.log("Progreso: "+loader.progress+"%");
 
            var t = new ldBar('.ldBar');
            var s =  document.getElementsByClassName('ldBar').ldBar;

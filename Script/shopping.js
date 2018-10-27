@@ -233,7 +233,7 @@ function LoadButton(){
   contButton.x = app.screen.width-100;
   contButton.y = app.screen.height-50;
   contButton.anchor.set(0.5);
-  contButton.scale.set(app.screen.width*.45/950);
+  contButton.scale.set(factorScreen(.6));
   contButton.interactive = true;
   contButton.buttonMode = true;
   app.stage.addChild(contButton);

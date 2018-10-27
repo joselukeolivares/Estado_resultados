@@ -101,7 +101,7 @@ function simulador_global() {
        dropShadowAngle: Math.PI / 20
      });
      tc_ptxt.x = self.app.screen.width / 2.5;
-     tc_ptxt.y = self.app.screen.height / 1.15;
+     tc_ptxt.y = self.app.screen.height / 1.13;
      self.app.stage.addChild(tc_ptxt);
 
      var venta_ptxt=new PIXI.Text("VENTA", {
@@ -113,23 +113,26 @@ function simulador_global() {
        dropShadowAngle: Math.PI / 20
      });
      venta_ptxt.x = self.app.screen.width / 1.8;
-     venta_ptxt.y = self.app.screen.height / 1.15;
+     venta_ptxt.y = self.app.screen.height / 1.13;
      self.app.stage.addChild(venta_ptxt);
 
      var tcTotalElm = document.createElement("p");
      tcTotalElm.setAttribute("id", "tc-total-tag");
-     tcTotalElm.setAttribute("style", "position: absolute; top: " + (total_tc.y - 16) + "px; left: " + (total_tc.x + total_tc.width / 2) + "px; font-Family: roboto-regular; font-Size: 1.50vw; font-weight: bold;");
+     tcTotalElm.setAttribute("class","sin_margen");
+     tcTotalElm.setAttribute("style", "position: absolute; top: " + (total_tc.y) + "px; left: " + (total_tc.x + total_tc.width / 2) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(28)+"px; font-weight: bold;");
      tcTotalElm.typeObj = 1;
      app.appendChild(tcTotalElm);
 
      var totalVentaElm = document.createElement("p");
      totalVentaElm.setAttribute("id", "total-vta-tag");
-     totalVentaElm.setAttribute("style", "position:absolute;top:"+(total_vta.y - 16)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;");
+     totalVentaElm.setAttribute("class","sin_margen");
+     totalVentaElm.setAttribute("style", "position:absolute;top:"+(total_vta.y)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(28)+"px;font-weight:bold;");
      totalVentaElm.typeObj=1;
      app.appendChild(totalVentaElm);
 
      var tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
+     tcTotalCtesElm.setAttribute("class","sin_margen");
      tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
@@ -137,7 +140,8 @@ function simulador_global() {
      var ctesElm=document.createElement("p");
      ctesElm.innerHTML="Clientes";
      ctesElm.setAttribute("id", "ctesElm");
-     ctesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y+16)+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
+     ctesElm.setAttribute("class","sin_margen");
+     ctesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y+(total_tc.height/2))+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
      ctesElm.typeObj=1;
      app.appendChild(ctesElm);
 
@@ -221,8 +225,8 @@ function simulador_global() {
 
      var tc_test=document.createElement("p");
      tc_test.setAttribute("id","tc-tag-"+i);
-     tc_test.setAttribute("class","sin_margen");
-     tc_test.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:.75vw;font-weight:bold;");
+     tc_test.setAttribute("class","sin_margen")
+     tc_test.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width/2)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
      tc_test.typeObj=1;
          app.appendChild(tc_test);
 
@@ -270,14 +274,32 @@ function simulador_global() {
      SliderB5B6(app, tc_test,"slider1"+i,"slider_fam",(tc.x)/width,(character.y+character.height*.35+character.parent.y)/height,tc.width,cpa.height,self);
      addCharacter(i);
 }
+var vencidos=["Vencidos2","Vencidos3","Vencidos+4"]
 
+for(var j=0;j<vencidos.length;j++){
+  let toDate = (dataCSV[dataCSV.length - 1]);
+  let mmaa = (dataCSV[dataCSV.length - 13]);
+  self.characters.push(new characters_erc(
+    self.characters.length+j,
+    toDate["TC \n" + vencidos[j]],
+    toDate["CPA \n" + vencidos[j]],
+    "NA",
+    toDate["Numero de clientes \n" + vencidos[j]],
+    mmaa["Venta \n" + vencidos[j]],
+    toDate["Venta \n" + vencidos[j]]
+  ));
+  debugger;
+  self.characters[self.characters.length-1].vencido=j+2;
+}
+
+self.updateTotal(99999,"NA");
 self.stepBack.push(JSON.stringify(self.characters));
 
 var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
-contButton.x = self.app.screen.width * .9;
-contButton.y = self.app.screen.height * .93;
+contButton.x = width*.90;
+contButton.y = height*.95;
 contButton.anchor.set(0.5);
-contButton.scale.set(self.app.screen.width*.45/950);
+contButton.scale.set(factorScreen(.6));
 contButton.interactive = true;
 contButton.buttonMode = true;
 
@@ -288,9 +310,17 @@ var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/glo
 var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
 
 var unVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1_click.png"].texture);
+    unVdoClked.name="unVdoClkedSprite";
 var dosVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2_click.png"].texture);
+    dosVdoClked.name="dosVdoClkedSprite";
+    dosVdoClked.visible=false;
 var tresVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3_click.png"].texture);
+    tresVdoClked.name="tresVdoClkedSprite";
+    tresVdoClked.visible=false;
 var cuatroVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4_click.png"].texture);
+    cuatroVdoClked.name="cuatroVdoClkedSprite";
+    cuatroVdoClked.visible=false;
+
 
 var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/1 VDO.png"].texture);
 var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/2 VDO.png"].texture);
@@ -299,6 +329,7 @@ var cuatro_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos
 
 
 var container_globos = new PIXI.Container();
+    container_globos.name="container_globos";
 
 
 self.app.stage.addChild(container_globos);
@@ -312,6 +343,7 @@ container_globos.scale.set(self.app.screen.width*.50/950);
 
 
 unVdoB.x=25;
+unVdoB.name="unVdoB";
 unVdoB.scale.set(self.app.screen.width*.45/950);
 unVdoB.interactive = true;
 unVdoB.buttonMode = true;
@@ -319,43 +351,102 @@ unVdoB.visible = false;
 
 unVdoClked.x = 25;
 unVdoClked.scale.set(self.app.screen.width * .45 / 950);
-unVdoClked.interactive = true;
-unVdoClked.buttonMode = true;
+dosVdoClked.scale.set(self.app.screen.width * .45 / 950);
+tresVdoClked.scale.set(self.app.screen.width * .45 / 950);
+cuatroVdoClked.scale.set(self.app.screen.width * .45 / 950);
+//unVdoClked.interactive = true;
+//unVdoClked.buttonMode = true;
 
 dosVdoB.x=50;
+dosVdoB.name="dosVdoB";
 dosVdoB.scale.set(self.app.screen.width*.45/950);
 dosVdoB.interactive = true;
 dosVdoB.buttonMode = true;
 
 tresVdoB.x=75;
+tresVdoB.name="tresVdoB";
 tresVdoB.scale.set(self.app.screen.width*.45/950);
 tresVdoB.interactive = true;
 tresVdoB.buttonMode = true;
 
 cuatroVdoB.x=100;
+cuatroVdoB.name="cuatroVdoB";
 cuatroVdoB.scale.set(self.app.screen.width*.45/950);
 cuatroVdoB.interactive = true;
 cuatroVdoB.buttonMode = true;
 
 unVdoB
-.on("click", onClick1)
+//.on("click", onClick1)
+.on("pointerdown", changeVdo)
 .on("mouseover",mouseOver1)
 .on("mouseout",onMouseOut);
 
 dosVdoB
-.on("click", onClick2)
+//.on("click", onClick2)
+.on("pointerdown", changeVdo)
 .on("mouseover",mouseOver2)
 .on("mouseout",onMouseOut);
 
 tresVdoB
-.on("click", onClick3)
+//.on("click", onClick3)
+.on("pointerdown", changeVdo)
 .on("mouseover",mouseOver3)
 .on("mouseout",onMouseOut);
 
 cuatroVdoB
-.on("click", onClick4)
+//.on("click", onClick4)
+.on("pointerdown", changeVdo)
 .on("mouseover",mouseOver4)
 .on("mouseout",onMouseOut);
+
+function changeVdo(){
+  console.log("Activado por:"+this.name);
+  var button=((this.name).substring(0,this.name.length-1));
+  var mesVencido=0;
+   var buttons=["unVdoClkedSprite","dosVdoClkedSprite","tresVdoClkedSprite","cuatroVdoClkedSprite"]
+  for(var i=0;i<buttons.length;i++){
+
+    var clicked=container_globos.getChildByName(buttons[i]);
+    clicked.visible=false;
+    var txt=buttons[i].substring(0,buttons[i].length-11);
+
+    var unClicked=container_globos.getChildByName(buttons[i].substring(0,buttons[i].length-11)+"B");
+        unClicked.visible=true;
+
+        if(button==txt)
+         mesVencido=i+1;
+  }
+  var nameClicked="";
+  var clicked=container_globos.getChildByName(button+"ClkedSprite");
+      clicked.visible=true;
+      this.visible=false;
+      console.log("Mes Vencido seleccionado"+mesVencido);
+var characters=self.characters;
+let dataSet = (dataCSV[dataCSV.length - 1]);
+  for(var k=0;k<characters.length;k++){
+      if(characters[k].vencido==mesVencido){
+        console.log("Lo encontramos en la posicion:"+k);
+        var aux=characters[4];
+        characters[4]=characters[k];
+        characters[k]=aux;
+/*
+        document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
+        self.characters[4].countCtes = dataSet["Numero de clientes \nVencidos1"];
+        document.getElementById("tc_clientes4" ).innerHTML = numberWithCommas(self.characters[4].countCtes);
+        self.characters[4].cpa = dataSet["CPA \nVencidos1"];
+        document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
+*/
+        self.updateTotal(99999,"NA");
+      }
+  }
+
+  if(self.stepBack.length<100){
+    self.stepBack.push(JSON.stringify(self.characters));
+    self.indexHistory++;
+  }
+  debugger;
+
+}
 
   function onClick1() {
     container_globos.addChild(unVdoClked);
@@ -372,7 +463,7 @@ cuatroVdoB
     self.characters[4].cpa = dataSet["CPA \nVencidos1"];
     document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
 
-    self.updateTotal();
+    self.updateTotal(99999,"NA");
   }
 
 
@@ -405,7 +496,7 @@ cuatroVdoB
     self.characters[4].cpa = dataSet["CPA \nVencidos2"];
     document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
 
-    self.updateTotal();
+    self.updateTotal(99999,"NA");
   }
 
   function mouseOver2() {
@@ -436,7 +527,7 @@ cuatroVdoB
     self.characters[4].cpa = dataSet["CPA \nVencidos3"];
     document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
 
-    self.updateTotal();
+    self.updateTotal(99999,"NA");
   }
 
   function mouseOver3(){
@@ -467,7 +558,7 @@ cuatroVdoB
     self.characters[4].cpa = dataSet["CPA \nVencidos+4"];
     document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
 
-    self.updateTotal();
+    self.updateTotal(99999,"NA");
   }
 
   function mouseOver4() {
@@ -487,6 +578,12 @@ cuatroVdoB
 
 
   container_globos.addChild(unVdoClked);
+  dosVdoClked.x=50;
+  container_globos.addChild(dosVdoClked);
+  tresVdoClked.x=75;
+  container_globos.addChild(tresVdoClked);
+  cuatroVdoClked.x=100;
+  container_globos.addChild(cuatroVdoClked);
   container_globos.addChild(unVdoB);
   container_globos.addChild(dosVdoB);
   container_globos.addChild(tresVdoB);
@@ -523,12 +620,32 @@ button
    if(self.indexHistory!=0)
    self.indexHistory--;
    self.characters = JSON.parse(self.stepBack[self.indexHistory]);
-   for(var i = 0; i < 9; i++) {
+   for(var i = 0; i < self.characters.length; i++) {
      self.characters[i].sale = function() {
          return this.cpa*((this.tc)/100)*this.countCtes;
        };
    }
-   self.updateTotal();
+   var vencSelected=self.characters[4].vencido;
+
+   var buttons=["unVdoClkedSprite","dosVdoClkedSprite","tresVdoClkedSprite","cuatroVdoClkedSprite"]
+              for(var i=0;i<buttons.length;i++){
+
+                var clicked=container_globos.getChildByName(buttons[i]);
+                clicked.visible=false;
+                if(i+1==vencSelected)
+                clicked.visible=true;
+                var txt=buttons[i].substring(0,buttons[i].length-11);
+
+                var unClicked=container_globos.getChildByName(buttons[i].substring(0,buttons[i].length-11)+"B");
+                    unClicked.visible=true;
+                    if(i+1==vencSelected)
+                    unClicked.visible=false;
+
+              }
+
+
+
+   self.updateTotal(99999,"NA");
  })
  .on("mouseout",borrar_regresar);
 
@@ -642,21 +759,25 @@ function addCharacter(index) {
     toDate["CPA \n" + segmentos[index]],
     "NA",
     toDate["Numero de clientes \n" + segmentos[index]],
-    mmaa["Venta \n" + segmentos[index]]
+    mmaa["Venta \n" + segmentos[index]],
+    toDate["Venta \n" + segmentos[index]]
   );
+  if(index==4)
+  char.vencido=1;
   self.characters.push(char);
 
   ventaTotal += self.characters[index].sale();
   ventaTotalMMAA += self.characters[index].vtaMMAA;
 
   document.getElementById("tc_clientes" + index).innerHTML = numberWithCommas(self.characters[index].countCtes);
-  document.getElementById("cpa-tag-" + index).innerHTML = "$" + numberWithCommas(self.characters[index].cpa);
+  document.getElementById("cpa-tag-" + index).innerHTML = "$" + numberWithCommas(Math.round(self.characters[index].cpa));
   document.getElementById("vta-tag-" + index).innerHTML = "$"+ numberWithCommas(Math.round(self.characters[index].sale()));
   document.getElementById("tc-tag-" + index).innerHTML = self.characters[index].tc + "%";
   document.getElementById("tc-total-tag").innerHTML = toDate["TC \nTotal"] + "%";
+  document.getElementById("vta_porcent"+ index).innerHTML = 0 + "%";
   if(index == 8)  {
     document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(ventaTotal));
-    document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(toDate["Total de \nClientes"]);
+    document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(Math.round(toDate["Total de \nClientes"]));
     var variacionGlob = ((ventaTotal - ventaTotalMMAA) / ventaTotalMMAA) * 100;
     document.getElementById("var-global").innerHTML = (Math.round(variacionGlob)) + "%";
   }
@@ -684,22 +805,33 @@ function addCharacter(index) {
 
 }
 
-self.updateTotal = function () {
-  let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0;
+self.updateTotal = function (newTC,target) {
+  let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0,CtesBuyTotal=0,ctesTotal=0,CtesBuyTotalOriginal=0;
+
   for(let i = 0; i < self.characters.length; i++) {
-    let tc = document.getElementById("tc-tag-" + i);
     let cte=self.characters[i];
+    if(i<self.characters.length-3){
+
+    let tc = self.characters[i].tc;
+    if(i==target){
+      debugger;
+       tc = newTC;
+       self.characters[i].tc=newTC;
+     }
 
     if(self.historyFlag)
-    {cte.tc = parseFloat(tc.innerHTML);}else{
+    {/*Pendiente revisar*/}else{
       var sliders = document.getElementsByClassName("slider");
       var knob = sliders[i].childNodes[1];
       knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
     }
-    tc.innerHTML = cte.tc + "%";
+    let tc_pTag = document.getElementById("tc-tag-" + i);
+    tc_pTag.innerHTML = (cte.tc).toFixed(2) + "%";
     ctsTotal+=cte.countCtes;
     ctsXtc+=cte.tc*cte.countCtes;
-    var variacion_cte=(parseInt(cte.sale())-parseInt(cte.vtaMMAA))/parseInt(cte.vtaMMAA)*100;
+    var variacion_cte=(parseInt(cte.sale())/parseInt(cte.vtaOriginal)-1)*100;
+    if(cte.tc==cte.tcOriginal)
+      variacion_cte=0;
     var var_Seg=document.getElementById("vta_porcent" + i);
         var_Seg.innerHTML=Math.round(variacion_cte)+"%";
         var_Seg.style.color="#00CD00";
@@ -707,19 +839,42 @@ self.updateTotal = function () {
           var_Seg.style.color="red";
 
     document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
+  }//end if i<characters.leng-3
+    debugger;
     vtaTotal += cte.sale();
+    console.log("Cliente "+i+": "+cte.sale());
+    console.log("Venta total: "+vtaTotal);
     vtaTotalMMAA += cte.vtaMMAA;
+    CtesBuyTotal+=cte.tc/100*cte.countCtes;
+    ctesTotal+=cte.countCtes;
+    CtesBuyTotalOriginal+=cte.tcOriginal/100*cte.countCtes;
   }
+
+  var ponderadores=[],ponderadoresReal=[];
+  for(var j=0;j<self.characters.length;j++){
+      var cte=self.characters[j];
+      ponderadores[j]=(cte.tc/100*cte.countCtes)/CtesBuyTotal;
+      ponderadoresReal[j]=(cte.tcOriginal/100*cte.countCtes)/CtesBuyTotalOriginal;
+
+  }
+
+  var TotalCPA=0,TotalCPAOriginal=0;
+  for(var j=0;j<self.characters.length;j++){
+    var cte=self.characters[j];
+      TotalCPA+=ponderadores[j]*cte.cpa;
+      TotalCPAOriginal+=ponderadoresReal[j]*cte.cpa;
+  }
+
+
+
   document.getElementById("total-vta-tag").innerHTML="$"+numberWithCommas(Math.round(vtaTotal));
-  let variacion = ((vtaTotal - vtaTotalMMAA) / vtaTotalMMAA) * 100;
+  let variacion = (((CtesBuyTotal*TotalCPA)/(CtesBuyTotalOriginal*TotalCPAOriginal))-1)*100;
   let varElm = document.getElementById("var-global");
   if(variacion < 0) { varElm.style.color = "red"; } else { varElm.style.color = "#00CD00"; }
   varElm.innerHTML = (Math.round(variacion)) + "%";
   var varTotal=document.getElementById("tc-total-tag");
       varTotal.innerHTML=Math.round(ctsXtc/ctsTotal)+"%";
-      varTotal.style.color="#00CD00";
-      if(varTotal<0)
-      varTotal.style.color="red";
+
 if(self.historyFlag&&self.stepBack.length<100){
   self.stepBack.push(JSON.stringify(self.characters));
   self.indexHistory++;
@@ -731,14 +886,19 @@ if(self.historyFlag&&self.stepBack.length<100){
   return self;
 };
 
-function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA) {
+function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal) {
   this.index = index;
-  this.cpa = parseInt(cpa);
+  this.cpa = parseFloat(cpa);
   this.tc = parseFloat(tc);
   this.position = position;
   this.countCtes = parseInt(numCtes);
   this.vtaMMAA = parseInt(vtaMMAA);
+  this.vtaOriginal=vtaOriginal;
+  this.tcOriginal=parseFloat(tc);
   this.sale = function() {
+    console.log("CPA: "+this.cpa);
+    console.log("TC: "+this.tc);
+    console.log("Ctes: "+this.countCtes);
     return this.cpa*((this.tc)/100)*this.countCtes;
   };
 }
