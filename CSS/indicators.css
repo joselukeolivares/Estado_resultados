@@ -38,10 +38,15 @@ body {
 
 .stages {
   width: 35%;
+  height: 55%;
   position: absolute;
   font-family: Roboto-Regular;
   color: #FFFFFF;
   text-align: center;
+}
+
+#stage_2 {
+  width: 83%;
 }
 
 .content {
@@ -51,13 +56,56 @@ body {
   text-align-last: center;
 }
 
-#content_1, #content_2 {
-  color: #E7C82F;
-  font-family: Roboto-Regular;
+#content_01 br, #content_11 br {
+  line-height: 200%;
+}
+
+#content_20, #content_21 {
+  font-size: 90%;
+}
+
+#content_22 {
+  font-size: 70%;
+  text-align: left;
+  text-align-last: left;
+  line-height: 270%;
 }
 
 .arrow-point-to-right {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 35%;
+  height: 35%;
+}
+
+#tcCts {
+  position: absolute;
+  font-family: Roboto;
+  font-weight: Bold;
+  color: #175383;
+  text-align: center;
+}
+
+#tcPer {
+  position: absolute;
+  font-family: Roboto;
+  font-weight: bold;
+  color: #000000;
+  font-size: 250%;
+  text-align: center;
+}
+
+#cpSls {
+  position: absolute;
+  font-family: Roboto;
+  font-weight: bold;
+  color: #000000;
+  font-size: 220%;
+  text-align: center;
+}
+
+.circle-tick-inside {
+  position: absolute;
+  width: 4%;
+  height: 4%;
+  cursor: pointer;
 }
