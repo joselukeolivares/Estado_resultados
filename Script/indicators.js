@@ -50,19 +50,19 @@ function indicators() {
     tasaDeCompra.anchor.set(0.5);
     tasaDeCompra.x = app.screen.width / 5.5;
     tasaDeCompra.y = app.screen.height / 2;
-    tasaDeCompra.scale.set(scale1);
+    tasaDeCompra.scale.set(factorScreen(0.8));
     app.stage.addChild(tasaDeCompra);
 
     compraPromedio.anchor.set(0.5);
     compraPromedio.x = app.screen.width / 2;
     compraPromedio.y = app.screen.height / 2;
-    compraPromedio.scale.set(scale1);
+    compraPromedio.scale.set(factorScreen(0.8));
     app.stage.addChild(compraPromedio);
 
     venta.anchor.set(0.5);
     venta.x = app.screen.width / 1.22;
     venta.y = app.screen.height / 2;
-    venta.scale.set(scale1);
+    venta.scale.set(factorScreen(0.8));
     app.stage.addChild(venta);
 
 
@@ -210,19 +210,19 @@ function indicators() {
               stages[i+1].querySelector("#content_" + (i+1) + 0).style.display = "block";
             }
             if(i == 0) {
-              compraPromedio.scale.set(0.5);
+              compraPromedio.scale.set(factorScreen(0.9));
               compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio.png"].texture);
-              tasaDeCompra.scale.set(0.45);
-              venta.scale.set(0.45);
+              tasaDeCompra.scale.set(factorScreen(0.8));
+              venta.scale.set(factorScreen(0.8));
               tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
               venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
               app.stage.getChildByName("thing_0").visible = false;
               app.stage.getChildByName("thing_1").visible = true;
             } else if(i == 1) {
-              venta.scale.set(0.5);
+              venta.scale.set(factorScreen(0.9));
               venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta.png"].texture);
-              tasaDeCompra.scale.set(0.45);
-              compraPromedio.scale.set(0.45);
+              tasaDeCompra.scale.set(factorScreen(0.8));
+              compraPromedio.scale.set(factorScreen(0.8));
               tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
               compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
               app.stage.getChildByName("thing_1").visible = false;
@@ -392,9 +392,9 @@ function indicators() {
         intro.style.display = "none";
         stages[0].style.display = "block";
         TweenMax.fromTo(stages[0], 0.2, {alpha: 0}, {alpha: 1});
-        tasaDeCompra.scale.set(0.5);
-        compraPromedio.scale.set(0.45);
-        venta.scale.set(0.45);
+        tasaDeCompra.scale.set(factorScreen(0.9));
+        compraPromedio.scale.set(factorScreen(0.8));
+        venta.scale.set(factorScreen(0.8));
         compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
         venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
         app.stage.getChildByName("thing_0").visible = true;
@@ -423,9 +423,9 @@ function indicators() {
             stages[0].querySelector("#arrow-point-to-right-00").style.display = "block";
             stages[0].querySelector("#content_02").style.display = "none";
             stages[0].querySelector("#content_00").style.display = "block";
-            tasaDeCompra.scale.set(0.5);
+            tasaDeCompra.scale.set(factorScreen(0.9));
             tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra.png"].texture);
-            compraPromedio.scale.set(0.45);
+            compraPromedio.scale.set(factorScreen(0.8));
             compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
           } else if(stages[2].style.display == "block") {
             stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
@@ -450,9 +450,9 @@ function indicators() {
             stages[1].querySelector("#content_12").style.display = "none";
             stages[1].querySelector("#content_10").style.display = "block";
 
-            tasaDeCompra.scale.set(0.5);
+            tasaDeCompra.scale.set(factorScreen(0.9));
             tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra.png"].texture);
-            venta.scale.set(0.45);
+            venta.scale.set(factorScreen(0.8));
             venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
           }
         });
@@ -481,9 +481,9 @@ function indicators() {
             stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
             stages[1].querySelector("#content_12").style.display = "none";
             stages[1].querySelector("#content_10").style.display = "block";
-            compraPromedio.scale.set(0.5);
+            compraPromedio.scale.set(factorScreen(0.9));
             compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio.png"].texture);
-            tasaDeCompra.scale.set(0.45);
+            tasaDeCompra.scale.set(factorScreen(0.8));
             tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
           } else if(stages[2].style.display == "block") {
             stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
@@ -508,9 +508,9 @@ function indicators() {
             // stages[1].querySelector("#content_12").style.display = "none";
             // stages[1].querySelector("#content_10").style.display = "block";
 
-            compraPromedio.scale.set(0.5);
+            compraPromedio.scale.set(factorScreen(0.9));
             compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio.png"].texture);
-            venta.scale.set(0.45);
+            venta.scale.set(factorScreen(0.8));
             venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
           }
         });
@@ -542,9 +542,9 @@ function indicators() {
             stages[2].querySelector("#content_20").style.display = "block";
             stages[2].style.top = app.screen.height * 0.33 + "px";
             stages[2].style.left = app.screen.height * 0.1 + "px";
-            venta.scale.set(0.5);
+            venta.scale.set(factorScreen(0.9));
             venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta.png"].texture);
-            tasaDeCompra.scale.set(0.45);
+            tasaDeCompra.scale.set(factorScreen(0.8));
             tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
           } else if(stages[1].style.display == "block") {
             slider1.style.display = "none";
@@ -567,9 +567,9 @@ function indicators() {
             stages[2].querySelector("#content_20").style.display = "block";
             stages[2].style.top = app.screen.height * 0.33 + "px";
             stages[2].style.left = app.screen.height * 0.1 + "px";
-            venta.scale.set(0.5);
+            venta.scale.set(factorScreen(0.9));
             venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta.png"].texture);
-            compraPromedio.scale.set(0.45);
+            compraPromedio.scale.set(factorScreen(0.8));
             compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
           }
         });
