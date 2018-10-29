@@ -98,13 +98,7 @@ function indicators() {
     contButton.x = app.screen.width * 0.85;
     contButton.y = app.screen.height * 0.88;
     contButton.anchor.set(0.5);
-<<<<<<< HEAD
     contButton.scale.set(factorScreen(1.3));
-=======
-
-    contButton.scale.set(scale2);
-
->>>>>>> 1d16f87c172efd09ecf8419d2d7e87f211305693
     contButton.interactive = true;
     contButton.cursor = "pointer";
     app.stage.addChild(contButton);
