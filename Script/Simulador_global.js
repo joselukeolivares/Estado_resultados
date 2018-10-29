@@ -344,13 +344,13 @@ container_globos.scale.set(self.app.screen.width*.50/950);
 
 unVdoB.x=25;
 unVdoB.name="unVdoB";
-unVdoB.scale.set(self.app.screen.width*.45/950);
+//unVdoB.scale.set(self.app.screen.width*.45/950);
 unVdoB.interactive = true;
 unVdoB.buttonMode = true;
 unVdoB.visible = false;
 
 unVdoClked.x = 25;
-unVdoClked.scale.set(self.app.screen.width * .45 / 950);
+//unVdoClked.scale.set(self.app.screen.width * .45 / 950);
 dosVdoClked.scale.set(self.app.screen.width * .45 / 950);
 tresVdoClked.scale.set(self.app.screen.width * .45 / 950);
 cuatroVdoClked.scale.set(self.app.screen.width * .45 / 950);
