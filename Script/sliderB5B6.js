@@ -62,8 +62,9 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
 
        if(target1.typeObj==1)
        target1.innerHTML=newValue;
+       var slider_num=((target1.id).charAt((target1.id).length-1));
 
-       try{update.updateTotal(newValue);}catch(e){console.log("No se encontro funcion updateTotal:\n"+e)}
+       try{update.updateTotal(newValue,slider_num);}catch(e){console.log("No se encontro funcion updateTotal:\n"+e)}
      }
 
 
