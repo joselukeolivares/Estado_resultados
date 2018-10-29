@@ -50,19 +50,19 @@ function indicators() {
     tasaDeCompra.anchor.set(0.5);
     tasaDeCompra.x = app.screen.width / 5.5;
     tasaDeCompra.y = app.screen.height / 2;
-    tasaDeCompra.scale.set(scale1);
+    tasaDeCompra.scale.set(factorScreen(0.8));
     app.stage.addChild(tasaDeCompra);
 
     compraPromedio.anchor.set(0.5);
     compraPromedio.x = app.screen.width / 2;
     compraPromedio.y = app.screen.height / 2;
-    compraPromedio.scale.set(scale1);
+    compraPromedio.scale.set(factorScreen(0.8));
     app.stage.addChild(compraPromedio);
 
     venta.anchor.set(0.5);
     venta.x = app.screen.width / 1.22;
     venta.y = app.screen.height / 2;
-    venta.scale.set(scale1);
+    venta.scale.set(factorScreen(0.8));
     app.stage.addChild(venta);
 
 
@@ -179,7 +179,7 @@ function indicators() {
         icRightArrow.addEventListener("click", function() {
           if(j != 2) {
             this.style.display = "none";
-            stages[i].querySelector("#arrow-point-to-right-" + i + (j+1)).style.display = "block";
+            //stages[i].querySelector("#arrow-point-to-right-" + i + (j+1)).style.display = "block";
             stages[i].querySelector("#content_" + i + j).style.display = "none";
             stages[i].querySelector("#content_" + i + (j+1)).style.display = "block";
             if(i == 0 && j == 0) {
@@ -187,10 +187,12 @@ function indicators() {
               app.stage.getChildByName("interactiveSquares0").visible = true;
               document.getElementById("tcCts").style.display = "block";
               document.getElementById("tcPer").style.display = "block";
-            } else if (i == 1 && j == 0) {
+            } else if(i == 1 && j == 0) {
               slider1.style.display = "block";
               app.stage.getChildByName("interactiveSquares1").visible = true;
               document.getElementById("cpSls").style.display = "block";
+            } else if(i == 2 && j == 0) {
+              stages[i].querySelector("#arrow-point-to-right-21").style.display = "block";
             } else if(i == 2 && j == 1) {
               circle1.style.display = "block";
               circle2.style.display = "block";
@@ -205,25 +207,28 @@ function indicators() {
             document.getElementById("tcPer").style.display = "none";
             document.getElementById("cpSls").style.display = "none";
             stages[i+1].style.display = "block";
+            if(stages[i+1].querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display == "none") {
+              stages[i+1].querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display = "block";
+              stages[i+1].querySelector("#content_" + (i+1) + 0).style.display = "block";
+            }
             if(i == 0) {
-              compraPromedio.scale.set(0.5);
+              compraPromedio.scale.set(factorScreen(0.9));
               compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio.png"].texture);
-              tasaDeCompra.scale.set(0.45);
-              venta.scale.set(0.45);
+              tasaDeCompra.scale.set(factorScreen(0.8));
+              venta.scale.set(factorScreen(0.8));
               tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
               venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
               app.stage.getChildByName("thing_0").visible = false;
               app.stage.getChildByName("thing_1").visible = true;
             } else if(i == 1) {
-              venta.scale.set(0.5);
+              venta.scale.set(factorScreen(0.9));
               venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta.png"].texture);
-              tasaDeCompra.scale.set(0.45);
-              compraPromedio.scale.set(0.45);
+              tasaDeCompra.scale.set(factorScreen(0.8));
+              compraPromedio.scale.set(factorScreen(0.8));
               tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
               compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
               app.stage.getChildByName("thing_1").visible = false;
               vSprites.visible = true;
-              console.log(vSprites);
               stages[2].style.top = app.screen.height * 0.33 + "px";
               stages[2].style.left = app.screen.height * 0.1 + "px";
             }
@@ -305,59 +310,82 @@ function indicators() {
       vSprites.addChild(vNum);
 
       app.stage.addChild(vSprites);
-      let circle1 = document.createElement("img");
-      circle1.setAttribute("src", "assets/ui/Bloque_3/ic-tick-inside-circle.svg");
-      circle1.setAttribute("class", "circle-tick-inside");
-      circle1.setAttribute("id", "circle-tick-inside-1");
-      circle1.style.top = app.screen.height * 0.49 + "px";
-      circle1.style.left = app.screen.width * 0.02 + "px";
-      circle1.style.display = "none";
-      appDiv.appendChild(circle1);
 
-      let circle2 = document.createElement("img");
-      circle2.setAttribute("src", "assets/ui/Bloque_3/ic-tick-inside-circle.svg");
-      circle2.setAttribute("class", "circle-tick-inside");
-      circle2.setAttribute("id", "circle-tick-inside-2");
-      circle2.style.top = app.screen.height * 0.56 + "px";
-      circle2.style.left = app.screen.width * 0.02 + "px";
-      circle2.style.display = "none";
-      appDiv.appendChild(circle2);
 
-      circle1.addEventListener("click", function() {
-        let vSprites = app.stage.getChildByName("vSprites1");
-        vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-2mil.png")].texture);
-        vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-millon.png")].texture);
-        let actualContent = document.getElementById("content_22");
-        actualContent.style.lineHeight = "150%";
-        actualContent.style.textAlign = "center";
-        actualContent.style.textAlignLast = "center";
-        actualContent.innerHTML = "Incorecto! Si nos enfocamos solamente a que el Cliente nos compre más, corremos el riesgo de no mantenerlo, esto por que no estamos otorgando un servicio adecuado para que más Clientes nos compren.";
-        this.style.display = "none";
-        this.nextSibling.style.display = "none";
-      });
-
-      circle2.addEventListener("click", function() {
-        let vSprites = app.stage.getChildByName("vSprites1");
-        vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/tasa-80percent.png")].texture);
-        vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-mil400.png")].texture);
-        vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-1millon120.png")].texture);
-        let actualContent = document.getElementById("content_22");
-        actualContent.style.lineHeight = "150%";
-        actualContent.style.textAlign = "center";
-        actualContent.style.textAlignLast = "center";
-        actualContent.innerHTML = "Correcto! Si otorgamos un mejor servicio al cliente y aumentamos la Tasa de Compra y la Compra Promedio significativamente, el resultado es mejor, además tomamos en cuenta que la posibilidad de que un Cliente continue comprando es más alta.";
-        this.style.display = "none";
-        this.previousSibling.style.display = "none";
-
-        document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
-          toSlide("segmentacion");
-        });
-
-      });
 
       stages[i].style.display = "none";
       appDiv.appendChild(stages[i]);
     }
+
+    let circle1 = document.createElement("img");
+    circle1.setAttribute("src", "assets/ui/Bloque_3/ic-tick-inside-circle.svg");
+    circle1.setAttribute("class", "circle-tick-inside");
+    circle1.setAttribute("id", "circle-tick-inside-1");
+    circle1.style.top = app.screen.height * 0.49 + "px";
+    circle1.style.left = app.screen.width * 0.02 + "px";
+    circle1.style.display = "none";
+    appDiv.appendChild(circle1);
+
+    let circle2 = document.createElement("img");
+    circle2.setAttribute("src", "assets/ui/Bloque_3/ic-tick-inside-circle.svg");
+    circle2.setAttribute("class", "circle-tick-inside");
+    circle2.setAttribute("id", "circle-tick-inside-2");
+    circle2.style.top = app.screen.height * 0.56 + "px";
+    circle2.style.left = app.screen.width * 0.02 + "px";
+    circle2.style.display = "none";
+    appDiv.appendChild(circle2);
+
+    circle1.addEventListener("click", function() {
+      let vSprites = app.stage.getChildByName("vSprites1");
+      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-2mil.png")].texture);
+      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-millon.png")].texture);
+      let actualContent = document.getElementById("content_22");
+      actualContent.style.lineHeight = "150%";
+      actualContent.style.textAlign = "center";
+      actualContent.style.textAlignLast = "center";
+      actualContent.innerHTML = "Incorecto! Si nos enfocamos solamente a que el Cliente nos compre más, corremos el riesgo de no mantenerlo, esto por que no estamos otorgando un servicio adecuado para que más Clientes nos compren.";
+      this.style.display = "none";
+      circle2.style.display = "none";
+
+      let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/Bloque_3/ic-left-arrow-circular.png"].texture);
+      icBack.anchor.set(0.5);
+      icBack.x = app.screen.width * 0.05;
+      icBack.y = app.screen.height * 0.5;
+      icBack.name = "icBack";
+      icBack.interactive = true;
+      icBack.buttonMode = true;
+      vSprites.addChild(icBack);
+
+      icBack.on("pointertap", function() {
+        actualContent.style.lineHeight = "270%";
+        actualContent.style.textAlign = "left";
+        actualContent.style.textAlignLast = "left";
+        actualContent.innerHTML = subTitles[2][2];
+        circle1.style.display = "block";
+        circle2.style.display = "block";
+        vSprites.removeChild(icBack);
+      });
+    });
+
+    circle2.addEventListener("click", function() {
+      let vSprites = app.stage.getChildByName("vSprites1");
+      vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/tasa-80percent.png")].texture);
+      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-mil400.png")].texture);
+      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-1millon120.png")].texture);
+      let actualContent = document.getElementById("content_22");
+      actualContent.style.lineHeight = "150%";
+      actualContent.style.textAlign = "center";
+      actualContent.style.textAlignLast = "center";
+      actualContent.innerHTML = "Correcto! Si otorgamos un mejor servicio al cliente y aumentamos la Tasa de Compra y la Compra Promedio significativamente, el resultado es mejor, además tomamos en cuenta que la posibilidad de que un Cliente continue comprando es más alta.";
+      stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
+      this.style.display = "none";
+      circle1.style.display = "none";
+
+      document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
+        toSlide("segmentacion");
+      });
+
+    });
 
     contButton.on("pointertap", function() {
       contButton.visible = false;
@@ -366,9 +394,9 @@ function indicators() {
         intro.style.display = "none";
         stages[0].style.display = "block";
         TweenMax.fromTo(stages[0], 0.2, {alpha: 0}, {alpha: 1});
-        tasaDeCompra.scale.set(0.5);
-        compraPromedio.scale.set(0.45);
-        venta.scale.set(0.45);
+        tasaDeCompra.scale.set(factorScreen(0.9));
+        compraPromedio.scale.set(factorScreen(0.8));
+        venta.scale.set(factorScreen(0.8));
         compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
         venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
         app.stage.getChildByName("thing_0").visible = true;
@@ -378,39 +406,56 @@ function indicators() {
         tasaDeCompra.buttonMode = true;
         tasaDeCompra.on("click", function() {
           if(stages[1].style.display == "block") {
-            if(stages[1].querySelector("#content_11").style.display == "block") {
-              slider1.style.display = "none";
-            } else if (stages[1].querySelector("#content_12").style.display == "block") {
-              slider1.style.display = "none";
-            }
+            slider1.style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-10").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-11").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
             stages[1].style.display = "none";
-            stages[0].style.display = "block";
-            stages[0].querySelector("#content_02").style.display == "none";
-            stages[0].querySelector("#content_00").style.display == "block";
-            tasaDeCompra.scale.set(0.5);
-            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra.png"].texture);
-            compraPromedio.scale.set(0.45);
-            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
-          } else if(stage[2].visible) {
-            if(stage[2].children[2].visible) {
-              //slider2.style.display = "none";
-              stage[2].children[2].visible = false;
-              stage[2].children[2].alpha = 0;
-            } else if(stage[2].children[3].visible) {
-              //slider2.style.display = "none";
-              stage[2].children[3].visible = false;
-              stage[2].children[3].alpha = 0;
-            }
-            TweenMax.to(stage[2], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-              stage[2].visible = false;
-              stage[0].visible = true;
-              TweenMax.to(stage[0], 0.3, {pixi: {alpha: 1}});
+            stages[1].querySelector("#content_10").style.display = "none";
+            stages[1].querySelector("#content_11").style.display = "none";
+            stages[1].querySelector("#content_12").style.display = "none";
+            app.stage.getChildByName("thing_1").visible = false;
+            app.stage.getChildByName("interactiveSquares1").visible = false;
+            document.getElementById("cpSls").style.display = "none";
 
-              stage[0].children[1].visible = true;
-              stage[0].children[1].alpha = 1;
-            }});
-            tasaDeCompra.alpha = 0.5;
-            venta.alpha = 1;
+
+            app.stage.getChildByName("thing_0").visible = true;
+            stages[0].style.display = "block";
+            stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-00").style.display = "block";
+            stages[0].querySelector("#content_02").style.display = "none";
+            stages[0].querySelector("#content_00").style.display = "block";
+            tasaDeCompra.scale.set(factorScreen(0.9));
+            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra.png"].texture);
+            compraPromedio.scale.set(factorScreen(0.8));
+            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
+          } else if(stages[2].style.display == "block") {
+            stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
+            stages[2].querySelector("#arrow-point-to-right-21").style.display = "none";
+            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
+            stages[2].style.display = "none";
+            stages[2].querySelector("#content_20").style.display = "none";
+            stages[2].querySelector("#content_21").style.display = "none";
+            stages[2].querySelector("#content_22").style.display = "none";
+            appDiv.querySelector("#circle-tick-inside-1").style.display = "none";
+            appDiv.querySelector("#circle-tick-inside-2").style.display = "none";
+            app.stage.getChildByName("vSprites1").visible = false;
+
+            app.stage.getChildByName("thing_0").visible = true;
+            stages[0].style.display = "block";
+            stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-00").style.display = "block";
+            stages[0].querySelector("#content_02").style.display = "none";
+            stages[0].querySelector("#content_00").style.display = "block";
+            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
+            stages[1].querySelector("#content_12").style.display = "none";
+            stages[1].querySelector("#content_10").style.display = "block";
+
+            tasaDeCompra.scale.set(factorScreen(0.9));
+            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra.png"].texture);
+            venta.scale.set(factorScreen(0.8));
+            venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
           }
         });
 
@@ -418,46 +463,57 @@ function indicators() {
         compraPromedio.interactive = true;
         compraPromedio.buttonMode = true;
         compraPromedio.on("click", function() {
-          if(stage[0].visible) {
-            if(stage[0].children[2].visible) {
-              slider0.style.display = "none";
-              stage[0].children[2].visible = false;
-              stage[0].children[2].alpha = 0;
-            } else if (stage[0].children[3].visible) {
-              slider0.style.display = "none";
-              stage[0].children[3].visible = false;
-              stage[0].children[3].alpha = 0;
-            }
-            TweenMax.to(stage[0], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-              stage[0].visible = false;
-              stage[1].visible = true;
-              TweenMax.to(stage[1], 0.3, {pixi: {alpha: 1}});
+          if(stages[0].style.display == "block") {
+            slider0.style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-01").style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
+            stages[0].style.display = "none";
+            stages[0].querySelector("#content_00").style.display = "none";
+            stages[0].querySelector("#content_01").style.display = "none";
+            stages[0].querySelector("#content_02").style.display = "none";
+            app.stage.getChildByName("thing_0").visible = false;
+            app.stage.getChildByName("interactiveSquares0").visible = false;
+            document.getElementById("tcCts").style.display = "none";
+            document.getElementById("tcPer").style.display = "none";
 
-              stage[1].children[1].visible = true;
-              stage[1].children[1].alpha = 1;
-            }});
-            compraPromedio.alpha = 0.5;
-            tasaDeCompra.alpha = 1;
-          } else if(stage[2].visible) {
-            if(stage[2].children[2].visible) {
-              slider2.style.display = "none";
-              stage[2].children[2].visible = false;
-              stage[2].children[2].alpha = 0;
-            } else if (stage[2].children[3].visible) {
-              slider2.style.display = "none";
-              stage[2].children[3].visible = false;
-              stage[2].children[3].alpha = 0;
-            }
-            TweenMax.to(stage[2], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-              stage[2].visible = false;
-              stage[1].visible = true;
-              TweenMax.to(stage[1], 0.3, {pixi: {alpha: 1}});
+            app.stage.getChildByName("thing_1").visible = true;
+            stages[1].style.display = "block";
+            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
+            stages[1].querySelector("#content_12").style.display = "none";
+            stages[1].querySelector("#content_10").style.display = "block";
+            compraPromedio.scale.set(factorScreen(0.9));
+            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio.png"].texture);
+            tasaDeCompra.scale.set(factorScreen(0.8));
+            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
+          } else if(stages[2].style.display == "block") {
+            stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
+            stages[2].querySelector("#arrow-point-to-right-21").style.display = "none";
+            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
+            stages[2].style.display = "none";
+            stages[2].querySelector("#content_20").style.display = "none";
+            stages[2].querySelector("#content_21").style.display = "none";
+            stages[2].querySelector("#content_22").style.display = "none";
+            appDiv.querySelector("#circle-tick-inside-1").style.display = "none";
+            appDiv.querySelector("#circle-tick-inside-2").style.display = "none";
+            app.stage.getChildByName("vSprites1").visible = false;
 
-              stage[1].children[1].visible = true;
-              stage[1].children[1].alpha = 1;
-            }});
-            compraPromedio.alpha = 0.5;
-            venta.alpha = 1;
+            app.stage.getChildByName("thing_1").visible = true;
+            stages[1].style.display = "block";
+            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
+            stages[1].querySelector("#content_12").style.display = "none";
+            stages[1].querySelector("#content_10").style.display = "block";
+            // stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
+            // stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
+            // stages[1].querySelector("#content_12").style.display = "none";
+            // stages[1].querySelector("#content_10").style.display = "block";
+
+            compraPromedio.scale.set(factorScreen(0.9));
+            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio.png"].texture);
+            venta.scale.set(factorScreen(0.8));
+            venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
           }
         });
 
@@ -466,51 +522,59 @@ function indicators() {
         venta.interactive = true;
         venta.buttonMode = true;
         venta.on("click", function() {
-          if(stage[0].visible) {
-            if(stage[0].children[2].visible) {
-              slider0.style.display = "none";
-              stage[0].children[2].visible = false;
-              stage[0].children[2].alpha = 0;
-            } else if (stage[0].children[3].visible) {
-              slider0.style.display = "none";
-              stage[0].children[3].visible = false;
-              stage[0].children[3].alpha = 0;
-            }
-            TweenMax.to(stage[0], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-              stage[0].visible = false;
-              stage[2].visible = true;
-              TweenMax.to(stage[2], 0.3, {pixi: {alpha: 1}});
+          if(stages[0].style.display == "block") {
+            slider0.style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-01").style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
+            stages[0].style.display = "none";
+            stages[0].querySelector("#content_00").style.display = "none";
+            stages[0].querySelector("#content_01").style.display = "none";
+            stages[0].querySelector("#content_02").style.display = "none";
+            app.stage.getChildByName("thing_0").visible = false;
+            app.stage.getChildByName("interactiveSquares0").visible = false;
+            document.getElementById("tcCts").style.display = "none";
+            document.getElementById("tcPer").style.display = "none";
 
-              stage[2].children[1].visible = true;
-              stage[2].children[1].alpha = 1;
-            }});
-            venta.alpha = 0.5;
-            tasaDeCompra.alpha = 1;
-          } else if(stage[1].visible) {
-            if (stage[1].children[2].visible) {
-              slider1.style.display = "none";
-              stage[1].children[2].visible = false;
-              stage[1].children[2].alpha = 0;
-            } else if (stage[1].children[3].visible) {
-              slider1.style.display = "none";
-              stage[1].children[3].visible = false;
-              stage[1].children[3].alpha = 0;
-            }
-            TweenMax.to(stage[1], 0.3, {pixi: {alpha: 0}, onComplete: function() {
-              stage[1].visible = false;
-              stage[2].visible = true;
-              TweenMax.to(stage[2], 0.3, {pixi: {alpha: 1}});
+            app.stage.getChildByName("vSprites1").visible = true;
+            stages[2].style.display = "block";
+            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
+            stages[2].querySelector("#arrow-point-to-right-20").style.display = "block";
+            stages[2].querySelector("#content_22").style.display = "none";
+            stages[2].querySelector("#content_20").style.display = "block";
+            stages[2].style.top = app.screen.height * 0.33 + "px";
+            stages[2].style.left = app.screen.height * 0.1 + "px";
+            venta.scale.set(factorScreen(0.9));
+            venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta.png"].texture);
+            tasaDeCompra.scale.set(factorScreen(0.8));
+            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
+          } else if(stages[1].style.display == "block") {
+            slider1.style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-10").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-11").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
+            stages[1].style.display = "none";
+            stages[1].querySelector("#content_10").style.display = "none";
+            stages[1].querySelector("#content_11").style.display = "none";
+            stages[1].querySelector("#content_12").style.display = "none";
+            app.stage.getChildByName("thing_1").visible = false;
+            app.stage.getChildByName("interactiveSquares1").visible = false;
+            document.getElementById("cpSls").style.display = "none";
 
-              stage[2].children[1].visible = true;
-              stage[2].children[1].alpha = 1;
-            }});
-            venta.alpha = 0.5;
-            compraPromedio.alpha = 1;
+            app.stage.getChildByName("vSprites1").visible = true;
+            stages[2].style.display = "block";
+            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
+            stages[2].querySelector("#arrow-point-to-right-20").style.display = "block";
+            stages[2].querySelector("#content_22").style.display = "none";
+            stages[2].querySelector("#content_20").style.display = "block";
+            stages[2].style.top = app.screen.height * 0.33 + "px";
+            stages[2].style.left = app.screen.height * 0.1 + "px";
+            venta.scale.set(factorScreen(0.9));
+            venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta.png"].texture);
+            compraPromedio.scale.set(factorScreen(0.8));
+            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
           }
-          compraPromedio.interactive = false;
-          compraPromedio.buttonMode = false;
         });
-
       }});
     });
   }

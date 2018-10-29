@@ -47,7 +47,7 @@ function slider(appDiv, app, index) {
     tcCts.setAttribute("id", "tcCts");
     tcCts.innerHTML = "500<br>Clientes";
     tcCts.style.left = tc_square.x * 1.02 + "px";
-    tcCts.style.top = tc_square.x * 0.91 + "px";
+    tcCts.style.top = tc_square.x * 0.89 + "px";
     tcCts.style.display = "none";
     appDiv.appendChild(tcCts);
 
@@ -55,7 +55,7 @@ function slider(appDiv, app, index) {
     tcPer.setAttribute("id", "tcPer");
     tcPer.innerHTML = "50%";
     tcPer.style.left = tc_square.x * 1.3 + "px";
-    tcPer.style.top = tc_square.x * 0.83 + "px";
+    tcPer.style.top = tc_square.x * 0.81 + "px";
     tcPer.style.display = "none";
     appDiv.appendChild(tcPer);
   }
@@ -72,7 +72,7 @@ function slider(appDiv, app, index) {
     cpSls.setAttribute("id", "cpSls");
     cpSls.innerHTML = "$1,000.00";
     cpSls.style.left = cp_square.x * 1.02 + "px";
-    cpSls.style.top = cp_square.x * 0.81 + "px";
+    cpSls.style.top = cp_square.x * 0.79 + "px";
     cpSls.style.display = "none";
     appDiv.appendChild(cpSls);
   }
@@ -102,6 +102,7 @@ function slider(appDiv, app, index) {
           tcCts.innerHTML = self.value + "00" + "<br>Clientes";
         } else if(newValue >= 9) {
           stage0.querySelector("#content_01").innerHTML = "Mayor Tasa de Compra indica que más clientes nos están comprando.";
+          stage0.querySelector("#arrow-point-to-right-01").style.display = "block";
         }
       } else {
         if(newValue < self.value) {
@@ -112,6 +113,7 @@ function slider(appDiv, app, index) {
           tcCts.innerHTML = self.value + "00" + "<br>Clientes";
         } else if(newValue <= 1) {
           stage0.querySelector("#content_02").innerHTML = "Menor Tasa de Compra indica que menos clientes nos están comprando.";
+          stage0.querySelector("#arrow-point-to-right-02").style.display = "block";
         }
       }
     } else if (index == 1) {
@@ -123,6 +125,7 @@ function slider(appDiv, app, index) {
           app.getChildByName("thing_1").setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
         } else if (newValue >= 9) {
           stage1.querySelector("#content_11").innerHTML = "Mayor Compra Promedio indica un mayor volumen de compra.";
+          stage1.querySelector("#arrow-point-to-right-11").style.display = "block";
           //alert("En este ejercicio, solo puedes incrementar la compra promedio y haz llegado al maximo. Por favor da click en siguiente.");
         }
       } else {
@@ -133,6 +136,7 @@ function slider(appDiv, app, index) {
           app.getChildByName("thing_1").setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
         } else if(newValue <= 1) {
           stage1.querySelector("#content_12").innerHTML = "Menor Compra Promedio indica un menor volumen de compra.";
+          stage1.querySelector("#arrow-point-to-right-12").style.display = "block";
         }
       }
     }
