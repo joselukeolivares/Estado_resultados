@@ -197,7 +197,7 @@ function createSprite(app){
            var contenedor_2 = document.createElement("DIV");
             contenedor_2.setAttribute("id","contenedor_2");
             debugger;
-            contenedor_2.setAttribute("style","width:40%;position: absolute;left: 50%;top:"+(parseInt(contenedor.style.top)+(parseInt(contenedor.style.height)/2))+"%;");
+            contenedor_2.setAttribute("style","word-break: keep-all;width:40%;position: absolute;left: 50%;top:"+(parseInt(contenedor.style.top)+(parseInt(contenedor.style.height)/2))+"%;");
             document.body.appendChild(contenedor_2);
 
 
