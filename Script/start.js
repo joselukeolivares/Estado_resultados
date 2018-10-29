@@ -44,10 +44,10 @@ function start() {
     console.log(door1.width);
 
 
-    let background= new PIXI.Sprite(PIXI.Texture.fromImage("assets/background_coppel.png"));
-    let storeEntrance = new PIXI.Sprite(PIXI.Texture.fromImage("assets/coppel.png"));
+    let background= new PIXI.Sprite(Loader.resources["assets/background_coppel.png"].texture);
+    let storeEntrance = new PIXI.Sprite(Loader.resources["assets/coppel.png"].texture);
     //let door1 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/singleDoor.png"));
-    let door2 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/singleDoor.png"));
+    let door2 = new PIXI.Sprite(Loader.resources["assets/singleDoor.png"].texture);
     app.stage.addChild(background);
     app.stage.addChild(door1);
     app.stage.addChild(door2);
@@ -60,19 +60,22 @@ function start() {
     background.anchor.set(0.5, 0.5);
     background.scale.set(escala, escala);
 
-    storeEntrance.x = app.screen.width / 2;
-    storeEntrance.y = app.screen.height / 2;
-    storeEntrance.anchor.set(0.5, 0.5);
     storeEntrance.scale.set(escala, escala);
+    storeEntrance.x = app.screen.width /2-storeEntrance.width/2
+    storeEntrance.y = app.screen.height / 14;
+    //storeEntrance.anchor.set(0.5, 0.5);
 
-    door1.anchor.set(0.5);
-    door2.anchor.set(0.5);
-    door1.x = app.screen.width / 2.35;
-    door2.x = app.screen.width / 1.75;
-    door1.y = app.screen.height / 1.5;
-    door2.y = app.screen.height / 1.5;
+
+
+
     door1.scale.set(escala, escala);
     door2.scale.set(escala, escala);
+    door1.x = storeEntrance.x+(storeEntrance.width/2)-door1.width;
+    door2.x =  door1.x+door1.width;
+    door1.y = storeEntrance.y+(storeEntrance.height)-door1.height;
+    door2.y = door1.y;
+
+
 
     background.interactive = true;
     background.buttonMode = true;
@@ -82,13 +85,13 @@ function start() {
       .on("pointerout", onDoorsOut);
 
     function onDoorsOver() {
-      TweenMax.to(door1, 1.3, {x: (app.screen.width * 62) / 220, onComplete: tweenCompleted});
-      TweenMax.to(door2, 1.3, {x: (app.screen.width * 400) / 560});
+      TweenMax.to(door1, 1.3, {x: door1.x-door1.width, onComplete: tweenCompleted});
+      TweenMax.to(door2, 1.3, {x: door2.x+door2.width});
     }
 
     function onDoorsOut() {
-      TweenMax.to(door1, 1, {x: app.screen.width / 2.35});
-      TweenMax.to(door2, 1, {x: app.screen.width / 1.75});
+      //TweenMax.to(door1, 1, {x:  storeEntrance.x+(storeEntrance.width/2)-door1.width});
+      //TweenMax.to(door2, 1, {x: storeEntrance.x+(storeEntrance.width/2)+door2.width});
     }
 
     function tweenCompleted() {

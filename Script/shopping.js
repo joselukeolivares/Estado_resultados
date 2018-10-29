@@ -14,14 +14,16 @@ function shopping(){
   shop.width=app.screen.width;
   shop.height=app.screen.height;
 
-    var texture = PIXI.Texture.fromImage('assets/4. TIENDA FONDO.png');
+    var texture = PIXI.loader.resources['assets/4. TIENDA FONDO.png'].texture;
     var tienda_dentro = new PIXI.Sprite(texture);
     tienda_dentro.alpha=0;
+    tienda_dentro.scale.set(shop.escala_2,shop.escala_2);
 
-                tienda_dentro.x = app.screen.width / 2;
-                tienda_dentro.y = app.screen.height / 2;
-                tienda_dentro.anchor.set(0.5,0.5);
-		        		tienda_dentro.scale.set(shop.escala_2,shop.escala_2);
+                tienda_dentro.x =shop.width/2-tienda_dentro.width/2;
+                tienda_dentro.y = 0;
+                debugger;
+                //tienda_dentro.anchor.set(0.5,0.5);
+
                 app.stage.addChild(tienda_dentro);
 
                 var group_2=new PIXI.display.Group(0, true);
@@ -62,11 +64,14 @@ function shopping(){
        Cliente_9;
 
 var Loader=PIXI.loader;
+var mueblesX2=tienda_dentro.x+tienda_dentro.width/1.35;
+var mueblesX1=tienda_dentro.x;
+var mueblesY=tienda_dentro.y+tienda_dentro.height/3.5;
 
      var id = Loader.resources['assets/spritesheet.json'].textures;
 
        tvs = new PIXI.Sprite(id['5. TVS.png']);
-	   tvs.position.set(shop.width*.75, shop.height / 4);
+	   tvs.position.set(mueblesX2, mueblesY);
 	   tvs.scale.set(shop.escala_1,shop.escala_1);
      tvs.alpha=0;
      tvs.parentGroup=group_2;
@@ -74,7 +79,7 @@ var Loader=PIXI.loader;
 	   //app.stage.addChild(tvs);
 
   	   audio = new PIXI.Sprite(id['8. AUDIO.png']);
-	   audio.position.set(shop.width*.82, shop.height / 2.2);
+	   audio.position.set(mueblesX2*1.08, tienda_dentro.y+tienda_dentro.height/2.3);
 	   audio.scale.set(shop.escala_1,shop.escala_1);
      audio.alpha=0;
      audio.parentGroup=group_2;
@@ -82,17 +87,17 @@ var Loader=PIXI.loader;
 	   //app.stage.addChild(audio);
 
        celulares = new PIXI.Sprite(id['10. CELULARES.png']);
-	   celulares.position.set(shop.width*.85,shop.height / 1.8);
-	   celulares.scale.set(shop.escala_1,shop.escala_1);
-     celulares.alpha=0;
-     celulares.parentGroup=group_2;
+       celulares.scale.set(shop.escala_1,shop.escala_1);
+	     celulares.position.set(mueblesX2*1.05,tienda_dentro.y+tienda_dentro.height-(celulares.height*1.6));
+	     celulares.alpha=0;
+       celulares.parentGroup=group_2;
 
 	   //app.stage.addChild(celulares);
 
 	   ////////////////////////////////////////////////
 
 	   sala = new PIXI.Sprite(id['6. SALA.png']);
-	   sala.position.set(shop.width*0.00001, shop.height / 5);
+	   sala.position.set(mueblesX1, mueblesY*.9);
 	   sala.scale.set(shop.escala_2,shop.escala_2);
      sala.alpha=0;
      sala.parentGroup=group_2;
@@ -101,7 +106,7 @@ var Loader=PIXI.loader;
 	   //app.stage.addChild(sala);
 
 	   lavanderia = new PIXI.Sprite(id['7. LAVANDERIA.png']);
-	   lavanderia.position.set(-100, shop.height / 2.9);
+	   lavanderia.position.set(mueblesX1, mueblesY*1.3);
 	   lavanderia.scale.set(shop.escala_2,shop.escala_2);
      lavanderia.alpha=0;
      lavanderia.parentGroup=group_2;
@@ -110,20 +115,20 @@ var Loader=PIXI.loader;
 	   //app.stage.addChild(lavanderia);
 
 	   lineablanca = new PIXI.Sprite(id['9. LINEA BLANCA.png']);
-	   lineablanca.position.set(shop.width*.01, shop.height / 3.7);
+	   lineablanca.position.set(mueblesX1, mueblesY*1.45);
 	   lineablanca.scale.set(shop.escala_2,shop.escala_2);
      lineablanca.alpha=0;
      lineablanca.parentGroup=group_2;
-     lineablanca.y= app.screen.height / 2.6;
+     //lineablanca.y= app.screen.height / 2.6;
 
 	   //app.stage.addChild(lineablanca);
 
 	   comedor = new PIXI.Sprite(id['11. COMEDOR.png']);
-	   comedor.position.set(-175,shop.height*.70);
+	   comedor.position.set(mueblesX1,mueblesY*2.5);
 	   comedor.scale.set(shop.escala_2,shop.escala_2);
      comedor.alpha=0;
      comedor.parentGroup=group_2;
-     comedor.y= app.screen.height / 1.4;
+     //comedor.y= app.screen.height / 1.4;
 
 
      perfumeria = new PIXI.Sprite(id['PERFUMERIA.png']);
@@ -152,12 +157,12 @@ var muebles = [sala,tvs,lavanderia,perfumeria,audio,lineablanca,celulares,comedo
 
           for(i=0;i<8;i++){
           var p = i * (shop.width/10);
-          var q = i * (shop.height/10);
+          var q = i * (shop.height/12);
 debugger;
            clientes_t[i] = new PIXI.spine.Spine(loader.resources.Cliente_naranja.spineData);
            clientes_t[i].scale.set(shop.escala_4,shop.escala_4);
            clientes_t[i].x =Math.floor((Math.random() * shop.width) + 1);
-           clientes_t[i].y = app.screen.height*.2+q;
+           clientes_t[i].y = app.screen.height*.3+q;
            clientes_t[i].interactive = true;
            clientes_t[i].state.setAnimation(0,'walk',true);
            clientes_t[i].on('mouseover',clicked);
@@ -184,8 +189,8 @@ debugger;
           container.addChild(clientes_t[4]);
           container.addChild(clientes_t[5]);
           container.addChild(muebles[6]);
-          container.addChild(muebles[7]);
           container.addChild(clientes_t[6]);
+          container.addChild(muebles[7]);
           container.addChild(clientes_t[7]);
 
        function clicked(){
