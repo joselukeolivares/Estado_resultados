@@ -19,6 +19,7 @@
 	cursor: -moz-grab;
 	cursor: grab;
 	background-repeat: no-repeat;
+	user-select: none;
 }
 .slider > .slider_knob:active{
 	cursor: -webkit-grabbing;
