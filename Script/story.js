@@ -143,8 +143,8 @@ function story() {
 
 					rombo.x = self.app.screen.width / 4;
 					rombo.y = (self.app.screen.height / 6);
-					//rombo.anchor.set(0.5,0.5);
 					rombo.scale.set((self.height*.40)/950,(self.height*.40)/950);
+
 
 
 			coins.x = (app.screen.width - coins.width) / 1;
@@ -171,17 +171,15 @@ var style = new PIXI.TextStyle({
 
 
 });
- var text_titulo = new PIXI.Text('Estado de resultados de clientes', style);
-  text_titulo.x=(rombo.x+rombo.width/8);
-	text_titulo.y=(self.height*48)/950;
 
-	//app.stage.addChild(text_titulo);
+
+
 if(document.getElementsByClassName('intro').length==0){
 
 	$(function() {
-	$('#main').append('<div class="title intro" align="center" style="font-size:'+factorScreen(50)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x)+'px;top:'+(height*.02)+'px;text-shadow:'+factorScreen(5)+'px 0px #E7C82F;color:#2D5F96"><p style="margin:0px;">Estado de Resultados de Clientes</p></div>');
+	$('#main').append('<div class="title intro" align="center" style="text-align:left;font-size:'+factorScreen(50)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x)+'px;top:'+(height*.02)+'px;text-shadow:'+factorScreen(5)+'px 0px #E7C82F;color:#2D5F96"><p style="margin:0px;">Estado de Resultados de Clientes</p></div>');
 
-	$('#main').append('<div class="title intro" align="center" style="font-size:'+factorScreen(40)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/2.5))+'px;top: '+rombo.y+'px;"><p>HISTORIA</p></div>');
+	$('#main').append('<div class="title intro" align="center" style="text-align:left;font-size:'+factorScreen(40)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/2.5))+'px;top: '+rombo.y+'px;"><p>HISTORIA</p></div>');
 
 	$('#main').append('<div class="intro" align="center" style="font-Family:roboto-regular;color:#FFFFFF;font-Size:'+factorScreen(16)+'px;position: absolute;left: '+(rombo.x+rombo.width/6)+'px;top:'+(rombo.y+rombo.width/8)+'px;width:'+(rombo.width/1.5)+'px;"><p>Los clientes representan el activo <strong>más importante</strong> para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados<br>financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias monetarias / entradas y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos clientes, sino también en los que ya tiene. Deben estar lo suficientemente satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve muy relevante para el futuro de la organización, además contar con la ayuda de diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma de decisiones en una estrategia enfocada al cliente. <br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
 
@@ -192,76 +190,7 @@ if(document.getElementsByClassName('intro').length==0){
 }
 
 
-/*
-const text_parrafo_1 = new PIXI.Text('Los clientes representan el activo más importante para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.',style_2);
-text_parrafo_1.x=self.width*.35;
-text_parrafo_1.y=self.height/4.2;
 
-const style_3 = new PIXI.TextStyle({
-	align: "center",
-	fill: "white",
-	fontFamily:"Arial",
-	fontSize: screen.height * 12 / 880,
-	whiteSpace: "pre-line",
-	wordWrap: true,
-	wordWrapWidth: rombo.width * 420 / .42
-});
-
-const text_parrafo_2 = new PIXI.Text('Actualmente las empresas miden sus resultados a través de los estados financieros que reflejan sólo el incremento en ventas de un periodo (ganancias monetarias / entras y salidas de dinero a la caja).\n\n', style_3);
-text_parrafo_2.x=self.width*.35;
-text_parrafo_2.y=self.height/2.8;
-
-const style_4 = new PIXI.TextStyle({
-	align: "center",
-	fill: "white",
-	fontSize:  screen.height * 12 / 880,
-	whiteSpace: "pre-line",
-	wordWrap: true,
-	wordWrapWidth: rombo.width * 440 / .42
-});
-
-const text_parrafo_3 = new PIXI.Text('Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?', style_4);
-text_parrafo_3.x=self.width*.35;
-text_parrafo_3.y=self.height/2.15;
-
-const text_parrafo_4 = new PIXI.Text('Hablar de clientes se vuelve un tema mucho más complejo, principalmente por el cambio en el estilo de vida de los clientes.', style_4);
-text_parrafo_4.x=self.width*.35;
-text_parrafo_4.y=self.height/1.95;
-
-const text_parrafo_5 = new PIXI.Text('Un negocio que crece de manera exitosa no se basa solo en generar nuevos clientes, sino también en los que ya tiene. Deben estar lo suficientemente satisfechos como para seguir comprando.', style_4);
-text_parrafo_5.x=self.width*.35;
-text_parrafo_5.y=self.height/1.7;
-
-const text_parrafo_6 = new PIXI.Text('Por lo que evaluar la pérdida y ganancia de clientes en la empresa se vuelve muy relevante para el futuro de la organización, además contar con la ayuda de diferentes indicadores de monitoreo que nos brinde información para la toma de decisiones en una estrategia enfocada al cliente.', style_4);
-text_parrafo_6.x=self.width*.35;
-text_parrafo_6.y=self.height/1.45;
-
-const text_parrafo_7 = new PIXI.Text('El estado de resultados de clientes nos puede ayudar con esto.', style_4);
-text_parrafo_7.x=self.width*.35;
-text_parrafo_7.y=self.height/1.2;
-
-
-text_parrafo_1_1.scale.set(1,1);
-text_parrafo_1.scale.set(1,1);
-text_parrafo_2.scale.set(1,1);
-text_parrafo_3.scale.set(1,1);
-text_parrafo_4.scale.set(1,1);
-text_parrafo_5.scale.set(1,1);
-text_parrafo_6.scale.set(1,1);
-text_parrafo_7.scale.set(1,1);
-
-app.stage.addChild(text_parrafo_1_1);
-app.stage.addChild(text_parrafo_1);
-app.stage.addChild(text_parrafo_2);
-app.stage.addChild(text_parrafo_3);
-app.stage.addChild(text_parrafo_4);
-app.stage.addChild(text_parrafo_5);
-app.stage.addChild(text_parrafo_6);
-app.stage.addChild(text_parrafo_7);
-
-
-			//app.stage.addChild(rect_video);
-*/
 			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/ERC_video_1.png'));
 			    button_video_1.scale.set(factorScreen(.8));
 					button_video_1.x=width*.05;
