@@ -23,9 +23,12 @@ function loader_pixi(){
           "assets/ui/Bloque_2/interface.json",
           "assets/MONEDA DANDO VUELTAS (1)/spritesheet (2).json",
           {name:"cliente_negro",url:"assets/CTE NEGRITO LEVANTANDO LOS BRAZOS/CTE NEGRITO LEVANTANDO LOS BRAZOS/CTENEGROMANOSARRIBA.json"},
-          "assets/ui/Bloque_3/tasa_de_compra.png",
-          "assets/ui/Bloque_3/compra_promedio.png",
-          "assets/ui/Bloque_3/venta.png",
+          "assets/ui/Bloque_3/b_tasa_de_compra.png",
+          "assets/ui/Bloque_3/b_tasa_de_compra_gray.png",
+          "assets/ui/Bloque_3/b_compra_promedio.png",
+          "assets/ui/Bloque_3/b_compra_promedio_gray.png",
+          "assets/ui/Bloque_3/b_venta.png",
+          "assets/ui/Bloque_3/b_venta_gray.png",
           "assets/ui/Bloque_3/ic-retry.png",
           "assets/ui/Bloque_3/ic-right-arrow.png",
           "assets/ui/Bloque_3/ic-next.png",
@@ -124,7 +127,7 @@ function loader_pixi(){
 
 
         function charged(){
-           actual_app=start().createApp();
+           actual_app=indicators().createApp();
         }
 
 

@@ -1,0 +1,111 @@
+body {
+  font-size: 18px;
+}
+
+.title {
+  font-family: Roboto-Regular;
+  font-weight: bold;
+  color: #FFFFFF;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  text-shadow: 3px 0px #09102C;
+}
+
+.subTitle {
+  font-family: Roboto-Regular;
+  font-weight: bold;
+  color: #FFFFFF;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+#intro {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-family: Roboto-Regular;
+  color: #FFFFFF;
+}
+
+#lets_go {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 135%
+}
+
+.stages {
+  width: 35%;
+  height: 55%;
+  position: absolute;
+  font-family: Roboto-Regular;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#stage_2 {
+  width: 83%;
+}
+
+.content {
+  font-family: Roboto-Thin;
+  text-align: justify;
+  -moz-text-align-last: center;
+  text-align-last: center;
+}
+
+#content_01 br, #content_11 br {
+  line-height: 200%;
+}
+
+#content_20, #content_21 {
+  font-size: 90%;
+}
+
+#content_22 {
+  font-size: 70%;
+  text-align: left;
+  text-align-last: left;
+  line-height: 270%;
+}
+
+.arrow-point-to-right {
+  position: absolute;
+  width: 35%;
+  height: 35%;
+}
+
+#tcCts {
+  position: absolute;
+  font-family: Roboto;
+  font-weight: Bold;
+  color: #175383;
+  text-align: center;
+}
+
+#tcPer {
+  position: absolute;
+  font-family: Roboto;
+  font-weight: bold;
+  color: #000000;
+  font-size: 250%;
+  text-align: center;
+}
+
+#cpSls {
+  position: absolute;
+  font-family: Roboto;
+  font-weight: bold;
+  color: #000000;
+  font-size: 220%;
+  text-align: center;
+}
+
+.circle-tick-inside {
+  position: absolute;
+  width: 4%;
+  height: 4%;
+  cursor: pointer;
+}
