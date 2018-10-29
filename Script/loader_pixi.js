@@ -127,7 +127,7 @@ function loader_pixi(){
 
 
         function charged(){
-           actual_app=indicators().createApp();
+           actual_app=start().createApp();
         }
 
 
