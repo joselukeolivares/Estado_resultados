@@ -179,8 +179,9 @@ function createSprite(app){
 
         var contenedor = document.createElement("DIV");
          contenedor.setAttribute("id","contenedor");
-         contenedor.setAttribute("style","height: 40%;width: 36%;position: absolute;left: 50%;top: 25%;");
+         contenedor.setAttribute("style","height: 40%;width: 36%;position: absolute;left:"+(self.app.view.width/2)+"px;top: 25%;");
          document.body.appendChild(contenedor);
+         debugger;
 
            var x = document.createElement("DIV");
            var br= document.createElement("br");
@@ -197,7 +198,7 @@ function createSprite(app){
            var contenedor_2 = document.createElement("DIV");
             contenedor_2.setAttribute("id","contenedor_2");
             debugger;
-            contenedor_2.setAttribute("style","word-break: keep-all;width:40%;position: absolute;left: 50%;top:"+(parseInt(contenedor.style.top)+(parseInt(contenedor.style.height)/2))+"%;");
+            contenedor_2.setAttribute("style","word-break: keep-all;width:40%;position: absolute;right:0%;top:"+(parseInt(contenedor.style.top)+(parseInt(contenedor.style.height)/2))+"%;");
             document.body.appendChild(contenedor_2);
 
 
@@ -404,13 +405,16 @@ function createSprite(app){
           globo_4.anchor.set(0.5);
           globo_4.scale.set(self.app.screen.width*.45/950);
           app.stage.addChild(globo_4);
-*/
+*/debugger;
+          var ctesAtlas=PIXI.loader.resources['assets/ui/bloque_4/clientes_2/clientes300/clientes300.json'].textures;
 
-         var clientes_saldado_mas15 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/8. S+15 2.png"].texture);
-         clientes_saldado_mas15.x = self.app.screen.width/1.3;
-         clientes_saldado_mas15.y = self.app.screen.height/1.8;
-         clientes_saldado_mas15.anchor.set(0.5);
-         clientes_saldado_mas15.scale.set(self.app.screen.width*.45/950);
+
+
+         var clientes_saldado_mas15 = new PIXI.Sprite(ctesAtlas["9.-S+15-130-PX-X-181-PX 300 DE RESOLUCION.png"]);
+         clientes_saldado_mas15.x = self.app.screen.width/1.5;
+         clientes_saldado_mas15.y = self.app.screen.height/2.3;
+         //clientes_saldado_mas15.anchor.set(0.5);
+         clientes_saldado_mas15.scale.set(factorScreen(.3));
          app.stage.addChild(clientes_saldado_mas15);
 
          var generados = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/3. GENERADOS.png"].texture);

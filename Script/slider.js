@@ -47,7 +47,7 @@ function slider(appDiv, app, index) {
     tcCts.setAttribute("id", "tcCts");
     tcCts.innerHTML = "500<br>Clientes";
     tcCts.style.left = tc_square.x * 1.02 + "px";
-    tcCts.style.top = tc_square.x * 0.89 + "px";
+    tcCts.style.top = tc_square.y+"px";
     tcCts.style.display = "none";
     appDiv.appendChild(tcCts);
 
@@ -55,7 +55,7 @@ function slider(appDiv, app, index) {
     tcPer.setAttribute("id", "tcPer");
     tcPer.innerHTML = "50%";
     tcPer.style.left = tc_square.x * 1.3 + "px";
-    tcPer.style.top = tc_square.x * 0.81 + "px";
+    tcPer.style.top = tc_square.y + "px";
     tcPer.style.display = "none";
     appDiv.appendChild(tcPer);
   }
