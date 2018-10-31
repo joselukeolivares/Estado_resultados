@@ -25,6 +25,13 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 	hyphens: auto;
 }
 
+#gsap-anim-text-1, #post-title-text {
+	text-align: center;
+	text-align-last: center;
+}
+
+
+
 #gsap-anim-text-1 span { /* !important for gsap, has to be in <div> with relative position */
 	position: relative;
 	font-family:roboto-regular;

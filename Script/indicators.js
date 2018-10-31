@@ -69,13 +69,13 @@ function indicators() {
     let title = document.createElement("h1");
     title.setAttribute("class", "title");
     title.innerHTML = "Estado de Resultados de Clientes";
-    title.setAttribute("style", "top: " +  app.screen.height * -0.02 + "px;");
+    title.setAttribute("style", "top: " +  app.screen.height * 0.05 + "px;");
     appDiv.appendChild(title);
 
     let subTitle = document.createElement("h3");
     subTitle.setAttribute("class", "subTitle");
     subTitle.innerHTML = "Indicadores principales";
-    subTitle.setAttribute("style", "top: " + app.screen.height * 0.08  + "px;");
+    subTitle.setAttribute("style", "top: " + app.screen.height * 0.13  + "px;");
     appDiv.appendChild(subTitle);
 
     let intro = document.createElement("div");
