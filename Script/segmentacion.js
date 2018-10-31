@@ -17,7 +17,7 @@ self.destroyApp = function() {
         TweenMax.staggerFromTo( $demoText.find("span"), 0.09, {autoAlpha:1, scale:1}, {autoAlpha:0, scale:2}, 0.001, reset2);
         TweenMax.staggerFromTo( $postTitleText.find("span"), 0.09, {autoAlpha:1, scale:1}, {autoAlpha:0, scale:2}, 0.001, reset2 );}
 
-   function reset2(){
+   function reset2() {
        TweenMax.to($demoText, 1, {autoAlpha:0});
        TweenMax.to($postTitleText, 1, {autoAlpha:0});}
 
@@ -109,47 +109,18 @@ function createSprite(app){
 
 
   });
-   var text_titulo = new PIXI.Text('Estado de resultados de clientes', style_alter);
-    text_titulo.x=(self.app.screen.width*200)/950;
-  	text_titulo.y=(self.app.screen.height*48)/950;
 
-  	app.stage.addChild(text_titulo);
+  let title = document.createElement("h1");
+  title.className = "title";
+  title.innerHTML = "Estado de resultados de Clientes";
+  title.style.top = self.app.screen.height * 48 / 950 + "px";
+  document.getElementById("aplicacion").appendChild(title);
 
-    var style_2 = new PIXI.TextStyle({
-
-
-    	fill: "#175383",
-    	fontFamily: "Arial Black",
-      fontSize: screen.height * 24 / 880,
-    	lineHeight: 6,
-    	miterLimit: 0,
-    	stroke: "white",
-    	whiteSpace: "normal",
-    	wordWrapWidth: screen.width * 120 / 1420
-
-
-    });
-
-
-    var style_2_alter = new PIXI.TextStyle({
-
-
-    	fill: "#FFFFFF",
-    	fontFamily: "Arial Black",
-      fontSize: screen.height * 24 / 880,
-    	lineHeight: 6,
-    	miterLimit: 0,
-    	stroke: "white",
-    	whiteSpace: "normal",
-    	wordWrapWidth: screen.width * 120 / 1420
-
-
-    });
-     var text_titulo_2 = new PIXI.Text('Perfil de clientes', style_2_alter);
-      text_titulo_2.x=self.app.screen.width/2.5;
-    	text_titulo_2.y=self.app.screen.height/8.5;
-
-    	app.stage.addChild(text_titulo_2);
+  let subTitle = document.createElement("h2");
+  subTitle.className = "subTitle";
+  subTitle.innerHTML = "Perfil de Clientes";
+  subTitle.style.top = self.app.screen.height / 8.5 + "px";
+  document.getElementById("aplicacion").appendChild(subTitle);
 
       var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
       contButton.x = self.app.screen.width-100;

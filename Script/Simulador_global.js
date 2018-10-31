@@ -8,6 +8,7 @@ function simulador_global() {
   let Loader = PIXI.loader;
 
   self.createApp = function () {
+
     self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
     app.appendChild(self.app.renderer.view);
 
@@ -21,39 +22,25 @@ function simulador_global() {
                     "2. GENERADOS 500x350.png",
                     "3. Z 500x350.png",
                     "4. QUEBRANTADOS  500x350.png"
-                   ];
+                  ];
+    let title = document.createElement("h1");
+    title.className = "title";
+    title.innerHTML = "Estado de resultados de Clientes";
+    title.style.top = self.app.screen.height * 0.05  + "px";
+    app.appendChild(title);
 
-    var title = new PIXI.Text("Estado de resultados de Clientes", {
-                     fontSize: screen.height * 40 / 880,
-                     fontFamily: "Roboto-Black",
-                     fill: "#FFFFFF",
-                     dropShadow: true,
-                     dropShadowColor: "#09102C",
-                     dropShadowDistance: 5,
-                     dropShadowAngle: Math.PI / 20
-                   });
-    title.x = self.app.screen.width / 4;
-    title.y = self.app.screen.height / 24;
+    let subTitle = document.createElement("h3");
+    subTitle.className = "subTitle";
+    subTitle.innerHTML = "Simluador global";
+    subTitle.style.top = self.app.screen.height * 0.13 + "px";
+    app.appendChild(subTitle);
 
-    var subTitle = new PIXI.Text("Simulador global", {
-                     fontSize: screen.height * 24 / 880,
-                     fontFamily: "Roboto-Black",
-                     fill: "#FFFFFF"
-                   });
-    subTitle.x = self.app.screen.width / 2.5;
-    subTitle.y = self.app.screen.height / 10;
+    let estrategia = document.createElement("h6");
+    estrategia.className = "subTitle";
+    estrategia.innerHTML = "Ahora , te invitamos a crear tu propia estrategia de clientes. Visualiza y analiza el comportamiento de la Tasa de Compra y Venta Total al interactuar con uno o más perfiles de clientes.";
+    estrategia.style.top = self.app.screen.height * 0.2 + "px";
+    app.appendChild(estrategia);
 
-    var estrategia = new PIXI.Text("Ahora , te invitamos a crear tu propia estrategia de clientes. Visualiza y analiza el comportamiento de la Tasa de Compra y Venta Total al interactuar con uno o más perfiles de clientes.",{
-                     fontSize: screen.height * 12 / 880,
-                     fontFamily: "Roboto-Black",
-                     fill: "#FFFFFF"
-                   });
-    estrategia.x = self.app.screen.width/10;
-    estrategia.y = self.app.screen.height/6;
-
-    self.app.stage.addChild(title);
-    self.app.stage.addChild(subTitle);
-    self.app.stage.addChild(estrategia);
 
     var container_characters = new PIXI.Container();
     self.app.stage.addChild(container_characters);
@@ -80,41 +67,26 @@ function simulador_global() {
      total_vta.y = self.app.screen.height / 1.1;
      total_vta.scale.set(factorScreen(.8),self.app.screen.width * .45 / 950);
 
-     var total_ptxt=new PIXI.Text("TOTAL", {
-       fontSize: screen.height * 30 / 880,
-       fontFamily: "Roboto-Black",
-       fill: "#FFFFFF",
-       dropShadowColor: "#09102C",
-       dropShadowDistance: 5,
-       dropShadowAngle: Math.PI / 20
-     });
-     total_ptxt.x = self.app.screen.width / 8;
-     total_ptxt.y = self.app.screen.height / 1.1;
-     self.app.stage.addChild(total_ptxt);
+     let total = document.createElement("h2");
+     total.className = "tags";
+     total.innerHTML = "TOTAL";
+     total.style.top = self.app.screen.height * 0.91 + "px";
+     total.style.left = self.app.screen.width * 0.16 + "px";
+     app.appendChild(total);
 
-     var tc_ptxt=new PIXI.Text("T.C", {
-       fontSize: screen.height * 15 / 880,
-       fontFamily: "Roboto-Black",
-       fill: "#FFFFFF",
-       dropShadowColor: "#09102C",
-       dropShadowDistance: 5,
-       dropShadowAngle: Math.PI / 20
-     });
-     tc_ptxt.x = self.app.screen.width / 2.5;
-     tc_ptxt.y = self.app.screen.height / 1.13;
-     self.app.stage.addChild(tc_ptxt);
+     let tcTotal = document.createElement("h4");
+     tcTotal.className = "tags";
+     tcTotal.innerHTML = "T.C.";
+     tcTotal.style.top = self.app.screen.height * 0.87 + "px";
+     tcTotal.style.left = self.app.screen.width * 0.4 + "px";
+     app.appendChild(tcTotal);
 
-     var venta_ptxt=new PIXI.Text("VENTA", {
-       fontSize: screen.height * 15 / 880,
-       fontFamily: "Roboto-Black",
-       fill: "#FFFFFF",
-       dropShadowColor: "#09102C",
-       dropShadowDistance: 5,
-       dropShadowAngle: Math.PI / 20
-     });
-     venta_ptxt.x = self.app.screen.width / 1.8;
-     venta_ptxt.y = self.app.screen.height / 1.13;
-     self.app.stage.addChild(venta_ptxt);
+     let vtaTotal = document.createElement("h4");
+     vtaTotal.className = "tags";
+     vtaTotal.innerHTML = "VENTA";
+     vtaTotal.style.top = self.app.screen.height * 0.87 + "px";
+     vtaTotal.style.left = self.app.screen.width * 0.56 + "px";
+     app.appendChild(vtaTotal);
 
      var tcTotalElm = document.createElement("p");
      tcTotalElm.setAttribute("id", "tc-total-tag");
@@ -154,16 +126,26 @@ function simulador_global() {
      self.app.stage.addChild(total_tc);
      self.app.stage.addChild(total_vta);
 
-     for(let i = 0 ; i < characters.length; i++){
+     for(let i = 0 ; i < characters.length; i++) {
 
-   var character = new PIXI.Sprite(atlasBlock6[characters[i]]);
-   var tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png"].texture);
-   var cpa =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
-   var vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
-   var tc_TXT=new PIXI.Text("T.C",estilo1);
-   var cpa_TXT=new PIXI.Text("C.P.A",estilo1);
-   var venta_TXT = new PIXI.Text("VENTA",estilo1);
-   var porcent = new PIXI.Text("%",estilo2);
+       var character = new PIXI.Sprite(atlasBlock6[characters[i]]);
+       var tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png"].texture);
+       var cpa =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
+       var vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
+       let tcIndi = document.createElement("h4");
+       tcIndi.className = "tags";
+       tcIndi.innerHTML = "T.C.";
+       let cpaIndi = document.createElement("h4");
+       cpaIndi.className = "tags";
+       cpaIndi.innerHTML = "C.P.A.";
+       let ventaIndi = document.createElement("h4");
+       ventaIndi.className = "tags";
+       ventaIndi.innerHTML = "VENTA";
+
+       var tc_TXT=new PIXI.Text("T.C",estilo1);
+       var cpa_TXT=new PIXI.Text("C.P.A",estilo1);
+       var venta_TXT = new PIXI.Text("VENTA",estilo1);
+       var porcent = new PIXI.Text("%",estilo2);
 
      var subContainer=new PIXI.Container();
          subContainer.width=200;
@@ -184,28 +166,37 @@ function simulador_global() {
      self.app.stage.addChild(subContainer2);
      subContainer.addChild(character);
 
+     tcIndi.style.left = (i % 3) * self.app.screen.width / 3.5 + width / 6 + "px";
+     tcIndi.style.top = Math.floor(i / 3) * self.app.screen.height / 4.5 + height / 4 + "px";
+     app.appendChild(tcIndi);
 
      tc_TXT.x=(i % 3) * self.app.screen.width/3.5+width/6;
      tc_TXT.name="tc_TXT"+i;
      tc_TXT.y=Math.floor(i / 3) * self.app.screen.height/4.5+height/4;
-     subContainer2.addChild(tc_TXT);
+
+     cpaIndi.style.left = (i % 3) * self.app.screen.width / 3.5 + width / 6 + "px";
+     cpaIndi.style.top = Math.floor(i / 3) * self.app.screen.height / 4.5 + height / 3.1 + "px";
+     app.appendChild(cpaIndi);
 
      cpa_TXT.x=(i % 3) * self.app.screen.width/3.5+width/6;
      cpa_TXT.y=Math.floor(i / 3) * self.app.screen.height/4.5+height/3.1;
      cpa_TXT.name="cpa_TXT"+i;
-     subContainer2.addChild(cpa_TXT);
+
+     ventaIndi.style.left = (i % 3) * self.app.screen.width / 3.5 + width / 6 + "px";
+     ventaIndi.style.top = Math.floor(i / 3) * self.app.screen.height / 4.5 + height / 2.6 + "px";
+     app.appendChild(ventaIndi);
 
      venta_TXT.x=(i % 3) * self.app.screen.width/3.5+width/6;
      venta_TXT.y=Math.floor(i / 3) * self.app.screen.height/4.5+height/2.6  ;
      venta_TXT.name="venta_TXT"+i;
-     subContainer2.addChild(venta_TXT);
 
      tc.scale.set(self.app.screen.width*.45/950);
-     tc.x=tc_TXT.x+tc_TXT.width*1.1;
-     tc.y=tc_TXT.y;
+     tc.x = tc_TXT.x + tcIndi.clientWidth * 1.1;
+     tc.y = tc_TXT.y;
      tc.name="tc"+i;
      subContainer2.addChild(tc);
-
+     console.log(tc_TXT.y);
+     console.log(tcIndi.getBoundingClientRect().top);
 
      cpa.scale.set(self.app.screen.width*.45/950);
      cpa.x=cpa_TXT.x+cpa_TXT.width*1.1;
@@ -288,7 +279,6 @@ for(var j=0;j<vencidos.length;j++){
     mmaa["Venta \n" + vencidos[j]],
     toDate["Venta \n" + vencidos[j]]
   ));
-  debugger;
   self.characters[self.characters.length-1].vencido=j+2;
 }
 
@@ -444,7 +434,6 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
     self.stepBack.push(JSON.stringify(self.characters));
     self.indexHistory++;
   }
-  debugger;
 
 }
 
@@ -814,7 +803,6 @@ self.updateTotal = function (newTC,target) {
 
     let tc = self.characters[i].tc;
     if(i==target){
-      debugger;
        tc = newTC;
        self.characters[i].tc=newTC;
      }
@@ -840,7 +828,6 @@ self.updateTotal = function (newTC,target) {
 
     document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
   }//end if i<characters.leng-3
-    debugger;
     vtaTotal += cte.sale();
     console.log("Cliente "+i+": "+cte.sale());
     console.log("Venta total: "+vtaTotal);

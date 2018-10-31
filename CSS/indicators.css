@@ -10,6 +10,7 @@ body {
   width: 100%;
   text-align: center;
   text-shadow: 3px 0px #09102C;
+  margin: 0;
 }
 
 .subTitle {
@@ -19,6 +20,16 @@ body {
   position: absolute;
   width: 100%;
   text-align: center;
+  margin: 0;
+}
+
+.tags {
+  font-family: Roboto-Regular;
+  font-weight: bold;
+  color: #FFFFFF;
+  position: absolute;
+  text-align: center;
+  margin: 0;
 }
 
 #intro {
