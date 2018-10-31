@@ -1,0 +1,195 @@
+{
+	"frames": {
+		"1.-G-130-PX-X-181-PX 300 DE RESOLUCION.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 503,
+				"h": 725
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 503,
+				"h": 725
+			},
+			"sourceSize": {
+				"w": 503,
+				"h": 725
+			}
+		},
+		"2.-Z-130-PX-X-181-PX 300 DE RESOLUCION.png": {
+			"frame": {
+				"x": 506,
+				"y": 1,
+				"w": 503,
+				"h": 725
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 503,
+				"h": 725
+			},
+			"sourceSize": {
+				"w": 503,
+				"h": 725
+			}
+		},
+		"3.-Q-130-PX-X-181-PX 300 DE RESOLUCION.png": {
+			"frame": {
+				"x": 1011,
+				"y": 1,
+				"w": 536,
+				"h": 725
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 536,
+				"h": 725
+			},
+			"sourceSize": {
+				"w": 536,
+				"h": 725
+			}
+		},
+		"4.-N-15-130-PX-X-181-PX 300 DE RESOLUCION.png": {
+			"frame": {
+				"x": 1,
+				"y": 728,
+				"w": 470,
+				"h": 725
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 470,
+				"h": 725
+			},
+			"sourceSize": {
+				"w": 470,
+				"h": 725
+			}
+		},
+		"5.-N+15-130-PX-X-181-PX 300 DE RESOLUCION.png": {
+			"frame": {
+				"x": 473,
+				"y": 728,
+				"w": 550,
+				"h": 1025
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 550,
+				"h": 1025
+			},
+			"sourceSize": {
+				"w": 550,
+				"h": 1025
+			}
+		},
+		"6.-ASV-130-PX-X-181-PX 300 DE RESOLUCION.png": {
+			"frame": {
+				"x": 1025,
+				"y": 728,
+				"w": 611,
+				"h": 725
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 611,
+				"h": 725
+			},
+			"sourceSize": {
+				"w": 611,
+				"h": 725
+			}
+		},
+		"7.-ACV-130-PX-X-181-PX 300 DE RESOLUCION.png": {
+			"frame": {
+				"x": 1549,
+				"y": 1,
+				"w": 611,
+				"h": 725
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 611,
+				"h": 725
+			},
+			"sourceSize": {
+				"w": 611,
+				"h": 725
+			}
+		},
+		"8.-S-15-130-PX-X-181-PX 300 DE RESOLUCION.png": {
+			"frame": {
+				"x": 1638,
+				"y": 728,
+				"w": 611,
+				"h": 725
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 611,
+				"h": 725
+			},
+			"sourceSize": {
+				"w": 611,
+				"h": 725
+			}
+		},
+		"9.-S+15-130-PX-X-181-PX 300 DE RESOLUCION.png": {
+			"frame": {
+				"x": 1025,
+				"y": 1455,
+				"w": 673,
+				"h": 736
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 673,
+				"h": 736
+			},
+			"sourceSize": {
+				"w": 673,
+				"h": 736
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "clientes300.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 2250,
+			"h": 2192
+		},
+		"scale": "1"
+	}
+}

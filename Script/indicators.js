@@ -95,10 +95,12 @@ function indicators() {
     appDiv.appendChild(intro);
 
     let contButton = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue.png")].texture);
-    contButton.x = app.screen.width * 0.85;
-    contButton.y = app.screen.height * 0.88;
-    contButton.anchor.set(0.5);
-    contButton.scale.set(factorScreen(1.3));
+    contButton.x = app.screen.width*.9;
+    contButton.y = app.screen.height*.9;
+    //contButton.anchor.set(0.5);
+
+    contButton.scale.set(factorScreen(.6));
+
     contButton.interactive = true;
     contButton.cursor = "pointer";
     app.stage.addChild(contButton);

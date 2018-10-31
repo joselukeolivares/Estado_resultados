@@ -105,7 +105,7 @@ function simulador_global() {
      var tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
      tcTotalCtesElm.setAttribute("class","sin_margen");
-     tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
+     tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(18)+"px;font-weight:bold;color:#175383;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
 
@@ -154,9 +154,9 @@ function simulador_global() {
              subContainer.width=200;
           //   subContainer.height=200;
 
-     character.scale.set(self.app.screen.width*.15/950);
+     character.scale.set(.2);
       if(i==0)
-     character.scale.set(self.app.screen.width*.145/950);
+     character.scale.set(.2);
      character.x = (i % 3) * self.app.screen.width/3.5+width/10;
      character.y =Math.floor(i / 3) * self.app.screen.height/4.5+height/4;
 
@@ -190,9 +190,11 @@ function simulador_global() {
      venta_TXT.y=Math.floor(i / 3) * self.app.screen.height/4.5+height/2.6  ;
      venta_TXT.name="venta_TXT"+i;
 
-     tc.scale.set(self.app.screen.width*.45/950);
-     tc.x = tc_TXT.x + tcIndi.clientWidth * 1.1;
-     tc.y = tc_TXT.y;
+
+     tc.scale.set(factorScreen(.8),factorScreen(.6));
+     tc.x=tc_TXT.x+tc_TXT.width*1.1;
+     tc.y=tc_TXT.y;
+
      tc.name="tc"+i;
      subContainer2.addChild(tc);
      console.log(tc_TXT.y);
@@ -225,7 +227,7 @@ function simulador_global() {
          tc_clientes.innerHTML="0";
          tc_clientes.setAttribute("class","sin_margen");
          tc_clientes.setAttribute("id","tc_clientes"+i);
-         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(10)+"px;font-weight:bold;color:#175383;");
+         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.02)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
          tc_clientes.typeObj=1;
              app.appendChild(tc_clientes);
 
@@ -233,7 +235,7 @@ function simulador_global() {
              tc_clientestxt.innerHTML="Clientes";
              tc_clientestxt.setAttribute("class","sin_margen");
              tc_clientestxt.setAttribute("id","tc_clientestxt"+i);
-             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(10)+"px;font-weight:bold;color:#175383;");
+             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(12)+"px;color:#175383;");
              tc_clientestxt.typeObj=1;
                  app.appendChild(tc_clientestxt);
 
@@ -262,7 +264,7 @@ function simulador_global() {
 
 
 
-     SliderB5B6(app, tc_test,"slider1"+i,"slider_fam",(tc.x)/width,(character.y+character.height*.35+character.parent.y)/height,tc.width,cpa.height,self);
+     SliderB5B6(app, tc_test,"slider1"+i,"slider_fam",(tc.x)/width,(tc.y+tc.height*1.2+tc.parent.y)/height,tc.width,cpa.height,self);
      addCharacter(i);
 }
 var vencidos=["Vencidos2","Vencidos3","Vencidos+4"]
@@ -295,9 +297,13 @@ contButton.buttonMode = true;
 
 
 var unVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1.png"].texture);
+    unVdoB.numero="1";
 var dosVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2.png"].texture);
+    dosVdoB.numero="2";
 var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3.png"].texture);
+    tresVdoB.numero="3";
 var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
+    cuatroVdoB.numero="+4";
 
 var unVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1_click.png"].texture);
     unVdoClked.name="unVdoClkedSprite";
@@ -316,13 +322,21 @@ var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/1 V
 var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/2 VDO.png"].texture);
 var tres_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/3 VDO.png"].texture);
 var cuatro_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/4 VDO.png"].texture);
-
-
 var container_globos = new PIXI.Container();
     container_globos.name="container_globos";
+    self.app.stage.addChild(container_globos);
+
+    var vencidoDiv=document.createElement('div');
+        vencidoDiv.setAttribute("id","globosVdo");
+        vencidoDiv.setAttribute("class","sin_margen");
+        vencidoDiv.setAttribute("style","font-family:'Roboto-regular';position:absolute;width:200px;height:50px;top:100px;left:400px;background-color:white;border-radius:25px;");
+    var p_tagACV=document.createElement('p');
+
+        document.body.appendChild(vencidoDiv);
+        vencidoDiv.appendChild(p_tagACV);
+        vencidoDiv.style.display="none";
 
 
-self.app.stage.addChild(container_globos);
 
 
 //container_globos.scale.set(self.app.screen.width*.35/950);
@@ -332,65 +346,77 @@ container_globos.y=self.app.screen.height/1.65;
 container_globos.scale.set(self.app.screen.width*.50/950);
 
 
-unVdoB.x=25;
+unVdoB.x=-10;
 unVdoB.name="unVdoB";
-unVdoB.scale.set(self.app.screen.width*.45/950);
+//unVdoB.scale.set();
 unVdoB.interactive = true;
 unVdoB.buttonMode = true;
 unVdoB.visible = false;
 
-unVdoClked.x = 25;
-unVdoClked.scale.set(self.app.screen.width * .45 / 950);
-dosVdoClked.scale.set(self.app.screen.width * .45 / 950);
-tresVdoClked.scale.set(self.app.screen.width * .45 / 950);
-cuatroVdoClked.scale.set(self.app.screen.width * .45 / 950);
+unVdoClked.x =unVdoB.x;
+//unVdoClked.scale.set(self.app.screen.width * .45 / 950);
+//dosVdoClked.scale.set(self.app.screen.width * .45 / 950);
+//tresVdoClked.scale.set(self.app.screen.width * .45 / 950);
+//cuatroVdoClked.scale.set(self.app.screen.width * .45 / 950);
 //unVdoClked.interactive = true;
 //unVdoClked.buttonMode = true;
 
-dosVdoB.x=50;
+dosVdoB.x=unVdoB.x+unVdoB.width;
 dosVdoB.name="dosVdoB";
-dosVdoB.scale.set(self.app.screen.width*.45/950);
+//dosVdoB.scale.set(self.app.screen.width*.45/950);
 dosVdoB.interactive = true;
 dosVdoB.buttonMode = true;
 
-tresVdoB.x=75;
+tresVdoB.x=unVdoB.x+unVdoB.width*2;
 tresVdoB.name="tresVdoB";
-tresVdoB.scale.set(self.app.screen.width*.45/950);
+//tresVdoB.scale.set(self.app.screen.width*.45/950);
 tresVdoB.interactive = true;
 tresVdoB.buttonMode = true;
 
-cuatroVdoB.x=100;
+cuatroVdoB.x=unVdoB.x+unVdoB.width*3;
 cuatroVdoB.name="cuatroVdoB";
-cuatroVdoB.scale.set(self.app.screen.width*.45/950);
+//cuatroVdoB.scale.set(self.app.screen.width*.45/950);
 cuatroVdoB.interactive = true;
 cuatroVdoB.buttonMode = true;
 
 unVdoB
 //.on("click", onClick1)
 .on("pointerdown", changeVdo)
-.on("mouseover",mouseOver1)
-.on("mouseout",onMouseOut);
+.on("mouseover",acvLetters)
+.on("mouseout",acvLettersHide);
 
 dosVdoB
 //.on("click", onClick2)
 .on("pointerdown", changeVdo)
-.on("mouseover",mouseOver2)
-.on("mouseout",onMouseOut);
+.on("mouseover",acvLetters)
+.on("mouseout",acvLettersHide);
 
 tresVdoB
 //.on("click", onClick3)
 .on("pointerdown", changeVdo)
-.on("mouseover",mouseOver3)
-.on("mouseout",onMouseOut);
+.on("mouseover",acvLetters)
+.on("mouseout",acvLettersHide);
 
 cuatroVdoB
 //.on("click", onClick4)
 .on("pointerdown", changeVdo)
-.on("mouseover",mouseOver4)
-.on("mouseout",onMouseOut);
+.on("mouseover",acvLetters)
+.on("mouseout",acvLettersHide);
+
+function acvLetters(event){
+  vencidoDiv.style.left=(event.target.x+this.parent.x+this.parent.parent.x)+(parseFloat(main.style.left)/100*screen.width)-(this.width/2)+"px";
+debugger;
+  vencidoDiv.style.top=(event.target.y+this.parent.y+this.parent.parent.y)+this.height+"px";
+  p_tagACV.innerHTML="Meses con Vencido: "+this.numero;
+  vencidoDiv.style.display="block";
+}
+function acvLettersHide(){
+  vencidoDiv.style.display="none";
+}
 
 function changeVdo(){
-  console.log("Activado por:"+this.name);
+
+
   var button=((this.name).substring(0,this.name.length-1));
   var mesVencido=0;
    var buttons=["unVdoClkedSprite","dosVdoClkedSprite","tresVdoClkedSprite","cuatroVdoClkedSprite"]
@@ -488,7 +514,10 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
     self.updateTotal(99999,"NA");
   }
 
-  function mouseOver2() {
+  function mouseOver2(event) {
+    debugger;
+    var main=document.getElementById('main');
+
     dos_vencido.x = self.app.screen.width/2.35;
     dos_vencido.y = self.app.screen.height/1.5;
     dos_vencido.anchor.set(0.5);
@@ -567,16 +596,18 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
 
 
   container_globos.addChild(unVdoClked);
-  dosVdoClked.x=50;
+  dosVdoClked.x=unVdoClked.x+unVdoClked.width;
   container_globos.addChild(dosVdoClked);
-  tresVdoClked.x=75;
+  tresVdoClked.x=unVdoClked.x+unVdoClked.width*2;
   container_globos.addChild(tresVdoClked);
-  cuatroVdoClked.x=100;
+  cuatroVdoClked.x=unVdoClked.x+unVdoClked.width*3;
   container_globos.addChild(cuatroVdoClked);
   container_globos.addChild(unVdoB);
   container_globos.addChild(dosVdoB);
   container_globos.addChild(tresVdoB);
   container_globos.addChild(cuatroVdoB);
+
+
 
 
 self.app.stage.addChild(contButton);
