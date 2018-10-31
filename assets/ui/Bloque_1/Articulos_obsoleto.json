@@ -2,8 +2,8 @@
 	"frames": {
 		"10. CELULARES.png": {
 			"frame": {
-				"x": 1,
-				"y": 1,
+				"x": 4,
+				"y": 4,
 				"w": 865,
 				"h": 707
 			},
@@ -22,8 +22,8 @@
 		},
 		"11. COMEDOR.png": {
 			"frame": {
-				"x": 1,
-				"y": 710,
+				"x": 877,
+				"y": 4,
 				"w": 865,
 				"h": 322
 			},
@@ -42,8 +42,8 @@
 		},
 		"5. TVS.png": {
 			"frame": {
-				"x": 1,
-				"y": 1034,
+				"x": 1750,
+				"y": 4,
 				"w": 1076,
 				"h": 458
 			},
@@ -62,30 +62,30 @@
 		},
 		"6. SALA.png": {
 			"frame": {
-				"x": 868,
-				"y": 1,
-				"w": 790,
-				"h": 243
+				"x": 2834,
+				"y": 4,
+				"w": 791,
+				"h": 244
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 790,
-				"h": 243
+				"w": 791,
+				"h": 244
 			},
 			"sourceSize": {
-				"w": 790,
-				"h": 243
+				"w": 791,
+				"h": 244
 			}
 		},
 		"7. LAVANDERIA.png": {
 			"frame": {
-				"x": 868,
-				"y": 246,
+				"x": 3633,
+				"y": 4,
 				"w": 976,
-				"h": 276
+				"h": 277
 			},
 			"rotated": false,
 			"trimmed": false,
@@ -93,17 +93,17 @@
 				"x": 0,
 				"y": 0,
 				"w": 976,
-				"h": 276
+				"h": 277
 			},
 			"sourceSize": {
 				"w": 976,
-				"h": 276
+				"h": 277
 			}
 		},
 		"8. AUDIO.png": {
 			"frame": {
-				"x": 1079,
-				"y": 524,
+				"x": 4617,
+				"y": 4,
 				"w": 643,
 				"h": 525
 			},
@@ -122,9 +122,9 @@
 		},
 		"9. LINEA BLANCA.png": {
 			"frame": {
-				"x": 1724,
-				"y": 524,
-				"w": 520,
+				"x": 5268,
+				"y": 4,
+				"w": 521,
 				"h": 533
 			},
 			"rotated": false,
@@ -132,11 +132,11 @@
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 520,
+				"w": 521,
 				"h": 533
 			},
 			"sourceSize": {
-				"w": 520,
+				"w": 521,
 				"h": 533
 			}
 		}
@@ -144,11 +144,11 @@
 	"meta": {
 		"app": "http://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"image": "Articulos.png",
+		"image": "spritesheet.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 2245,
-			"h": 1493
+			"w": 5793,
+			"h": 715
 		},
 		"scale": "1"
 	}

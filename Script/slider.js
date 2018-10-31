@@ -72,7 +72,7 @@ function slider(appDiv, app, index) {
     cpSls.setAttribute("id", "cpSls");
     cpSls.innerHTML = "$1,000.00";
     cpSls.style.left = cp_square.x * 1.02 + "px";
-    cpSls.style.top = cp_square.x * 0.79 + "px";
+    cpSls.style.top = cp_square.y * 1.02 + "px";
     cpSls.style.display = "none";
     appDiv.appendChild(cpSls);
   }

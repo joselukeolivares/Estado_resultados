@@ -2,6 +2,11 @@ function segmentacion(){
 let self = {};
 
 self.destroyApp = function() {
+var tags_div=document.getElementsByClassName('tags_div');
+
+  while(tags_div.length!=0) {
+    //console.log("Elemntos restantes: "+app.stage.children.length +" de la app de PIXI:Historia")
+    tags_div[0].parentNode.removeChild(tags_div[0]); }
 
 
   jQuery(document).ready(function($){
@@ -283,36 +288,90 @@ function createSprite(app){
          document.body.removeChild(contenedor_2);
 
          var Loader = PIXI.loader;
-         debugger;
-         var cliente_nunca_entre15 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/1. N-15.png"].texture);
-         cliente_nunca_entre15.x = self.app.screen.width/4.5;
-         cliente_nunca_entre15.y = self.app.screen.height/3.2;
-         cliente_nunca_entre15.anchor.set(0.5);
-         cliente_nunca_entre15.scale.set(self.app.screen.width*.45/950);
+         var ctesAtlas=PIXI.loader.resources['assets/ui/bloque_4/clientes_min/clientes_min.json'].textures;
+
+         var cliente_nunca_entre15 = new PIXI.Sprite(ctesAtlas["4.-N-15 125X193.png"]);
+         cliente_nunca_entre15.x = self.app.screen.width*.1;
+         cliente_nunca_entre15.y = self.app.screen.height/6;
+         //cliente_nunca_entre15.anchor.set(0.5);
+         cliente_nunca_entre15.scale.set(factorScreen(.99));
          app.stage.addChild(cliente_nunca_entre15);
+         var aplicacionDiv=document.getElementById('main');
+         var mainDiv={};
+             mainDiv.left=(parseFloat(aplicacionDiv.style.left)/100)*screen.width;
+         var charDiv1=document.createElement('div');
+             charDiv1.setAttribute("class","tags_div");
+             charDiv1.setAttribute("style","color:rgb(174,108,178);position:absolute;width:200px;height:100px;top:"+cliente_nunca_entre15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;")
+              debugger;
+         var char1_p1=document.createElement('p');
+
+             char1_p1.innerHTML="Nunca 0-15";
+         var char1_p2=document.createElement('p');
+                 char1_p2.innerHTML="Cliente sin primer compra, entrega de tarjeta hace 0-15 meses.";
+              charDiv1.appendChild(char1_p1);
+              charDiv1.appendChild(char1_p2);
+         document.body.appendChild(charDiv1);
 
 
-         var activo_sin_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/4. ASV.png"].texture);
-         activo_sin_vencido.x = self.app.screen.width/2;
-         activo_sin_vencido.y = self.app.screen.height/3.2;
-         activo_sin_vencido.anchor.set(0.5);
-         activo_sin_vencido.scale.set(self.app.screen.width*.45/950);
+         var activo_sin_vencido = new PIXI.Sprite(ctesAtlas["6.-ASV 163X193.png"]);
+         activo_sin_vencido.x = self.app.screen.width*.4;
+         activo_sin_vencido.y = self.app.screen.height/6;
+         //activo_sin_vencido.anchor.set(0.5);
+         activo_sin_vencido.scale.set(factorScreen(.99));
          app.stage.addChild(activo_sin_vencido);
 
-         var cliente_saldado_entre15 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/7. S-15 2.png"].texture);
-         cliente_saldado_entre15.x = self.app.screen.width/1.3;
-         cliente_saldado_entre15.y = self.app.screen.height/3.2;
-         cliente_saldado_entre15.anchor.set(0.5);
-         cliente_saldado_entre15.scale.set(self.app.screen.width*.45/950);
+         var charDiv2=document.createElement('div');
+             charDiv2.setAttribute("class","tags_div");
+             charDiv2.setAttribute("style","color:rgb(73,160,78);position:absolute;width:200px;height:100px;top:"+activo_sin_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;")
+              debugger;
+         var char2_p1=document.createElement('p');
+
+             char2_p1.innerHTML="Activo Sin Vencido";
+         var char2_p2=document.createElement('p');
+                 char2_p2.innerHTML="Cliente con saldo en algunas de sus cuentas, sin saldo vencido.";
+              charDiv2.appendChild(char2_p1);
+              charDiv2.appendChild(char2_p2);
+         document.body.appendChild(charDiv2);
+
+         var cliente_saldado_entre15 = new PIXI.Sprite(ctesAtlas["8.-S-15 168X196.png"]);
+         cliente_saldado_entre15.x = self.app.screen.width*.7;
+         cliente_saldado_entre15.y = self.app.screen.height/6;
+         //cliente_saldado_entre15.anchor.set(0.5);
+         cliente_saldado_entre15.scale.set(factorScreen(.99));
          app.stage.addChild(cliente_saldado_entre15);
 
-         var cliente_nunca_mas15 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/2. N+15.png"].texture);
-         cliente_nunca_mas15.x = self.app.screen.width/4.5;
-         cliente_nunca_mas15.y = self.app.screen.height/1.8;
-         cliente_nunca_mas15.anchor.set(0.5);
-         cliente_nunca_mas15.scale.set(self.app.screen.width*.45/950);
+         var charDiv3=document.createElement('div');
+             charDiv3.setAttribute("class","tags_div");
+             charDiv3.setAttribute("style","color:rgb(45,154,191);position:absolute;width:200px;height:100px;top:"+cliente_saldado_entre15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;")
+              debugger;
+         var char3_p1=document.createElement('p');
+
+             char3_p1.innerHTML="Saldado 0-15";
+         var char3_p2=document.createElement('p');
+                 char3_p2.innerHTML="Cliente que saldo su cuenta, y que no ha vuelto a comprar en un periodo de 0 a 15 meses.";
+              charDiv3.appendChild(char3_p1);
+              charDiv3.appendChild(char3_p2);
+         document.body.appendChild(charDiv3);
+
+         var cliente_nunca_mas15 = new PIXI.Sprite(ctesAtlas["5.-N+15 147X273.png"]);
+         cliente_nunca_mas15.x = cliente_nunca_entre15.x;
+         cliente_nunca_mas15.y = cliente_nunca_entre15.y+cliente_nunca_entre15.height*1.2;
+         //cliente_nunca_mas15.anchor.set(0.5);
+         cliente_nunca_mas15.scale.set(factorScreen(.8));
          app.stage.addChild(cliente_nunca_mas15);
 
+         var charDiv4=document.createElement('div');
+             charDiv4.setAttribute("class","tags_div");
+             charDiv4.setAttribute("style","color:rgb(141,74,143);position:absolute;width:200px;height:100px;top:"+cliente_nunca_mas15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;")
+              debugger;
+         var char4_p1=document.createElement('p');
+
+             char4_p1.innerHTML="Nunca +15";
+         var char4_p2=document.createElement('p');
+                 char4_p2.innerHTML="Cliente sin primera compra,entrega de tarjeta hace más de 15 meses.";
+              charDiv4.appendChild(char4_p1);
+              charDiv4.appendChild(char4_p2);
+         document.body.appendChild(charDiv4);
 
 
 
@@ -320,14 +379,27 @@ function createSprite(app){
 
 
 
-
-         var activo_con_vencido=new PIXI.Sprite(Loader.resources['assets/ui/Bloque_4/clientes/5. ACV2.png'].texture);
-         activo_con_vencido.x = self.app.screen.width/2;
-         activo_con_vencido.y = self.app.screen.height/1.8;
-         activo_con_vencido.anchor.set(.5);
-         activo_con_vencido.scale.set(self.app.screen.width*.45/950);
+         var activo_con_vencido=new PIXI.Sprite(ctesAtlas["7.-ACV 163X193.png"]);
+         activo_con_vencido.x = activo_sin_vencido.x;
+         activo_con_vencido.y = activo_sin_vencido.y+activo_sin_vencido.height*1.2;
+         //activo_con_vencido.anchor.set(.5);
+         activo_con_vencido.scale.set(factorScreen(.99));
          activo_con_vencido.interactive = true;
          activo_con_vencido.buttonMode = true;
+
+         var charDiv5=document.createElement('div');
+             charDiv5.setAttribute("class","tags_div");
+             charDiv5.setAttribute("style","color:rgb(24,93,46);position:absolute;width:200px;height:100px;top:"+activo_con_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;")
+              debugger;
+         var char5_p1=document.createElement('p');
+
+             char5_p1.innerHTML="Activo con Vencido";
+         var char5_p2=document.createElement('p');
+                 char5_p2.innerHTML="Cliente con saldo en alguna de sus cuentas, con saldo vencido.";
+              charDiv5.appendChild(char5_p1);
+              charDiv5.appendChild(char5_p2);
+         document.body.appendChild(charDiv5);
+
 
          var x=44;
          var y=44;
@@ -406,37 +478,89 @@ function createSprite(app){
           globo_4.scale.set(self.app.screen.width*.45/950);
           app.stage.addChild(globo_4);
 */debugger;
-          var ctesAtlas=PIXI.loader.resources['assets/ui/bloque_4/clientes_2/clientes300/clientes300.json'].textures;
 
 
 
-         var clientes_saldado_mas15 = new PIXI.Sprite(ctesAtlas["9.-S+15-130-PX-X-181-PX 300 DE RESOLUCION.png"]);
-         clientes_saldado_mas15.x = self.app.screen.width/1.5;
-         clientes_saldado_mas15.y = self.app.screen.height/2.3;
+
+         var clientes_saldado_mas15 = new PIXI.Sprite(ctesAtlas["9.-S+15 180X196.png"]);
+         clientes_saldado_mas15.x = cliente_saldado_entre15.x;
+         clientes_saldado_mas15.y = cliente_saldado_entre15.y+cliente_saldado_entre15.height*1.2;
          //clientes_saldado_mas15.anchor.set(0.5);
-         clientes_saldado_mas15.scale.set(factorScreen(.3));
+         clientes_saldado_mas15.scale.set(factorScreen(.99));
          app.stage.addChild(clientes_saldado_mas15);
 
-         var generados = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/3. GENERADOS.png"].texture);
-         generados.x = self.app.screen.width/4.5;
-         generados.y = self.app.screen.height/1.2;
-         generados.anchor.set(0.5);
-         generados.scale.set(self.app.screen.width*.45/950);
+         var charDiv6=document.createElement('div');
+             charDiv6.setAttribute("class","tags_div");
+             charDiv6.setAttribute("style","color:rgb(11,84,92);position:absolute;width:200px;height:100px;top:"+clientes_saldado_mas15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;")
+              debugger;
+         var char6_p1=document.createElement('p');
+
+             char6_p1.innerHTML="Saldado +15";
+         var char6_p2=document.createElement('p');
+                 char6_p2.innerHTML="Cliente que ha saldado sus cuentas y no ha vuelto comprar en un periodo de más de 15 meses.";
+              charDiv6.appendChild(char6_p1);
+              charDiv6.appendChild(char6_p2);
+         document.body.appendChild(charDiv6);
+
+         var generados = new PIXI.Sprite(ctesAtlas["1.-G 134x193.png"]);
+         generados.x = cliente_nunca_entre15.x;
+         generados.y = activo_con_vencido.y+activo_con_vencido.height*1.2;
+         //generados.anchor.set(0.5);
+         generados.scale.set(factorScreen(.99));
          app.stage.addChild(generados);
 
-         var z = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/6. Z.png"].texture);
-         z.x = self.app.screen.width/2;
-         z.y = self.app.screen.height/1.2;
-         z.anchor.set(0.5);
-         z.scale.set(self.app.screen.width*.45/950);
+         var charDiv7=document.createElement('div');
+             charDiv7.setAttribute("class","tags_div");
+             charDiv7.setAttribute("style","color:rgb(229,172,57);position:absolute;width:200px;height:100px;top:"+generados.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;")
+              debugger;
+         var char7_p1=document.createElement('p');
+
+             char7_p1.innerHTML="Generados";
+         var char7_p2=document.createElement('p');
+                 char7_p2.innerHTML="Generación de clientes nuevos en un periodo (Tarjetas entregadas).";
+              charDiv7.appendChild(char7_p1);
+              charDiv7.appendChild(char7_p2);
+         document.body.appendChild(charDiv7);
+
+         var z = new PIXI.Sprite(ctesAtlas["2.-Z 135X193.png"]);
+         z.x = activo_con_vencido.x
+         z.y = generados.y
+         //z.anchor.set(0.5);
+         z.scale.set(factorScreen(.99));
          app.stage.addChild(z);
 
-         var quebrantados = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/9. QUEBRANTADOS.png"].texture);
-         quebrantados.x = self.app.screen.width/1.3;
-         quebrantados.y = self.app.screen.height/1.2;
-         quebrantados.anchor.set(0.5);
-         quebrantados.scale.set(self.app.screen.width*.45/950);
+         var charDiv8=document.createElement('div');
+             charDiv8.setAttribute("class","tags_div");
+             charDiv8.setAttribute("style","color:rgb(204,29,65);position:absolute;width:200px;height:100px;top:"+z.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;")
+              debugger;
+         var char8_p1=document.createElement('p');
+
+             char8_p1.innerHTML="Clientes Z";
+         var char8_p2=document.createElement('p');
+                 char8_p2.innerHTML="Cliente en cuenta perdida.";
+              charDiv8.appendChild(char8_p1);
+              charDiv8.appendChild(char8_p2);
+         document.body.appendChild(charDiv8);
+
+         var quebrantados = new PIXI.Sprite(ctesAtlas["3.-Q 143X193.png"]);
+         quebrantados.x = clientes_saldado_mas15.x;
+         quebrantados.y = generados.y
+         //quebrantados.anchor.set(0.5);
+         quebrantados.scale.set(factorScreen(.99));
          app.stage.addChild(quebrantados);
+
+         var charDiv9=document.createElement('div');
+             charDiv9.setAttribute("class","tags_div");
+             charDiv9.setAttribute("style","color:rgb(159,16,29);position:absolute;width:200px;height:100px;top:"+quebrantados.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;")
+              debugger;
+         var char9_p1=document.createElement('p');
+
+             char9_p1.innerHTML="Quebrantados";
+         var char9_p2=document.createElement('p');
+                 char9_p2.innerHTML="Clientes vendidos por Bancoppel.";
+              charDiv9.appendChild(char9_p1);
+              charDiv9.appendChild(char9_p2);
+         document.body.appendChild(charDiv9);
 
 
 
@@ -458,10 +582,10 @@ function createSprite(app){
 
          if(pos.x <= 69.7949921752737){
 
-             un_vencido.x = self.app.screen.width/1.7;
+             un_vencido.x = activo_sin_vencido.x;
              un_vencido.y = self.app.screen.height/1.5;
-             un_vencido.anchor.set(0.5);
-             un_vencido.scale.set(self.app.screen.width*.25/950);
+             //un_vencido.anchor.set(0.5);
+             un_vencido.scale.set(factorScreen(.99));
              app.stage.addChild(un_vencido);
              app.stage.removeChild(dos_vencido);
              app.stage.removeChild(tres_vencido);
@@ -488,7 +612,7 @@ function createSprite(app){
 
            tres_vencido.x = self.app.screen.width/1.85;
            tres_vencido.y = self.app.screen.height/1.5;
-           tres_vencido.anchor.set(0.5);
+           //tres_vencido.anchor.set(0.5);
            tres_vencido.scale.set(self.app.screen.width*.25/950);
            app.stage.addChild(tres_vencido);
            app.stage.removeChild(un_vencido);
@@ -501,7 +625,7 @@ function createSprite(app){
 
            cuatro_vencido.x = self.app.screen.width/1.9;
            cuatro_vencido.y = self.app.screen.height/1.5;
-           cuatro_vencido.anchor.set(0.5);
+           //cuatro_vencido.anchor.set(0.5);
            cuatro_vencido.scale.set(self.app.screen.width*.25/950);
            app.stage.addChild(cuatro_vencido);
            app.stage.removeChild(un_vencido);

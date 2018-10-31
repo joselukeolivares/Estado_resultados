@@ -133,7 +133,7 @@ function simulador_global() {
      var tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
      tcTotalCtesElm.setAttribute("class","sin_margen");
-     tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
+     tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(18)+"px;font-weight:bold;color:#175383;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
 
@@ -172,9 +172,9 @@ function simulador_global() {
              subContainer.width=200;
           //   subContainer.height=200;
 
-     character.scale.set(self.app.screen.width*.15/950);
+     character.scale.set(.2);
       if(i==0)
-     character.scale.set(self.app.screen.width*.145/950);
+     character.scale.set(.2);
      character.x = (i % 3) * self.app.screen.width/3.5+width/10;
      character.y =Math.floor(i / 3) * self.app.screen.height/4.5+height/4;
 
@@ -200,7 +200,7 @@ function simulador_global() {
      venta_TXT.name="venta_TXT"+i;
      subContainer2.addChild(venta_TXT);
 
-     tc.scale.set(self.app.screen.width*.45/950);
+     tc.scale.set(factorScreen(.8),factorScreen(.6));
      tc.x=tc_TXT.x+tc_TXT.width*1.1;
      tc.y=tc_TXT.y;
      tc.name="tc"+i;
@@ -234,7 +234,7 @@ function simulador_global() {
          tc_clientes.innerHTML="0";
          tc_clientes.setAttribute("class","sin_margen");
          tc_clientes.setAttribute("id","tc_clientes"+i);
-         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(10)+"px;font-weight:bold;color:#175383;");
+         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.02)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
          tc_clientes.typeObj=1;
              app.appendChild(tc_clientes);
 
@@ -242,7 +242,7 @@ function simulador_global() {
              tc_clientestxt.innerHTML="Clientes";
              tc_clientestxt.setAttribute("class","sin_margen");
              tc_clientestxt.setAttribute("id","tc_clientestxt"+i);
-             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(10)+"px;font-weight:bold;color:#175383;");
+             tc_clientestxt.setAttribute("style","position:absolute;top:"+(tc.y+tc.height/2)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(12)+"px;color:#175383;");
              tc_clientestxt.typeObj=1;
                  app.appendChild(tc_clientestxt);
 
@@ -271,7 +271,7 @@ function simulador_global() {
 
 
 
-     SliderB5B6(app, tc_test,"slider1"+i,"slider_fam",(tc.x)/width,(character.y+character.height*.35+character.parent.y)/height,tc.width,cpa.height,self);
+     SliderB5B6(app, tc_test,"slider1"+i,"slider_fam",(tc.x)/width,(tc.y+tc.height*1.2+tc.parent.y)/height,tc.width,cpa.height,self);
      addCharacter(i);
 }
 var vencidos=["Vencidos2","Vencidos3","Vencidos+4"]
@@ -336,7 +336,8 @@ var container_globos = new PIXI.Container();
 
     var vencidoDiv=document.createElement('div');
         vencidoDiv.setAttribute("id","globosVdo");
-        vencidoDiv.setAttribute("style","font-family:'Roboto-regular';position:absolute;width:180px;height:50px;top:100px;left:400px;background-color:white;border-radius:25px;");
+        vencidoDiv.setAttribute("class","sin_margen");
+        vencidoDiv.setAttribute("style","font-family:'Roboto-regular';position:absolute;width:200px;height:50px;top:100px;left:400px;background-color:white;border-radius:25px;");
     var p_tagACV=document.createElement('p');
 
         document.body.appendChild(vencidoDiv);

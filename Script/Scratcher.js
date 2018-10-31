@@ -1,8 +1,8 @@
 var aplicacion=document.getElementById("aplicacion");
 var div=document.createElement("div");
     div.setAttribute("class","Scratcher_div");
-    div.style.width=aplicacion.style.width;
-    div.style.left="7.4%";
+    div.style.width=screen.width;
+    //div.style.left="7.4%";
     div.style.display="none";
     div.style.height=aplicacion.style.height;
     debugger;
