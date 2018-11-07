@@ -1,0 +1,1 @@
+Esta carpeta debe contener los CSV que contienen los datos para la navegacion, por proteccion de la informacion no se agregaron al repositorio. En caso de requerir los archivos por favor solicitar al correo jolivares@coppel.com
