@@ -20,7 +20,7 @@ self.createApp = function(){
     self.app.stage.addChild(background);
 
 
-    var title=new PIXI.Text("Estado de resultados de clientes",{
+    var title=new PIXI.Text("Estado de Resultados de Clientes",{
       fontSize: screen.height * 40 / 880,
       fontFamily: "Roboto-Black",
       fill: "#FFFFFF",
@@ -163,12 +163,12 @@ self.createApp = function(){
 //twenns
                  TweenMax.to(creado,2, {x:self.app.screen.width/3,y:self.app.screen.height/24});
 
-                 TweenMax.to(character_2,2, {x:self.app.screen.width/3.5,y:self.app.screen.width/7});
-                 TweenMax.to(character_4,2, {x:self.app.screen.width/2.1,y:self.app.screen.width/7});
-                 TweenMax.to(character_6,2, {x:self.app.screen.width/1.6,y:self.app.screen.width/7});
-                 TweenMax.to(character_3,2, {x:self.app.screen.width/3.5,y:self.app.screen.width/3.5});
-                 TweenMax.to(character_5,2, {x:self.app.screen.width/2.1,y:self.app.screen.width/3.5});
-                 TweenMax.to(character_7,2, {x:self.app.screen.width/1.55,y:self.app.screen.width/3.5});
+                 TweenMax.to(character_2,2, {x:self.app.screen.width/3.5,y:self.app.screen.width/12});
+                 TweenMax.to(character_4,2, {x:self.app.screen.width/2.1,y:self.app.screen.width/12});
+                 TweenMax.to(character_6,2, {x:self.app.screen.width/1.6,y:self.app.screen.width/12});
+                 TweenMax.to(character_3,2, {x:self.app.screen.width/3.5,y:self.app.screen.width/5});
+                 TweenMax.to(character_5,2, {x:self.app.screen.width/2.1,y:self.app.screen.width/5});
+                 TweenMax.to(character_7,2, {x:self.app.screen.width/1.55,y:self.app.screen.width/5});
                  TweenMax.to(character_1,2, {x:self.app.screen.width/5.5,y:self.app.screen.width/4.5});
                  TweenMax.to(character_8,2, {x:self.app.screen.width/1.35,y:self.app.screen.width/4.5});
 
@@ -176,7 +176,7 @@ self.createApp = function(){
 
                   var text = document.createElement("div");
                   text.innerHTML="EDICIÓN DE IMÁGENES";
-                  text.setAttribute("style","position:absolute;left: 50%;top: 100%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);background:#ffffff;color : #ffffff;color:#483d8b;font-Family:Roboto-bold;font-Size:1vw;");
+                  text.setAttribute("style","position:absolute;left: 50%;top: 100%;transform: translate(-50%, -60%);-webkit-transform: translate(-50%, -50%);background:#ffffff;color : #ffffff;color:#483d8b;font-Family:Roboto-bold;font-Size:1vw;");
                   text.setAttribute("id","text");
                   text.typeObj=1;
                   var aplicacion=document.getElementById("aplicacion");
@@ -184,7 +184,7 @@ self.createApp = function(){
 
                   var text2 = document.createElement("div");
                   text2.innerHTML="Licencia: Photoshop (Crear  y editar imágenes)";
-                  text2.setAttribute("style","position:absolute;left: 50%;top: 100%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);background:#ffffff;color : #ffffff;color:#000000;font-Family:Roboto-bold;font-Size:.80vw;");
+                  text2.setAttribute("style","position:absolute;left: 50%;top: 100%;transform: translate(-50%, -60%);-webkit-transform: translate(-50%, -50%);background:#ffffff;color : #ffffff;color:#000000;font-Family:Roboto-bold;font-Size:.80vw;");
                   text2.setAttribute("id","text2");
                   text2.typeObj=1;
                   var aplicacion=document.getElementById("aplicacion");
@@ -263,17 +263,17 @@ self.createApp = function(){
                   aplicacion.appendChild(text11);
 
 
-                TweenMax.to(text,2, {left:self.app.screen.width/2,top:self.app.screen.width/2.5});
-                  TweenMax.to(text2,1.9, {left:self.app.screen.width/2,top:self.app.screen.width/2.4});
-                    TweenMax.to(text3,1.8, {left:self.app.screen.width/2,top:self.app.screen.width/2.3});
-                      TweenMax.to(text4,1.7, {left:self.app.screen.width/2,top:self.app.screen.width/2.2});
-                        TweenMax.to(text5,1.6, {left:self.app.screen.width/2,top:self.app.screen.width/2.1});
-                          TweenMax.to(text6,1.5, {left:self.app.screen.width/2,top:self.app.screen.width/2});
-                            TweenMax.to(text7,1.4, {left:self.app.screen.width/2,top:self.app.screen.width/1.9});
-                              TweenMax.to(text8,1.3, {left:self.app.screen.width/2,top:self.app.screen.width/1.85});
-                                TweenMax.to(text9,1.2, {left:self.app.screen.width/2,top:self.app.screen.width/1.8});
-                                  TweenMax.to(text10,1.1, {left:self.app.screen.width/2,top:self.app.screen.width/1.7});
-                                    TweenMax.to(text11,1, {left:self.app.screen.width/2,top:self.app.screen.width/1.65});
+                TweenMax.to(text,2, {left:self.app.screen.width/2,top:self.app.screen.height*.6});
+                  TweenMax.to(text2,1.9, {left:self.app.screen.width/2,top:self.app.screen.height*.63});
+                    TweenMax.to(text3,1.8, {left:self.app.screen.width/2,top:self.app.screen.height*.66});
+                      TweenMax.to(text4,1.7, {left:self.app.screen.width/2,top:self.app.screen.height*.69});
+                        TweenMax.to(text5,1.6, {left:self.app.screen.width/2,top:self.app.screen.height*.72});
+                          TweenMax.to(text6,1.5, {left:self.app.screen.width/2,top:self.app.screen.height*.75});
+                            TweenMax.to(text7,1.4, {left:self.app.screen.width/2,top:self.app.screen.height*.78});
+                              TweenMax.to(text8,1.3, {left:self.app.screen.width/2,top:self.app.screen.height*.81});
+                                TweenMax.to(text9,1.2, {left:self.app.screen.width/2,top:self.app.screen.height*.84});
+                                  TweenMax.to(text10,1.1, {left:self.app.screen.width/2,top:self.app.screen.height*.87});
+                                    TweenMax.to(text11,1, {left:self.app.screen.width/2,top:self.app.screen.height*.9});
 
 
 

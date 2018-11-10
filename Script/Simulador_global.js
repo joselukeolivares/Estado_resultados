@@ -12,26 +12,26 @@ function simulador_global() {
     self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
     app.appendChild(self.app.renderer.view);
 
-    var atlasBlock6  = Loader.resources["assets/ui/Bloque_5/spritesheet.json"].textures;
-    var characters = ["9. N-15 500x350.png",
-                    "5. ASV 500x350.png",
-                    "7. S-15 500x350.png",
-                    "10. N+15 500x350.png",
-                    "6. ACV 500x350.png",
-                    "8. S+15 500x350.png",
-                    "2. GENERADOS 500x350.png",
-                    "3. Z 500x350.png",
-                    "4. QUEBRANTADOS  500x350.png"
+    var atlasBlock6  = Loader.resources["assets/ui/bloque_4/clientes_min/clientes_min.json"].textures;
+    var characters = ["4.-N-15 125X193.png",
+                    "6.-ASV 163X193.png",
+                    "8.-S-15 168X196.png",
+                    "5.-N+15 147X273.png",
+                    "7.-ACV 163X193.png",
+                    "9.-S+15 180X196.png",
+                    "1.-G 134x193.png",
+                    "2.-Z 135X193.png",
+                    "3.-Q 143X193.png"
                   ];
     let title = document.createElement("h1");
     title.className = "title";
-    title.innerHTML = "Estado de resultados de Clientes";
+    title.innerHTML = "Estado de Resultados de Clientes";
     title.style.top = self.app.screen.height * 0.05  + "px";
     app.appendChild(title);
 
     let subTitle = document.createElement("h3");
     subTitle.className = "subTitle";
-    subTitle.innerHTML = "Simluador global";
+    subTitle.innerHTML = "Simluador Global";
     subTitle.style.top = self.app.screen.height * 0.13 + "px";
     app.appendChild(subTitle);
 
@@ -65,7 +65,7 @@ function simulador_global() {
      var total_vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"].texture);
      total_vta.x = self.app.screen.width / 2;
      total_vta.y = self.app.screen.height / 1.1;
-     total_vta.scale.set(factorScreen(.8),self.app.screen.width * .45 / 950);
+     total_vta.scale.set(factorScreen(.85),self.app.screen.width * .45 / 950);
 
      let total = document.createElement("h2");
      total.className = "tags";
@@ -119,7 +119,7 @@ function simulador_global() {
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
-     varGlobalElm.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:1.50vw;font-weight:bold;color:#00CD00;");
+     varGlobalElm.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;color:#00CD00;");
      varGlobalElm.typeObj=1;
      app.appendChild(varGlobalElm);
 
@@ -154,9 +154,9 @@ function simulador_global() {
              subContainer.width=200;
           //   subContainer.height=200;
 
-     character.scale.set(.2);
+     character.scale.set(factorScreen(.7));
       if(i==0)
-     character.scale.set(.2);
+     character.scale.set(factorScreen(.6));
      character.x = (i % 3) * self.app.screen.width/3.5+width/10;
      character.y =Math.floor(i / 3) * self.app.screen.height/4.5+height/4;
 
@@ -197,8 +197,8 @@ function simulador_global() {
 
      tc.name="tc"+i;
      subContainer2.addChild(tc);
-     console.log(tc_TXT.y);
-     console.log(tcIndi.getBoundingClientRect().top);
+     //console.log(tc_TXT.y);
+     //console.log(tcIndi.getBoundingClientRect().top);
 
      cpa.scale.set(self.app.screen.width*.45/950);
      cpa.x=cpa_TXT.x+cpa_TXT.width*1.1;
@@ -342,7 +342,7 @@ var container_globos = new PIXI.Container();
 //container_globos.scale.set(self.app.screen.width*.35/950);
 container_globos.width=100;
 container_globos.x=self.app.screen.width/2.6;
-container_globos.y=self.app.screen.height/1.65;
+container_globos.y=self.app.screen.height/1.7;
 container_globos.scale.set(self.app.screen.width*.50/950);
 
 
@@ -405,7 +405,7 @@ cuatroVdoB
 
 function acvLetters(event){
   vencidoDiv.style.left=(event.target.x+this.parent.x+this.parent.parent.x)+(parseFloat(main.style.left)/100*screen.width)-(this.width/2)+"px";
-debugger;
+
   vencidoDiv.style.top=(event.target.y+this.parent.y+this.parent.parent.y)+this.height+"px";
   p_tagACV.innerHTML="Meses con Vencido: "+this.numero;
   vencidoDiv.style.display="block";
@@ -421,8 +421,9 @@ function changeVdo(){
   var mesVencido=0;
    var buttons=["unVdoClkedSprite","dosVdoClkedSprite","tresVdoClkedSprite","cuatroVdoClkedSprite"]
   for(var i=0;i<buttons.length;i++){
-
+    //console.log(buttons[i]);
     var clicked=container_globos.getChildByName(buttons[i]);
+
     clicked.visible=false;
     var txt=buttons[i].substring(0,buttons[i].length-11);
 
@@ -436,12 +437,12 @@ function changeVdo(){
   var clicked=container_globos.getChildByName(button+"ClkedSprite");
       clicked.visible=true;
       this.visible=false;
-      console.log("Mes Vencido seleccionado"+mesVencido);
+      //console.log("Mes Vencido seleccionado"+mesVencido);
 var characters=self.characters;
 let dataSet = (dataCSV[dataCSV.length - 1]);
   for(var k=0;k<characters.length;k++){
       if(characters[k].vencido==mesVencido){
-        console.log("Lo encontramos en la posicion:"+k);
+        //console.log("Lo encontramos en la posicion:"+k);
         var aux=characters[4];
         characters[4]=characters[k];
         characters[k]=aux;
@@ -452,7 +453,7 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
         self.characters[4].cpa = dataSet["CPA \nVencidos1"];
         document.getElementById("cpa-tag-4").innerHTML = "$" + numberWithCommas(self.characters[4].cpa);
 */
-        self.updateTotal(99999,"NA");
+        self.updateTotal(characters[4].tcOriginal,4);
       }
   }
 
@@ -515,7 +516,7 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
   }
 
   function mouseOver2(event) {
-    debugger;
+
     var main=document.getElementById('main');
 
     dos_vencido.x = self.app.screen.width/2.35;
@@ -620,9 +621,9 @@ function click (){
 toSlide("conclusiones");
 
 }
-
-var regresar = PIXI.Texture.fromImage("assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png");
-var regresar_2 =PIXI.Texture.fromImage("assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png");
+debugger;
+var regresar = PIXI.loader.resources["assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png"].texture;
+var regresar_2 =PIXI.loader.resources["assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"].texture;
 var button = new PIXI.Sprite(regresar);
 
 button.x = self.app.screen.width*.75;
@@ -636,9 +637,12 @@ self.app.stage.addChild(button);
 button
  .on("mouseover",mouseover_regresar)
  .on("pointerdown",function(){
+ debugger;
    self.historyFlag=false;
    if(self.indexHistory!=0)
    self.indexHistory--;
+
+
    self.characters = JSON.parse(self.stepBack[self.indexHistory]);
    for(var i = 0; i < self.characters.length; i++) {
      self.characters[i].sale = function() {
@@ -651,6 +655,8 @@ button
               for(var i=0;i<buttons.length;i++){
 
                 var clicked=container_globos.getChildByName(buttons[i]);
+
+
                 clicked.visible=false;
                 if(i+1==vencSelected)
                 clicked.visible=true;
@@ -724,28 +730,43 @@ button
  }
 
  function onClickClear() {
-   container_globos.addChild(unVdoClked);
 
-   container_globos.removeChild(dosVdoClked);
-   container_globos.removeChild(tresVdoClked);
-   container_globos.removeChild(cuatroVdoClked);
+   container_globos.getChildByName("unVdoClkedSprite").visible=true;
+   container_globos.getChildByName("dosVdoClkedSprite").visible=false;
+   container_globos.getChildByName("tresVdoClkedSprite").visible=false;
+   container_globos.getChildByName("cuatroVdoClkedSprite").visible=false;
+   container_globos.getChildByName("unVdoB").visible=false;
+   container_globos.getChildByName("dosVdoB").visible=true;
+   container_globos.getChildByName("tresVdoB").visible=true;
+   container_globos.getChildByName("cuatroVdoB").visible=true;
 
    for(let i = 0; i < defaultVals.length; i++) {
+
      document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(defaultVals[i].nCtes);
-     document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(defaultVals[i].cpa);
-     document.getElementById("vta-tag-" + i).innerHTML = "$"+ numberWithCommas(Math.round(defaultVals[i].sale()));
-     document.getElementById("tc-tag-" + i).innerHTML = defaultVals[i].tc + "%";
+     document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].cpa));
+     document.getElementById("vta-tag-" + i).innerHTML = "$"+ numberWithCommas(parseInt(defaultVals[i].vtaOriginal));
+     document.getElementById("tc-tag-" + i).innerHTML = (parseFloat(defaultVals[i].tcOriginal).toFixed(1))+"%";
+
+
+     document.getElementById("vta_porcent" + i).innerHTML = "0%";
+     document.getElementById("vta_porcent" + i).style.color="#FFFFFF";
+
      if(i == 8)  {
-       document.getElementById("tc-total-tag").innerHTML = defaultVals[i].tcTotal + "%";
-       document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(defaultVals[i].vtaTotal));
+       document.getElementById("tc-total-tag").innerHTML = parseFloat(defaultVals[i].tcTotal).toFixed(1) + "%";
+       document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].vtaTotal));
        document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal);
-       document.getElementById("var-global").innerHTML = (Math.round(defaultVals[i].variacionGlob)) + "%";
+       document.getElementById("var-global").innerHTML = "0%";
+       document.getElementById("var-global").style.color="#FFFFFF";
      }
 
      var sliders = document.getElementsByClassName("slider");
      var knob = sliders[i].childNodes[1];
      knob.style.left = ((sliders[i].getBoundingClientRect().width * defaultVals[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
    }
+   debugger;
+   self.stepBack.length=1;
+   self.indexHistory=0;
+   self.historyFlag=true;
  }
 
 
@@ -792,7 +813,7 @@ function addCharacter(index) {
   document.getElementById("tc_clientes" + index).innerHTML = numberWithCommas(self.characters[index].countCtes);
   document.getElementById("cpa-tag-" + index).innerHTML = "$" + numberWithCommas(Math.round(self.characters[index].cpa));
   document.getElementById("vta-tag-" + index).innerHTML = "$"+ numberWithCommas(Math.round(self.characters[index].sale()));
-  document.getElementById("tc-tag-" + index).innerHTML = self.characters[index].tc + "%";
+  document.getElementById("tc-tag-" + index).innerHTML = parseFloat(self.characters[index].tc).toFixed(1) + "%";
   document.getElementById("tc-total-tag").innerHTML = toDate["TC \nTotal"] + "%";
   document.getElementById("vta_porcent"+ index).innerHTML = 0 + "%";
   if(index == 8)  {
@@ -819,6 +840,8 @@ function addCharacter(index) {
       return this.cpa * (this.tc / 100) * this.nCtes;
     },
     tcTotal: toDate["TC \nTotal"],
+    tcOriginal: toDate["TC \n" + segmentos[index]],
+    vtaOriginal:toDate["Venta \n" + segmentos[index]]
   };
 
   defaultVals.push(defaultChar);
@@ -827,41 +850,48 @@ function addCharacter(index) {
 
 self.updateTotal = function (newTC,target) {
   let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0,CtesBuyTotal=0,ctesTotal=0,CtesBuyTotalOriginal=0;
-
+debugger;
   for(let i = 0; i < self.characters.length; i++) {
     let cte=self.characters[i];
     if(i<self.characters.length-3){
 
     let tc = self.characters[i].tc;
-    if(i==target){
-       tc = newTC;
-       self.characters[i].tc=newTC;
-     }
 
-    if(self.historyFlag)
-    {/*Pendiente revisar*/}else{
-      var sliders = document.getElementsByClassName("slider");
-      var knob = sliders[i].childNodes[1];
-      knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
-    }
-    let tc_pTag = document.getElementById("tc-tag-" + i);
-    tc_pTag.innerHTML = (cte.tc).toFixed(2) + "%";
-    ctsTotal+=cte.countCtes;
-    ctsXtc+=cte.tc*cte.countCtes;
-    var variacion_cte=(parseInt(cte.sale())/parseInt(cte.vtaOriginal)-1)*100;
-    if(cte.tc==cte.tcOriginal)
-      variacion_cte=0;
-    var var_Seg=document.getElementById("vta_porcent" + i);
-        var_Seg.innerHTML=Math.round(variacion_cte)+"%";
-        var_Seg.style.color="#00CD00";
-        if(variacion_cte<0)
-          var_Seg.style.color="red";
+    if(i==target||!self.historyFlag){
+      if(self.historyFlag){
+         tc = newTC;
+         self.characters[i].tc=newTC;}
+      if(self.historyFlag)
+      {/*Pendiente revisar*/}else{
+        var sliders = document.getElementsByClassName("slider");
+        var knob = sliders[i].childNodes[1];
+        knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+      }
+      let tc_pTag = document.getElementById("tc-tag-" + i);
+      tc_pTag.innerHTML = (cte.tc).toFixed(1) + "%";
 
-    document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));
+
+      var pt1=parseInt(cte.sale());
+      var pt2=parseInt(cte.vtaOriginal);
+      var variacion_cte=((pt1/pt2)-1)*100;
+
+
+      if(cte.tc==cte.tcOriginal)
+        variacion_cte=0;
+      var var_Seg=document.getElementById("vta_porcent" + i);
+          var_Seg.innerHTML=Math.round(variacion_cte)+"%";
+          var_Seg.style.color="#00CD00";
+          if(variacion_cte<0)
+            var_Seg.style.color="red";
+
+      document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));}
   }//end if i<characters.leng-3
+
+    ctsXtc+=cte.tc*cte.countCtes;
+    ctsTotal+=cte.countCtes;
     vtaTotal += cte.sale();
-    console.log("Cliente "+i+": "+cte.sale());
-    console.log("Venta total: "+vtaTotal);
+    //console.log("Cliente "+i+": "+cte.sale());
+    //console.log("Venta total: "+vtaTotal);
     vtaTotalMMAA += cte.vtaMMAA;
     CtesBuyTotal+=cte.tc/100*cte.countCtes;
     ctesTotal+=cte.countCtes;
@@ -893,9 +923,12 @@ self.updateTotal = function (newTC,target) {
   var varTotal=document.getElementById("tc-total-tag");
       varTotal.innerHTML=Math.round(ctsXtc/ctsTotal)+"%";
 
+debugger;
 if(self.historyFlag&&self.stepBack.length<100){
   self.stepBack.push(JSON.stringify(self.characters));
   self.indexHistory++;
+  console.log(self.stepBack.length);
+  console.log(self.stepBack);
 } else {
   //self.indexHistory=self.stepBack.length-1;
   //self.indexHistory--;
@@ -914,9 +947,9 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal) {
   this.vtaOriginal=vtaOriginal;
   this.tcOriginal=parseFloat(tc);
   this.sale = function() {
-    console.log("CPA: "+this.cpa);
-    console.log("TC: "+this.tc);
-    console.log("Ctes: "+this.countCtes);
+    //console.log("CPA: "+this.cpa);
+    //console.log("TC: "+this.tc);
+    //console.log("Ctes: "+this.countCtes);
     return this.cpa*((this.tc)/100)*this.countCtes;
   };
 }

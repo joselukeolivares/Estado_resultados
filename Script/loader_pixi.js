@@ -89,13 +89,9 @@ function loader_pixi(){
           "assets/ui/Bloque_7/EQUIPOCREADO 5.png",
           "assets/ui/Bloque_7/EQUIPOCREADO 6.png",
           "assets/ui/Bloque_7/EQUIPOCREADO 7.png",
-          "assets/ui/Bloque_7/EQUIPOCREADO 8.png"
-
-
-
-
-
-
+          "assets/ui/Bloque_7/EQUIPOCREADO 8.png",
+          "assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png",
+          "assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"
         ])
         .on("progress",loadProgressHandler)
         .load(charged);

@@ -21,8 +21,7 @@
 .tags_div{
   margin-left: 1%;
   font-family: 'Roboto-Bold';
-  text-shadow: -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 2px 2px 0 white;
-  font-size: 20px;
+  font-size: 19px;
 }
 
 @media (min-width:1101px)  {

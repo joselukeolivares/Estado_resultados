@@ -141,7 +141,7 @@ function story() {
 
 	var rombo = new PIXI.Sprite(texture);
 
-					rombo.x = self.app.screen.width / 4;
+
 					rombo.y = (self.app.screen.height / 6);
 					rombo.scale.set((self.height*.40)/950,(self.height*.40)/950);
 
@@ -151,6 +151,7 @@ function story() {
 			coins.y = (app.screen.height - coins.height) / 1;
 
 app.stage.addChild(rombo);
+rombo.x = (rombo.parent.width/2)-(rombo.width/2);
 
 var style = new PIXI.TextStyle({
 
@@ -177,7 +178,7 @@ var style = new PIXI.TextStyle({
 if(document.getElementsByClassName('intro').length==0){
 
 	$(function() {
-	$('#main').append('<div class="title intro" align="center" style="width:50%;text-align:left;font-size:'+factorScreen(50)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x)+'px;top:'+(height*.02)+'px;text-shadow:'+factorScreen(5)+'px 0px #E7C82F;color:#2D5F96"><p style="margin:0px;">Estado de Resultados de Clientes</p></div>');
+	$('#main').append('<div class="title intro" align="center" style="width:'+rombo.width+'px;text-align:left;font-size:'+factorScreen(50)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x)+'px;top:'+(height*.02)+'px;text-shadow:'+factorScreen(5)+'px 0px #E7C82F;color:#2D5F96"><p style="margin:0px;">Estado de Resultados de Clientes</p></div>');
 
 	$('#main').append('<div class="title intro" align="center" style="width:30%;text-align:left;font-size:'+factorScreen(40)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/2.5))+'px;top: '+rombo.y+'px;"><p>HISTORIA</p></div>');
 
@@ -194,7 +195,7 @@ if(document.getElementsByClassName('intro').length==0){
 			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/ERC_video_1.png'));
 			    button_video_1.scale.set(factorScreen(.8));
 					button_video_1.x=width*.05;
-					button_video_1.y=height*.85;
+					button_video_1.y=height*.9;
 
 
 
@@ -209,8 +210,8 @@ if(document.getElementsByClassName('intro').length==0){
 
 			next_block.scale.set(factorScreen(.6));
 			next_block.x=width*.9;
-			next_block.anchor.set(.5,.5);
-			next_block.y=height*.95;
+
+			next_block.y=height*.9;
 			next_block.name="next_block";
 			next_block.interactive = true;
 			next_block.cursor = "pointer";

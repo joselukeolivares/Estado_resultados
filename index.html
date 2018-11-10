@@ -56,7 +56,7 @@
     <div class="circulos" data-balloon="Inicio!" data-balloon-pos="up" onclick='toSlide("start")'></div>
     <div class="circulos" data-balloon="Historia!" data-balloon-pos="up" onclick='toSlide("story")'></div>
     <div class="circulos" data-balloon="Indicadores del ERC!" data-balloon-pos="up" onclick='toSlide("indicators")'></div>
-    <div class="circulos" data-balloon="Segmentación" data-balloon-pos="up" onclick='toSlide("segmentacion")' ></div>
+    <div class="circulos" data-balloon="Perfil de Clientes" data-balloon-pos="up" onclick='toSlide("segmentacion")' ></div>
     <div class="circulos" data-balloon="Simulación! " data-balloon-pos="up" onclick='toSlide("simulador")' ></div>
     <div class="circulos" data-balloon="Escenario! " data-balloon-pos="up" onclick='toSlide("simulador_global")' ></div>
     <div class="circulos" data-balloon="Créditos!" data-balloon-pos="up" onclick='toSlide("conclusiones")' ></div>
@@ -74,27 +74,27 @@
         dataCSV=null,
         dataMax,dataMaxMMA;
         main=document.getElementById('main');
-console.log(screen.width,screen.height);
-                if(screen.width>1500){
+        main.style.height="90%";
+        //main.style.backgroundColor="red";
+        console.log(screen.width,screen.height);
+        console.log(main.clientHeight);
+        var container=document.getElementById('container');
+                if(screen.width>1560){
                   width=1500;
-                  //height =screen.height*.81;
-                }else if(screen.width>1200&&screen.width<1500){
+
+                  var heightAux=(1-(parseFloat(container.style.height)/100)*2)
+                      //heightAux=heightAux*2;
+                      heightAux=heightAux*parseFloat(screen.height);
+                  height=(1-(parseFloat(container.style.height)/100)*2)*parseFloat(screen.height);
+                }else if(screen.width>1200&&screen.width<1560){
                   width=1080;
-                  //height =screen.height*.9;
+                  height=(1-(parseFloat(container.style.height)/100))*parseFloat(screen.height);;
                 }else{
                   width=screen.width;
-                  //height =screen.height*.9;
+                  height=(1-(parseFloat(container.style.height)/100))*parseFloat(screen.height);
                 }
                 //880--1080
-
-                var container=document.getElementById('container');
-
-
-                  height=(1-(parseFloat(container.style.height)/100)*2)*parseFloat(screen.height);
-                  debugger;
-
-
-
+                 height=main.clientHeight;
 
       let  actual_app;
 
@@ -139,7 +139,11 @@ console.log(screen.width,screen.height);
 
   div.setAttribute("id","aplicacion");
   div.setAttribute("style","width:"+width+"px;height:"+height+"px;");
+  main.style.width=width+"px";
+  main.style.left=(((1-(width/document.body.clientWidth))/2)*100)+"%";
+  debugger;
   main.appendChild(div);
+
 
 </script>
 <script src="Script/loader_pixi.js"></script>

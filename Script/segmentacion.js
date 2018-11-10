@@ -2,7 +2,7 @@ function segmentacion(){
 let self = {};
 
 self.destroyApp = function() {
-var tags_div=document.getElementsByClassName('tags_div');
+var tags_div=document.getElementsByClassName('erase');
 
   while(tags_div.length!=0) {
     //console.log("Elemntos restantes: "+app.stage.children.length +" de la app de PIXI:Historia")
@@ -116,15 +116,15 @@ function createSprite(app){
   });
 
   let title = document.createElement("h1");
-  title.className = "title";
-  title.innerHTML = "Estado de resultados de Clientes";
-  title.style.top = self.app.screen.height * 48 / 950 + "px";
+  title.className = "title erase";
+  title.innerHTML = "Estado de Resultados de Clientes";
+  title.style.top = "1%";
   document.getElementById("aplicacion").appendChild(title);
 
   let subTitle = document.createElement("h2");
-  subTitle.className = "subTitle";
+  subTitle.className = "subTitle erase";
   subTitle.innerHTML = "Perfil de Clientes";
-  subTitle.style.top = self.app.screen.height / 8.5 + "px";
+  subTitle.style.top = "10%";
   document.getElementById("aplicacion").appendChild(subTitle);
 
       var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
@@ -155,7 +155,7 @@ function createSprite(app){
 
         var contenedor = document.createElement("DIV");
          contenedor.setAttribute("id","contenedor");
-         contenedor.setAttribute("style","height: 40%;width: 36%;position: absolute;left:"+(self.app.view.width/2)+"px;top: 25%;");
+         contenedor.setAttribute("style","height: 40%;width: 36%;position: absolute;right:"+(self.app.view.width/4)+"px;top: 25%;");
          document.body.appendChild(contenedor);
          debugger;
 
@@ -174,7 +174,7 @@ function createSprite(app){
            var contenedor_2 = document.createElement("DIV");
             contenedor_2.setAttribute("id","contenedor_2");
             debugger;
-            contenedor_2.setAttribute("style","word-break: keep-all;width:40%;position: absolute;right:0%;top:"+(parseInt(contenedor.style.top)+(parseInt(contenedor.style.height)/2))+"%;");
+            contenedor_2.setAttribute("style","word-break: keep-all;width:36%;position: absolute;right:"+(self.app.view.width/4)+"px;top:"+(parseInt(contenedor.style.top)+(parseInt(contenedor.style.height)/2))+"%;");
             document.body.appendChild(contenedor_2);
 
 
@@ -229,7 +229,7 @@ function createSprite(app){
 
               //app.stage.addChild(text_titulo);
 
-               text_titulo_2 = new PIXI.Text('Perfil de clientes', style_2_alter);
+               text_titulo_2 = new PIXI.Text('Perfil de clientes', style_alter);
                text_titulo_2.x=self.app.screen.width/2.5;
              	 text_titulo_2.y=self.app.screen.height/8.5;
 
@@ -271,8 +271,8 @@ function createSprite(app){
          var mainDiv={};
              mainDiv.left=(parseFloat(aplicacionDiv.style.left)/100)*screen.width;
          var charDiv1=document.createElement('div');
-             charDiv1.setAttribute("class","tags_div");
-             charDiv1.setAttribute("style","color:rgb(174,108,178);position:absolute;width:200px;height:100px;top:"+cliente_nunca_entre15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;")
+             charDiv1.setAttribute("class","tags_div erase");
+             charDiv1.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+cliente_nunca_entre15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               debugger;
          var char1_p1=document.createElement('p');
 
@@ -292,8 +292,8 @@ function createSprite(app){
          app.stage.addChild(activo_sin_vencido);
 
          var charDiv2=document.createElement('div');
-             charDiv2.setAttribute("class","tags_div");
-             charDiv2.setAttribute("style","color:rgb(73,160,78);position:absolute;width:200px;height:100px;top:"+activo_sin_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;")
+             charDiv2.setAttribute("class","tags_div erase");
+             charDiv2.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+activo_sin_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
               debugger;
          var char2_p1=document.createElement('p');
 
@@ -312,8 +312,8 @@ function createSprite(app){
          app.stage.addChild(cliente_saldado_entre15);
 
          var charDiv3=document.createElement('div');
-             charDiv3.setAttribute("class","tags_div");
-             charDiv3.setAttribute("style","color:rgb(45,154,191);position:absolute;width:200px;height:100px;top:"+cliente_saldado_entre15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;")
+             charDiv3.setAttribute("class","tags_div erase");
+             charDiv3.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+cliente_saldado_entre15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               debugger;
          var char3_p1=document.createElement('p');
 
@@ -332,8 +332,8 @@ function createSprite(app){
          app.stage.addChild(cliente_nunca_mas15);
 
          var charDiv4=document.createElement('div');
-             charDiv4.setAttribute("class","tags_div");
-             charDiv4.setAttribute("style","color:rgb(141,74,143);position:absolute;width:200px;height:100px;top:"+cliente_nunca_mas15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;")
+             charDiv4.setAttribute("class","tags_div erase");
+             charDiv4.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+cliente_nunca_mas15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               debugger;
          var char4_p1=document.createElement('p');
 
@@ -358,9 +358,76 @@ function createSprite(app){
          activo_con_vencido.interactive = true;
          activo_con_vencido.buttonMode = true;
 
+         var unVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1.png"].texture);
+             unVdoB.numero="1";
+             unVdoB.letter="Un vencido";
+             unVdoB.scale.set(factorScreen(1));
+         var dosVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2.png"].texture);
+             dosVdoB.numero="2";
+             dosVdoB.letter="Dos vencidos";
+             dosVdoB.scale.set(factorScreen(1));
+         var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3.png"].texture);
+             tresVdoB.numero="3";
+             tresVdoB.letter="Tres vencidos";
+             tresVdoB.scale.set(factorScreen(1));
+         var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
+             cuatroVdoB.numero="+4";
+             cuatroVdoB.letter="Cuatro vencidos o más";
+             cuatroVdoB.scale.set(factorScreen(1));
+             unVdoB.x=activo_con_vencido.x;
+             unVdoB.y=activo_con_vencido.y+activo_con_vencido.height-unVdoB.height;
+             dosVdoB.x=unVdoB.x+dosVdoB.width;
+             dosVdoB.y=unVdoB.y;
+             tresVdoB.x=unVdoB.x+dosVdoB.width*2;
+             tresVdoB.y=unVdoB.y;
+             cuatroVdoB.x=unVdoB.x+dosVdoB.width*3;
+             cuatroVdoB.y=unVdoB.y;
+
+             var vencidoDiv=document.createElement('div');
+                 vencidoDiv.setAttribute("id","globosVdo");
+                 vencidoDiv.setAttribute("class","sin_margen erase");
+                 vencidoDiv.setAttribute("style","z-index:3;font-family:'Roboto-regular';position:absolute;width:200px;height:50px;top:100px;left:400px;background-color:white;border-radius:25px;");
+             var p_tagACV=document.createElement('p');
+
+                 document.body.appendChild(vencidoDiv);
+                 vencidoDiv.appendChild(p_tagACV);
+                 vencidoDiv.style.display="none";
+
+            unVdoB.interactive=true;
+            dosVdoB.interactive=true;
+            tresVdoB.interactive=true;
+            cuatroVdoB.interactive=true;
+            unVdoB.scale.set(factorScreen(1));
+            dosVdoB.scale.set(factorScreen(1));
+            tresVdoB.scale.set(factorScreen(1));
+            cuatroVdoB.scale.set(factorScreen(1));
+
+
+             unVdoB.on("mouseover",acvLetters)
+             unVdoB.on("mouseout",acvLettersHide);
+             dosVdoB.on("mouseover",acvLetters)
+             dosVdoB.on("mouseout",acvLettersHide);
+             tresVdoB.on("mouseover",acvLetters)
+             tresVdoB.on("mouseout",acvLettersHide);
+             cuatroVdoB.on("mouseover",acvLetters)
+             cuatroVdoB.on("mouseout",acvLettersHide);
+
+             function acvLetters(event){
+               vencidoDiv.style.left=(event.target.x+this.parent.x)+(parseFloat(main.style.left)/100*screen.width)-(this.width/2)+"px";
+             debugger;
+               vencidoDiv.style.top=(event.target.y+this.parent.y)+this.height+"px";
+               p_tagACV.innerHTML=this.letter+"!";
+               p_tagACV.style.textAlign="center";
+               vencidoDiv.style.display="block";
+             }
+             function acvLettersHide(){
+               vencidoDiv.style.display="none";
+             }
+
+
          var charDiv5=document.createElement('div');
-             charDiv5.setAttribute("class","tags_div");
-             charDiv5.setAttribute("style","color:rgb(24,93,46);position:absolute;width:200px;height:100px;top:"+activo_con_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;")
+             charDiv5.setAttribute("class","tags_div erase");
+             charDiv5.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+activo_con_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
               debugger;
          var char5_p1=document.createElement('p');
 
@@ -407,51 +474,10 @@ function createSprite(app){
 
          //app.stage.addChild(rect);
          app.stage.addChild(activo_con_vencido);
-         //activo_con_vencido.addChild(rect2);
-
-/*
-         activo_con_vencido.addChild(rect);
-         var rect_1=activo_con_vencido.getChildByName("rectVisible");
-         console.log("rect")
-         console.log(rect_1.x,rect_1.y);
-         console.log(rect_1.width,rect_1.height);
-*/
-
-
-        activo_con_vencido.on('pointermove',MouseOver)
-          activo_con_vencido.on('pointerout',MouseOut);
-/*
-          var globo_1 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/globo1.png"));
-          globo_1.x = self.app.screen.width/1.89;
-          globo_1.y = self.app.screen.height/1.666;
-          globo_1.anchor.set(0.5);
-          globo_1.scale.set(self.app.screen.width*.45/950);
-          app.stage.addChild(globo_1);
-
-          var globo_2 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/globo2.png"));
-          globo_2.x = self.app.screen.width/1.84;
-          globo_2.y = self.app.screen.height/1.666;
-          globo_2.anchor.set(0.5);
-          globo_2.scale.set(self.app.screen.width*.45/950);
-          app.stage.addChild(globo_2);
-
-          var globo_3 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/globo3.png"));
-          globo_3.x = self.app.screen.width/1.785;
-          globo_3.y = self.app.screen.height/1.666;
-          globo_3.anchor.set(0.5);
-          globo_3.scale.set(self.app.screen.width*.45/950);
-          app.stage.addChild(globo_3);
-
-          var globo_4 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_4/clientes/globo4.png"));
-          globo_4.x = self.app.screen.width/1.73;
-          globo_4.y = self.app.screen.height/1.666;
-          globo_4.anchor.set(0.5);
-          globo_4.scale.set(self.app.screen.width*.45/950);
-          app.stage.addChild(globo_4);
-*/debugger;
-
-
-
+         app.stage.addChild(unVdoB);
+         app.stage.addChild(dosVdoB);
+         app.stage.addChild(tresVdoB);
+         app.stage.addChild(cuatroVdoB);
 
          var clientes_saldado_mas15 = new PIXI.Sprite(ctesAtlas["9.-S+15 180X196.png"]);
          clientes_saldado_mas15.x = cliente_saldado_entre15.x;
@@ -461,8 +487,8 @@ function createSprite(app){
          app.stage.addChild(clientes_saldado_mas15);
 
          var charDiv6=document.createElement('div');
-             charDiv6.setAttribute("class","tags_div");
-             charDiv6.setAttribute("style","color:rgb(11,84,92);position:absolute;width:200px;height:100px;top:"+clientes_saldado_mas15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;")
+             charDiv6.setAttribute("class","tags_div erase");
+             charDiv6.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+clientes_saldado_mas15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               debugger;
          var char6_p1=document.createElement('p');
 
@@ -481,8 +507,8 @@ function createSprite(app){
          app.stage.addChild(generados);
 
          var charDiv7=document.createElement('div');
-             charDiv7.setAttribute("class","tags_div");
-             charDiv7.setAttribute("style","color:rgb(229,172,57);position:absolute;width:200px;height:100px;top:"+generados.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;")
+             charDiv7.setAttribute("class","tags_div erase");
+             charDiv7.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+generados.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               debugger;
          var char7_p1=document.createElement('p');
 
@@ -501,8 +527,8 @@ function createSprite(app){
          app.stage.addChild(z);
 
          var charDiv8=document.createElement('div');
-             charDiv8.setAttribute("class","tags_div");
-             charDiv8.setAttribute("style","color:rgb(204,29,65);position:absolute;width:200px;height:100px;top:"+z.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;")
+             charDiv8.setAttribute("class","tags_div erase");
+             charDiv8.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+z.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
               debugger;
          var char8_p1=document.createElement('p');
 
@@ -521,8 +547,8 @@ function createSprite(app){
          app.stage.addChild(quebrantados);
 
          var charDiv9=document.createElement('div');
-             charDiv9.setAttribute("class","tags_div");
-             charDiv9.setAttribute("style","color:rgb(159,16,29);position:absolute;width:200px;height:100px;top:"+quebrantados.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;")
+             charDiv9.setAttribute("class","tags_div erase");
+             charDiv9.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+quebrantados.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               debugger;
          var char9_p1=document.createElement('p');
 
@@ -535,83 +561,13 @@ function createSprite(app){
 
 
 
-    var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/1 VDO.png"].texture);
-    var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/2 VDO.png"].texture);
-    var tres_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/3 VDO.png"].texture);
-    var cuatro_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/4 VDO.png"].texture);
 
            function MouseOver(event){
 
-              var uno = activo_con_vencido.hitArea.width/4;
-              var dos = activo_con_vencido.hitArea.width/3;
-              var tres = activo_con_vencido.hitArea.width/2;
-              var cuatro = activo_con_vencido.hitArea.width/1;
-
-
-        var pos = event.data.getLocalPosition(activo_con_vencido);
-         console.log('x:' + pos.x + 'y:' + pos.y);
-
-         if(pos.x <= 69.7949921752737){
-
-             un_vencido.x = activo_sin_vencido.x;
-             un_vencido.y = self.app.screen.height/1.5;
-             //un_vencido.anchor.set(0.5);
-             un_vencido.scale.set(factorScreen(.99));
-             app.stage.addChild(un_vencido);
-             app.stage.removeChild(dos_vencido);
-             app.stage.removeChild(tres_vencido);
-             app.stage.removeChild(cuatro_vencido);
-
-           }
-
-         else if(pos.x <= 103.67605633802816){
-
-           dos_vencido.x = self.app.screen.width/1.75;
-           dos_vencido.y = self.app.screen.height/1.5;
-           dos_vencido.anchor.set(0.5);
-           dos_vencido.scale.set(self.app.screen.width*.25/950);
-           app.stage.addChild(dos_vencido);
-            app.stage.removeChild(un_vencido);
-           app.stage.removeChild(tres_vencido);
-           app.stage.removeChild(cuatro_vencido);
-
-
-
-         }
-
-         else if(pos.x <= 136.20187793427215){
-
-           tres_vencido.x = self.app.screen.width/1.85;
-           tres_vencido.y = self.app.screen.height/1.5;
-           //tres_vencido.anchor.set(0.5);
-           tres_vencido.scale.set(self.app.screen.width*.25/950);
-           app.stage.addChild(tres_vencido);
-           app.stage.removeChild(un_vencido);
-           app.stage.removeChild(dos_vencido);
-            app.stage.removeChild(cuatro_vencido);
-
-         }
-
-         else if(pos.x <= 183.63536776212834){
-
-           cuatro_vencido.x = self.app.screen.width/1.9;
-           cuatro_vencido.y = self.app.screen.height/1.5;
-           //cuatro_vencido.anchor.set(0.5);
-           cuatro_vencido.scale.set(self.app.screen.width*.25/950);
-           app.stage.addChild(cuatro_vencido);
-           app.stage.removeChild(un_vencido);
-           app.stage.removeChild(dos_vencido);
-           app.stage.removeChild(tres_vencido);
-
-         }
 
      }
            function MouseOut(){
 
-             app.stage.removeChild(un_vencido);
-             app.stage.removeChild(dos_vencido);
-             app.stage.removeChild(tres_vencido);
-             app.stage.removeChild(cuatro_vencido);
 
            }
 

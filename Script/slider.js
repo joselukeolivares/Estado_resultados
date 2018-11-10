@@ -54,7 +54,8 @@ function slider(appDiv, app, index) {
     tcPer = document.createElement("p");
     tcPer.setAttribute("id", "tcPer");
     tcPer.innerHTML = "50%";
-    tcPer.style.left = tc_square.x * 1.3 + "px";
+    tcPer.style.margin="0px";
+    tcPer.style.left = tc_square.x * 1.25 + "px";
     tcPer.style.top = tc_square.y + "px";
     tcPer.style.display = "none";
     appDiv.appendChild(tcPer);
@@ -71,6 +72,7 @@ function slider(appDiv, app, index) {
     cpSls = document.createElement("p");
     cpSls.setAttribute("id", "cpSls");
     cpSls.innerHTML = "$1,000.00";
+    cpSls.style.margin="0px";
     cpSls.style.left = cp_square.x * 1.02 + "px";
     cpSls.style.top = cp_square.y * 1.02 + "px";
     cpSls.style.display = "none";
@@ -83,6 +85,8 @@ function slider(appDiv, app, index) {
   var _isDragging = false;
   var _offsetX = 0;
   var _mouseToParam = function(event) {
+    TweenLite.killTweensOf(knob);
+    knob.style.opacity=1;
     var param = (event.clientX - dom.getBoundingClientRect().left - _offsetX) / 200;
 
     if(param < 0) param = 0;
@@ -111,7 +115,7 @@ function slider(appDiv, app, index) {
           app.getChildByName("thing_0").setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
           tcPer.innerHTML = self.value + "0%";
           tcCts.innerHTML = self.value + "00" + "<br>Clientes";
-        } else if(newValue <= 1) {
+        } else if(newValue <= 2) {
           stage0.querySelector("#content_02").innerHTML = "Menor Tasa de Compra indica que menos clientes nos están comprando.";
           stage0.querySelector("#arrow-point-to-right-02").style.display = "block";
         }
@@ -134,7 +138,7 @@ function slider(appDiv, app, index) {
           knob.style.left = (event.clientX - bg.getBoundingClientRect().x - 15) + "px";
           cpSls.innerHTML = "$" + numberWithCommas(newValue * 1000 / 5) + ".00";
           app.getChildByName("thing_1").setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
-        } else if(newValue <= 1) {
+        } else if(newValue <= 2) {
           stage1.querySelector("#content_12").innerHTML = "Menor Compra Promedio indica un menor volumen de compra.";
           stage1.querySelector("#arrow-point-to-right-12").style.display = "block";
         }

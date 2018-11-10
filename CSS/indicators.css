@@ -34,10 +34,11 @@ body {
 
 #intro {
   position: absolute;
-  width: 100%;
+  width: 80%;
   text-align: center;
   font-family: Roboto-Regular;
   color: #FFFFFF;
+  margin: 0% 10% 0% 10%;
 }
 
 #lets_go {
@@ -61,7 +62,7 @@ body {
 }
 
 .content {
-  font-family: Roboto-Thin;
+  font-family: Roboto-regular;
   text-align: justify;
   -moz-text-align-last: center;
   text-align-last: center;
@@ -75,11 +76,11 @@ body {
   font-size: 90%;
 }
 
-#content_22 {
+#content_22,#content_23 {
   font-size: 70%;
   text-align: left;
   text-align-last: left;
-  line-height: 270%;
+  line-height: 150%;
 }
 
 .arrow-point-to-right {
