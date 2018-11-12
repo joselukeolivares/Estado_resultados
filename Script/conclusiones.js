@@ -13,7 +13,7 @@ self.createApp = function(){
 
 
 
-    var background = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/2 FONDO.png"].texture);
+    var background = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/2 FONDO.png"].texture);
 
     background.x=self.app.screen.width/16;
     background.scale.set(self.app.screen.width*.25/950);
@@ -54,7 +54,7 @@ self.createApp = function(){
      aplicacion.appendChild(box);
 
 
-     var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
+     var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
      contButton.x = self.app.screen.width-175;
      contButton.y = self.app.screen.height-50;
      contButton.anchor.set(0.5);
@@ -83,7 +83,7 @@ self.createApp = function(){
                 var Loader = PIXI.loader;
 
 
-                var stars = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/EQUIPOCREADO FONDO.png"].texture);
+                var stars = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO FONDO.png"].texture);
 
                 stars.scale.set(self.app.screen.width*.30/950);
                 self.app.stage.addChild(stars);
@@ -102,14 +102,14 @@ self.createApp = function(){
 
               self.app.stage.addChild(creado);
 
-              var character_1 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/EQUIPOCREADO 1.png"].texture);
-              var character_2 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/EQUIPOCREADO 2.png"].texture);
-              var character_3 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/EQUIPOCREADO 3.png"].texture);
-              var character_4 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/EQUIPOCREADO 4.png"].texture);
-              var character_5 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/EQUIPOCREADO 5.png"].texture);
-              var character_6 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/EQUIPOCREADO 6.png"].texture);
-              var character_7 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/EQUIPOCREADO 7.png"].texture);
-              var character_8 = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_7/EQUIPOCREADO 8.png"].texture);
+              var character_1 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 1.png"].texture);
+              var character_2 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 2.png"].texture);
+              var character_3 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 3.png"].texture);
+              var character_4 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 4.png"].texture);
+              var character_5 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 5.png"].texture);
+              var character_6 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 6.png"].texture);
+              var character_7 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 7.png"].texture);
+              var character_8 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 8.png"].texture);
 
 
 

@@ -234,7 +234,7 @@ setTimeout(function () {LoadButton()}, 1000);
 function LoadButton(){
 
 
-  var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
+  var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
   contButton.x = app.screen.width-100;
   contButton.y = app.screen.height-50;
   contButton.anchor.set(0.5);

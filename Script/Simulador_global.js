@@ -57,12 +57,12 @@ function simulador_global() {
        fill:"#FFFFFF"
      };
 
-     var total_tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png"].texture);
+     var total_tc = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png"].texture);
      total_tc.x = self.app.screen.width / 4;
      total_tc.y = self.app.screen.height / 1.1;
      total_tc.scale.set(self.app.screen.width * .45 / 950);
 
-     var total_vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"].texture);
+     var total_vta = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"].texture);
      total_vta.x = self.app.screen.width / 2;
      total_vta.y = self.app.screen.height / 1.1;
      total_vta.scale.set(factorScreen(.85),self.app.screen.width * .45 / 950);
@@ -129,9 +129,9 @@ function simulador_global() {
      for(let i = 0 ; i < characters.length; i++) {
 
        var character = new PIXI.Sprite(atlasBlock6[characters[i]]);
-       var tc = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png"].texture);
-       var cpa =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
-       var vta = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
+       var tc = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png"].texture);
+       var cpa =new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
+       var vta = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
        let tcIndi = document.createElement("h4");
        tcIndi.className = "tags";
        tcIndi.innerHTML = "T.C.";
@@ -287,7 +287,7 @@ for(var j=0;j<vencidos.length;j++){
 self.updateTotal(99999,"NA");
 self.stepBack.push(JSON.stringify(self.characters));
 
-var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
+var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
 contButton.x = width*.90;
 contButton.y = height*.95;
 contButton.anchor.set(0.5);
@@ -296,32 +296,32 @@ contButton.interactive = true;
 contButton.buttonMode = true;
 
 
-var unVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1.png"].texture);
+var unVdoB = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo1.png"].texture);
     unVdoB.numero="1";
-var dosVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2.png"].texture);
+var dosVdoB =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo2.png"].texture);
     dosVdoB.numero="2";
-var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3.png"].texture);
+var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo3.png"].texture);
     tresVdoB.numero="3";
-var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
+var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo4.png"].texture);
     cuatroVdoB.numero="+4";
 
-var unVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1_click.png"].texture);
+var unVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo1_click.png"].texture);
     unVdoClked.name="unVdoClkedSprite";
-var dosVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2_click.png"].texture);
+var dosVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo2_click.png"].texture);
     dosVdoClked.name="dosVdoClkedSprite";
     dosVdoClked.visible=false;
-var tresVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3_click.png"].texture);
+var tresVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo3_click.png"].texture);
     tresVdoClked.name="tresVdoClkedSprite";
     tresVdoClked.visible=false;
-var cuatroVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4_click.png"].texture);
+var cuatroVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo4_click.png"].texture);
     cuatroVdoClked.name="cuatroVdoClkedSprite";
     cuatroVdoClked.visible=false;
 
 
-var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/1 VDO.png"].texture);
-var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/2 VDO.png"].texture);
-var tres_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/3 VDO.png"].texture);
-var cuatro_vencido = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/globos/4 VDO.png"].texture);
+var un_vencido = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/globos/1 VDO.png"].texture);
+var dos_vencido = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/globos/2 VDO.png"].texture);
+var tres_vencido = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/globos/3 VDO.png"].texture);
+var cuatro_vencido = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/globos/4 VDO.png"].texture);
 var container_globos = new PIXI.Container();
     container_globos.name="container_globos";
     self.app.stage.addChild(container_globos);
@@ -622,8 +622,8 @@ toSlide("conclusiones");
 
 }
 debugger;
-var regresar = PIXI.loader.resources["assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png"].texture;
-var regresar_2 =PIXI.loader.resources["assets/ui/Bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"].texture;
+var regresar = PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png"].texture;
+var regresar_2 =PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"].texture;
 var button = new PIXI.Sprite(regresar);
 
 button.x = self.app.screen.width*.75;
@@ -696,8 +696,8 @@ button
 
  }
 
- var clear = PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 1.png");
- var clearSelected = PIXI.Texture.fromImage("assets/ui/Bloque_6/23. BOTON CLEAR 2.png");
+ var clear = PIXI.Texture.fromImage("assets/ui/bloque_6/23. BOTON CLEAR 1.png");
+ var clearSelected = PIXI.Texture.fromImage("assets/ui/bloque_6/23. BOTON CLEAR 2.png");
  var clearButton = new PIXI.Sprite(clear);
 
  clearButton.x = self.app.screen.width * .8;

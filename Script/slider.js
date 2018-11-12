@@ -36,7 +36,7 @@ function slider(appDiv, app, index) {
   let tc_square, cp_square, tcCts, tcPer, cpSls;
 
   if(index == 0) {
-    tc_square = new PIXI.Sprite(loader.resources["assets/ui/Bloque_3/tasa_indicador.png"].texture);
+    tc_square = new PIXI.Sprite(loader.resources["assets/ui/bloque_3/tasa_indicador.png"].texture);
     tc_square.x = app.width * 0.54;
     tc_square.y = app.height * 1.3;
     tc_square.scale.set(factorScreen(0.8));
@@ -62,7 +62,7 @@ function slider(appDiv, app, index) {
   }
 
   if(index == 1) {
-    cp_square = new PIXI.Sprite(loader.resources["assets/ui/Bloque_3/compraProm_indicador.png"].texture);
+    cp_square = new PIXI.Sprite(loader.resources["assets/ui/bloque_3/compraProm_indicador.png"].texture);
     cp_square.x = app.width * 0.57;
     cp_square.y = app.height * 1.3;
     cp_square.scale.set(factorScreen(1.7));

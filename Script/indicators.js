@@ -43,9 +43,9 @@ function indicators() {
   function createSprite(app) {
     let scale1 = factorScreen(.8);
     let scale2 = (self.height * 1.5) / 950;
-    let tasaDeCompra = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/b_tasa_de_compra.png")].texture);
-    let compraPromedio = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/b_compra_promedio.png")].texture);
-    let venta = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/b_venta.png")].texture);
+    let tasaDeCompra = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b_tasa_de_compra.png")].texture);
+    let compraPromedio = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b_compra_promedio.png")].texture);
+    let venta = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b_venta.png")].texture);
 
     tasaDeCompra.anchor.set(0.5);
     tasaDeCompra.x = app.screen.width / 5.5;
@@ -95,7 +95,7 @@ function indicators() {
 
     appDiv.appendChild(intro);
 
-    let contButton = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue.png")].texture);
+    let contButton = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b-continue.png")].texture);
     contButton.x = app.screen.width*.9;
     contButton.y = app.screen.height*.9;
     //contButton.anchor.set(0.5);
@@ -107,10 +107,10 @@ function indicators() {
     app.stage.addChild(contButton);
 
     contButton.on("mouseover", function () {
-      contButton.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue-selected.png")].texture);
+      contButton.setTexture(PIXI.loader.resources[("assets/ui/bloque_3/b-continue-selected.png")].texture);
     });
     contButton.on("mouseout", function () {
-      contButton.setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/b-continue.png")].texture);
+      contButton.setTexture(PIXI.loader.resources[("assets/ui/bloque_3/b-continue.png")].texture);
     });
 
     let stage = [];
@@ -166,7 +166,7 @@ function indicators() {
         stages[i].appendChild(content);
 
         let icRightArrow = document.createElement("img");
-        icRightArrow.setAttribute("src", "assets/ui/Bloque_3/ic-arrow-point-to-right.svg");
+        icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
         icRightArrow.setAttribute("id", "arrow-point-to-right-" + i + j);
         icRightArrow.setAttribute("class", "arrow-point-to-right");
         icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: " + app.screen.width * 0.82  + "px;");
@@ -261,20 +261,20 @@ function indicators() {
             }
             if(i == 0) {
               compraPromedio.scale.set(factorScreen(0.9));
-              compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio.png"].texture);
+              compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio.png"].texture);
               tasaDeCompra.scale.set(factorScreen(0.8));
               venta.scale.set(factorScreen(0.8));
-              tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
-              venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
+              tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra_gray.png"].texture);
+              venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta_gray.png"].texture);
               app.stage.getChildByName("thing_0").visible = false;
               app.stage.getChildByName("thing_1").visible = true;
             } else if(i == 1) {
               venta.scale.set(factorScreen(0.9));
-              venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta.png"].texture);
+              venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta.png"].texture);
               tasaDeCompra.scale.set(factorScreen(0.8));
               compraPromedio.scale.set(factorScreen(0.8));
-              tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
-              compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
+              tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra_gray.png"].texture);
+              compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio_gray.png"].texture);
               app.stage.getChildByName("thing_1").visible = false;
               vSprites.visible = true;
               stages[2].style.top = app.screen.height * 0.33 + "px";
@@ -305,7 +305,7 @@ function indicators() {
       tdc.y = app.screen.height / 1.4;
       vSprites.addChild(tdc);
 
-      let tdcPer = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/tasa-50percent.png")].texture);
+      let tdcPer = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/tasa-50percent.png")].texture);
       tdcPer.scale.set(scale1 - 0.1);
       tdcPer.anchor.set(0.5);
       tdcPer.name = "tdcPer";
@@ -313,7 +313,7 @@ function indicators() {
       tdcPer.y = app.screen.height / 1.2;
       vSprites.addChild(tdcPer);
 
-      let timesIc = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-times.png")].texture);
+      let timesIc = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/ic-times.png")].texture);
       timesIc.scale.set(scale1);
       timesIc.anchor.set(0.5);
       timesIc.x = app.screen.width / 2.7;
@@ -327,7 +327,7 @@ function indicators() {
       cp.y = app.screen.height / 1.4;
       vSprites.addChild(cp);
 
-      cpnom = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/num-mil.png")].texture);
+      cpnom = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/num-mil.png")].texture);
       cpnom.scale.set(scale1 - 0.1);
       cpnom.anchor.set(0.5);
       cpnom.name = "cpnom";
@@ -336,7 +336,7 @@ function indicators() {
       vSprites.addChild(cpnom);
 
 
-      let equalsIc = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/ic-equals.png")].texture);
+      let equalsIc = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/ic-equals.png")].texture);
       equalsIc.scale.set(scale1);
       equalsIc.anchor.set(0.5);
       equalsIc.x = app.screen.width / 1.6;
@@ -350,7 +350,7 @@ function indicators() {
       v.y = app.screen.height / 1.4;
       vSprites.addChild(v);
 
-      vNum = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/Bloque_3/num-500mil.png")].texture);
+      vNum = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/num-500mil.png")].texture);
       vNum.scale.set(scale1 - 0.1);
       vNum.anchor.set(0.5);
       vNum.name = "vNum";
@@ -367,7 +367,7 @@ function indicators() {
     }
 
     let circle1 = document.createElement("img");
-    circle1.setAttribute("src", "assets/ui/Bloque_3/ic-tick-inside-circle.svg");
+    circle1.setAttribute("src", "assets/ui/bloque_3/ic-tick-inside-circle.svg");
     circle1.setAttribute("class", "circle-tick-inside");
     circle1.setAttribute("id", "circle-tick-inside-1");
 
@@ -378,7 +378,7 @@ function indicators() {
     document.getElementById('stage_2').appendChild(circle1);
 
     let circle2 = document.createElement("img");
-    circle2.setAttribute("src", "assets/ui/Bloque_3/ic-tick-inside-circle.svg");
+    circle2.setAttribute("src", "assets/ui/bloque_3/ic-tick-inside-circle.svg");
     circle2.setAttribute("class", "circle-tick-inside");
     circle2.setAttribute("id", "circle-tick-inside-2");
 
@@ -411,8 +411,8 @@ function indicators() {
 
     circle1.addEventListener("click", function() {
       let vSprites = app.stage.getChildByName("vSprites1");
-      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-2mil.png")].texture);
-      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-millon.png")].texture);
+      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-2mil.png")].texture);
+      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-millon.png")].texture);
       let actualContent = document.getElementById("content_22");
       //actualContent.style.lineHeight = "150%";
       //actualContent.style.textAlign = "center";
@@ -423,7 +423,7 @@ function indicators() {
       circle2.style.display = "none";
       content.style.display = "none";
 
-      let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/Bloque_3/ic-left-arrow-circular.png"].texture);
+      let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/bloque_3/ic-left-arrow-circular.png"].texture);
       icBack.anchor.set(0.5);
       icBack.x = app.screen.width * 0.05;
       icBack.y = app.screen.height * 0.5;
@@ -455,9 +455,9 @@ function indicators() {
 
     circle2.addEventListener("click", function() {
       let vSprites = app.stage.getChildByName("vSprites1");
-      vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/tasa-80percent.png")].texture);
-      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-mil400.png")].texture);
-      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/Bloque_3/num-1millon120.png")].texture);
+      vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-80percent.png")].texture);
+      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil400.png")].texture);
+      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-1millon120.png")].texture);
       let actualContent = document.getElementById("content_22");
       /*
       actualContent.style.lineHeight = "150%";
@@ -474,7 +474,7 @@ function indicators() {
         toSlide("segmentacion");
       });
 
-      let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/Bloque_3/ic-left-arrow-circular.png"].texture);
+      let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/bloque_3/ic-left-arrow-circular.png"].texture);
       icBack.anchor.set(0.5);
       icBack.x = app.screen.width * 0.05;
       icBack.y = app.screen.height * 0.5;
@@ -508,8 +508,8 @@ function indicators() {
         tasaDeCompra.scale.set(factorScreen(0.9));
         compraPromedio.scale.set(factorScreen(0.8));
         venta.scale.set(factorScreen(0.8));
-        compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
-        venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
+        compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio_gray.png"].texture);
+        venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta_gray.png"].texture);
         app.stage.getChildByName("thing_0").visible = true;
 
         // Tasa de compra boton
@@ -537,9 +537,9 @@ function indicators() {
             stages[0].querySelector("#content_02").style.display = "none";
             stages[0].querySelector("#content_00").style.display = "block";
             tasaDeCompra.scale.set(factorScreen(0.9));
-            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra.png"].texture);
+            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra.png"].texture);
             compraPromedio.scale.set(factorScreen(0.8));
-            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
+            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio_gray.png"].texture);
           } else if(stages[2].style.display == "block") {
             stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
             stages[2].querySelector("#arrow-point-to-right-21").style.display = "none";
@@ -566,9 +566,9 @@ function indicators() {
             stages[1].querySelector("#content_10").style.display = "block";
 
             tasaDeCompra.scale.set(factorScreen(0.9));
-            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra.png"].texture);
+            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra.png"].texture);
             venta.scale.set(factorScreen(0.8));
-            venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
+            venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta_gray.png"].texture);
           }
           slider1 = document.getElementById("slider_1");
           slider1.childNodes[1].style.left="50%";
@@ -609,9 +609,9 @@ function indicators() {
             stages[1].querySelector("#content_12").style.display = "none";
             stages[1].querySelector("#content_10").style.display = "block";
             compraPromedio.scale.set(factorScreen(0.9));
-            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio.png"].texture);
+            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio.png"].texture);
             tasaDeCompra.scale.set(factorScreen(0.8));
-            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
+            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra_gray.png"].texture);
           } else if(stages[2].style.display == "block") {
             stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
             stages[2].querySelector("#arrow-point-to-right-21").style.display = "none";
@@ -637,9 +637,9 @@ function indicators() {
             // stages[1].querySelector("#content_10").style.display = "block";
 
             compraPromedio.scale.set(factorScreen(0.9));
-            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio.png"].texture);
+            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio.png"].texture);
             venta.scale.set(factorScreen(0.8));
-            venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta_gray.png"].texture);
+            venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta_gray.png"].texture);
             let actualContent = document.getElementById("content_22");
             actualContent.innerHTML = subTitles[2][2];
           }
@@ -692,9 +692,9 @@ function indicators() {
             stages[2].style.top = app.screen.height * 0.33 + "px";
             stages[2].style.left = app.screen.height * 0.1 + "px";
             venta.scale.set(factorScreen(0.9));
-            venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta.png"].texture);
+            venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta.png"].texture);
             tasaDeCompra.scale.set(factorScreen(0.8));
-            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_tasa_de_compra_gray.png"].texture);
+            tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra_gray.png"].texture);
           } else if(stages[1].style.display == "block") {
             slider1.style.display = "none";
             stages[1].querySelector("#arrow-point-to-right-10").style.display = "none";
@@ -724,9 +724,9 @@ function indicators() {
             stages[2].style.top = app.screen.height * 0.35 + "px";
             stages[2].style.left = app.screen.height * 0.1 + "px";
             venta.scale.set(factorScreen(0.9));
-            venta.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_venta.png"].texture);
+            venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta.png"].texture);
             compraPromedio.scale.set(factorScreen(0.8));
-            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/Bloque_3/b_compra_promedio_gray.png"].texture);
+            compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio_gray.png"].texture);
           }
           var icBack=app.stage.getChildByName("vSprites1").getChildByName("icBack");
           debugger;

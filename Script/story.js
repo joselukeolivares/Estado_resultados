@@ -76,7 +76,7 @@ function story() {
 /*
 		try {
       PIXI.loader
-        .add("assets/ui/Bloque_2/interface.json")
+        .add("assets/ui/bloque_2/interface.json")
         .add("assets/MONEDA DANDO VUELTAS (1)/spritesheet (2).json")
 				.add('cliente_negro','assets/CTE NEGRITO LEVANTANDO LOS BRAZOS/CTE NEGRITO LEVANTANDO LOS BRAZOS/CTENEGROMANOSARRIBA.json')
         .load(setup);
@@ -90,7 +90,7 @@ function story() {
 			var loader_ctes=PIXI.loader;
 			  debugger;
 
-			let id = PIXI.loader.resources["assets/ui/Bloque_2/interface.json"].textures;
+			let id = PIXI.loader.resources["assets/ui/bloque_2/interface.json"].textures;
 
 
       for(let i=1; i<=6; i++) {
@@ -192,16 +192,16 @@ if(document.getElementsByClassName('intro').length==0){
 
 
 
-			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/ERC_video_1.png'));
+			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/bloque_2/ERC_video_1.png'));
 			    button_video_1.scale.set(factorScreen(.8));
 					button_video_1.x=width*.05;
 					button_video_1.y=height*.9;
 
 
 
-			let paused=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/pause_play.png'));
-			let next_block=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/explorar_1.png'));
-			let close=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/Bloque_2/close_video_2.png'));
+			let paused=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/bloque_2/pause_play.png'));
+			let next_block=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/bloque_2/explorar_1.png'));
+			let close=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/bloque_2/close_video_2.png'));
 			paused.position.set(width/2,height/2);
 			paused.scale.set(factorScreen(.25));
 			paused.anchor.set(.5,.5);

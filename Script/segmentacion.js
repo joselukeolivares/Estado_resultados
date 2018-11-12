@@ -127,7 +127,7 @@ function createSprite(app){
   subTitle.style.top = "10%";
   document.getElementById("aplicacion").appendChild(subTitle);
 
-      var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/Bloque_3/b-continue.png"));
+      var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
       contButton.x = self.app.screen.width-100;
       contButton.y = self.app.screen.height-50;
       contButton.anchor.set(0.5);
@@ -140,7 +140,7 @@ function createSprite(app){
 
 
     var Loader = PIXI.loader;
-     var background  = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/LEVANTANDO_LA_ MANO.png"].texture);
+     var background  = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/LEVANTANDO_LA_ MANO.png"].texture);
      background.scale.set(self.app.screen.width*.40/950);
      background.y = self.app.screen.height/4;
      background.x = self.app.screen.height/16;
@@ -358,19 +358,19 @@ function createSprite(app){
          activo_con_vencido.interactive = true;
          activo_con_vencido.buttonMode = true;
 
-         var unVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo1.png"].texture);
+         var unVdoB = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo1.png"].texture);
              unVdoB.numero="1";
              unVdoB.letter="Un vencido";
              unVdoB.scale.set(factorScreen(1));
-         var dosVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo2.png"].texture);
+         var dosVdoB =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo2.png"].texture);
              dosVdoB.numero="2";
              dosVdoB.letter="Dos vencidos";
              dosVdoB.scale.set(factorScreen(1));
-         var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo3.png"].texture);
+         var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo3.png"].texture);
              tresVdoB.numero="3";
              tresVdoB.letter="Tres vencidos";
              tresVdoB.scale.set(factorScreen(1));
-         var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/Bloque_4/clientes/globo4.png"].texture);
+         var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo4.png"].texture);
              cuatroVdoB.numero="+4";
              cuatroVdoB.letter="Cuatro vencidos o más";
              cuatroVdoB.scale.set(factorScreen(1));

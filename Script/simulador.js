@@ -73,7 +73,7 @@ var self={};
     var Loader=PIXI.loader;
 
 
-    var atlasBlock5=Loader.resources['assets/ui/Bloque_5/spritesheet_bloque_5.json'].textures;
+    var atlasBlock5=Loader.resources['assets/ui/bloque_5/spritesheet_bloque_5.json'].textures;
 
     var buttons=[
                 "4. N-15 1 500X500.png",
@@ -177,7 +177,7 @@ var b_y=height/2;
     followMe.style.left=(leftCent-(followMe.clientWidth/2))+"px";
 
 
-     var contButton=new PIXI.Sprite(PIXI.loader.resources['assets/ui/Bloque_3/b-continue.png'].texture);
+     var contButton=new PIXI.Sprite(PIXI.loader.resources['assets/ui/bloque_3/b-continue.png'].texture);
      contButton.name="continue_button"
      contButton.x = width*.9;
      contButton.y = height*.95;
@@ -186,7 +186,7 @@ var b_y=height/2;
      contButton.interactive = true;
      contButton.cursor = "pointer";
 
-     var contButton2=new PIXI.Sprite(PIXI.loader.resources['assets/ui/Bloque_3/b-continue-selected.png'].texture);
+     var contButton2=new PIXI.Sprite(PIXI.loader.resources['assets/ui/bloque_3/b-continue-selected.png'].texture);
      contButton2.name="continue_button_pressed"
      contButton2.x = width*.9;
      contButton2.y = height*.95;
@@ -245,8 +245,8 @@ var b_y=height/2;
     12. RECUADRO DE RESULTADOS FINALES
 */
 
-     var atlasBlock5=PIXI.loader.resources['assets/ui/Bloque_5/spritesheet_bloque_5.json'].textures;
-     var atlasCtes5=PIXI.loader.resources['assets/ui/Bloque_5/bloque5_ctes.json'].textures;
+     var atlasBlock5=PIXI.loader.resources['assets/ui/bloque_5/spritesheet_bloque_5.json'].textures;
+     var atlasCtes5=PIXI.loader.resources['assets/ui/bloque_5/bloque5_ctes.json'].textures;
 
          //Espacios para indicar la selección de personajes con botones con nombre de la segmentacion
          //Solo podrán seleccionar dos segmentos
