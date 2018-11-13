@@ -5,6 +5,7 @@ function loader_pixi(){
   Loader
         .add([
           "assets/spritesheet.json",
+          "assets/ui/bloque_1/Articulos.json"
           {name:"Cliente_naranja",url:"assets/CTE CAMINANDO/CTECAMINANDO.json"},
           "assets/ui/bloque_3/persons.json",
           "assets/ui/bloque_3/compra.json",

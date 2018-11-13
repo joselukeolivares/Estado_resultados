@@ -86,6 +86,18 @@ var self={};
                 "3. Q 1 500X500.png",
                 "1. G 1 500X500.png"
     ];
+
+    var ctesNombre=[
+                "Ctes Nunca 0-15",
+                "Ctes Nunca +15",
+                "Activos Sin Vencido",
+                "Activos Con Vencido",
+                "Saldado 0-15",
+                "Saldado +15",
+                "Ctes Z",
+                "Quebrantados",
+                "Generados"
+    ];
     var buttons_pressed=[
                 "4. N-15 2 500X500.png",
                 "5. N+15 2 500X500.png",
@@ -104,6 +116,16 @@ var self={};
 var b_x=width/6;
 var b_y=height/2;
 
+var cteNameDiv=document.createElement('div');
+    cteNameDiv.setAttribute("id","globosVdo");
+    cteNameDiv.setAttribute("class","sin_margen");
+    cteNameDiv.setAttribute("style","text-align:center;font-family:'Roboto-regular';position:absolute;width:200px;height:50px;top:100px;left:400px;background-color:white;border-radius:25px;");
+var p_tagCte=document.createElement('p');
+    p_tagCte.setAttribute("id","p_tagCte");
+    document.body.appendChild(cteNameDiv);
+    cteNameDiv.appendChild(p_tagCte);
+    cteNameDiv.style.display="none";
+
     for(var i=0;i<buttons.length;i++){
 
          var buttonOK=new PIXI.Sprite(atlasBlock5[buttons[i]]);
@@ -115,6 +137,7 @@ var b_y=height/2;
              //buttonOK.buttonMode=true;
              buttonOK.name="buttonOK"+i;
              buttonOK.numero=i;
+             buttonOK.tagInDiv=ctesNombre[i];
              buttons_container.addChild(buttonOK);
 
          var button_pressed=new PIXI.Sprite(atlasBlock5[buttons_pressed[i]]);
@@ -137,6 +160,25 @@ var b_y=height/2;
                      alert("Solo puedes seleccionar 2 Perfiles de cliente a la vez,haz click en su boton para liberarlo o presiona el boton 'Reiniciar.'");
                    }
              });
+
+             buttonOK.on("mouseover",function(event){
+               debugger;
+               let p_tagCte=document.getElementById("p_tagCte");
+               p_tagCte.innerHTML=this.tagInDiv;
+               p_tagCte.parentNode.style.display="block";
+               p_tagCte.parentNode.style.left=(event.target.x)+"px";//+(parseFloat(this.parent.offsetLeft))-(this.width/2)+"px";
+               p_tagCte.parentNode.style.top=(event.target.y)+"px";//+(parseFloat(this.parent.offsetTop))-(this.height)+"px";
+
+
+             })
+
+             buttonOK.on("mouseout",function(event){
+               debugger;
+               let p_tagCte=document.getElementById("p_tagCte");
+               p_tagCte.parentNode.style.display="none";
+
+
+             })
 
 
              button_pressed.on("click",function(){
