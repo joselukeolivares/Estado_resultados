@@ -37,7 +37,7 @@ var self={};
     aplicacion.appendChild(self.app.renderer.view);
 
 
-    var leftCent=((parseInt(aplicacion.parentNode.style.left)/100)*parseInt(screen.width))+(width/2);
+    var leftCent=(parseInt(aplicacion.clientWidth)/2);
     debugger;
     var title=document.createElement('p')
         title.innerHTML="Estado de Resultados de Clientes"
@@ -732,7 +732,7 @@ for(var i=0;i<ctes.length;i++){
             txtPIXI.style.color="#FFFFFF";
           }
         */
-          debugger;
+
 
         txtPIXI.innerHTML=(Math.round(variacion))+"%";
         vtaTotal+=self.characters[i].sale();
@@ -934,7 +934,7 @@ for(var i=0;i<ctes.length;i++){
         respuesta.style.color="rgb(231,200,47)"
         document.getElementById("aplicacion").appendChild(respuesta);
         respuesta.style.left=leftCent-(respuesta.clientWidth/2)+"px";
-        debugger;
+
 
      var tcAll=[];
 
