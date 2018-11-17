@@ -7,7 +7,7 @@ function slider(appDiv, app, index) {
   let dom = document.createElement("div");
   dom.setAttribute("id", "slider_" + index);
   dom.className = "slider";
-  dom.style.left = app.width * 0.57 + "px";
+  //dom.style.left = app.width * 0.57 + "px";
   dom.style.top = app.height * 1.6 + "px";
   dom.style.width = "200px";
   dom.style.height = "50px";
@@ -43,6 +43,8 @@ function slider(appDiv, app, index) {
     tc_square.name = "tc_square";
     interactiveSquares.addChild(tc_square);
 
+    dom.style.left = tc_square.x+"px";
+
     tcCts = document.createElement("p");
     tcCts.setAttribute("id", "tcCts");
     tcCts.innerHTML = "500<br>Clientes";
@@ -68,6 +70,8 @@ function slider(appDiv, app, index) {
     cp_square.scale.set(factorScreen(1.7));
     cp_square.name = "cp_square";
     interactiveSquares.addChild(cp_square);
+
+    dom.style.left = cp_square.x+"px";
 
     cpSls = document.createElement("p");
     cpSls.setAttribute("id", "cpSls");
@@ -104,9 +108,17 @@ function slider(appDiv, app, index) {
           app.getChildByName("thing_0").setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
           tcPer.innerHTML = self.value + "0%";
           tcCts.innerHTML = self.value + "00" + "<br>Clientes";
-        } else if(newValue >= 9) {
+        } else if(newValue >= 6) {
           stage0.querySelector("#content_01").innerHTML = "Mayor Tasa de Compra indica que más clientes nos están comprando.";
-          stage0.querySelector("#arrow-point-to-right-01").style.display = "block";
+          //stage0.querySelector("#arrow-point-to-right-01").style.display = "block";
+          let arrowR=document.getElementById("arrow-point-to-right-01");
+          arrowR.style.display = "block";
+          var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
+
+            TweenLite.to(arrowR,1,{opacity:1});
+            }})
+
+          tl.to(arrowR,.5,{opacity:.1});
         }
       } else {
         if(newValue < self.value) {
@@ -115,9 +127,14 @@ function slider(appDiv, app, index) {
           app.getChildByName("thing_0").setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
           tcPer.innerHTML = self.value + "0%";
           tcCts.innerHTML = self.value + "00" + "<br>Clientes";
-        } else if(newValue <= 2) {
+        } else if(newValue <= 4) {
           stage0.querySelector("#content_02").innerHTML = "Menor Tasa de Compra indica que menos clientes nos están comprando.";
-          stage0.querySelector("#arrow-point-to-right-02").style.display = "block";
+          let arrowR=stage0.querySelector("#arrow-point-to-right-02");
+          arrowR.style.display = "block";
+          var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
+            TweenLite.to(arrowR,1,{opacity:1});
+            }})
+          tl.to(arrowR,.5,{opacity:.1});
         }
       }
     } else if (index == 1) {
@@ -127,9 +144,14 @@ function slider(appDiv, app, index) {
           knob.style.left = (event.clientX - bg.getBoundingClientRect().x - 15) + "px";
           cpSls.innerHTML = "$" + numberWithCommas(newValue * 1000 / 5) + ".00";
           app.getChildByName("thing_1").setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
-        } else if (newValue >= 9) {
+        } else if (newValue >= 6) {
           stage1.querySelector("#content_11").innerHTML = "Mayor Compra Promedio indica un mayor volumen de compra.";
-          stage1.querySelector("#arrow-point-to-right-11").style.display = "block";
+          let arrowR=stage1.querySelector("#arrow-point-to-right-11");
+          arrowR.style.display = "block";
+          var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
+            TweenLite.to(arrowR,1,{opacity:1});
+            }})
+          tl.to(arrowR,.5,{opacity:.1});
           //alert("En este ejercicio, solo puedes incrementar la compra promedio y haz llegado al maximo. Por favor da click en siguiente.");
         }
       } else {
@@ -138,9 +160,14 @@ function slider(appDiv, app, index) {
           knob.style.left = (event.clientX - bg.getBoundingClientRect().x - 15) + "px";
           cpSls.innerHTML = "$" + numberWithCommas(newValue * 1000 / 5) + ".00";
           app.getChildByName("thing_1").setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
-        } else if(newValue <= 2) {
+        } else if(newValue <= 4) {
           stage1.querySelector("#content_12").innerHTML = "Menor Compra Promedio indica un menor volumen de compra.";
-          stage1.querySelector("#arrow-point-to-right-12").style.display = "block";
+          let arrowR=stage1.querySelector("#arrow-point-to-right-12");
+          arrowR.style.display = "block";
+          var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
+            TweenLite.to(arrowR,1,{opacity:1});
+            }})
+          tl.to(arrowR,.5,{opacity:.1});
         }
       }
     }

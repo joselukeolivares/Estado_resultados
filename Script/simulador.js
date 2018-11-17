@@ -41,13 +41,13 @@ var self={};
     debugger;
     var title=document.createElement('p')
         title.innerHTML="Estado de Resultados de Clientes"
-        title.setAttribute("style","position: absolute;top: 5%;font-size: "+factorScreen(40)+"px;margin: 0px;font-family: Roboto-Regular;color: #FFFFFF;");
+        title.setAttribute("style","text-shadow: 3px 0px #09102C;font-weight: bold;position: absolute;top: 5%;font-size: "+factorScreen(40)+"px;margin: 0px;font-family: Roboto-Regular;color: #FFFFFF;");
         aplicacion.appendChild(title);
         title.style.left=(leftCent-(title.clientWidth/2))+"px";
 
     var subtitle=document.createElement('p')
             subtitle.innerHTML="Simulador"
-            subtitle.setAttribute("style","position:absolute;top:10%;font-size: "+factorScreen(30)+"px;font-family: Roboto-Regular;color: #FFFFFF;");
+            subtitle.setAttribute("style","font-weight: bold;position:absolute;top:10%;font-size: "+factorScreen(22)+"px;font-family: Roboto-Regular;color: #FFFFFF;");
             aplicacion.appendChild(subtitle);
             subtitle.style.left=(leftCent-(subtitle.clientWidth/2))+"px";
 
@@ -113,16 +113,19 @@ var self={};
     var buttons_container=new PIXI.Container();
         buttons_container.name="buttons_container";
     self.app.stage.addChild(buttons_container);
-var b_x=width/6;
+    var buttonNull=new PIXI.Sprite(atlasBlock5[buttons[0]]);
+        buttonNull.scale.set(factorScreen(.65));
+var b_x=(width/2)-(buttonNull.width*4)-75;
+debugger;
 var b_y=height/2;
 
 var cteNameDiv=document.createElement('div');
     cteNameDiv.setAttribute("id","globosVdo");
     cteNameDiv.setAttribute("class","sin_margen");
-    cteNameDiv.setAttribute("style","text-align:center;font-family:'Roboto-regular';position:absolute;width:200px;height:50px;top:100px;left:400px;background-color:white;border-radius:25px;");
+    cteNameDiv.setAttribute("style","border:1px;border-style:solid;border-color:black;text-align:center;font-family:'Roboto-regular';position:absolute;width:200px;height:50px;top:100px;left:400px;background-color:white;border-radius:25px;");
 var p_tagCte=document.createElement('p');
     p_tagCte.setAttribute("id","p_tagCte");
-    document.body.appendChild(cteNameDiv);
+    aplicacion.appendChild(cteNameDiv);
     cteNameDiv.appendChild(p_tagCte);
     cteNameDiv.style.display="none";
 
@@ -151,7 +154,7 @@ var p_tagCte=document.createElement('p');
              button_pressed.numero=i;
              buttons_container.addChild(button_pressed);
 
-             buttonOK.on("click",function(){
+             buttonOK.on("pointertap",function(){
                if(self.characters.length<2){
                    this.visible=false;
                var brother=this.parent.getChildAt(this.parent.getChildIndex(this)+1);
@@ -166,9 +169,10 @@ var p_tagCte=document.createElement('p');
                let p_tagCte=document.getElementById("p_tagCte");
                p_tagCte.innerHTML=this.tagInDiv;
                p_tagCte.parentNode.style.display="block";
-               p_tagCte.parentNode.style.left=(event.target.x)+"px";//+(parseFloat(this.parent.offsetLeft))-(this.width/2)+"px";
-               p_tagCte.parentNode.style.top=(event.target.y)+"px";//+(parseFloat(this.parent.offsetTop))-(this.height)+"px";
-
+               //p_tagCte.parentNode.style.left=(event.target.x)+"px";//+(parseFloat(this.parent.offsetLeft))-(this.width/2)+"px";
+               //p_tagCte.parentNode.style.top=(event.target.y)+"px";//+(parseFloat(this.parent.offsetTop))-(this.height)+"px";
+               p_tagCte.parentNode.style.left=(this.x)+(0)+"px";
+               p_tagCte.parentNode.style.top=(this.y-p_tagCte.clientHeight*2)+"px";
 
              })
 
@@ -181,7 +185,7 @@ var p_tagCte=document.createElement('p');
              })
 
 
-             button_pressed.on("click",function(){
+             button_pressed.on("pointertap",function(){
                this.visible=false;
                this.parent.getChildAt(this.parent.getChildIndex(this)-1).visible=true;
                removeCharacter(this.numero);
@@ -236,7 +240,7 @@ var p_tagCte=document.createElement('p');
      contButton2.scale.set(factorScreen(0.6));
      contButton2.visible=false;
 
-     contButton.on('pointerdown',function(){
+     contButton.on('pointertap',function(){
        this.buttonMode=false;
        this.interactive=false;
 
@@ -351,7 +355,7 @@ for(var i=0;i<ctes.length;i++){
          reIniciarButton.scale.set(factorScreen(.6));
          reIniciarButton.buttonMode=true;
          reIniciarButton.interactive=true;
-         reIniciarButton.on('pointerdown',function(){
+         reIniciarButton.on('pointertap',function(){
 
 
               while(self.characters.length!=0){
@@ -605,9 +609,9 @@ for(var i=0;i<ctes.length;i++){
 
          //Recuadro blanco donde se colocará resultado final de simulación entre 2 segmentos seleccionados por usuario
      var resultado_caja=new PIXI.Sprite(atlasBlock5['12. RECUADRO DE RESULTADOS FINALES.png']);
-         resultado_caja.x=width*.45;
-         resultado_caja.y=height*.85;
          resultado_caja.scale.set(factorScreen(1));
+         resultado_caja.x=(reIniciarButton.x+reIniciarButton.width/2)-resultado_caja.width/2;
+         resultado_caja.y=height*.85;
          self.app.stage.addChild(resultado_caja);
          //<p> para Vento Total
          var vtaTotal=document.createElement("p");
@@ -617,6 +621,7 @@ for(var i=0;i<ctes.length;i++){
          vtaTotal.setAttribute("style","position:absolute;top:"+resultado_caja.y+"px;left:"+(resultado_caja.x)+"px;font-size:"+fontSizeVTATC+"px;");
                   aplicacion.appendChild(vtaTotal);
          //Texto para recuadros de resultados
+/*
          var vtaTotal_pTagf=document.createElement('p');
              vtaTotal_pTagf.setAttribute("id","vtaTotal_pTagf");
              vtaTotal_pTagf.setAttribute("class","sin_margen");
@@ -628,7 +633,7 @@ for(var i=0;i<ctes.length;i++){
              aplicacion.appendChild(vtaTotal_pTagf);
              vtaTotal_pTagf.style.left=(resultado_caja.x+resultado_caja.width/4+resultado_caja.parent.x)+"px";
              vtaTotal_pTagf.style.top=(resultado_caja.y+resultado_caja.parent.y-vtaTotal_pTagf.clientHeight)+"px";
-
+*/
 
          var total_pTagf=document.createElement('p');
              total_pTagf.setAttribute("id","total_pTagf");
@@ -745,7 +750,7 @@ for(var i=0;i<ctes.length;i++){
             continue_button.buttonMode=true;
             continue_button_pressed.visible=false;
             continue_button.removeAllListeners();
-            continue_button.on('pointerdown',function(){
+            continue_button.on('pointertap',function(){
               var buttonsContainer=self.app.stage.getChildByName("continue_button_pressed");
               var indexContainer=self.app.stage.getChildIndex(buttonsContainer);
               for(var i=indexContainer+1;i<self.app.stage.children.length;i++){
@@ -1011,7 +1016,7 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
     var button_continue=app.getChildByName("continue_button");
         button_continue.visible=false;
         button_continue.removeAllListeners();
-        button_continue.on('pointerdown',function(){
+        button_continue.on('pointertap',function(){
           index++;
           descript_txt.innerHTML=bateria[index].pregunta;
           respuesta.innerHTML="Responde a la pregunta superior presionando los botones!";
@@ -1040,7 +1045,7 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
           var button_pressed=container_buttons.getChildByName("button_pressed"+j);
           button_pressed.visible=false;
           button_pressed.removeAllListeners();
-          buttonOK.on('pointerdown',function(){
+          buttonOK.on('pointertap',function(){
             this.visible=false;
             container_buttons.getChildByName("button_pressed"+this.numero).visible=true;
             if(bateria[index].botonOk[0]==this.numero||bateria[index].botonOk[1]==this.numero||bateria[index].botonOk[2]==this.numero){
@@ -1051,7 +1056,7 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
                  var continue_button=self.app.stage.getChildByName("continue_button");
                  continue_button.visible=true;
                  continue_button.removeAllListeners();
-                 continue_button.on('pointerdown',function(){
+                 continue_button.on('pointertap',function(){
                    self.remove_p_tags();
                    toSlide('simulador_global');});
 

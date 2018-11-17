@@ -4,8 +4,7 @@ function loader_pixi(){
   var Loader = PIXI.loader;
   Loader
         .add([
-          "assets/spritesheet.json",
-          "assets/ui/bloque_1/Articulos.json"
+          "assets/ui/bloque_1/Articulos.json",
           {name:"Cliente_naranja",url:"assets/CTE CAMINANDO/CTECAMINANDO.json"},
           "assets/ui/bloque_3/persons.json",
           "assets/ui/bloque_3/compra.json",
@@ -49,6 +48,7 @@ function loader_pixi(){
           "assets/ui/bloque_3/tasa_indicador.png",
           "assets/ui/bloque_3/b-continue.png",
           "assets/ui/bloque_3/b-continue-selected.png",
+          "assets/ui/bloque_3/num-800mil.png",
           "assets/ui/bloque_4/LEVANTANDO_LA_ MANO.png",
           "assets/ui/bloque_5/bloque5_ctes.json",
           "assets/ui/bloque_5/spritesheet_bloque_5.json",
@@ -96,6 +96,11 @@ function loader_pixi(){
         progreso.setAttribute("data-value","0");
         document.body.appendChild(progreso);
 
+        
+        progreso.style.textAlign="center";
+        progreso.style.fontFamily="Roboto-Regular";
+        progreso.style.fontSize=factorScreen(100)+"px";
+
 
          function loadProgressHandler(loader,resource){
 
@@ -104,7 +109,9 @@ function loader_pixi(){
 
            var t = new ldBar('.ldBar');
            var s =  document.getElementsByClassName('ldBar').ldBar;
+
                t.set(loader.progress);
+
 
                progreso.setAttribute("data-value","0");
            if(loader.progress > 99.99)
@@ -115,6 +122,7 @@ function loader_pixi(){
          }
 
      var v = document.getElementsByClassName('ldBar-label');
+
 
 
         function charged(){

@@ -68,7 +68,7 @@ var mueblesX2=tienda_dentro.x+tienda_dentro.width/1.35;
 var mueblesX1=tienda_dentro.x;
 var mueblesY=tienda_dentro.y+tienda_dentro.height/3.5;
 
-     var id = Loader.resources['assets/spritesheet.json'].textures;
+     var id = Loader.resources['assets/ui/bloque_1/Articulos.json'].textures;
 
        tvs = new PIXI.Sprite(id['5. TVS.png']);
 	   tvs.position.set(mueblesX2, mueblesY);
@@ -287,7 +287,7 @@ function LoadButton(){
 
 
           contButton
-          .on("click",Clicked);
+          .on("pointertap",Clicked);
 
            function Clicked(){
 

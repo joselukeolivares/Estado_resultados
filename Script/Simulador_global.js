@@ -35,10 +35,11 @@ function simulador_global() {
     subTitle.style.top = self.app.screen.height * 0.13 + "px";
     app.appendChild(subTitle);
 
-    let estrategia = document.createElement("h6");
+    let estrategia = document.createElement("h3");
     estrategia.className = "subTitle";
     estrategia.innerHTML = "Ahora , te invitamos a crear tu propia estrategia de clientes. Visualiza y analiza el comportamiento de la Tasa de Compra y Venta Total al interactuar con uno o más perfiles de clientes.";
-    estrategia.style.top = self.app.screen.height * 0.2 + "px";
+    estrategia.style.top = self.app.screen.height * 0.18 + "px";
+    estrategia.style.fontSize=factorScreen(20)+"px";
     app.appendChild(estrategia);
 
 
@@ -67,21 +68,21 @@ function simulador_global() {
      total_vta.y = self.app.screen.height / 1.1;
      total_vta.scale.set(factorScreen(.85),self.app.screen.width * .45 / 950);
 
-     let total = document.createElement("h2");
+     let total = document.createElement("p");
      total.className = "tags";
      total.innerHTML = "TOTAL";
      total.style.top = self.app.screen.height * 0.91 + "px";
      total.style.left = self.app.screen.width * 0.16 + "px";
      app.appendChild(total);
 
-     let tcTotal = document.createElement("h4");
+     let tcTotal = document.createElement("p");
      tcTotal.className = "tags";
      tcTotal.innerHTML = "T.C.";
      tcTotal.style.top = self.app.screen.height * 0.87 + "px";
      tcTotal.style.left = self.app.screen.width * 0.4 + "px";
      app.appendChild(tcTotal);
 
-     let vtaTotal = document.createElement("h4");
+     let vtaTotal = document.createElement("p");
      vtaTotal.className = "tags";
      vtaTotal.innerHTML = "VENTA";
      vtaTotal.style.top = self.app.screen.height * 0.87 + "px";
@@ -132,13 +133,13 @@ function simulador_global() {
        var tc = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png"].texture);
        var cpa =new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
        var vta = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png"].texture);
-       let tcIndi = document.createElement("h4");
+       let tcIndi = document.createElement("p");
        tcIndi.className = "tags";
        tcIndi.innerHTML = "T.C.";
-       let cpaIndi = document.createElement("h4");
+       let cpaIndi = document.createElement("p");
        cpaIndi.className = "tags";
        cpaIndi.innerHTML = "C.P.A.";
-       let ventaIndi = document.createElement("h4");
+       let ventaIndi = document.createElement("p");
        ventaIndi.className = "tags";
        ventaIndi.innerHTML = "VENTA";
 
@@ -614,11 +615,150 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
 self.app.stage.addChild(contButton);
 
 contButton
-.on("click",click);
+.on("pointertap",click);
 
 function click (){
 
-toSlide("conclusiones");
+
+self.removeElements();
+self.removeText();
+var aplicacion=document.getElementById("aplicacion");
+
+let title = document.createElement("h1");
+title.className = "title";
+title.innerHTML = "Estado de Resultados de Clientes";
+title.style.top = self.app.screen.height * 0.05  + "px";
+aplicacion.appendChild(title);
+
+let subTitle = document.createElement("h3");
+subTitle.className = "subTitle";
+subTitle.innerHTML = "Conclusiones";
+subTitle.style.top = self.app.screen.height * 0.13 + "px";
+aplicacion.appendChild(subTitle);
+
+var title_descrp1=document.createElement('h3');
+    title_descrp1.innerHTML="Cartera Potencial";
+    title_descrp1.style.color="rgb(75,165,255)";
+    title_descrp1.style.fontSize=factorScreen(30)+"px";
+    title_descrp1.style.position="absolute";
+    title_descrp1.style.top="20%";
+    title_descrp1.style.left="10%";
+    aplicacion.appendChild(title_descrp1);
+
+var paragraph1=document.createElement('p');
+    paragraph1.innerHTML="La cartera potencial está compuesta por 4 perfiles de clientes: Activos sin Vencidos, Saldados 0-15, Clientes Generados y Vencidos 1. Se le denomina cartera potencial porque en conjunto participan con aproximadamente el 93% de las ventas totales.";
+    paragraph1.style.color="#ffffff";
+    paragraph1.style.fontSize=factorScreen(20)+"px";
+    paragraph1.style.position="absolute";
+    paragraph1.style.top=parseFloat(title_descrp1.offsetTop)+parseFloat(title_descrp1.clientHeight)+"px";
+    paragraph1.style.left="10%";
+    paragraph1.style.width="80%";
+    paragraph1.style.textAlign="justify";
+    aplicacion.appendChild(paragraph1);
+
+    var atlasBlock6  = PIXI.loader.resources["assets/ui/bloque_4/clientes_min/clientes_min.json"].textures;
+    var characters = ["4.-N-15 125X193.png",
+                    "6.-ASV 163X193.png",
+                    "8.-S-15 168X196.png",
+                    "5.-N+15 147X273.png",
+                    "7.-ACV 163X193.png",
+                    "9.-S+15 180X196.png",
+                    "1.-G 134x193.png",
+                    "2.-Z 135X193.png",
+                    "3.-Q 143X193.png"
+                  ];
+    var cteASV=new PIXI.Sprite(atlasBlock6[characters[2]]);
+        cteASV.scale.set(factorScreen(.5));
+        cteASV.x=parseFloat(paragraph1.offsetLeft)+parseFloat(paragraph1.clientWidth)/4;
+        cteASV.y=parseFloat(paragraph1.offsetTop)+parseFloat(paragraph1.clientHeight);
+        self.app.stage.addChild(cteASV);
+
+    var cteS15=new PIXI.Sprite(atlasBlock6[characters[3]]);
+        cteS15.scale.set(.5);
+        cteS15.x=cteASV.x+cteASV.width*2;
+        cteS15.y=cteASV.y;
+        self.app.stage.addChild(cteS15);
+
+    var cteG=new PIXI.Sprite(atlasBlock6[characters[6]]);
+        cteG.scale.set(.5)
+        cteG.x=cteS15.x+cteS15.width*2;
+        cteG.y=cteASV.y;
+        self.app.stage.addChild(cteG);
+
+    var cteACV=new PIXI.Sprite(atlasBlock6[characters[4]]);
+        cteACV.scale.set(.5)
+        cteACV.x=cteG.x+cteG.width*2;
+        cteACV.y=cteASV.y;
+        self.app.stage.addChild(cteACV);
+
+var title_descrp2=document.createElement('h3');
+    title_descrp2.innerHTML="Monitoreo de Indicadores";
+    title_descrp2.style.color="rgb(209,219,7)";
+    title_descrp2.style.fontSize=factorScreen(30)+"px";
+    title_descrp2.style.position="absolute";
+    title_descrp2.style.top=(cteASV.y+cteASV.height)+"px";
+    title_descrp2.style.left="10%";
+    aplicacion.appendChild(title_descrp2);
+
+var paragraph2=document.createElement('p');
+    paragraph2.innerHTML="El monitoreo en la Tasa de Compra nos da una visión general del comportamiento de la compra por perfil de clientes, por ejemplo, los Clientes Generados tienen una T.C. del 90% lo que podría indicar que la activación de la tarjeta al momento de la entrega es efectiva. También se podría concluir que la probabilidad de que Clientes Vencidos +4 nos compren es muy baja, esto porque su tasa de compra es menor al 10%, por lo que se tendría que procurar que menos clientes migren a este Perfil.";
+    paragraph2.style.color="#ffffff";
+    paragraph2.style.fontSize=factorScreen(20)+"px";
+    paragraph2.style.position="absolute";
+    paragraph2.style.top=parseFloat(title_descrp2.offsetTop)+parseFloat(title_descrp2.clientHeight)+"px";
+    paragraph2.style.left="10%";
+    paragraph2.style.width="80%";
+    paragraph2.style.textAlign="justify";
+    aplicacion.appendChild(paragraph2);
+
+    var cteG2=new PIXI.Sprite(atlasBlock6[characters[6]]);
+        cteG2.scale.set(.5)
+        cteG2.x=cteS15.x+cteS15.width*2;
+        cteG2.y=parseFloat(paragraph2.offsetTop)+parseFloat(paragraph2.clientHeight);
+        self.app.stage.addChild(cteG2);
+
+    var cteACV2=new PIXI.Sprite(atlasBlock6[characters[4]]);
+        cteACV2.scale.set(.5)
+        cteACV2.x=cteG.x+cteG.width*2;
+        cteACV2.y=cteG2.y;
+        self.app.stage.addChild(cteACV2);
+
+    var title_descrp3=document.createElement('h3');
+        title_descrp3.innerHTML="General";
+        title_descrp3.style.color="rgb(209,219,7)";
+        title_descrp3.style.fontSize=factorScreen(30)+"px";
+        title_descrp3.style.position="absolute";
+        title_descrp3.style.top=(cteACV2.y+cteACV2.height)+"px";
+        title_descrp3.style.left="10%";
+        aplicacion.appendChild(title_descrp3);
+
+    var paragraph3=document.createElement('p');
+        paragraph3.innerHTML="El monitoreo de clientes con base en el Estado de Resultados permite a Grupo Coppel detectar oportunidades de negocio y una mejor toma de decisiones.";
+        paragraph3.style.color="#ffffff";
+        paragraph3.style.fontSize=factorScreen(20)+"px";
+        paragraph3.style.position="absolute";
+        paragraph3.style.top=parseFloat(title_descrp3.offsetTop)+parseFloat(title_descrp3.clientHeight)+"px";
+        paragraph3.style.left="10%";
+        paragraph3.style.width="80%";
+        paragraph3.style.textAlign="justify";
+        aplicacion.appendChild(paragraph3);
+
+        var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
+        contButton.x = width*.90;
+        contButton.y = height*.95;
+        contButton.anchor.set(0.5);
+        contButton.scale.set(factorScreen(.6));
+        contButton.interactive = true;
+        contButton.buttonMode = true;
+        self.app.stage.addChild(contButton)
+
+        contButton.on("pointerdown",function(){
+            toSlide("conclusiones");
+
+        })
+
+
+
 
 }
 debugger;
@@ -671,7 +811,7 @@ button
 
 
 
-   self.updateTotal(99999,"NA");
+   self.updateTotal(99999,"Reset");
  })
  .on("mouseout",borrar_regresar);
 
@@ -711,7 +851,7 @@ button
  clearButton
    .on("mouseover",onMouseOverClear)
    .on("mouseout", onMouseOutClear)
-   .on("click", onClickClear);
+   .on("pointertap", onClickClear);
 
  function onMouseOverClear() {
    this.Over = true;
@@ -803,6 +943,7 @@ function addCharacter(index) {
     mmaa["Venta \n" + segmentos[index]],
     toDate["Venta \n" + segmentos[index]]
   );
+  debugger;
   if(index==4)
   char.vencido=1;
   self.characters.push(char);
@@ -869,6 +1010,9 @@ debugger;
       }
       let tc_pTag = document.getElementById("tc-tag-" + i);
       tc_pTag.innerHTML = (cte.tc).toFixed(1) + "%";
+
+      if(target==4||target=="Reset")
+      document.getElementById("cpa-tag-4").innerHTML="$"+numberWithCommas(parseInt(self.characters[4].cpa));
 
 
       var pt1=parseInt(cte.sale());
@@ -963,13 +1107,55 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal) {
   };
 
   self.removeElements = function() {
+
+    if(self.app.stage == null) return false;
+    let app = self.app;
+
+    while(app.stage.children.length>0) {
+        app.stage.removeChildAt(0);
+    }
     return self;
   };
 
   self.removeText = function() {
-    while(app.firstChild) {
-      app.removeChild(app.firstChild);
+    var aplicacion=document.getElementById("aplicacion");
+
+    var pTags=document.getElementsByTagName('p');
+
+    while(pTags.length>0) {
+
+       try{
+         pTags[0].parentNode.removeChild(pTags[0])
+       }catch(e){debugger; console.log(e)}
     }
+
+    var sliders=document.getElementsByClassName('slider');
+
+    while(sliders.length>0) {
+
+       try{
+         sliders[0].parentNode.removeChild(sliders[0])
+       }catch(e){debugger; console.log(e)}
+    }
+
+    var h3=document.getElementsByTagName('h3');
+
+    while(h3.length>0) {
+
+       try{
+         h3[0].parentNode.removeChild(h3[0])
+       }catch(e){debugger; console.log(e)}
+    }
+
+    var h1=document.getElementsByTagName('h1');
+
+    while(h1.length>0) {
+
+       try{
+         h1[0].parentNode.removeChild(h1[0])
+       }catch(e){debugger; console.log(e)}
+    }
+
   };
 
   return self;

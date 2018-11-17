@@ -13,72 +13,18 @@ self.createApp = function(){
 
 
 
-    var background = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/2 FONDO.png"].texture);
+    let title = document.createElement("h1");
+    title.className = "title";
+    title.innerHTML = "Creado Por";
+    title.style.top = self.app.screen.height * 0.05  + "px";
+    title.style.textShadow = "none";
+    title.style.color="black";
+    app.appendChild(title);
 
-    background.x=self.app.screen.width/16;
-    background.scale.set(self.app.screen.width*.25/950);
-    self.app.stage.addChild(background);
-
-
-    var title=new PIXI.Text("Estado de Resultados de Clientes",{
-      fontSize: screen.height * 40 / 880,
-      fontFamily: "Roboto-Black",
-      fill: "#FFFFFF",
-      dropShadow: true,
-      dropShadowColor: "#09102C",
-      dropShadowDistance: 5,
-      dropShadowAngle: Math.PI / 20
-    });
-    title.x=(self.app.screen.width/4);
-    title.y=(self.app.screen.height/24);
-
-    var subtitle=new PIXI.Text("conclusiones",{
-      fontSize: screen.height * 24 / 880,
-      fontFamily: "Roboto-Black",
-      fill: "#FFFFFF"
-    });
-    subtitle.x=(self.app.screen.width/2.4);
-    subtitle.y=(self.app.screen.height/10);
-
-    self.app.stage.addChild(title);
-     self.app.stage.addChild(subtitle);
-
-
-
-      var box = document.createElement("div");
-          box.innerHTML='aaaaaaaaaaaaaaaaaaaaaaa<br />bbbbbbbbbbbbbbbbbbbbbbb<br />cccccccccccccccccccc<br />dddddddddddddddddddddd<br />eeeeeeeeeeeeeeeeeee<br />fffffffffffffffffffffffffffffffffffff<br />gggggggggggggggggggg<br />hhhhhhhhhhhhhhhhhhhhhhh<br />iiiiiiiiiiiiiiiiiii<br />jjjjjjjjjjjjjjjjjjjj<br />kkkkkkkkkkkkkkkkkkkkkk';
-          box.setAttribute("style","position:absolute;left: 50%;top: 55%;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);background:#ffffff;color : #ffffff;width : 39%;height : 39%;overflow : auto;color:#000000;font-Family:Roboto-bold;font-Size:2vw;overflow-x: hidden;");
-          box.setAttribute("id","box");
-          box.typeObj=1;
-     var aplicacion=document.getElementById("aplicacion");
-     aplicacion.appendChild(box);
-
-
-     var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
-     contButton.x = self.app.screen.width-175;
-     contButton.y = self.app.screen.height-50;
-     contButton.anchor.set(0.5);
-     contButton.scale.set(0.6);
-     contButton.interactive = true;
-     contButton.buttonMode = true;
-
-     self.app.stage.addChild(contButton);
-
-     contButton
-     .on("click",click);
+     click();
 
      function click(){
 
-             var node = document.getElementById("box");
-                 node.parentNode.removeChild(node);
-
-                  self.app.stage.removeChild(background);
-
-                  self.app.stage.removeChild(title);
-
-                  self.app.stage.removeChild(subtitle);
-
-                 self.app.stage.removeChild(contButton);
 
                 var Loader = PIXI.loader;
 
@@ -88,19 +34,7 @@ self.createApp = function(){
                 stars.scale.set(self.app.screen.width*.30/950);
                 self.app.stage.addChild(stars);
 
-                var creado=new PIXI.Text("CREADO POR",{
-                  fontSize: screen.width * 35 / 880,
-                  fontFamily: "Roboto-Black",
-                  fill: "#175383",
-                  dropShadow: true,
-                  dropShadowColor: "#FFFFFF",
-                  dropShadowDistance: 5,
-                  dropShadowAngle: Math.PI / 20
-                });
-                creado.x=(self.app.screen.width/3);
-              creado.y=(self.app.screen.height/1);
 
-              self.app.stage.addChild(creado);
 
               var character_1 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 1.png"].texture);
               var character_2 = new PIXI.Sprite(Loader.resources["assets/ui/bloque_7/EQUIPOCREADO 2.png"].texture);
@@ -161,7 +95,7 @@ self.createApp = function(){
 
 
 //twenns
-                 TweenMax.to(creado,2, {x:self.app.screen.width/3,y:self.app.screen.height/24});
+                 //TweenMax.to(title,2, {x:self.app.screen.width/3,y:self.app.screen.height/24});
 
                  TweenMax.to(character_2,2, {x:self.app.screen.width/3.5,y:self.app.screen.width/12});
                  TweenMax.to(character_4,2, {x:self.app.screen.width/2.1,y:self.app.screen.width/12});

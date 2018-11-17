@@ -148,7 +148,7 @@ function createSprite(app){
 
 
       contButton
-      .on("click",click);
+      .on("pointertap",click);
 
 
       if ( !document.getElementById('contenedor') ){

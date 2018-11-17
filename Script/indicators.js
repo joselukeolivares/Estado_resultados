@@ -42,7 +42,7 @@ function indicators() {
 
   function createSprite(app) {
     let scale1 = factorScreen(.8);
-    let scale2 = (self.height * 1.5) / 950;
+    let scale2 = factorScreen(1);
     let tasaDeCompra = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b_tasa_de_compra.png")].texture);
     let compraPromedio = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b_compra_promedio.png")].texture);
     let venta = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b_venta.png")].texture);
@@ -54,6 +54,7 @@ function indicators() {
     app.stage.addChild(tasaDeCompra);
 
     compraPromedio.anchor.set(0.5);
+    compraPromedio.name="compraPromedioSprite";
     compraPromedio.x = app.screen.width / 2;
     compraPromedio.y = app.screen.height / 2;
     compraPromedio.scale.set(factorScreen(0.8));
@@ -70,7 +71,7 @@ function indicators() {
     title.setAttribute("class", "title");
     title.setAttribute("id", "titleIndicator");
     title.innerHTML = "Estado de Resultados de Clientes";
-    title.setAttribute("style", "top: " +  app.screen.height * 0.05 + "px;");
+    title.setAttribute("style", "top: " +  (app.screen.height * 0.05) + "px;");
     appDiv.appendChild(title);
 
     let subTitle = document.createElement("h3");
@@ -118,13 +119,13 @@ function indicators() {
 
     let titles = ["Tasa de Compra", "Compra promedio", "Venta"];
     let subTitles = [["Indica el número total de Clientes que compra en un periodo determinado. Se calcula dividiendo el número de Clientes que compraron sobre el número de Clientes totales.",
-                    "Imaginemos que a mes de Enero la empresa tiene 1,000 Clientes y para julio nos han comprado el 50% de los Clientes (500). <br> Interactuemos y veamos el efecto que tiene un aumento en la Tasa de Compra.",
+                    "imaginemos que ames de enero la empresa tiene 1,000 clientes y para el mes de julio 500 clientes han realizado compras, esto es una tasa de compra de 50%.<br> Interactuemos y veamos el efecto que tiene un aumento en la Tasa de Compra.",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Tasa de Compra."],
                     ["Indica la compra promedio que realizaron los Clientes (que compraron) en un periodo. Se calcula dividiendo las ventas totales sobre el número de Clientes que compraron.",
                     "De los 500 Clientes que nos han comprado a mes de Julio, cada uno ha comprado en promedio $ 1,000.00 Pesos. <br> Interactuemos y veamos el efecto que tienen al aumentar la Compra Promedio.",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Compra Promedio."],
                     ["Indica las ventas totales de clientes que compraron en un periodo.<br>Se calcula multiplicando la Tasa de Compra (Número de clientes) por la Compra Promedio.",
-                    "Imaginemos, actualmente tenemos una Venta Total de $500,000.00.<br>En una estrategia enfocada a clientes ¿Qué Indicador elegirías para incrementar las ventas?",
+                    "Imaginemos, actualmente tenemos una Venta Total de $500,000.00.<br>En una estrategia enfocada a clientes ¿Qué Indicador elegirías para incrementar las ventas?...",
                     "Escenario 1. Aumentar la Tasa de Compra a 80%. (Incremento de Clientes comprando)","Escenario 2. Aumentar la Compra Promedio Anual a $2,000.00. (Incremento de la compra)"]];
 
     let interactive = [PIXI.Texture.fromFrame("tasa_5.png"),
@@ -143,6 +144,7 @@ function indicators() {
 
       let title = document.createElement("h2");
       title.innerHTML = titles[i];
+      title.style.marginBottom="0";
       stages[i].appendChild(title);
 
       if(i != 2) {
@@ -226,6 +228,12 @@ function indicators() {
             } else if(i == 2 && j == 1) {
               circle1.style.display = "block";
               circle2.style.display = "block";
+
+              var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
+                TweenLite.to([circle1,circle2],1,{opacity:1});
+                }})
+              tl.to([circle1,circle2],.5,{opacity:.1});
+
               var divparent=document.getElementById("content_22").parentNode;
               var divobt=document.getElementById("content_22");
               var content=document.getElementById("content_23")
@@ -286,10 +294,20 @@ function indicators() {
       }
 
       let things = new PIXI.Sprite(interactive[i]);
+      things.name="thingsX"
       things.scale.set(scale2);
-      things.anchor.set(0.5);
+      //things.anchor.set(0.5);
       things.x = app.screen.width / 1.55;
       things.y = app.screen.height / 1.9;
+
+      var sliderX=document.getElementById("slider_"+i);
+      if(i<2){
+      things.x = parseFloat(sliderX.style.left);
+      things.y = parseFloat(sliderX.style.top)-things.height*2.4;
+      }
+      debugger;
+
+
       things.visible = false;
       things.name = "thing_" + i;
       app.stage.addChild(things);
@@ -411,8 +429,10 @@ function indicators() {
 
     circle1.addEventListener("click", function() {
       let vSprites = app.stage.getChildByName("vSprites1");
-      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-2mil.png")].texture);
-      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-millon.png")].texture);
+
+      vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-80percent.png")].texture);
+      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil.png")].texture);
+      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-800mil.png")].texture);
       let actualContent = document.getElementById("content_22");
       //actualContent.style.lineHeight = "150%";
       //actualContent.style.textAlign = "center";
@@ -445,6 +465,10 @@ function indicators() {
         circle2.style.display = "block";
         stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
         vSprites.removeChild(icBack);
+        vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-50percent.png")].texture);
+        vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil.png")].texture);
+        vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-500mil.png")].texture);
+
       });
 
       stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
@@ -455,9 +479,9 @@ function indicators() {
 
     circle2.addEventListener("click", function() {
       let vSprites = app.stage.getChildByName("vSprites1");
-      vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-80percent.png")].texture);
-      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil400.png")].texture);
-      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-1millon120.png")].texture);
+      //vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-80percent.png")].texture);
+      vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-2mil.png")].texture);
+      vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-millon.png")].texture);
       let actualContent = document.getElementById("content_22");
       /*
       actualContent.style.lineHeight = "150%";
@@ -494,6 +518,10 @@ function indicators() {
         circle2.style.display = "block";
         content.style.display = "block";
         vSprites.removeChild(icBack);
+        //vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-50percent.png")].texture);
+        vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil.png")].texture);
+        vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-500mil.png")].texture);
+
       });
 
     });
