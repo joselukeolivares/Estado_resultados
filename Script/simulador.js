@@ -191,6 +191,14 @@ var p_tagCte=document.createElement('p');
                removeCharacter(this.numero);
              });
 
+             button_pressed.on("mouseout",function(event){
+               debugger;
+               let p_tagCte=document.getElementById("p_tagCte");
+               p_tagCte.parentNode.style.display="none";
+
+
+             })
+
              var button_palomita=new PIXI.Sprite(atlasBlock5['10.PALOMITA.png']);
                  button_palomita.scale.set(factorScreen(.65));
                  button_palomita.y=buttonOK.y;
