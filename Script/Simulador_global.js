@@ -641,7 +641,7 @@ var title_descrp1=document.createElement('h3');
     title_descrp1.style.color="rgb(75,165,255)";
     title_descrp1.style.fontSize=factorScreen(30)+"px";
     title_descrp1.style.position="absolute";
-    title_descrp1.style.top="20%";
+    title_descrp1.style.top="15%";
     title_descrp1.style.left="10%";
     aplicacion.appendChild(title_descrp1);
 
