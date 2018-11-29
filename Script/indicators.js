@@ -580,7 +580,9 @@ function indicators() {
             appDiv.querySelector("#circle-tick-inside-1").style.display = "none";
 
             appDiv.querySelector("#circle-tick-inside-2").style.display = "none";
+            app.stage.getChildByName("vSprites0").visible = false;
             app.stage.getChildByName("vSprites1").visible = false;
+            app.stage.getChildByName("vSprites2").visible = false;
 
             app.stage.getChildByName("thing_0").visible = true;
             stages[0].style.display = "block";
@@ -651,7 +653,9 @@ function indicators() {
             stages[2].querySelector("#content_23").style.display = "none";
             appDiv.querySelector("#circle-tick-inside-1").style.display = "none";
             appDiv.querySelector("#circle-tick-inside-2").style.display = "none";
+            app.stage.getChildByName("vSprites0").visible = false;
             app.stage.getChildByName("vSprites1").visible = false;
+            app.stage.getChildByName("vSprites2").visible = false;
 
             app.stage.getChildByName("thing_1").visible = true;
             stages[1].style.display = "block";
