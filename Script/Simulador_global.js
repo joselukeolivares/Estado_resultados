@@ -70,17 +70,20 @@ function simulador_global() {
 
      let total = document.createElement("p");
      total.className = "tags";
+     total.id="total_p_tag"
      total.innerHTML = "TOTAL";
      total.style.top = self.app.screen.height * 0.91 + "px";
      total.style.left = self.app.screen.width * 0.16 + "px";
      app.appendChild(total);
+     total.style.top = (total_vta.y+total.clientHeight) + "px";
+     total.style.left = (total_tc.x-total.clientWidth) + "px";
 
      let tcTotal = document.createElement("p");
      tcTotal.className = "tags";
      tcTotal.innerHTML = "T.C.";
-     tcTotal.style.top = self.app.screen.height * 0.87 + "px";
      tcTotal.style.left = self.app.screen.width * 0.4 + "px";
      app.appendChild(tcTotal);
+     tcTotal.style.top = (total_vta.y-tcTotal.clientHeight) + "px";
 
      let vtaTotal = document.createElement("p");
      vtaTotal.className = "tags";
@@ -88,6 +91,7 @@ function simulador_global() {
      vtaTotal.style.top = self.app.screen.height * 0.87 + "px";
      vtaTotal.style.left = self.app.screen.width * 0.56 + "px";
      app.appendChild(vtaTotal);
+     vtaTotal.style.top = (total_vta.y-vtaTotal.clientHeight) + "px";
 
      var tcTotalElm = document.createElement("p");
      tcTotalElm.setAttribute("id", "tc-total-tag");
@@ -211,6 +215,8 @@ function simulador_global() {
      vta.x=venta_TXT.x+venta_TXT.width*1.1;
      vta.y=venta_TXT.y;
      vta.name="vta"+i;
+
+
      subContainer2.addChild(vta);
 
      //porcent.x=vta.width+200;
@@ -244,15 +250,16 @@ function simulador_global() {
          cpa_test.innerHTML="$"+"0";
          cpa_test.setAttribute("class","sin_margen");
          cpa_test.setAttribute("id","cpa-tag-"+i);
-         cpa_test.setAttribute("style","position:absolute;top:"+(cpa.y)+"px;left:"+(cpa.x+cpa.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
+         cpa_test.setAttribute("style","margin:0 .3em 0 0;width:"+(cpa.width*.9)+"px;text-align:right;position:absolute;top:"+(cpa.y)+"px;left:"+(cpa.x+cpa.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
          cpa_test.typeObj=1;
              app.appendChild(cpa_test);
 
              var vta_test=document.createElement("p");
              vta_test.setAttribute("id","vta-tag-"+i);
              vta_test.setAttribute("class","sin_margen");
-             vta_test.setAttribute("style","position:absolute;top:"+(vta.y)+"px;left:"+(vta.x)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
+             vta_test.setAttribute("style","margin-top:.3em;width:"+(vta.width*.95)+"px;text-align:right;width:"+vta_test.width+"px;position:absolute;top:"+(vta.y)+"px;left:"+(vta.x)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(22)+"px;font-weight:bold;");
              vta_test.typeObj=1;
+
                  app.appendChild(vta_test);
 
                  var vta_porcent=document.createElement("p");

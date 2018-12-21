@@ -233,7 +233,7 @@ setTimeout(function () {LoadButton()}, 1000);
 
 function LoadButton(){
 
-
+/*
   var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
   contButton.x = app.screen.width-100;
   contButton.y = app.screen.height-50;
@@ -242,7 +242,7 @@ function LoadButton(){
   contButton.interactive = true;
   contButton.buttonMode = true;
   app.stage.addChild(contButton);
-
+*/
 
 
   var btn = PIXI.Texture.fromImage('assets/Button_3.png');

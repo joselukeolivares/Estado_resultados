@@ -33,6 +33,7 @@ function story() {
 
 
 
+
 		       return self;
   };
 
@@ -47,6 +48,14 @@ function story() {
 		child_video.texture.baseTexture.destroy();
 
     		self.app.destroy(true);
+
+		var elements=document.getElementsByClassName("html_Element");
+		debugger;
+				if(elements!=null)
+				while (elements.length>0) {
+						var parent=elements[0].parentNode;
+								parent.removeChild(elements[0]);
+				}
 
     return self;
   };
@@ -142,8 +151,8 @@ function story() {
 	var rombo = new PIXI.Sprite(texture);
 
 
-					rombo.y = (self.app.screen.height / 6);
-					rombo.scale.set((self.height*.40)/950,(self.height*.40)/950);
+					rombo.y = (self.app.screen.height / 10);
+					rombo.scale.set(factorScreen(.45),factorScreen(.42));
 
 
 
@@ -173,16 +182,16 @@ var style = new PIXI.TextStyle({
 
 });
 
-
+var leftRom=0,rightRom=0;
 
 if(document.getElementsByClassName('intro').length==0){
 
 	$(function() {
-	$('#main').append('<div class="title intro" align="center" style="width:'+rombo.width+'px;text-align:left;font-size:'+factorScreen(50)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x)+'px;top:'+(height*.02)+'px;text-shadow:'+factorScreen(5)+'px 0px #E7C82F;color:#2D5F96"><p style="margin:0px;">Estado de Resultados de Clientes</p></div>');
+	$('#main').append('<div id="title_b2" class="title intro" align="center" style="width:'+rombo.width+'px;text-align:left;font-size:'+factorScreen(50)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/10))+'px;top:'+(height*.02)+'px;text-shadow:'+factorScreen(5)+'px 0px #E7C82F;color:#2D5F96"><p style="margin:0px;">Estado de Resultados de Clientes</p></div>');
 
-	$('#main').append('<div class="title intro" align="center" style="width:30%;text-align:left;font-size:'+factorScreen(40)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/2.5))+'px;top: '+rombo.y+'px;"><p>HISTORIA</p></div>');
+	$('#main').append('<div id="history_div" class="title intro" align="center" style="width:30%;text-align:left;font-size:'+factorScreen(40)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/2.5))+'px;top: '+rombo.y+'px;"><p>HISTORIA</p></div>');
 
-	$('#main').append('<div class="intro" align="center" style="font-Family:roboto-regular;color:#FFFFFF;font-Size:'+factorScreen(16)+'px;position: absolute;left: '+(rombo.x+rombo.width/6)+'px;top:'+(rombo.y+rombo.width/8)+'px;width:'+(rombo.width/1.5)+'px;"><p>Los clientes representan el activo <strong>más importante</strong> para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados<br>financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias monetarias / entradas y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos clientes, sino también en los que ya tiene. Deben estar lo suficientemente satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve muy relevante para el futuro de la organización, además contar con la ayuda de diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma de decisiones en una estrategia enfocada al cliente. <br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
+	$('#main').append('<div id="textContainer" class="intro" align="center" style="opacity:.2;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: '+(rombo.x+rombo.width/4.5)+'px;top:'+(rombo.y+rombo.width/10)+'px;width:'+(rombo.width/1.8)+'px;"><p id="history_desc" style="font-size:1.9vh;margin:0;line-height:1.15;text-align:justify;">Los clientes representan el activo <strong>más importante</strong> para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias monetarias / entradas y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos clientes, sino también en los que ya tiene. Deben estar lo suficientemente satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve muy relevante para el futuro de la organización, además contar con la ayuda de diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma de decisiones en una estrategia enfocada al cliente. <br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
 
 	});
 
@@ -190,6 +199,25 @@ if(document.getElementsByClassName('intro').length==0){
 	self.hideShowTxt();
 }
 
+//const textContainer=document.querySelector("#title_b2");
+//const textContainer=document.querySelector("#textContainer");
+const textContainer=document.querySelector("#textContainer");
+var containerB=document.createElement("div");
+    containerB.setAttribute("class","html_Element")
+    containerB.style.width=textContainer.clientWidth+"px";
+		containerB.style.height=textContainer.clientHeight+"px";
+		containerB.style.position="absolute";
+		containerB.style.left=textContainer.style.left;
+		containerB.style.top=textContainer.style.top;
+		containerB.style.backgroundImage="url('assets/ui/bloque_2/pause_play_3.png')";
+		containerB.style.backgroundSize="cover";
+		containerB.style.backgroundPosition="center center";
+		containerB.style.cursor='pointer';
+
+		containerB.addEventListener("touch",pause);
+		containerB.addEventListener("click",pause);
+document.querySelector("#main").appendChild(containerB);
+debugger;
 
 
 			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/bloque_2/ERC_video_1.png'));
@@ -205,7 +233,7 @@ if(document.getElementsByClassName('intro').length==0){
 			paused.position.set(width/2,height/2);
 			paused.scale.set(factorScreen(.25));
 			paused.anchor.set(.5,.5);
-			paused.alpha=0;
+			paused.alpha=1;
 			paused.name="paused_button";
 
 			next_block.scale.set(factorScreen(.6));
@@ -226,7 +254,26 @@ if(document.getElementsByClassName('intro').length==0){
       close.interactive=true;
 			close.buttonMode=true;
 			close.name="close_video";
-			close.on("pointertap", deleteVideo);
+			close.on("pointertap", closeVideo);
+
+			function closeVideo(){
+				var video_sprite=app.stage.getChildByName('video_sprite');
+				if(video_sprite.texture.baseTexture.source.paused){
+
+				}else {
+					self.hideShowTxt();
+				}
+
+				TweenMax.to(video_sprite,1,{pixi:{alpha:0}})
+				video_sprite.texture.baseTexture.source.pause();
+				video_sprite.visible=false;
+				TweenMax.to(containerB,1,{css:{opacity:.9,scale:.1,left:"-10%",top:"50%",backgroundColor:'white'}});
+				this.visible=false;
+				document.querySelector("#textContainer").style.opacity=1;
+				debugger;
+
+
+			};
 
 
 
@@ -240,62 +287,109 @@ if(document.getElementsByClassName('intro').length==0){
 
 
 
+			button_video.on('pointertap',video_erc);
+			video_erc();
+			function video_erc(){
 
-			button_video.on('pointertap',function(e){
 
-
-				self.hideShowTxt();
+				//self.hideShowTxt();
 
 
 				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADO.mp4');
+				debugger;
 				var videoSprite=new PIXI.Sprite(texture);
+						//videoSprite.texture.baseTexture.source.pause();
+						//videoSprite.texture.baseTexture.source.currentTime=30;
 				    videoSprite.width=self.width;
 						videoSprite.height=self.height;
             videoSprite.interactive=true;
 	  				videoSprite.buttonMode=true;
-						videoSprite.name="video_sprite"
+						videoSprite.name="video_sprite";
+					  videoSprite.texture.baseTexture.autoPlay=false;
+						//videoSprite.texture.baseTexture.source.poster="assets/ui/bloque_2/video_poster.png";
+						//videoSprite.texture.baseTexture.source.controls=true;
+
+						videoSprite.texture.baseTexture.source.currenTime=5;
+						videoSprite.alpha=.85;
 		  			videoSprite.on('pointertap',pause);
+						debugger;
+
+
 
           videoSprite.texture.baseTexture.source.onended=
 					function(){
-						self.hideShowTxt();
-							app.stage.removeChild(videoSprite);
+						  self.hideShowTxt();
+							//app.stage.removeChild(videoSprite);
+							closeVideo();
 					};
+
+
     				app.stage.addChild(videoSprite);
-						app.stage.addChild(paused);
+
+
+						//app.stage.addChild(paused);
 						app.stage.addChild(close);
 
-			});
+			};
 
 
 
-			app.stage.addChild(button_video);
+			//app.stage.addChild(button_video);
 
 			function pause(){
-				 var source=this.texture.baseTexture.source;
+				 //var source=this.texture.baseTexture.source;
+
+				 //if(source==null){
+					 var video_sprite=app.stage.getChildByName('video_sprite');
+
+					 source=video_sprite.texture.baseTexture.source;
+					 //source.controls=true;
+				 //}
+
 
 			 if(source.paused){
+				 if(!video_sprite.visible){
+					 	video_sprite.visible=true;
+				 		video_sprite.alpha=1;
+				 		app.stage.getChildByName('close_video').visible=true;
+						source.currentTime=0;
+					}
+
 				 source.play();
 				 TweenMax.to(paused,2,{pixi:{alpha:0}});
+				 TweenMax.to(video_sprite,2,{pixi:{alpha:1}});
+				 TweenMax.to(containerB,1,{css:{opacity:.1,scale:.1,left:"-10%",top:"60%"}});
+
 			 }else{
 				 source.pause();
-				 TweenMax.to(paused,2,{pixi:{alpha:.9}});
+				 TweenMax.to(paused,2,{pixi:{alpha:1}});
+				 TweenMax.to(video_sprite,2,{pixi:{alpha:.8}});
+				 TweenMax.to(containerB,2,{pixi:{alpha:1}});
+				 const textContainer=document.querySelector("#textContainer");
+				 debugger;
+				 TweenMax.to(containerB,1,{css:{backgroundColor:'unset',opacity:1,scale:1,left:textContainer.style.left,top:textContainer.style.top}});
 			 }
+			 self.hideShowTxt();
 
 		}
 
 		function deleteVideo(){
 
-      self.hideShowTxt();
+
 			var child_video=app.stage.getChildByName("video_sprite");
 			var child_close=app.stage.getChildByName("close_video");
 			var paused_button=app.stage.getChildByName("paused_button");
-			debugger;
+
+			if(!child_video.texture.baseTexture.source.paused)
+					self.hideShowTxt();
+
 			child_video.texture.baseTexture.destroy();
 
 			app.stage.removeChild(child_close);
 		  app.stage.removeChild(child_video);
 			app.stage.removeChild(paused_button);
+
+
 
 		}
 

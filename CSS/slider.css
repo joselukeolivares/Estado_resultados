@@ -20,9 +20,23 @@
 	cursor: grab;
 	background-repeat: no-repeat;
 	user-select: none;
+	animation-name:knob;
+	animation-duration: 3s;
+	animation-direction: alternate;
+	animation-iteration-count: infinite;
 }
 .slider > .slider_knob:active{
 	cursor: -webkit-grabbing;
 	cursor: -moz-grabbing;
 	cursor: grabbing;
+}
+
+@keyframes knob {
+	from{
+		opacity:.1;
+	}
+	to{
+		opacity: 1;
+	}
+
 }

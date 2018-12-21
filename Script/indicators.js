@@ -117,15 +117,15 @@ function indicators() {
     let stage = [];
     let stages = [];
 
-    let titles = ["Tasa de Compra", "Compra promedio", "Venta"];
+    let titles = ["Tasa de Compra", "Compra Promedio", "Venta"];
     let subTitles = [["Indica el número total de Clientes que compra en un periodo determinado. Se calcula dividiendo el número de Clientes que compraron sobre el número de Clientes totales.",
-                    "imaginemos que ames de enero la empresa tiene 1,000 clientes y para el mes de julio 500 clientes han realizado compras, esto es una tasa de compra de 50%.<br> Interactuemos y veamos el efecto que tiene un aumento en la Tasa de Compra.",
+                    "Imagina que, en enero la empresa tiene un total de 1,000 clientes y para el mes de Junio 500  clientes han realizado al menos una compra, esto significa una tasa de compra del 50%.Ahora, interactúa deslizando el slider y ve el efecto que tiene un aumento o disminución en la tasa de compra…",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Tasa de Compra."],
                     ["Indica la compra promedio que realizaron los Clientes (que compraron) en un periodo. Se calcula dividiendo las ventas totales sobre el número de Clientes que compraron.",
-                    "De los 500 Clientes que nos han comprado a mes de Julio, cada uno ha comprado en promedio $ 1,000.00 Pesos. <br> Interactuemos y veamos el efecto que tienen al aumentar la Compra Promedio.",
+                    "De los 500 clientes que han comprado, en conjunto generan una compra promedio de $1,000.00.<br> Veamos el efecto al aumentar o disminuir la compra promedio…",
                     "Ahora, en sentido contrario veamos el efecto al disminuir la Compra Promedio."],
                     ["Indica las ventas totales de clientes que compraron en un periodo.<br>Se calcula multiplicando la Tasa de Compra (Número de clientes) por la Compra Promedio.",
-                    "Imaginemos, actualmente tenemos una Venta Total de $500,000.00.<br>En una estrategia enfocada a clientes ¿Qué Indicador elegirías para incrementar las ventas?...",
+                    "Teniendo una Tasa de Compra del 50% (500 Clientes) y Compra Promedio de $1,000.00 se generan ventas por $500,000.00. En este caso, pensando en crear una estrategia enfocada al cliente, ¿Qué indicador manipularías para incrementar las ventas? ....",
                     "Escenario 1. Aumentar la Tasa de Compra a 80%. (Incremento de Clientes comprando)","Escenario 2. Aumentar la Compra Promedio Anual a $2,000.00. (Incremento de la compra)"]];
 
     let interactive = [PIXI.Texture.fromFrame("tasa_5.png"),
@@ -170,7 +170,7 @@ function indicators() {
         let icRightArrow = document.createElement("img");
         icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
         icRightArrow.setAttribute("id", "arrow-point-to-right-" + i + j);
-        icRightArrow.setAttribute("class", "arrow-point-to-right");
+        icRightArrow.setAttribute("class", "arrow-point-to-right parpadeo");
         icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: " + app.screen.width * 0.82  + "px;");
         if(i == 2) {
           var arrow0=document.getElementById('arrow-point-to-right-00');
@@ -191,16 +191,17 @@ function indicators() {
             stages[i].querySelector("#content_" + i + (j+1)).style.display = "block";
             if(i == 0 && j == 0) {
               slider0.style.display = "block";
-
+              /*
               var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
                 TweenLite.to(slider0.childNodes[1],1,{opacity:1});
                 }})
               tl.to(slider0.childNodes[1],.5,{opacity:.1});
-
+              */
               app.stage.getChildByName("interactiveSquares0").visible = true;
               document.getElementById("tcCts").style.display = "block";
               document.getElementById("tcPer").style.display = "block";
             } else if(i == 0 && j == 1){
+
               var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
                 TweenLite.to(slider0.childNodes[1],1,{opacity:1});
                 }})
@@ -229,11 +230,12 @@ function indicators() {
               circle1.style.display = "block";
               circle2.style.display = "block";
 
+              /*
               var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
                 TweenLite.to([circle1,circle2],1,{opacity:1});
                 }})
               tl.to([circle1,circle2],.5,{opacity:.1});
-
+              */
               var divparent=document.getElementById("content_22").parentNode;
               var divobt=document.getElementById("content_22");
               var content=document.getElementById("content_23")
@@ -386,7 +388,7 @@ function indicators() {
 
     let circle1 = document.createElement("img");
     circle1.setAttribute("src", "assets/ui/bloque_3/ic-tick-inside-circle.svg");
-    circle1.setAttribute("class", "circle-tick-inside");
+    circle1.setAttribute("class", "circle-tick-inside parpadeo");
     circle1.setAttribute("id", "circle-tick-inside-1");
 
 
@@ -397,7 +399,7 @@ function indicators() {
 
     let circle2 = document.createElement("img");
     circle2.setAttribute("src", "assets/ui/bloque_3/ic-tick-inside-circle.svg");
-    circle2.setAttribute("class", "circle-tick-inside");
+    circle2.setAttribute("class", "circle-tick-inside parpadeo");
     circle2.setAttribute("id", "circle-tick-inside-2");
 
     circle2.style.left = app.screen.width * 0.02 + "px";
@@ -407,11 +409,14 @@ function indicators() {
 
     let titleContent = document.getElementById("titleIndicator");
     let actualContent = document.getElementById("content_22");
+    //actualContent.ClassList.add("parpadeo")
     actualContent.style.top=(titleContent.clientTop+titleContent.clientHeight)+"px;";
     actualContent.style.left="28%";
     actualContent.style.margin="1%";
     actualContent.style.width="60%";
     actualContent.style.position="absolute";
+    actualContent.style.position="absolute";
+    actualContent.style.cursor="pointer";
     debugger;
 
     let content = document.createElement("p");
@@ -424,10 +429,14 @@ function indicators() {
     content.style.position="absolute";
     content.style.color="rgb(231, 200, 47)";
     content.style.display="none";
+    content.style.cursor="pointer";
     document.getElementById('stage_2').appendChild(content);
 
 
-    circle1.addEventListener("click", function() {
+    circle1.addEventListener("click",circle_1);
+    actualContent.addEventListener("click",circle_1);
+
+      function circle_1() {
       let vSprites = app.stage.getChildByName("vSprites1");
 
       vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-80percent.png")].texture);
@@ -439,7 +448,7 @@ function indicators() {
       //actualContent.style.display = "absolute";
       //actualContent.style.textAlignLast = "center";
       actualContent.innerHTML = "Bien, aumentar a 80% la Tasa de Compra incrementa las ventas a $800,000.00.<br>No debemos olvidar, que para incrementar las ventas es muy importante una estrategia integral e impulsar ambos indicadores, combinada por un mayor volumen de clientes y cantidad de compra, potencializando un incremento en ventas.";
-      this.style.display = "none";
+      circle1.style.display = "none";
       circle2.style.display = "none";
       content.style.display = "none";
 
@@ -475,9 +484,12 @@ function indicators() {
       document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
         toSlide("segmentacion");
       });
-    });
+    };
 
-    circle2.addEventListener("click", function() {
+    circle2.addEventListener("click",circle_2);
+    content.addEventListener("click",circle_2);
+
+     function circle_2() {
       let vSprites = app.stage.getChildByName("vSprites1");
       //vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-80percent.png")].texture);
       vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-2mil.png")].texture);
@@ -490,7 +502,7 @@ function indicators() {
       */
       actualContent.innerHTML = "Bien, un aumento en la Compra Promedio Anual a $2,000.00 incrementa las ventas a $1,000,000.00<br>No debemos olvidar, que para incrementar las ventas es muy importante una estrategia integral e impulsar ambos indicadores, combinada por un mayor volumen de clientes y cantidad de compra, potencializando un incremento en ventas.";
       stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
-      this.style.display = "none";
+      circle2.style.display = "none";
       circle1.style.display = "none";
       content.style.display = "none";
 
@@ -524,7 +536,7 @@ function indicators() {
 
       });
 
-    });
+    };
 
     contButton.on("pointertap", function() {
       contButton.visible = false;

@@ -53,10 +53,10 @@ var self={};
 
     var descript_txt=document.createElement('p')
             descript_txt.setAttribute("id","descript_txt");
-            descript_txt.innerHTML="Ahora, ya que entendemos como está compuesto el Estado de Resultados de Cliente de Coppel (Indicadores de venta y perfiles de clientes) pasamos al siguiente bloque, en donde vamos a simular con datos reales como se comportan cada uno de los perfiles de clientes."
-            descript_txt.setAttribute("style","position: absolute;top: 30%;font-size: "+factorScreen(22)+"px;font-family: roboto-regular;color: #FFFFFF;width: 50%;text-align: center;display: inline-block;");
+            descript_txt.innerHTML="Ahora, ya que entendemos como está compuesto el Estado de Resultados de Clientes Coppel (Indicadores de venta y perfiles de clientes) pasamos al siguiente bloque, en donde vamos a simular con datos reales como se comportan cada uno de los perfiles de clientes."
+            descript_txt.setAttribute("style","margin: 0 10% 0 10%;position: absolute;top: 30%;font-size: "+factorScreen(22)+"px;font-family: roboto-regular;color: #FFFFFF;width: 80%;text-align: center;");
             aplicacion.appendChild(descript_txt);
-            descript_txt.style.left=(leftCent-(descript_txt.clientWidth/2))+"px";
+            //descript_txt.style.left=(leftCent-(descript_txt.clientWidth/2))+"px";
 
 
 
@@ -103,7 +103,7 @@ var self={};
                 "5. N+15 2 500X500.png",
                 "8. ASV 2 500X500.png",
                 "9. ACV 2 500X500.png",
-                "6. S+15 2 500X500.png",
+                "7. S-15 2 500X500.png",
                 "6. S+15 2 500X500.png",
                 "2. Z 2 500X500.png",
                 "3. Q 2 500X500.png",
@@ -154,7 +154,9 @@ var p_tagCte=document.createElement('p');
              button_pressed.numero=i;
              buttons_container.addChild(button_pressed);
 
-             buttonOK.on("pointertap",function(){
+             buttonOK.on("pointertap",btnOkClick);
+
+             function btnOkClick(){
                if(self.characters.length<2){
                    this.visible=false;
                var brother=this.parent.getChildAt(this.parent.getChildIndex(this)+1);
@@ -162,7 +164,7 @@ var p_tagCte=document.createElement('p');
                    addCharacter(this.numero);}else{
                      alert("Solo puedes seleccionar 2 Perfiles de cliente a la vez,haz click en su boton para liberarlo o presiona el boton 'Reiniciar.'");
                    }
-             });
+             };
 
              buttonOK.on("mouseover",function(event){
                debugger;
@@ -171,13 +173,13 @@ var p_tagCte=document.createElement('p');
                p_tagCte.parentNode.style.display="block";
                //p_tagCte.parentNode.style.left=(event.target.x)+"px";//+(parseFloat(this.parent.offsetLeft))-(this.width/2)+"px";
                //p_tagCte.parentNode.style.top=(event.target.y)+"px";//+(parseFloat(this.parent.offsetTop))-(this.height)+"px";
-               p_tagCte.parentNode.style.left=(this.x)+(0)+"px";
-               p_tagCte.parentNode.style.top=(this.y-p_tagCte.clientHeight*2)+"px";
+               p_tagCte.parentNode.style.left=(this.x+(this.width/2)-(p_tagCte.clientWidth/2))+"px";
+               p_tagCte.parentNode.style.top=(this.y+this.parent.y-(this.height*.8))+"px";
 
              })
 
              buttonOK.on("mouseout",function(event){
-               debugger;
+               //debugger;
                let p_tagCte=document.getElementById("p_tagCte");
                p_tagCte.parentNode.style.display="none";
 
@@ -240,6 +242,7 @@ var p_tagCte=document.createElement('p');
      contButton.interactive = true;
      contButton.cursor = "pointer";
 
+
      var contButton2=new PIXI.Sprite(PIXI.loader.resources['assets/ui/bloque_3/b-continue-selected.png'].texture);
      contButton2.name="continue_button_pressed"
      contButton2.x = width*.9;
@@ -248,13 +251,14 @@ var p_tagCte=document.createElement('p');
      contButton2.scale.set(factorScreen(0.6));
      contButton2.visible=false;
 
+
      contButton.on('pointertap',function(){
-       this.buttonMode=false;
-       this.interactive=false;
+       //this.buttonMode=true;
+       //this.interactive=false;
 
        TweenMax.to([followMe,descript_txt],1,{pixi:{alpha:0},onComplete:function(){
          aplicacion.removeChild(followMe);
-         descript_txt.innerHTML="Seleccionemos dos perfiles de clientes y manteniendo una compra promedio interactuaremos con su tasa de compra para ver el efecto que este tiene sobre la venta total."
+         descript_txt.innerHTML="Selecciona dos perfiles de clientes dando clic en los botones, a continuación se visualiza la Tasa de Compra, Compra Promedio Anual, Venta y Venta Total de los perfiles seleccionados.<br>Analiza los indicadores de cada perfil e interactúa con la Tasa de compra para visualizar las variaciones en  Venta y Venta Total."
          TweenMax.to(descript_txt,1,{alpha:1,top:"20%"});
        }})
 
@@ -265,12 +269,23 @@ var p_tagCte=document.createElement('p');
                   container_buttons.children[i].interactive=true;
                   container_buttons.children[i].buttonMode=true;
                 }
-            this.visible=false;
+            //this.visible=false;
 
-            contButton2.visible=true;
+            //contButton2.visible=true;
             simulacion();
 
        }})
+       this.removeAllListeners();
+       this.on('pointertap',function(){
+         var buttonsContainer=self.app.stage.getChildByName("continue_button_pressed");
+         var indexContainer=self.app.stage.getChildIndex(buttonsContainer);
+         for(var i=indexContainer+1;i<self.app.stage.children.length;i++){
+           self.app.stage.removeChildren(i);
+           self.remove_p_tags();
+           self.remove_Sliders();
+           cuestionario();
+         }
+       })
 
      });
      self.app.stage.addChild(contButton);
@@ -493,7 +508,7 @@ for(var i=0;i<ctes.length;i++){
          cpa_pTag.innerHTML="0";
          cpa_pTag.setAttribute("id","cpa_pTag0")
          cpa_pTag.setAttribute("class","recuadro_blanco sin_margen");
-         cpa_pTag.setAttribute("style","position:absolute;top:"+CPA_sprite.y+"px;left:"+(CPA_sprite.x+CPA_sprite.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
+         cpa_pTag.setAttribute("style","width:"+(CPA_sprite.width*.9)+"px;text-align:right;position:absolute;top:"+CPA_sprite.y+"px;left:"+(CPA_sprite.x+CPA_sprite.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
                   aplicacion.appendChild(cpa_pTag);
 
      var Vta_sprite=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
@@ -506,7 +521,7 @@ for(var i=0;i<ctes.length;i++){
          vta_pTag.innerHTML="0";
          vta_pTag.setAttribute("id","vta_pTag0")
          vta_pTag.setAttribute("class","recuadro_blanco sin_margen");
-         vta_pTag.setAttribute("style","position:absolute;top:"+Vta_sprite.y+"px;left:"+(Vta_sprite.x+Vta_sprite.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
+         vta_pTag.setAttribute("style","width:"+(Vta_sprite.width*.9)+"px;text-align:right;position:absolute;top:"+Vta_sprite.y+"px;left:"+(Vta_sprite.x+Vta_sprite.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
          vta_pTag.typeObj=1;
          aplicacion.appendChild(vta_pTag);
 
@@ -525,7 +540,7 @@ for(var i=0;i<ctes.length;i++){
          cpa_pTag2.innerHTML="0";
          cpa_pTag2.setAttribute("id","cpa_pTag1")
          cpa_pTag2.setAttribute("class","recuadro_blanco sin_margen");
-         cpa_pTag2.setAttribute("style","position:absolute;top:"+CPA_sprite2.y+"px;left:"+(CPA_sprite2.x+CPA_sprite2.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
+         cpa_pTag2.setAttribute("style","width:"+(CPA_sprite2.width*.9)+"px;text-align:right;position:absolute;top:"+CPA_sprite2.y+"px;left:"+(CPA_sprite2.x+CPA_sprite2.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
                   aplicacion.appendChild(cpa_pTag2);
 
          var Vta_sprite2=new PIXI.Sprite(atlasBlock5['14. RECUADRO DE TASA DE C.P.A Y VENTA.png']);
@@ -538,7 +553,7 @@ for(var i=0;i<ctes.length;i++){
          vta_pTag2.innerHTML="0";
          vta_pTag2.setAttribute("id","vta_pTag1")
          vta_pTag2.setAttribute("class","recuadro_blanco sin_margen");
-         vta_pTag2.setAttribute("style","position:absolute;top:"+Vta_sprite2.y+"px;left:"+(Vta_sprite2.x+Vta_sprite2.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
+         vta_pTag2.setAttribute("style","width:"+(Vta_sprite2.width*.9)+"px;text-align:right;position:absolute;top:"+Vta_sprite2.y+"px;left:"+(Vta_sprite2.x+Vta_sprite2.width*.05)+"px;font-size:"+fontSizeCPAVta+"px;");
                   aplicacion.appendChild(vta_pTag2);
          //Texto para recuadros de CPA y Venta en ambos personajes seleccionados
          var cpa_pTag=document.createElement('p');
@@ -626,7 +641,7 @@ for(var i=0;i<ctes.length;i++){
          vtaTotal.innerHTML="0";
          vtaTotal.setAttribute("id","vtaTotal_pTag")
          vtaTotal.setAttribute("class","recuadro_blanco sin_margen");
-         vtaTotal.setAttribute("style","position:absolute;top:"+resultado_caja.y+"px;left:"+(resultado_caja.x)+"px;font-size:"+fontSizeVTATC+"px;");
+         vtaTotal.setAttribute("style","width:"+(resultado_caja.width*.95)+"px;text-align:right;position:absolute;top:"+resultado_caja.y+"px;left:"+(resultado_caja.x)+"px;font-size:"+fontSizeVTATC+"px;");
                   aplicacion.appendChild(vtaTotal);
          //Texto para recuadros de resultados
 /*
@@ -646,7 +661,7 @@ for(var i=0;i<ctes.length;i++){
          var total_pTagf=document.createElement('p');
              total_pTagf.setAttribute("id","total_pTagf");
              total_pTagf.setAttribute("class","sin_margen");
-             total_pTagf.innerHTML="VENTA";
+             total_pTagf.innerHTML="VENTA TOTAL";
              total_pTagf.style.position="absolute";
              total_pTagf.style.color="#FFFFFF";
              total_pTagf.style.fontSize=factorScreen(40)+"px";
@@ -749,7 +764,7 @@ for(var i=0;i<ctes.length;i++){
 
 
       }
-
+/*
       if(self.characters.length==2){
         var continue_button=self.app.stage.getChildByName("continue_button");
         var continue_button_pressed=self.app.stage.getChildByName("continue_button_pressed");
@@ -759,17 +774,10 @@ for(var i=0;i<ctes.length;i++){
             continue_button_pressed.visible=false;
             continue_button.removeAllListeners();
             continue_button.on('pointertap',function(){
-              var buttonsContainer=self.app.stage.getChildByName("continue_button_pressed");
-              var indexContainer=self.app.stage.getChildIndex(buttonsContainer);
-              for(var i=indexContainer+1;i<self.app.stage.children.length;i++){
-                self.app.stage.removeChildren(i);
-                self.remove_p_tags();
-                self.remove_Sliders();
-                cuestionario();
-              }
+
             })
       }
-
+*/
       var vtaTotal=0;
       var vtaRealTotal=0;
       for(var i=0;i<self.characters.length;i++){
@@ -840,13 +848,14 @@ for(var i=0;i<ctes.length;i++){
         }
     }
 
+    /*
     var buttonContainer=self.app.stage;
 
     var continue_button=buttonContainer.getChildByName("continue_button");
     var continue_button_pressed=buttonContainer.getChildByName("continue_button_pressed");
         continue_button.visible=false;
         continue_button_pressed.visible=true;
-
+   */
 
   }
 
@@ -974,12 +983,14 @@ for(var i=0;i<ctes.length;i++){
         descript_txt.setAttribute("style","position: absolute;top: 30%;left: 25%;font-size: "+factorScreen(22)+"px;font-family: roboto-black;color: #FFFFFF;width: 50%;text-align: center;display: inline-block;");
         aplicacion.appendChild(descript_txt);
 
+    var leftCent=(parseInt(aplicacion.clientWidth)/2);
     var aplicacion=document.getElementById("aplicacion");
-        var title=document.createElement('p')
+    var title=document.createElement('p')
         title.innerHTML="Estado de Resultados de Clientes"
-        title.setAttribute("style","position: absolute;top: 5%;font-size: "+factorScreen(60)+"px;margin: 0px;font-family: roboto-black;color: #FFFFFF;");
+        title.setAttribute("style","text-shadow: 3px 0px #09102C;font-weight: bold;position: absolute;top: 5%;font-size: "+factorScreen(40)+"px;margin: 0px;font-family: Roboto-Regular;color: #FFFFFF;");
         aplicacion.appendChild(title);
-        title.style.left=leftCent-(title.clientWidth/2)+"px";
+        title.style.left=(leftCent-(title.clientWidth/2))+"px";
+
 
     var respuesta=document.createElement('p');
         respuesta.innerHTML="Responde a la pregunta superior presionando los botones!";
@@ -1013,6 +1024,7 @@ for(var i=0;i<ctes.length;i++){
 
 var mayores=tcAll[tcAll.length-1].segmento+","+tcAll[tcAll.length-2].segmento+","+tcAll[tcAll.length-3].segmento;
 var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
+
     var bateria=[
       {pregunta:"¿Cuáles son los 3 Perfiles de Clientes  con mayor Tasa de Compra?",respuesta1:"Correcto: "+mayores,respuesta2:"Incorecto: la respuesta correcta es "+mayores,botonOk:[tcAll[tcAll.length-1].index,tcAll[tcAll.length-2].index,tcAll[tcAll.length-3].index]},
       {pregunta:"¿Cuáles son los 3 Perfiles de Clientes con menor Tasa de Compra? ",respuesta1:"Correcto: "+menores,respuesta2:"Incorecto: la respuesta correcta es "+menores,botonOk:[tcAll[0].index,tcAll[1].index,tcAll[2].index]}
@@ -1046,10 +1058,17 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
     descript_txt.innerHTML=bateria[index].pregunta;
     TweenMax.to(container_buttons,1,{pixi:{y:height*.2},onComplete:function(){
       var aciertos=0;
+      var globos=document.getElementById("globosVdo");
+      var cte_ptag=document.createElement('p')
+          cte_ptag.setAttribute("id","p_tagCte");
+          globos.appendChild(cte_ptag);
         for(var j=0;j<9;j++){
           var buttonOK=container_buttons.getChildByName("buttonOK"+j);
           buttonOK.visible=true;
-          buttonOK.removeAllListeners();
+          debugger;
+          //buttonOK.removeAllListeners();
+          buttonOK.removeListener('pointertap')
+
           var button_pressed=container_buttons.getChildByName("button_pressed"+j);
           button_pressed.visible=false;
           button_pressed.removeAllListeners();
@@ -1058,7 +1077,7 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
             container_buttons.getChildByName("button_pressed"+this.numero).visible=true;
             if(bateria[index].botonOk[0]==this.numero||bateria[index].botonOk[1]==this.numero||bateria[index].botonOk[2]==this.numero){
               container_buttons.getChildByName("button_palomita"+this.numero).visible=true;
-              document.getElementById("respuesta_p").innerHTML=bateria[index].respuesta1;
+              //document.getElementById("respuesta_p").innerHTML=bateria[index].respuesta1;
 
                if(index==bateria.length-1){
                  var continue_button=self.app.stage.getChildByName("continue_button");
@@ -1076,7 +1095,7 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
                  app.getChildByName("continue_button_pressed").visible=false;}
 
             }else{
-              document.getElementById("respuesta_p").innerHTML=bateria[index].respuesta2;
+              //document.getElementById("respuesta_p").innerHTML=bateria[index].respuesta2;
               container_buttons.getChildByName("button_tacha"+this.numero).visible=true;
             }
           })

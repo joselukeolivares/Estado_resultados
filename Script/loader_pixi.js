@@ -5,6 +5,7 @@ function loader_pixi(){
   Loader
         .add([
           "assets/ui/bloque_1/Articulos.json",
+          "assets/video/ESTADO DE RESULTADO.mp4",
           {name:"Cliente_naranja",url:"assets/CTE CAMINANDO/CTECAMINANDO.json"},
           "assets/ui/bloque_3/persons.json",
           "assets/ui/bloque_3/compra.json",
@@ -96,7 +97,7 @@ function loader_pixi(){
         progreso.setAttribute("data-value","0");
         document.body.appendChild(progreso);
 
-        
+
         progreso.style.textAlign="center";
         progreso.style.fontFamily="Roboto-Regular";
         progreso.style.fontSize=factorScreen(100)+"px";
