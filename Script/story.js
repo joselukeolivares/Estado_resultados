@@ -3,14 +3,14 @@ function story() {
   self.frames;
 	self.t;
 
-	self.hideShowTxt=function(){
+	self.hideShowTxt=function(visible){
 
 		var texts =  document.getElementsByClassName("intro");
-				debugger;
+				//debugger;
 				if(texts!=null)
 				{
 					for(var i=0;i<texts.length;i++){
-						  if(texts[i].style.display=='none')
+						  if(visible)
 							{
 								texts[i].style.display='block';
 							}else{
@@ -22,7 +22,7 @@ function story() {
 	}
 
   self.removeElements = function () {
-
+/*
 		        if(self.app.stage==null)
 		           return false;
 
@@ -30,7 +30,7 @@ function story() {
 		         while(app.stage.getChildAt[0]) {
 		           //console.log("Elemntos restantes: "+app.stage.children.length +" de la app de PIXI:Historia")
 		           app.stage.removeChildAt(0); }
-
+*/
 
 
 
@@ -39,7 +39,7 @@ function story() {
 
   self.destroyApp = function () {
 
-    self.hideShowTxt();
+    self.hideShowTxt(0);
 		console.log("Destroying the story...");
     if(self.app == null) return self;
 
@@ -49,14 +49,22 @@ function story() {
 
     		self.app.destroy(true);
 
-		var elements=document.getElementsByClassName("html_Element");
-		debugger;
+		var elements=document.getElementsByClassName("deleteItm");
+		//debugger;
 				if(elements!=null)
 				while (elements.length>0) {
 						var parent=elements[0].parentNode;
 								parent.removeChild(elements[0]);
 				}
 
+ 		debugger;
+/*
+				if(elements!=null)
+ 				while (elements.length>0) {
+ 						var parent=elements[0].parentNode;
+ 								parent.removeChild(elements[0]);
+ 				}
+*/
     return self;
   };
 
@@ -97,7 +105,7 @@ function story() {
 		setup();
     function setup() {
 			var loader_ctes=PIXI.loader;
-			  debugger;
+			  //debugger;
 
 			let id = PIXI.loader.resources["assets/ui/bloque_2/interface.json"].textures;
 
@@ -184,26 +192,25 @@ var style = new PIXI.TextStyle({
 
 var leftRom=0,rightRom=0;
 
-if(document.getElementsByClassName('intro').length==0){
+
 
 	$(function() {
-	$('#main').append('<div id="title_b2" class="title intro" align="center" style="width:'+rombo.width+'px;text-align:left;font-size:'+factorScreen(50)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/10))+'px;top:'+(height*.02)+'px;text-shadow:'+factorScreen(5)+'px 0px #E7C82F;color:#2D5F96"><p style="margin:0px;">Estado de Resultados de Clientes</p></div>');
+	$('#main').append('<div id="title_b2" class="deleteItm title intro" align="center" style="width:'+rombo.width+'px;text-align:left;font-size:'+factorScreen(50)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/10))+'px;top:'+(height*.02)+'px;text-shadow:'+factorScreen(5)+'px 0px #E7C82F;color:#2D5F96"><p style="margin:0px;">Estado de Resultados de Clientes</p></div>');
 
-	$('#main').append('<div id="history_div" class="title intro" align="center" style="width:30%;text-align:left;font-size:'+factorScreen(40)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/2.5))+'px;top: '+rombo.y+'px;"><p>HISTORIA</p></div>');
+	$('#main').append('<div id="history_div" class="deleteItm title intro" align="center" style="width:30%;text-align:left;font-size:'+factorScreen(40)+'px;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left:'+(rombo.x+(rombo.width/2.5))+'px;top: '+rombo.y+'px;"><p>HISTORIA</p></div>');
 
-	$('#main').append('<div id="textContainer" class="intro" align="center" style="opacity:.2;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: '+(rombo.x+rombo.width/4.5)+'px;top:'+(rombo.y+rombo.width/10)+'px;width:'+(rombo.width/1.8)+'px;"><p id="history_desc" style="font-size:1.9vh;margin:0;line-height:1.15;text-align:justify;">Los clientes representan el activo <strong>más importante</strong> para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias monetarias / entradas y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos clientes, sino también en los que ya tiene. Deben estar lo suficientemente satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve muy relevante para el futuro de la organización, además contar con la ayuda de diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma de decisiones en una estrategia enfocada al cliente. <br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
+	$('#main').append('<div id="textContainer" class="deleteItm intro" align="center" style="opacity:.2;font-Family:roboto-regular;color:#FFFFFF;position: absolute;left: '+(rombo.x+rombo.width/4.5)+'px;top:'+(rombo.y+rombo.width/10)+'px;width:'+(rombo.width/1.8)+'px;"><p id="history_desc" style="font-size:1.9vh;margin:0;line-height:1.15;text-align:justify;">Los clientes representan el activo <strong>más importante</strong> para las empresas, en el siguiente proyecto queremos ayudarte a entender que los clientes son los que conforman y dan vida a la estructura de una organización.<br><br>Actualmente las empresas miden sus resultados a través de los <strong>estados financieros</strong> que reflejan sólo el incremento en ventas de un periodo (ganancias monetarias / entradas y salidas de dinero a la caja).<br><br>Pero, ¿y qué pasa con los clientes? ¿Cuántos clientes se quedan con nosotros?<br><br>Hablar de clientes se vuelve un tema mucho más complejo, principalmente por el cambio en el estilo de vida de los clientes.<br><br>Un negocio que crece de manera exitosa no se basa solo en generar nuevos clientes, sino también en los que ya tiene. Deben estar lo suficientemente satisfechos como para seguir comprando.<br><br>Por lo que evaluar la <strong>pérdida</strong> y <strong>ganancia</strong> de <strong>clientes</strong> en la empresa se vuelve muy relevante para el futuro de la organización, además contar con la ayuda de diferentes <strong>indicadores de monitoreo</strong> que nos brinde información para la toma de decisiones en una estrategia enfocada al cliente. <br><br>El estado de resultados de clientes nos puede ayudar con esto.</p></div>');
 
 	});
 
-}else{
-	self.hideShowTxt();
-}
+
 
 //const textContainer=document.querySelector("#title_b2");
 //const textContainer=document.querySelector("#textContainer");
 const textContainer=document.querySelector("#textContainer");
 var containerB=document.createElement("div");
-    containerB.setAttribute("class","html_Element")
+    containerB.setAttribute("class","deleteItm")
+		debugger;
     containerB.style.width=textContainer.clientWidth+"px";
 		containerB.style.height=textContainer.clientHeight+"px";
 		containerB.style.position="absolute";
@@ -217,7 +224,7 @@ var containerB=document.createElement("div");
 		containerB.addEventListener("touch",pause);
 		containerB.addEventListener("click",pause);
 document.querySelector("#main").appendChild(containerB);
-debugger;
+//debugger;
 
 
 			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/bloque_2/ERC_video_1.png'));
@@ -261,7 +268,7 @@ debugger;
 				if(video_sprite.texture.baseTexture.source.paused){
 
 				}else {
-					self.hideShowTxt();
+					self.hideShowTxt(1);
 				}
 
 				TweenMax.to(video_sprite,1,{pixi:{alpha:0}})
@@ -270,7 +277,7 @@ debugger;
 				TweenMax.to(containerB,1,{css:{opacity:.9,scale:.1,left:"-10%",top:"50%",backgroundColor:'white'}});
 				this.visible=false;
 				document.querySelector("#textContainer").style.opacity=1;
-				debugger;
+				//debugger;
 
 
 			};
@@ -296,7 +303,7 @@ debugger;
 
 
 				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADO.mp4');
-				debugger;
+				//debugger;
 				var videoSprite=new PIXI.Sprite(texture);
 						//videoSprite.texture.baseTexture.source.pause();
 						//videoSprite.texture.baseTexture.source.currentTime=30;
@@ -312,13 +319,13 @@ debugger;
 						videoSprite.texture.baseTexture.source.currenTime=5;
 						videoSprite.alpha=.85;
 		  			videoSprite.on('pointertap',pause);
-						debugger;
+						//debugger;
 
 
 
           videoSprite.texture.baseTexture.source.onended=
 					function(){
-						  self.hideShowTxt();
+						  self.hideShowTxt(1);
 							//app.stage.removeChild(videoSprite);
 							closeVideo();
 					};
@@ -353,23 +360,25 @@ debugger;
 				 		video_sprite.alpha=1;
 				 		app.stage.getChildByName('close_video').visible=true;
 						source.currentTime=0;
+						//self.hideShowTxt(1);
 					}
 
 				 source.play();
+				 self.hideShowTxt(0);
 				 TweenMax.to(paused,2,{pixi:{alpha:0}});
 				 TweenMax.to(video_sprite,2,{pixi:{alpha:1}});
 				 TweenMax.to(containerB,1,{css:{opacity:.1,scale:.1,left:"-10%",top:"60%"}});
 
 			 }else{
 				 source.pause();
+				 self.hideShowTxt(1);
 				 TweenMax.to(paused,2,{pixi:{alpha:1}});
 				 TweenMax.to(video_sprite,2,{pixi:{alpha:.8}});
 				 TweenMax.to(containerB,2,{pixi:{alpha:1}});
 				 const textContainer=document.querySelector("#textContainer");
-				 debugger;
 				 TweenMax.to(containerB,1,{css:{backgroundColor:'unset',opacity:1,scale:1,left:textContainer.style.left,top:textContainer.style.top}});
 			 }
-			 self.hideShowTxt();
+
 
 		}
 
@@ -381,7 +390,7 @@ debugger;
 			var paused_button=app.stage.getChildByName("paused_button");
 
 			if(!child_video.texture.baseTexture.source.paused)
-					self.hideShowTxt();
+					self.hideShowTxt(0);
 
 			child_video.texture.baseTexture.destroy();
 
