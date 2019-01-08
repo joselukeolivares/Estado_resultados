@@ -41,7 +41,7 @@ function start() {
 
   function createSprite(app) {
     var Loader=PIXI.loader;
-    let door1=new PIXI.Sprite(Loader.resources["assets/singleDoor.png"].texture);
+    let door1 = new PIXI.Sprite(Loader.resources["assets/singleDoor.png"].texture);
     console.log(door1.width);
 
 
@@ -62,15 +62,15 @@ function start() {
     background.scale.set(escala, escala);
 
     storeEntrance.scale.set(escala, escala);
-    storeEntrance.x = app.screen.width /2-storeEntrance.width/2
+    storeEntrance.x = app.screen.width / 2 - storeEntrance.width / 2;
     storeEntrance.y = app.screen.height / 14;
     //storeEntrance.anchor.set(0.5, 0.5);
 
 
 
 
-    door1.scale.set(escala, escala);
-    door2.scale.set(escala, escala);
+    door1.scale.set(escala);
+    door2.scale.set(escala);
     door1.x = storeEntrance.x+(storeEntrance.width/2)-door1.width;
     door2.x =  door1.x+door1.width;
     door1.y = storeEntrance.y+(storeEntrance.height)-door1.height;
@@ -91,8 +91,8 @@ function start() {
     }
 
     function onDoorsOut() {
-      //TweenMax.to(door1, 1, {x:  storeEntrance.x+(storeEntrance.width/2)-door1.width});
-      //TweenMax.to(door2, 1, {x: storeEntrance.x+(storeEntrance.width/2)+door2.width});
+      TweenMax.to(door1, 1, {x:  storeEntrance.x+(storeEntrance.width/2)-door1.width});
+      TweenMax.to(door2, 1, {x: storeEntrance.x+(storeEntrance.width/2)});
     }
 
     function tweenCompleted() {

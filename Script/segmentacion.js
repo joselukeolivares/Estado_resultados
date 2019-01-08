@@ -600,6 +600,13 @@ function createSprite(app){
 
 
                    toSlide("simulador");
+                   circle5.style.backgroundColor = "white";
+                   circle1.style.backgroundColor = "gray";
+           		    circle2.style.backgroundColor = "gray";
+                  circle3.style.backgroundColor = "gray";
+           		    circle4.style.backgroundColor = "gray";
+           		    circle6.style.backgroundColor = "gray";
+           		    circle7.style.backgroundColor = "gray";
 
 
 

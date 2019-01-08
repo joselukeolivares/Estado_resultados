@@ -761,6 +761,13 @@ var paragraph2=document.createElement('p');
 
         contButton.on("pointerdown",function(){
             toSlide("conclusiones");
+            circle7.style.backgroundColor = "white";
+            circle1.style.backgroundColor = "gray";
+    		    circle2.style.backgroundColor = "gray";
+            circle3.style.backgroundColor = "gray";
+    		    circle4.style.backgroundColor = "gray";
+    		    circle5.style.backgroundColor = "gray";
+    		    circle6.style.backgroundColor = "gray";
 
         })
 

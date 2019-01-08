@@ -206,7 +206,7 @@ function indicators() {
                 TweenLite.to(slider0.childNodes[1],1,{opacity:1});
                 }})
               tl.to(slider0.childNodes[1],.5,{opacity:.1});
-            }else if(i == 1 && j == 0) {
+            } else if (i == 1 && j == 0) {
               slider1.style.display = "block";
 
               var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
@@ -483,6 +483,13 @@ function indicators() {
       stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
       document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
         toSlide("segmentacion");
+        circle4.style.backgroundColor = "white";
+		    circle2.style.backgroundColor = "gray";
+		    circle1.style.backgroundColor = "gray";
+		    circle3.style.backgroundColor = "gray";
+		    circle5.style.backgroundColor = "gray";
+		    circle6.style.backgroundColor = "gray";
+		    circle7.style.backgroundColor = "gray";
       });
     };
 
@@ -508,6 +515,13 @@ function indicators() {
 
       document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
         toSlide("segmentacion");
+        circle4.style.backgroundColor = "white";
+		    circle2.style.backgroundColor = "gray";
+		    circle1.style.backgroundColor = "gray";
+		    circle3.style.backgroundColor = "gray";
+		    circle5.style.backgroundColor = "gray";
+		    circle6.style.backgroundColor = "gray";
+		    circle7.style.backgroundColor = "gray";
       });
 
       let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/bloque_3/ic-left-arrow-circular.png"].texture);

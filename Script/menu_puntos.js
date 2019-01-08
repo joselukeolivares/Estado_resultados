@@ -1,5 +1,4 @@
 function toSlide(to){
-
    scratching(1)
      .then(print)
    .then(function(){
@@ -7,5 +6,4 @@ function toSlide(to){
       actual_app=new window[to]().createApp();
    })
    .then(secondS(2))
-
 }
