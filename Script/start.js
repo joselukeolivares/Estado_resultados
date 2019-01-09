@@ -35,16 +35,13 @@ function start() {
     while(app.stage.getChildAt[0]) {
        app.stage.removeChildAt(0);
     }
-
     return self;
   };
 
   function createSprite(app) {
+    //console.log(app.stage.getChildAt(0));
     var Loader=PIXI.loader;
     let door1 = new PIXI.Sprite(Loader.resources["assets/singleDoor.png"].texture);
-    console.log(door1.width);
-
-
     let background= new PIXI.Sprite(Loader.resources["assets/background_coppel.png"].texture);
     let storeEntrance = new PIXI.Sprite(Loader.resources["assets/coppel.png"].texture);
     //let door1 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/singleDoor.png"));
@@ -59,6 +56,7 @@ function start() {
     background.x = app.screen.width / 2;
     background.y = app.screen.height / 1.52;
     background.anchor.set(0.5, 0.5);
+    background.name = "background";
     background.scale.set(escala, escala);
 
     storeEntrance.scale.set(escala, escala);
@@ -101,6 +99,7 @@ function start() {
 
     function fadeCompleted() {
       self.removeElements();
+      app.stage.removeChild(app.stage.getChildByName("background"));
 
       try {
         shopping().build(app);
