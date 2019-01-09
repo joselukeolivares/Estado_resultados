@@ -462,7 +462,7 @@ function indicators() {
       vSprites.addChild(icBack);
 
 
-      icBack.on("pointertap", function() {
+      icBack.on("pointerdown", function() {
         //actualContent.style.lineHeight = "270%";
         //actualContent.style.textAlign = "left";
         //actualContent.style.textAlignLast = "left";
@@ -534,7 +534,7 @@ function indicators() {
       vSprites.addChild(icBack);
 
 
-      icBack.on("pointertap", function() {
+      icBack.on("pointerdown", function() {
         //actualContent.style.lineHeight = "270%";
         //actualContent.style.textAlign = "left";
         //actualContent.style.textAlignLast = "left";
@@ -552,7 +552,7 @@ function indicators() {
 
     };
 
-    contButton.on("pointertap", function() {
+    contButton.on("pointerdown", function() {
       contButton.visible = false;
       TweenMax.to(intro, 0.2, {alpha: 0});
       TweenMax.to([tasaDeCompra, compraPromedio, venta], 0.7, {y: (app.screen.height * 62) / 220, onComplete: function () {
@@ -569,7 +569,7 @@ function indicators() {
         // Tasa de compra boton
         tasaDeCompra.interactive = true;
         tasaDeCompra.buttonMode = true;
-        tasaDeCompra.on("click", function() {
+        tasaDeCompra.on("pointerdown", function() {
           if(stages[1].style.display == "block") {
             slider1.style.display = "none";
             stages[1].querySelector("#arrow-point-to-right-10").style.display = "none";
@@ -643,7 +643,7 @@ function indicators() {
         // Compra promedio boton
         compraPromedio.interactive = true;
         compraPromedio.buttonMode = true;
-        compraPromedio.on("click", function() {
+        compraPromedio.on("pointerdown", function() {
           if(stages[0].style.display == "block") {
             slider0.style.display = "none";
             stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
@@ -718,7 +718,7 @@ function indicators() {
         // Venta boton
         venta.interactive = true;
         venta.buttonMode = true;
-        venta.on("click", function() {
+        venta.on("pointerdown", function() {
           if(stages[0].style.display == "block") {
 
             slider0.style.display = "none";

@@ -559,20 +559,16 @@ function createSprite(app){
               charDiv9.appendChild(char9_p2);
          document.body.appendChild(charDiv9);
 
-
-
-
-           function MouseOver(event){
-
-
-     }
-           function MouseOut(){
-
-
-           }
-
-
-        }
+         TweenMax.from(charDiv1, 1, {y: -50, opacity: 0});
+         TweenMax.from(charDiv2, 1, {y: -50, opacity: 0});
+         TweenMax.from(charDiv3, 1, {y: -50, opacity: 0});
+         TweenMax.from(charDiv4, 1, {y: -50, opacity: 0});
+         TweenMax.from(charDiv5, 1, {y: -50, opacity: 0});
+         TweenMax.from(charDiv6, 1, {y: -50, opacity: 0});
+         TweenMax.from(charDiv7, 1, {y: -50, opacity: 0});
+         TweenMax.from(charDiv8, 1, {y: -50, opacity: 0});
+         TweenMax.from(charDiv9, 1, {y: -50, opacity: 0});
+}
 
 
 
