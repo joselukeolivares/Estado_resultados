@@ -285,14 +285,7 @@ function indicators() {
                 TweenLite.to(slider0.childNodes[1],1,{opacity:1});
                 }})
               tl.to(slider0.childNodes[1],.5,{opacity:.1});
-<<<<<<< HEAD
             } else if (i == 1 && j == 0) {
-=======
-
-
-
-            }else if(i == 1 && j == 0) {
->>>>>>> master
               slider1.style.display = "block";
 
               var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
@@ -558,18 +551,10 @@ function indicators() {
       vSprites.addChild(icBack);
 
 
-<<<<<<< HEAD
-      icBack.on("pointerdown", function() {
-        //actualContent.style.lineHeight = "270%";
-        //actualContent.style.textAlign = "left";
-        //actualContent.style.textAlignLast = "left";
-
-=======
       icBack.on("pointertap", function() {
         debugger;
         var back=stages[2].querySelector("#stepBack22");
             back.style.display = "block";
->>>>>>> master
         actualContent.innerHTML = subTitles[2][2];
 
         circle1.style.display = "block";
@@ -621,7 +606,6 @@ function indicators() {
       circle1.style.display = "none";
       content.style.display = "none";
 
-<<<<<<< HEAD
       document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
         toSlide("segmentacion");
         circle4.style.backgroundColor = "white";
@@ -632,9 +616,6 @@ function indicators() {
 		    circle6.style.backgroundColor = "gray";
 		    circle7.style.backgroundColor = "gray";
       });
-=======
-
->>>>>>> master
 
       let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/bloque_3/ic-left-arrow-circular.png"].texture);
       icBack.anchor.set(0.5);
@@ -646,16 +627,9 @@ function indicators() {
       vSprites.addChild(icBack);
 
 
-<<<<<<< HEAD
-      icBack.on("pointerdown", function() {
-        //actualContent.style.lineHeight = "270%";
-        //actualContent.style.textAlign = "left";
-        //actualContent.style.textAlignLast = "left";
-=======
       icBack.on("pointertap", function() {
         var back=stages[2].querySelector("#stepBack22").style.display = "block";
 
->>>>>>> master
         actualContent.innerHTML = subTitles[2][2];
         stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
         circle1.style.display = "block";
@@ -670,9 +644,6 @@ function indicators() {
 
     };
 
-<<<<<<< HEAD
-    contButton.on("pointerdown", function() {
-=======
     self.offStepBack=function(){
       for(var i=0;i<3;i++){
         stages[i].querySelector("#stepBack"+(i+""+1)).style.display = "none";
@@ -681,7 +652,6 @@ function indicators() {
     }
 
     contButton.on("pointertap", function() {
->>>>>>> master
       contButton.visible = false;
       TweenMax.to(intro, 0.2, {alpha: 0});
       TweenMax.to([tasaDeCompra, compraPromedio, venta], 0.7, {y: (app.screen.height * 62) / 220, onComplete: function () {
@@ -698,9 +668,6 @@ function indicators() {
         // Tasa de compra boton
         tasaDeCompra.interactive = true;
         tasaDeCompra.buttonMode = true;
-<<<<<<< HEAD
-        tasaDeCompra.on("pointerdown", function() {
-=======
         tasaDeCompra.on("click",function(){
           self.tasaCompra_();
         })
@@ -709,7 +676,6 @@ function indicators() {
           debugger;
           self.offStepBack();
 
->>>>>>> master
           if(stages[1].style.display == "block") {
 
             self.turnOff_CP();
@@ -771,7 +737,6 @@ function indicators() {
 
         };
 
-<<<<<<< HEAD
         // Compra promedio boton
         compraPromedio.interactive = true;
         compraPromedio.buttonMode = true;
@@ -789,8 +754,6 @@ function indicators() {
             app.stage.getChildByName("interactiveSquares0").visible = false;
             document.getElementById("tcCts").style.display = "none";
             document.getElementById("tcPer").style.display = "none";
-=======
->>>>>>> master
 
 
         self.turnOff_TC=function(){
@@ -946,15 +909,11 @@ function indicators() {
         // Venta boton
         venta.interactive = true;
         venta.buttonMode = true;
-<<<<<<< HEAD
-        venta.on("pointerdown", function() {
-=======
         venta.on("click",function(){
           self.venta_();
         })
         self.venta_=function() {
           self.offStepBack();
->>>>>>> master
           if(stages[0].style.display == "block") {
             self.turnOff_TC();
             self.turnOn_VTA();
