@@ -112,8 +112,8 @@ function slider(appDiv, app, index) {
           tcPer.innerHTML = self.value + "0%";
           tcCts.innerHTML = self.value + "00" + "<br>Clientes";
 
-          //stage0.querySelector("#content_01").innerHTML = "Como puedes observar, una mayor tasa de compra indica que más clientes están comprando y en sentido contrario, una menor tasa de compra indica menos clientes comprando.";
-          //stage0.querySelector("#arrow-point-to-right-01").style.display = "block";
+          stage0.querySelector("#content_01").innerHTML = "Como puedes observar, una mayor tasa de compra indica que más clientes están comprando y en sentido contrario, una menor tasa de compra indica menos clientes comprando.";
+          stage0.querySelector("#arrow-point-to-right-01").style.display = "block";
 
 
       } else {
@@ -123,18 +123,18 @@ function slider(appDiv, app, index) {
           app.getChildByName("thing_0").setTexture(PIXI.Texture.fromFrame("tasa_" + self.value + ".png"));
           tcPer.innerHTML = self.value + "0%";
           tcCts.innerHTML = self.value + "00" + "<br>Clientes";
+          /*
           if(newValue <= 4) {
-            //stage0.querySelector("#content_02").innerHTML = "";
             let arrowR=stage0.querySelector("#arrow-point-to-right-02");
             arrowR.style.display = "block";
-            /*
+
             var tl=new TimelineMax({repeat:20,delay:1,onComplete:function(){
               TweenLite.to(arrowR,1,{opacity:1});
               }})
             tl.to(arrowR,.5,{opacity:.1});
-            */
-          }
 
+          }
+          */
         }
       }
     } else if (index == 1 && newValue!=null) {
@@ -144,6 +144,8 @@ function slider(appDiv, app, index) {
           //knob.style.left = (event.clientX - bg.getBoundingClientRect().x - 15) + "px";
           cpSls.innerHTML = "$" + numberWithCommas(newValue * 1000 / 5) + ".00";
           app.getChildByName("thing_1").setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
+          //stage0.querySelector("#content_02").innerHTML = "";
+          stage1.querySelector("#content_11").innerHTML = "Claro, una mayor compra promedio indica más volumen de venta y en sentido contrario, menor compra promedio indica menos volumen de venta.";
           //if (newValue >= 6)
            {
             //stage1.querySelector("#content_11").innerHTML = "";
@@ -167,7 +169,6 @@ function slider(appDiv, app, index) {
 
           //if(newValue <= 4)
            {
-            //stage1.querySelector("#content_12").innerHTML = "Menor Compra Promedio indica un menor volumen de compra.";
             let arrowR=stage1.querySelector("#arrow-point-to-right-12");
             arrowR.style.display = "block";
             var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){

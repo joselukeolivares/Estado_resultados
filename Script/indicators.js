@@ -152,8 +152,10 @@ function indicators() {
       }
       slider0 = document.getElementById("slider_0");
       slider1 = document.getElementById("slider_1");
-
-      for(let j = 0; j < 3; j++) {
+      var tope=2;
+      if(i==2)
+          tope=3;
+      for(let j = 0; j < tope; j++) {
         let content = document.createElement("p");
         content.setAttribute("class", "content");
         content.setAttribute("id", "content_" + i + j);
@@ -171,7 +173,7 @@ function indicators() {
         icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
         icRightArrow.setAttribute("id", "arrow-point-to-right-" + i + j);
         icRightArrow.setAttribute("class", "arrow-point-to-right parpadeo");
-        icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: " + app.screen.width * 0.90  + "px;");
+        icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: " + app.screen.width * 0.89  + "px;");
         icRightArrow.indicator_i=i;
         icRightArrow.indicator_j=j;
 
@@ -192,6 +194,7 @@ function indicators() {
           }else{
             if(indicator_j-1<=0){
               stages[i].querySelector("#stepBack" + i +""+ (1)).style.display = "none";
+              stages[i].querySelector("#content_"+i+""+j).innerHTML=subTitles[i][j];
               if(indicator_i==0){
                 self.tasaCompra_();
               }else if(indicator_i==1){
@@ -227,6 +230,10 @@ function indicators() {
 
         function goToIndicator(i,j,direction) {
           debugger;
+          if(i<2 && j!=0 && !direction){
+            j=2;
+          }
+
           let alter=0;
           if(direction){
             alter=-2;
@@ -236,7 +243,7 @@ function indicators() {
 
             stages[i].querySelector("#arrow-point-to-right-" + i + (j)).style.display = "none";
             if(!direction){
-
+              //if(i==2)
               stages[i].querySelector("#stepBack" + i + (j+1+alter)).style.display = "block";
               if(j!=0)
               stages[i].querySelector("#stepBack" + i + (j)).style.display = "none";
@@ -244,6 +251,12 @@ function indicators() {
               stages[i].querySelector("#stepBack" + i + (j)).style.display = "none";
               if(j!=1)
               stages[i].querySelector("#stepBack" + i + (j+1+alter)).style.display = "block";
+
+              if(i==2 && j==2){
+                let arrowR=stages[i].querySelector("#arrow-point-to-right-21");
+                arrowR.style.display = "block";
+
+              }
             }
 
             stages[i].querySelector("#content_" + i + j).style.display = "none";
@@ -268,8 +281,6 @@ function indicators() {
             }
             */
 
-            let arrowR=stages[i].querySelector("#arrow-point-to-right-"+i+""+(j+1+alter));
-            arrowR.style.display = "block";
 
             //if(i == 0 && j == 0) {
             if(i == 0) {
@@ -379,6 +390,7 @@ function indicators() {
               //stages[2].style.top = app.screen.height * 0.4 + "px";
               //stages[2].style.left = app.screen.height * 0.1 + "px";
             }
+
           }
         };
         stages[i].appendChild(icRightArrow);
@@ -634,6 +646,7 @@ function indicators() {
     self.offStepBack=function(){
       for(var i=0;i<3;i++){
         stages[i].querySelector("#stepBack"+(i+""+1)).style.display = "none";
+        if(i==2)
         stages[i].querySelector("#stepBack"+(i+""+2)).style.display = "none";
       }
     }
@@ -730,11 +743,11 @@ function indicators() {
           slider0.style.display = "none";
           stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
           stages[0].querySelector("#arrow-point-to-right-01").style.display = "none";
-          stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
+          //stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
           stages[0].style.display = "none";
           stages[0].querySelector("#content_00").style.display = "none";
           stages[0].querySelector("#content_01").style.display = "none";
-          stages[0].querySelector("#content_02").style.display = "none";
+          //stages[0].querySelector("#content_02").style.display = "none";
           app.stage.getChildByName("thing_0").visible = false;
           app.stage.getChildByName("interactiveSquares0").visible = false;
           document.getElementById("tcCts").style.display = "none";
@@ -748,7 +761,7 @@ function indicators() {
           stages[0].querySelector("#arrow-point-to-right-00").style.display = "block";
           //stages[0].querySelector("#content_02").style.display = "none";
           stages[0].querySelector("#content_00").style.display = "block";
-
+          stages[0].querySelector("#content_01").innerHTML=subTitles[0][1];
 
           }
 
@@ -756,11 +769,11 @@ function indicators() {
             slider1.style.display = "none";
             stages[1].querySelector("#arrow-point-to-right-10").style.display = "none";
             stages[1].querySelector("#arrow-point-to-right-11").style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
+            //stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
             stages[1].style.display = "none";
             stages[1].querySelector("#content_10").style.display = "none";
             stages[1].querySelector("#content_11").style.display = "none";
-            stages[1].querySelector("#content_12").style.display = "none";
+            //stages[1].querySelector("#content_12").style.display = "none";
             app.stage.getChildByName("thing_1").visible = false;
             app.stage.getChildByName("interactiveSquares1").visible = false;
             document.getElementById("cpSls").style.display = "none";
@@ -769,9 +782,10 @@ function indicators() {
           self.turnOn_CP=function(){
             app.stage.getChildByName("thing_1").visible = true;
             stages[1].style.display = "block";
-            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-11").style.display = "none";
             stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
-            stages[1].querySelector("#content_12").style.display = "none";
+            stages[1].querySelector("#content_11").style.display = "none";
+            stages[1].querySelector("#content_11").innerHTML=subTitles[1][1];
             stages[1].querySelector("#content_10").style.display = "block";
 
 
