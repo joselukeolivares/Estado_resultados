@@ -750,25 +750,6 @@ function indicators() {
 
         };
 
-        // Compra promedio boton
-        compraPromedio.interactive = true;
-        compraPromedio.buttonMode = true;
-        compraPromedio.on("pointerdown", function() {
-          if(stages[0].style.display == "block") {
-            slider0.style.display = "none";
-            stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
-            stages[0].querySelector("#arrow-point-to-right-01").style.display = "none";
-            stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
-            stages[0].style.display = "none";
-            stages[0].querySelector("#content_00").style.display = "none";
-            stages[0].querySelector("#content_01").style.display = "none";
-            stages[0].querySelector("#content_02").style.display = "none";
-            app.stage.getChildByName("thing_0").visible = false;
-            app.stage.getChildByName("interactiveSquares0").visible = false;
-            document.getElementById("tcCts").style.display = "none";
-            document.getElementById("tcPer").style.display = "none";
-
-
         self.turnOff_TC=function(){
           slider0.style.display = "none";
           stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
