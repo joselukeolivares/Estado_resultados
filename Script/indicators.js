@@ -285,10 +285,7 @@ function indicators() {
                 TweenLite.to(slider0.childNodes[1],1,{opacity:1});
                 }})
               tl.to(slider0.childNodes[1],.5,{opacity:.1});
-
-
-
-            }else if(i == 1 && j == 0) {
+            } else if (i == 1 && j == 0) {
               slider1.style.display = "block";
 
               var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
@@ -574,6 +571,13 @@ function indicators() {
       stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
       document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
         toSlide("segmentacion");
+        circle4.style.backgroundColor = "white";
+		    circle2.style.backgroundColor = "gray";
+		    circle1.style.backgroundColor = "gray";
+		    circle3.style.backgroundColor = "gray";
+		    circle5.style.backgroundColor = "gray";
+		    circle6.style.backgroundColor = "gray";
+		    circle7.style.backgroundColor = "gray";
       });
     };
 
@@ -602,7 +606,16 @@ function indicators() {
       circle1.style.display = "none";
       content.style.display = "none";
 
-
+      document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
+        toSlide("segmentacion");
+        circle4.style.backgroundColor = "white";
+		    circle2.style.backgroundColor = "gray";
+		    circle1.style.backgroundColor = "gray";
+		    circle3.style.backgroundColor = "gray";
+		    circle5.style.backgroundColor = "gray";
+		    circle6.style.backgroundColor = "gray";
+		    circle7.style.backgroundColor = "gray";
+      });
 
       let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/bloque_3/ic-left-arrow-circular.png"].texture);
       icBack.anchor.set(0.5);
@@ -724,6 +737,23 @@ function indicators() {
 
         };
 
+        // Compra promedio boton
+        compraPromedio.interactive = true;
+        compraPromedio.buttonMode = true;
+        compraPromedio.on("pointerdown", function() {
+          if(stages[0].style.display == "block") {
+            slider0.style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-01").style.display = "none";
+            stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
+            stages[0].style.display = "none";
+            stages[0].querySelector("#content_00").style.display = "none";
+            stages[0].querySelector("#content_01").style.display = "none";
+            stages[0].querySelector("#content_02").style.display = "none";
+            app.stage.getChildByName("thing_0").visible = false;
+            app.stage.getChildByName("interactiveSquares0").visible = false;
+            document.getElementById("tcCts").style.display = "none";
+            document.getElementById("tcPer").style.display = "none";
 
 
         self.turnOff_TC=function(){

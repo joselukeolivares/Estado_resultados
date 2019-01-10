@@ -199,10 +199,15 @@ function slider(appDiv, app, index) {
     _isDragging = false;
 	};
 
-	dom.addEventListener("mousedown",_onDomMouseDown,false);
-	knob.addEventListener("mousedown",_onKnobMouseDown,false);
-	window.addEventListener("mousemove",_onWindowMouseMove,false);
-	window.addEventListener("mouseup",_onWindowMouseUp,false);
+	//dom.addEventListener("mousedown",_onDomMouseDown,false);
+	//knob.addEventListener("mousedown",_onKnobMouseDown,false);
+	//window.addEventListener("mousemove",_onWindowMouseMove,false);
+	//window.addEventListener("mouseup",_onWindowMouseUp,false);
+
+  dom.addEventListener("pointerdown", _onDomMouseDown, false);
+  knob.addEventListener("pointerdown",_onKnobMouseDown, false);
+	window.addEventListener("pointermove",_onWindowMouseMove,false);
+	window.addEventListener("pointerup",_onWindowMouseUp,false);
 }
 
 function numberWithCommas(x) {

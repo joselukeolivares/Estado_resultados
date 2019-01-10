@@ -1086,6 +1086,13 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
                  continue_button.on('pointertap',function(){
                    self.remove_p_tags();
                    toSlide('simulador_global');});
+                   circle6.style.backgroundColor = "white";
+                   circle1.style.backgroundColor = "gray";
+           		    circle2.style.backgroundColor = "gray";
+                  circle3.style.backgroundColor = "gray";
+           		    circle4.style.backgroundColor = "gray";
+           		    circle5.style.backgroundColor = "gray";
+           		    circle7.style.backgroundColor = "gray";
 
                }
                aciertos++;
