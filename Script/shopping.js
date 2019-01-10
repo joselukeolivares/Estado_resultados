@@ -286,13 +286,22 @@ function LoadButton(){
 
 
 
-          contButton
-          .on("pointertap",Clicked);
+          // contButton
+          // .on("pointertap",Clicked);
 
-           function Clicked(){
+          function Clicked(){
+            toSlide("story");
 
-                 toSlide("story");           }
-            					}
+            circle2.style.backgroundColor = "white";
+            circle1.style.backgroundColor = "gray";
+            circle3.style.backgroundColor = "gray";
+            circle4.style.backgroundColor = "gray";
+            circle5.style.backgroundColor = "gray";
+            circle6.style.backgroundColor = "gray";
+            circle7.style.backgroundColor = "gray";
+
+          }
+        }
 }
      TweenMax.to([tienda_dentro,sala,tvs,lavanderia,audio,lineablanca,celulares,comedor,perfumeria],4,{alpha:1});
 

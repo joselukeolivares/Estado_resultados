@@ -253,6 +253,13 @@ document.querySelector("#main").appendChild(containerB);
 			app.stage.addChild(next_block);
 			next_block.on("pointertap", function() {
 				toSlide("indicators");
+				circle3.style.backgroundColor = "white";
+		    circle2.style.backgroundColor = "gray";
+		    circle1.style.backgroundColor = "gray";
+		    circle4.style.backgroundColor = "gray";
+		    circle5.style.backgroundColor = "gray";
+		    circle6.style.backgroundColor = "gray";
+		    circle7.style.backgroundColor = "gray";
 			});
 
 			close.position.set(width*.98,height*.02);
