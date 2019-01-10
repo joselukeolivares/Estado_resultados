@@ -119,11 +119,11 @@ function indicators() {
 
     let titles = ["Tasa de Compra", "Compra Promedio", "Venta"];
     let subTitles = [["Indica el número total de Clientes que compra en un periodo determinado. Se calcula dividiendo el número de Clientes que compraron sobre el número de Clientes totales.",
-                    "Imagina que, en enero la empresa tiene un total de 1,000 clientes y para el mes de Junio 500  clientes han realizado al menos una compra, esto significa una tasa de compra del 50%.Ahora, interactúa deslizando el slider y ve el efecto que tiene un aumento o disminución en la tasa de compra…",
-                    "Ahora, en sentido contrario veamos el efecto al disminuir la Tasa de Compra."],
+                    "Imagina que, en enero la empresa tiene un total de 1,000 clientes y para el mes de Junio 500  clientes han realizado al menos una compra, esto significa una tasa de compra del 50%. Ahora, interactúa deslizando el slider y ve el efecto que tiene un aumento o disminución en la tasa de compra…",
+                    "Como puedes observar, una mayor tasa de compra indica que más clientes están comprando y en sentido contrario, una menor tasa de compra indica menos clientes comprando."],
                     ["Indica la compra promedio que realizaron los Clientes (que compraron) en un periodo. Se calcula dividiendo las ventas totales sobre el número de Clientes que compraron.",
                     "De los 500 clientes que han comprado, en conjunto generan una compra promedio de $1,000.00.<br> Veamos el efecto al aumentar o disminuir la compra promedio…",
-                    "Ahora, en sentido contrario veamos el efecto al disminuir la Compra Promedio."],
+                    "Claro, una mayor compra promedio indica más volumen de venta y en sentido contrario, menor compra promedio indica menos volumen de venta."],
                     ["Indica las ventas totales de clientes que compraron en un periodo.<br>Se calcula multiplicando la Tasa de Compra (Número de clientes) por la Compra Promedio.",
                     "Teniendo una Tasa de Compra del 50% (500 Clientes) y Compra Promedio de $1,000.00 se generan ventas por $500,000.00. En este caso, pensando en crear una estrategia enfocada al cliente, ¿Qué indicador manipularías para incrementar las ventas? ....",
                     "Escenario 1. Aumentar la Tasa de Compra a 80%. (Incremento de Clientes comprando)","Escenario 2. Aumentar la Compra Promedio Anual a $2,000.00. (Incremento de la compra)"]];
@@ -140,7 +140,7 @@ function indicators() {
       stages[i] = document.createElement("div");
       stages[i].setAttribute("id", "stage_" + i);
       stages[i].setAttribute("class", "stages");
-      stages[i].setAttribute("style", "top: " + app.screen.height * 0.4  + "px; left: " + app.screen.width * 0.05  + "px;");
+      stages[i].setAttribute("style", "top: " + app.screen.height * 0.35  + "px;");
 
       let title = document.createElement("h2");
       title.innerHTML = titles[i];
@@ -171,42 +171,128 @@ function indicators() {
         icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
         icRightArrow.setAttribute("id", "arrow-point-to-right-" + i + j);
         icRightArrow.setAttribute("class", "arrow-point-to-right parpadeo");
-        icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: " + app.screen.width * 0.82  + "px;");
+        icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: " + app.screen.width * 0.90  + "px;");
+        icRightArrow.indicator_i=i;
+        icRightArrow.indicator_j=j;
+
+        let stepBack = document.createElement("img");
+        stepBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
+        stepBack.setAttribute("id", "stepBack" + i + j);
+        stepBack.indicator_i=i;
+        stepBack.indicator_j=j;
+        stepBack.setAttribute("class", "arrow-point-to-right parpadeo");
+        stepBack.setAttribute("style", "left:0px;transform:rotate(180deg);display:none;top: " + (app.screen.height * 0.1)+ "px;");
+        stepBack.addEventListener('pointerdown',function(){
+          let indicator_i=this.indicator_i;
+          let indicator_j=this.indicator_j;
+          debugger;
+          if(indicator_j-1>0){
+
+            goToIndicator(this.indicator_i,j,1)
+          }else{
+            if(indicator_j-1<=0){
+              stages[i].querySelector("#stepBack" + i +""+ (1)).style.display = "none";
+              if(indicator_i==0){
+                self.tasaCompra_();
+              }else if(indicator_i==1){
+                self.compraPromedio_();
+              }else if(indicator_i==2){
+                self.venta_();
+              }
+            }
+          }
+
+        })
+
+
         if(i == 2) {
           var arrow0=document.getElementById('arrow-point-to-right-00');
-          icRightArrow.style.top ="";
-          icRightArrow.style.width ="14%";
+          //icRightArrow.style.top ="";
+          //icRightArrow.style.width ="14%";
 
-          icRightArrow.style.height = "34%";
+          //icRightArrow.style.height = "34%";
         }
         icRightArrow.style.cursor = "pointer";
         if(j != 0) {
           icRightArrow.style.display = "none";
         }
-        icRightArrow.addEventListener("click", function() {
-          if(j != 2) {
-            this.style.display = "none";
-            //stages[i].querySelector("#arrow-point-to-right-" + i + (j+1)).style.display = "block";
+        if(i==2 && j==2){
+
+        }else{
+          icRightArrow.addEventListener("click",function(){
+            goToIndicator(icRightArrow.indicator_i,icRightArrow.indicator_j,0)
+          } )
+
+        }
+
+        function goToIndicator(i,j,direction) {
+          debugger;
+          let alter=0;
+          if(direction){
+            alter=-2;
+          }
+
+          if(j != 2 ||direction) {
+
+            stages[i].querySelector("#arrow-point-to-right-" + i + (j)).style.display = "none";
+            if(!direction){
+
+              stages[i].querySelector("#stepBack" + i + (j+1+alter)).style.display = "block";
+              if(j!=0)
+              stages[i].querySelector("#stepBack" + i + (j)).style.display = "none";
+            }else {
+              stages[i].querySelector("#stepBack" + i + (j)).style.display = "none";
+              if(j!=1)
+              stages[i].querySelector("#stepBack" + i + (j+1+alter)).style.display = "block";
+            }
+
             stages[i].querySelector("#content_" + i + j).style.display = "none";
-            stages[i].querySelector("#content_" + i + (j+1)).style.display = "block";
-            if(i == 0 && j == 0) {
+            stages[i].querySelector("#content_" + i + (j+1+alter)).style.display = "block";
+
+            if(i==2 && j==2 && direction){
+              circle1.style.display = "none";
+              circle2.style.display = "none";
+              //var divparent=document.getElementById("content_2"+(j+1+alter)).parentNode;
+              //var divobt=document.getElementById("content_2"+(j+1+alter));
+              var content=document.getElementById("content_23")
+                  content.style.display="none";
+            }
+
+            /*
+            if(i==0 && j==1){
+              let arrowR=stages[i].querySelector("#arrow-point-to-right-0"+(j+1+alter));
+              arrowR.style.display = "block";
+            }else if(i==1 && j==1){
+              let arrowR=stages[i].querySelector("#arrow-point-to-right-1"+(j+1+alter));
+              arrowR.style.display = "block";
+            }
+            */
+
+            let arrowR=stages[i].querySelector("#arrow-point-to-right-"+i+""+(j+1+alter));
+            arrowR.style.display = "block";
+
+            //if(i == 0 && j == 0) {
+            if(i == 0) {
+
               slider0.style.display = "block";
-              /*
-              var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
-                TweenLite.to(slider0.childNodes[1],1,{opacity:1});
-                }})
-              tl.to(slider0.childNodes[1],.5,{opacity:.1});
-              */
-              app.stage.getChildByName("interactiveSquares0").visible = true;
+
+              app.stage.getChildByName("interactiveSquares"+i).visible = true;
               document.getElementById("tcCts").style.display = "block";
               document.getElementById("tcPer").style.display = "block";
-            } else if(i == 0 && j == 1){
+            //} else if(i == 0 && j == 1){
 
               var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
                 TweenLite.to(slider0.childNodes[1],1,{opacity:1});
                 }})
               tl.to(slider0.childNodes[1],.5,{opacity:.1});
+<<<<<<< HEAD
             } else if (i == 1 && j == 0) {
+=======
+
+
+
+            }else if(i == 1 && j == 0) {
+>>>>>>> master
               slider1.style.display = "block";
 
               var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
@@ -222,10 +308,10 @@ function indicators() {
                 }})
               tl.to(slider1.childNodes[1],.5,{opacity:.1});
             }else if(i == 2 && j == 0) {
-              stages[i].querySelector("#arrow-point-to-right-21").style.display = "block";
-              var vSprites=app.stage.getChildByName("vSprites1");
+              stages[i].querySelector("#arrow-point-to-right-2"+(j+1+alter)).style.display = "block";
+              var vSprites=app.stage.getChildByName("vSprites"+(j+1+alter));
               vSprites.visible=true;
-              app.stage.getChildByName("vSprites0").visible=false;
+              app.stage.getChildByName("vSprites"+j).visible=false;
             } else if(i == 2 && j == 1) {
               circle1.style.display = "block";
               circle2.style.display = "block";
@@ -236,9 +322,9 @@ function indicators() {
                 }})
               tl.to([circle1,circle2],.5,{opacity:.1});
               */
-              var divparent=document.getElementById("content_22").parentNode;
-              var divobt=document.getElementById("content_22");
-              var content=document.getElementById("content_23")
+              var divparent=document.getElementById("content_2"+(j+1+alter)).parentNode;
+              var divobt=document.getElementById("content_2"+(j+1+alter));
+              var content=document.getElementById("content_2"+(j+2+alter))
                   content.style.display="block";
 
 
@@ -255,6 +341,8 @@ function indicators() {
 
 
             }
+
+
           } else {
             slider0.style.display = "none";
             slider1.style.display = "none";
@@ -264,11 +352,16 @@ function indicators() {
             document.getElementById("tcCts").style.display = "none";
             document.getElementById("tcPer").style.display = "none";
             document.getElementById("cpSls").style.display = "none";
-            stages[i+1].style.display = "block";
-            if(stages[i+1].querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display == "none") {
-              stages[i+1].querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display = "block";
-              stages[i+1].querySelector("#content_" + (i+1) + 0).style.display = "block";
+
+            if(i!=2){
+               stages[i+1].style.display = "block";
+
+               if(stages[i+1].querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display == "none") {
+                 stages[i+1].querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display = "block";
+                 stages[i+1].querySelector("#content_" + (i+1) + 0).style.display = "block";
+               }
             }
+
             if(i == 0) {
               compraPromedio.scale.set(factorScreen(0.9));
               compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio.png"].texture);
@@ -286,13 +379,15 @@ function indicators() {
               tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra_gray.png"].texture);
               compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio_gray.png"].texture);
               app.stage.getChildByName("thing_1").visible = false;
-              vSprites.visible = true;
-              stages[2].style.top = app.screen.height * 0.33 + "px";
-              stages[2].style.left = app.screen.height * 0.1 + "px";
+              //vSprites.visible = true;
+              //stages[2].style.top = app.screen.height * 0.4 + "px";
+              //stages[2].style.left = app.screen.height * 0.1 + "px";
             }
           }
-        });
+        };
         stages[i].appendChild(icRightArrow);
+        if(j!=0)
+        stages[i].appendChild(stepBack);
       }
 
       let things = new PIXI.Sprite(interactive[i]);
@@ -413,7 +508,7 @@ function indicators() {
     actualContent.style.top=(titleContent.clientTop+titleContent.clientHeight)+"px;";
     actualContent.style.left="28%";
     actualContent.style.margin="1%";
-    actualContent.style.width="60%";
+    actualContent.style.width="44%";
     actualContent.style.position="absolute";
     actualContent.style.position="absolute";
     actualContent.style.cursor="pointer";
@@ -437,6 +532,7 @@ function indicators() {
     actualContent.addEventListener("click",circle_1);
 
       function circle_1() {
+      self.offStepBack();
       let vSprites = app.stage.getChildByName("vSprites1");
 
       vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-80percent.png")].texture);
@@ -454,7 +550,7 @@ function indicators() {
 
       let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/bloque_3/ic-left-arrow-circular.png"].texture);
       icBack.anchor.set(0.5);
-      icBack.x = app.screen.width * 0.05;
+      icBack.x = icBack.width;
       icBack.y = app.screen.height * 0.5;
       icBack.name = "icBack";
       icBack.interactive = true;
@@ -462,17 +558,24 @@ function indicators() {
       vSprites.addChild(icBack);
 
 
+<<<<<<< HEAD
       icBack.on("pointerdown", function() {
         //actualContent.style.lineHeight = "270%";
         //actualContent.style.textAlign = "left";
         //actualContent.style.textAlignLast = "left";
 
+=======
+      icBack.on("pointertap", function() {
+        debugger;
+        var back=stages[2].querySelector("#stepBack22");
+            back.style.display = "block";
+>>>>>>> master
         actualContent.innerHTML = subTitles[2][2];
 
         circle1.style.display = "block";
         content.style.display = "block";
         circle2.style.display = "block";
-        stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
+        stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
         vSprites.removeChild(icBack);
         vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-50percent.png")].texture);
         vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil.png")].texture);
@@ -496,7 +599,12 @@ function indicators() {
     circle2.addEventListener("click",circle_2);
     content.addEventListener("click",circle_2);
 
+    document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
+      toSlide("segmentacion");
+    });
+
      function circle_2() {
+       self.offStepBack();
       let vSprites = app.stage.getChildByName("vSprites1");
       //vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-80percent.png")].texture);
       vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-2mil.png")].texture);
@@ -513,6 +621,7 @@ function indicators() {
       circle1.style.display = "none";
       content.style.display = "none";
 
+<<<<<<< HEAD
       document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
         toSlide("segmentacion");
         circle4.style.backgroundColor = "white";
@@ -523,10 +632,13 @@ function indicators() {
 		    circle6.style.backgroundColor = "gray";
 		    circle7.style.backgroundColor = "gray";
       });
+=======
+
+>>>>>>> master
 
       let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/bloque_3/ic-left-arrow-circular.png"].texture);
       icBack.anchor.set(0.5);
-      icBack.x = app.screen.width * 0.05;
+      icBack.x = icBack.width;
       icBack.y = app.screen.height * 0.5;
       icBack.name = "icBack";
       icBack.interactive = true;
@@ -534,10 +646,16 @@ function indicators() {
       vSprites.addChild(icBack);
 
 
+<<<<<<< HEAD
       icBack.on("pointerdown", function() {
         //actualContent.style.lineHeight = "270%";
         //actualContent.style.textAlign = "left";
         //actualContent.style.textAlignLast = "left";
+=======
+      icBack.on("pointertap", function() {
+        var back=stages[2].querySelector("#stepBack22").style.display = "block";
+
+>>>>>>> master
         actualContent.innerHTML = subTitles[2][2];
         stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
         circle1.style.display = "block";
@@ -552,7 +670,18 @@ function indicators() {
 
     };
 
+<<<<<<< HEAD
     contButton.on("pointerdown", function() {
+=======
+    self.offStepBack=function(){
+      for(var i=0;i<3;i++){
+        stages[i].querySelector("#stepBack"+(i+""+1)).style.display = "none";
+        stages[i].querySelector("#stepBack"+(i+""+2)).style.display = "none";
+      }
+    }
+
+    contButton.on("pointertap", function() {
+>>>>>>> master
       contButton.visible = false;
       TweenMax.to(intro, 0.2, {alpha: 0});
       TweenMax.to([tasaDeCompra, compraPromedio, venta], 0.7, {y: (app.screen.height * 62) / 220, onComplete: function () {
@@ -569,32 +698,29 @@ function indicators() {
         // Tasa de compra boton
         tasaDeCompra.interactive = true;
         tasaDeCompra.buttonMode = true;
+<<<<<<< HEAD
         tasaDeCompra.on("pointerdown", function() {
+=======
+        tasaDeCompra.on("click",function(){
+          self.tasaCompra_();
+        })
+
+        self.tasaCompra_= function() {
+          debugger;
+          self.offStepBack();
+
+>>>>>>> master
           if(stages[1].style.display == "block") {
-            slider1.style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-10").style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-11").style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
-            stages[1].style.display = "none";
-            stages[1].querySelector("#content_10").style.display = "none";
-            stages[1].querySelector("#content_11").style.display = "none";
-            stages[1].querySelector("#content_12").style.display = "none";
-            app.stage.getChildByName("thing_1").visible = false;
-            app.stage.getChildByName("interactiveSquares1").visible = false;
-            document.getElementById("cpSls").style.display = "none";
 
+            self.turnOff_CP();
+            //self.turnOn_TC();
 
-            app.stage.getChildByName("thing_0").visible = true;
-            stages[0].style.display = "block";
-            stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
-            stages[0].querySelector("#arrow-point-to-right-00").style.display = "block";
-            stages[0].querySelector("#content_02").style.display = "none";
-            stages[0].querySelector("#content_00").style.display = "block";
             tasaDeCompra.scale.set(factorScreen(0.9));
             tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra.png"].texture);
             compraPromedio.scale.set(factorScreen(0.8));
             compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio_gray.png"].texture);
           } else if(stages[2].style.display == "block") {
+            /*
             stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
             stages[2].querySelector("#arrow-point-to-right-21").style.display = "none";
             stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
@@ -620,12 +746,17 @@ function indicators() {
             stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
             stages[1].querySelector("#content_12").style.display = "none";
             stages[1].querySelector("#content_10").style.display = "block";
-
+            */
+            self.turnOff_VTA();
+            self.turnOn_TC();
             tasaDeCompra.scale.set(factorScreen(0.9));
             tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra.png"].texture);
             venta.scale.set(factorScreen(0.8));
             venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta_gray.png"].texture);
+          }else{
           }
+          self.turnOff_TC();
+          self.turnOn_TC();
           slider1 = document.getElementById("slider_1");
           slider1.childNodes[1].style.left="50%";
           slider0 = document.getElementById("slider_0");
@@ -638,8 +769,9 @@ function indicators() {
           let actualContent = document.getElementById("content_22");
           actualContent.innerHTML = subTitles[2][2];
 
-        });
+        };
 
+<<<<<<< HEAD
         // Compra promedio boton
         compraPromedio.interactive = true;
         compraPromedio.buttonMode = true;
@@ -657,18 +789,121 @@ function indicators() {
             app.stage.getChildByName("interactiveSquares0").visible = false;
             document.getElementById("tcCts").style.display = "none";
             document.getElementById("tcPer").style.display = "none";
+=======
+>>>>>>> master
 
+
+        self.turnOff_TC=function(){
+          slider0.style.display = "none";
+          stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
+          stages[0].querySelector("#arrow-point-to-right-01").style.display = "none";
+          stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
+          stages[0].style.display = "none";
+          stages[0].querySelector("#content_00").style.display = "none";
+          stages[0].querySelector("#content_01").style.display = "none";
+          stages[0].querySelector("#content_02").style.display = "none";
+          app.stage.getChildByName("thing_0").visible = false;
+          app.stage.getChildByName("interactiveSquares0").visible = false;
+          document.getElementById("tcCts").style.display = "none";
+          document.getElementById("tcPer").style.display = "none";
+          }
+
+        self.turnOn_TC=function(){
+          app.stage.getChildByName("thing_0").visible = true;
+          stages[0].style.display = "block";
+          //stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
+          stages[0].querySelector("#arrow-point-to-right-00").style.display = "block";
+          //stages[0].querySelector("#content_02").style.display = "none";
+          stages[0].querySelector("#content_00").style.display = "block";
+
+
+          }
+
+          self.turnOff_CP=function(){
+            slider1.style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-10").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-11").style.display = "none";
+            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
+            stages[1].style.display = "none";
+            stages[1].querySelector("#content_10").style.display = "none";
+            stages[1].querySelector("#content_11").style.display = "none";
+            stages[1].querySelector("#content_12").style.display = "none";
+            app.stage.getChildByName("thing_1").visible = false;
+            app.stage.getChildByName("interactiveSquares1").visible = false;
+            document.getElementById("cpSls").style.display = "none";
+          }
+
+          self.turnOn_CP=function(){
             app.stage.getChildByName("thing_1").visible = true;
             stages[1].style.display = "block";
             stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
             stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
             stages[1].querySelector("#content_12").style.display = "none";
             stages[1].querySelector("#content_10").style.display = "block";
+
+
+            slider1 = document.getElementById("slider_1");
+            slider1.childNodes[1].style.left="50%";
+            slider0 = document.getElementById("slider_0");
+            slider0.childNodes[1].style.left="50%";
+            self.app.stage.getChildByName("thing_0").setTexture(PIXI.Texture.fromFrame("tasa_5.png"));
+            self.app.stage.getChildByName("thing_1").setTexture(PIXI.Texture.fromFrame("compra_5.png"));
+            document.getElementById("tcCts").innerHTML = "500<br>Clientes";
+            document.getElementById("tcPer").innerHTML = "50%";
+            document.getElementById("cpSls").innerHTML ="$1,000.00";
+
+
+          }
+
+          self.turnOff_VTA=function(){
+            stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
+            stages[2].querySelector("#arrow-point-to-right-21").style.display = "none";
+            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
+            stages[2].style.display = "none";
+            stages[2].querySelector("#content_20").style.display = "none";
+            stages[2].querySelector("#content_21").style.display = "none";
+            stages[2].querySelector("#content_22").style.display = "none";
+            stages[2].querySelector("#content_23").style.display = "none";
+            appDiv.querySelector("#circle-tick-inside-1").style.display = "none";
+
+            appDiv.querySelector("#circle-tick-inside-2").style.display = "none";
+            app.stage.getChildByName("vSprites0").visible = false;
+            app.stage.getChildByName("vSprites1").visible = false;
+            app.stage.getChildByName("vSprites2").visible = false;
+          }
+
+          self.turnOn_VTA=function(){
+            stages[2].style.display = "block";
+            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
+            stages[2].querySelector("#arrow-point-to-right-20").style.display = "block";
+            stages[2].querySelector("#content_22").style.display = "none";
+            stages[2].querySelector("#content_23").style.display = "none";
+            stages[2].querySelector("#content_20").style.display = "block";
+            //stages[2].style.top = app.screen.height * 0.33 + "px";
+            //stages[2].style.left = app.screen.height * 0.1 + "px";
+
+
+          }
+
+        // Compra promedio boton
+        compraPromedio.interactive = true;
+        compraPromedio.buttonMode = true;
+        compraPromedio.on("click",function(){
+          self.compraPromedio_();
+        } )
+
+        self.compraPromedio_=function() {
+          self.offStepBack();
+          if(stages[0].style.display == "block") {
+            self.turnOff_TC();
+            //self.turnOn_CP();
             compraPromedio.scale.set(factorScreen(0.9));
             compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio.png"].texture);
             tasaDeCompra.scale.set(factorScreen(0.8));
             tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra_gray.png"].texture);
+
           } else if(stages[2].style.display == "block") {
+            /*
             stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
             stages[2].querySelector("#arrow-point-to-right-21").style.display = "none";
             stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
@@ -683,17 +918,14 @@ function indicators() {
             app.stage.getChildByName("vSprites1").visible = false;
             app.stage.getChildByName("vSprites2").visible = false;
 
-            app.stage.getChildByName("thing_1").visible = true;
-            stages[1].style.display = "block";
-            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
-            stages[1].querySelector("#content_12").style.display = "none";
-            stages[1].querySelector("#content_10").style.display = "block";
+
             // stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
             // stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
             // stages[1].querySelector("#content_12").style.display = "none";
             // stages[1].querySelector("#content_10").style.display = "block";
-
+            */
+            self.turnOff_VTA();
+            self.turnOn_CP();
             compraPromedio.scale.set(factorScreen(0.9));
             compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio.png"].texture);
             venta.scale.set(factorScreen(0.8));
@@ -701,95 +933,52 @@ function indicators() {
             let actualContent = document.getElementById("content_22");
             actualContent.innerHTML = subTitles[2][2];
           }
+            self.turnOff_CP();
+            self.turnOn_CP();
 
-          slider1 = document.getElementById("slider_1");
-          slider1.childNodes[1].style.left="50%";
-          slider0 = document.getElementById("slider_0");
-          slider0.childNodes[1].style.left="50%";
-          self.app.stage.getChildByName("thing_0").setTexture(PIXI.Texture.fromFrame("tasa_5.png"));
-          self.app.stage.getChildByName("thing_1").setTexture(PIXI.Texture.fromFrame("compra_5.png"));
-          document.getElementById("tcCts").innerHTML = "500<br>Clientes";
-          document.getElementById("tcPer").innerHTML = "50%";
-          document.getElementById("cpSls").innerHTML ="$1,000.00";
 
-        });
+
+
+
+        };
 
 
         // Venta boton
         venta.interactive = true;
         venta.buttonMode = true;
+<<<<<<< HEAD
         venta.on("pointerdown", function() {
+=======
+        venta.on("click",function(){
+          self.venta_();
+        })
+        self.venta_=function() {
+          self.offStepBack();
+>>>>>>> master
           if(stages[0].style.display == "block") {
+            self.turnOff_TC();
+            self.turnOn_VTA();
 
-            slider0.style.display = "none";
-            stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
-            stages[0].querySelector("#arrow-point-to-right-01").style.display = "none";
-            stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
-            stages[0].style.display = "none";
-            stages[0].querySelector("#content_00").style.display = "none";
-            stages[0].querySelector("#content_01").style.display = "none";
-            stages[0].querySelector("#content_02").style.display = "none";
-            app.stage.getChildByName("thing_0").visible = false;
-            app.stage.getChildByName("interactiveSquares0").visible = false;
-            document.getElementById("tcCts").style.display = "none";
-            document.getElementById("tcPer").style.display = "none";
-
-            app.stage.getChildByName("vSprites1").visible = false;
-            app.stage.getChildByName("vSprites2").visible = false;
-            app.stage.getChildByName("vSprites0").visible = true;
-            var container=app.stage.getChildByName("vSprites0");
-            container.getChildByName("cpnom").visible=false;
-            container.getChildByName("tdcPer").visible=false;
-            container.getChildByName("vNum").visible=false;
-            stages[2].style.display = "block";
-            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
-            stages[2].querySelector("#arrow-point-to-right-20").style.display = "block";
-            stages[2].querySelector("#content_22").style.display = "none";
-            stages[2].querySelector("#content_23").style.display = "none";
-            stages[2].querySelector("#content_20").style.display = "block";
-            stages[2].style.top = app.screen.height * 0.33 + "px";
-            stages[2].style.left = app.screen.height * 0.1 + "px";
             venta.scale.set(factorScreen(0.9));
             venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta.png"].texture);
             tasaDeCompra.scale.set(factorScreen(0.8));
             tasaDeCompra.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_tasa_de_compra_gray.png"].texture);
           } else if(stages[1].style.display == "block") {
-            slider1.style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-10").style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-11").style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
-            stages[1].style.display = "none";
-            stages[1].querySelector("#content_10").style.display = "none";
-            stages[1].querySelector("#content_11").style.display = "none";
-            stages[1].querySelector("#content_12").style.display = "none";
-            app.stage.getChildByName("thing_1").visible = false;
-            app.stage.getChildByName("interactiveSquares1").visible = false;
-            document.getElementById("cpSls").style.display = "none";
+            self.turnOff_CP();
+            self.turnOn_VTA();
 
-            app.stage.getChildByName("vSprites1").visible = false;
-            app.stage.getChildByName("vSprites2").visible = false;
-            app.stage.getChildByName("vSprites0").visible = true;
-            var container=app.stage.getChildByName("vSprites0");
-            container.getChildByName("cpnom").visible=false;
-            container.getChildByName("tdcPer").visible=false;
-            container.getChildByName("vNum").visible=false;
-            stages[2].style.display = "block";
-            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
-            stages[2].querySelector("#arrow-point-to-right-20").style.display = "block";
-            stages[2].querySelector("#content_22").style.display = "none";
-            stages[2].querySelector("#content_23").style.display = "none";
-            stages[2].querySelector("#content_20").style.display = "block";
-            stages[2].style.top = app.screen.height * 0.35 + "px";
-            stages[2].style.left = app.screen.height * 0.1 + "px";
             venta.scale.set(factorScreen(0.9));
             venta.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_venta.png"].texture);
             compraPromedio.scale.set(factorScreen(0.8));
             compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio_gray.png"].texture);
           }
+            self.turnOff_VTA();
+            self.turnOn_VTA();
+
           var icBack=app.stage.getChildByName("vSprites1").getChildByName("icBack");
           debugger;
           app.stage.getChildByName("vSprites1").removeChild(icBack);
-        });
+        };
       }});
     });
   }

@@ -55,10 +55,11 @@ body {
   font-family: Roboto-Regular;
   color: #FFFFFF;
   text-align: center;
+  left:3rem;
 }
 
 #stage_2 {
-  width: 83%;
+  width: 100%;
 }
 
 .content {
@@ -66,6 +67,8 @@ body {
   text-align: justify;
   -moz-text-align-last: center;
   text-align-last: center;
+  position: relative;
+  left:20%;
 }
 
 #content_01 br, #content_11 br {
@@ -74,6 +77,7 @@ body {
 
 #content_20, #content_21 {
   font-size: 90%;
+  width: 60%;
 }
 
 #content_22,#content_23 {
@@ -85,8 +89,8 @@ body {
 
 .arrow-point-to-right {
   position: absolute;
-  width: 35%;
-  height: 35%;
+  width: 5rem;
+  height: 5rem;
 }
 
 #tcCts {
