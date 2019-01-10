@@ -720,14 +720,14 @@ var paragraph2=document.createElement('p');
 
     var cteG2=new PIXI.Sprite(atlasBlock6[characters[6]]);
         cteG2.scale.set(.5)
-        cteG2.x=cteS15.x+cteS15.width*2;
+        cteG2.x = cteS15.x ;
         cteG2.y=parseFloat(paragraph2.offsetTop)+parseFloat(paragraph2.clientHeight);
         self.app.stage.addChild(cteG2);
 
     var cteACV2=new PIXI.Sprite(atlasBlock6[characters[4]]);
         cteACV2.scale.set(.5)
-        cteACV2.x=cteG.x+cteG.width*2;
-        cteACV2.y=cteG2.y;
+        cteACV2.x = cteG.x;
+        cteACV2.y = cteG2.y;
         self.app.stage.addChild(cteACV2);
 
     var title_descrp3=document.createElement('h3');
