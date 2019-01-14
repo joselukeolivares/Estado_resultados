@@ -143,6 +143,9 @@ function indicators() {
       stages[i].setAttribute("style", "top: " + app.screen.height * 0.35  + "px;");
 
       let title = document.createElement("h2");
+      if(i != 2) {
+        title.setAttribute("class", "content");
+      }
       title.innerHTML = titles[i];
       title.style.marginBottom="0";
       stages[i].appendChild(title);
@@ -333,7 +336,7 @@ function indicators() {
 
 
 
-              circle1.style.left = circle1.parentNode.clientWidth*.3-circle1.clientWidth+"px";
+              circle1.style.left = circle1.parentNode.clientWidth * 0.33 - circle1.clientWidth + "px";
               //circle1.style.marginTop="1%";
               circle1.style.top=divobt.offsetTop+"px";
               debugger;
@@ -511,7 +514,7 @@ function indicators() {
     let actualContent = document.getElementById("content_22");
     //actualContent.ClassList.add("parpadeo")
     actualContent.style.top=(titleContent.clientTop+titleContent.clientHeight)+"px;";
-    actualContent.style.left="28%";
+    actualContent.style.left="32%";
     actualContent.style.margin="1%";
     actualContent.style.width="44%";
     actualContent.style.position="absolute";
@@ -553,17 +556,15 @@ function indicators() {
       circle2.style.display = "none";
       content.style.display = "none";
 
-      let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/bloque_3/ic-left-arrow-circular.png"].texture);
-      icBack.anchor.set(0.5);
-      icBack.x = icBack.width;
-      icBack.y = app.screen.height * 0.5;
-      icBack.name = "icBack";
-      icBack.interactive = true;
-      icBack.buttonMode = true;
-      vSprites.addChild(icBack);
+      let icBack = document.createElement("img");
+      icBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
+      icBack.setAttribute("class", "arrow-point-to-right parpadeo");
+      icBack.setAttribute("id", "icBack");
+      icBack.setAttribute("style", "left:0px;transform:rotate(180deg);display:none;top: " + (app.screen.height * 0.1)+ "px;");
+      document.getElementById("stage_2").appendChild(icBack);
+      icBack.style.display = "block";
 
-
-      icBack.on("pointertap", function() {
+      icBack.addEventListener("pointerdown", function() {
         debugger;
         var back=stages[2].querySelector("#stepBack22");
             back.style.display = "block";
@@ -573,7 +574,7 @@ function indicators() {
         content.style.display = "block";
         circle2.style.display = "block";
         stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
-        vSprites.removeChild(icBack);
+        icBack.style.display = "none";
         vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-50percent.png")].texture);
         vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil.png")].texture);
         vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-500mil.png")].texture);
@@ -629,17 +630,16 @@ function indicators() {
 		    circle7.style.backgroundColor = "gray";
       });
 
-      let icBack = new PIXI.Sprite(PIXI.loader.resources["assets/ui/bloque_3/ic-left-arrow-circular.png"].texture);
-      icBack.anchor.set(0.5);
-      icBack.x = icBack.width;
-      icBack.y = app.screen.height * 0.5;
-      icBack.name = "icBack";
-      icBack.interactive = true;
-      icBack.buttonMode = true;
-      vSprites.addChild(icBack);
+      let icBack = document.createElement("img");
+      icBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
+      icBack.setAttribute("class", "arrow-point-to-right parpadeo");
+      icBack.setAttribute("id", "icBack");
+      icBack.setAttribute("style", "left:0px;transform:rotate(180deg);display:none;top: " + (app.screen.height * 0.1)+ "px;");
+      document.getElementById("stage_2").appendChild(icBack);
+      icBack.style.display = "block";
+      icBack.style.cursor = "pointer";
 
-
-      icBack.on("pointertap", function() {
+      icBack.addEventListener("pointerdown", function() {
         var back=stages[2].querySelector("#stepBack22").style.display = "block";
 
         actualContent.innerHTML = subTitles[2][2];
@@ -647,7 +647,7 @@ function indicators() {
         circle1.style.display = "block";
         circle2.style.display = "block";
         content.style.display = "block";
-        vSprites.removeChild(icBack);
+        icBack.style.display = "none";
         //vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-50percent.png")].texture);
         vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil.png")].texture);
         vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-500mil.png")].texture);
@@ -681,9 +681,10 @@ function indicators() {
         // Tasa de compra boton
         tasaDeCompra.interactive = true;
         tasaDeCompra.buttonMode = true;
+
         tasaDeCompra.on("click",function(){
           self.tasaCompra_();
-        })
+        });
 
         self.tasaCompra_= function() {
           debugger;
@@ -848,7 +849,7 @@ function indicators() {
         compraPromedio.buttonMode = true;
         compraPromedio.on("click",function(){
           self.compraPromedio_();
-        } )
+        });
 
         self.compraPromedio_=function() {
           self.offStepBack();
@@ -904,11 +905,13 @@ function indicators() {
         // Venta boton
         venta.interactive = true;
         venta.buttonMode = true;
+
         venta.on("click",function(){
           self.venta_();
-        })
+        });
         self.venta_=function() {
           self.offStepBack();
+
           if(stages[0].style.display == "block") {
             self.turnOff_TC();
             self.turnOn_VTA();
