@@ -13,12 +13,16 @@
   <link rel="stylesheet" href="CSS/style.css">
   <link rel="stylesheet" href="CSS/segmentacion.css">
   <link rel="stylesheet" href="CSS/loading-bar.css">
-
   <link rel="stylesheet" href="CSS/indicators.css">
+  <link rel="stylesheet" href="mdl/icon.css">
+  <link rel="stylesheet" href="mdl/material.blue_grey-indigo.min.css" />
+
 
 
 
   <!--librerias-->
+  <script defer src="mdl/material.min.js"></script>
+  <script src="js/mobile-detect.min.js"></script>
   <script src="js/pixi.min.js"></script>
   <script src="js/pixi-layers.js"></script>
   <script src="js/pixi.spine.js"></script>
@@ -41,6 +45,25 @@
 <script src="Script/simulador.js"></script>
 <script src="Script/Simulador_global.js"></script>
 <script src="Script/conclusiones.js"></script>
+
+<div id="mdl_menu" style="position:absolute;display:none;z-index:5;">
+<!-- Left aligned menu below button -->
+    <button id="demo-menu-lower-left"
+            class="mdl-button mdl-js-button mdl-button--icon">
+      <i class="material-icons">more_vert</i>
+    </button>
+
+    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+        for="demo-menu-lower-left">
+      <li class="mdl-menu__item" onclick='toSlide("start")'>Inicio!</li>
+      <li class="mdl-menu__item" onclick='toSlide("story")'>Historia!</li>
+      <li class="mdl-menu__item" onclick='toSlide("indicators")'>Indicadores del ERC!</li>
+      <li class="mdl-menu__item" onclick='toSlide("segmentacion")'>Perfil de Clientes</li>
+      <li class="mdl-menu__item" onclick='toSlide("simulador")'>Simulación!</li>
+      <li class="mdl-menu__item" onclick='toSlide("simulador_global")'>Escenario!</li>
+      <li class="mdl-menu__item" onclick='toSlide("conclusiones")'>Créditos!</li>
+    </ul>
+</div>
 
 <main id="main" align="center" style="position: absolute;left:8%">
 <!--<img src="assets/ui/Archivo_001.png" alt="animatedimg">-->
@@ -188,6 +211,23 @@
     setTimeout(function(){clickDisabled = false;}, timeout);
   });
 
+  var md = new MobileDetect(window.navigator.userAgent);
+
+
+  // more typically we would instantiate with 'window.navigator.userAgent'
+  // as user-agent; this string literal is only for better understanding
+  console.log("**********");
+  console.log( md.mobile() );          // 'Sony'
+  console.log( md.phone() );           // 'Sony'
+  console.log( md.tablet() );          // null
+  console.log( md.userAgent() );       // 'Safari'
+  console.log( md.os() );              // 'AndroidOS'
+  console.log( md.is('iPhone') );      // false
+  console.log( md.is('bot') );         // false
+  console.log( md.version('Webkit') );         // 534.3
+  console.log( md.versionStr('Build') );       // '4.1.A.0.562'
+  console.log( md.match('playstation|xbox') ); // false
+  console.log("**********");
 
     var width=0,height=0,
         dom={},
@@ -216,6 +256,13 @@
                 }
                 //880--1080
                  height=main.clientHeight;
+
+             if(md.os()=="iOS"||md.os()=="AndroidOS"){
+         document.getElementsByTagName("footer")[0].style.display="none";
+         document.getElementById("mdl_menu").style.display="block";
+         main.style.height="99%";
+         height=main.clientHeight;
+       }
 
       let  actual_app;
 
