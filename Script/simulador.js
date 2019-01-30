@@ -30,11 +30,26 @@ var self={};
   "Generados"
   ]
 
+  self.showBaloon=function(target){
+    debugger;
+    let p_tagCte=document.getElementById("p_tagCte");
+    p_tagCte.innerHTML=target.tagInDiv;
+    p_tagCte.parentNode.style.display="block";
+    //p_tagCte.parentNode.style.left=(event.target.x)+"px";//+(parseFloat(this.parent.offsetLeft))-(this.width/2)+"px";
+    //p_tagCte.parentNode.style.top=(event.target.y)+"px";//+(parseFloat(this.parent.offsetTop))-(this.height)+"px";
+    p_tagCte.parentNode.style.left=(target.x+(target.width/2)-(p_tagCte.clientWidth/2))+"px";
+    p_tagCte.parentNode.style.top=(target.y+target.parent.y-(target.height))+"px";
+
+  }
+
 
   self.createApp=function(){
     var aplicacion=document.getElementById("aplicacion");
     self.app=new PIXI.Application(width,height,{backgroundColor: 0x175383});
     aplicacion.appendChild(self.app.renderer.view);
+
+
+
 
 
     var leftCent=(parseInt(aplicacion.clientWidth)/2);
@@ -129,6 +144,16 @@ var p_tagCte=document.createElement('p');
     cteNameDiv.appendChild(p_tagCte);
     cteNameDiv.style.display="none";
 
+
+
+
+    self.hideBaloon=function(){
+      //debugger;
+      let p_tagCte=document.getElementById("p_tagCte");
+      p_tagCte.parentNode.style.display="none";
+
+    }
+
     for(var i=0;i<buttons.length;i++){
 
          var buttonOK=new PIXI.Sprite(atlasBlock5[buttons[i]]);
@@ -166,25 +191,13 @@ var p_tagCte=document.createElement('p');
                    }
              };
 
-             buttonOK.on("mouseover",function(event){
-               debugger;
-               let p_tagCte=document.getElementById("p_tagCte");
-               p_tagCte.innerHTML=this.tagInDiv;
-               p_tagCte.parentNode.style.display="block";
-               //p_tagCte.parentNode.style.left=(event.target.x)+"px";//+(parseFloat(this.parent.offsetLeft))-(this.width/2)+"px";
-               //p_tagCte.parentNode.style.top=(event.target.y)+"px";//+(parseFloat(this.parent.offsetTop))-(this.height)+"px";
-               p_tagCte.parentNode.style.left=(this.x+(this.width/2)-(p_tagCte.clientWidth/2))+"px";
-               p_tagCte.parentNode.style.top=(this.y+this.parent.y-(this.height*.8))+"px";
-
-             })
-
-             buttonOK.on("mouseout",function(event){
-               //debugger;
-               let p_tagCte=document.getElementById("p_tagCte");
-               p_tagCte.parentNode.style.display="none";
 
 
-             })
+             buttonOK.on("mouseover",function(){
+               self.showBaloon(this);
+
+             });
+             buttonOK.on("mouseout",self.hideBaloon);
 
 
              button_pressed.on("pointertap",function(){
@@ -372,12 +385,41 @@ for(var i=0;i<ctes.length;i++){
          self.app.stage.addChild(iniciarButtonOff);
 
          //Botones para Reiniciar simulación (botones activo e inactivo)
-     var reIniciarButton=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE REINICIAR.png']);
-         reIniciarButton.x=width*.45;
-         reIniciarButton.y=height*.6;
-         reIniciarButton.scale.set(factorScreen(.6));
+     var reIniciar_1 = PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png"].texture;
+     var reIniciar_2 =PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"].texture;
+     var reIniciarButton=new PIXI.Sprite(reIniciar_1);
+         reIniciarButton.x = self.app.screen.width*.75;
+         reIniciarButton.y = self.app.screen.height/1.1;
+         reIniciarButton.scale.set(self.app.screen.width*.35/950);
          reIniciarButton.buttonMode=true;
          reIniciarButton.interactive=true;
+         reIniciarButton.tagInDiv="Reiniciar Simulador"
+         reIniciarButton.on('mouseover',function(){
+          self.showBaloon(this);
+           mouseover_regresar();
+         });
+         reIniciarButton.on('mouseout',borrar_regresar);
+
+         function mouseover_regresar(){
+
+           this.Over = true;
+            if(this.isdown){
+            return;
+            }
+            this.texture = reIniciar_2;
+
+
+         }
+
+         function borrar_regresar(){
+           this.Over = false;
+           if(this.isdown){
+           return;
+           }
+           this.texture = reIniciar_1;
+           self.hideBaloon();
+         }
+
          reIniciarButton.on('pointertap',function(){
 
 
@@ -633,9 +675,10 @@ for(var i=0;i<ctes.length;i++){
          //Recuadro blanco donde se colocará resultado final de simulación entre 2 segmentos seleccionados por usuario
      var resultado_caja=new PIXI.Sprite(atlasBlock5['12. RECUADRO DE RESULTADOS FINALES.png']);
          resultado_caja.scale.set(factorScreen(1));
-         resultado_caja.x=(reIniciarButton.x+reIniciarButton.width/2)-resultado_caja.width/2;
          resultado_caja.y=height*.85;
          self.app.stage.addChild(resultado_caja);
+         resultado_caja.x=(self.app.renderer.screen.width/2)-resultado_caja.width/2;
+
          //<p> para Vento Total
          var vtaTotal=document.createElement("p");
          vtaTotal.innerHTML="0";
@@ -741,7 +784,7 @@ for(var i=0;i<ctes.length;i++){
             document.getElementById("ctes_numero0").innerHTML=numberWithCommas(self.characters[0].countCtes);
             document.getElementById("cpa_pTag0").innerHTML="$"+numberWithCommas(Math.round(self.characters[0].cpa));
             document.getElementById("vta_pTag0").innerHTML="$"+numberWithCommas(Math.round(self.characters[0].sale()));
-            document.getElementById("tc_pTag0").innerHTML=(self.characters[0].tc).toFixed(2)+"%";
+            document.getElementById("tc_pTag0").innerHTML=(self.characters[0].tc).toFixed(1)+"%";
 
         var slider0=document.getElementById("slider0");
         var SlideBG=slider0.childNodes[0];
@@ -753,9 +796,9 @@ for(var i=0;i<ctes.length;i++){
         self.characters[1].side="rightCte";
         self.app.stage.getChildByName("rightCte"+index).visible=true;
         document.getElementById("ctes_numero1").innerHTML=numberWithCommas(self.characters[1].countCtes);
-        document.getElementById("cpa_pTag1").innerHTML="$"+numberWithCommas((self.characters[1].cpa).toFixed(2));
+        document.getElementById("cpa_pTag1").innerHTML="$"+numberWithCommas((self.characters[1].cpa).toFixed(1));
         document.getElementById("vta_pTag1").innerHTML="$"+numberWithCommas(Math.round(self.characters[1].sale()));
-        document.getElementById("tc_pTag1").innerHTML=(self.characters[1].tc).toFixed(2)+"%";
+        document.getElementById("tc_pTag1").innerHTML=(self.characters[1].tc).toFixed(1)+"%";
         var slider0=document.getElementById("slider1");
         var SlideBG=slider0.childNodes[0];
         var knob=slider0.childNodes[1];
@@ -809,7 +852,7 @@ for(var i=0;i<ctes.length;i++){
       varTotal_p.style.color="#d82215";
       */
       varTotal_p.innerHTML=numberWithCommas((variacionTotal).toFixed(0))+"%";
-      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas((vtaTotal).toFixed(2));
+      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas((vtaTotal).toFixed(1));
 
     }
     //console.log(self.characters);
@@ -873,7 +916,7 @@ for(var i=0;i<ctes.length;i++){
               if(target==i){
                 cte.tc=value;
                 var tc=document.getElementById("tc_pTag"+target);
-                    tc.innerHTML=((cte.tc).toFixed(2))+"%";
+                    tc.innerHTML=((cte.tc).toFixed(1))+"%";
               }
 
               vtaTotalMMAA+=parseInt(cte.vtaMMAA);
@@ -975,13 +1018,21 @@ for(var i=0;i<ctes.length;i++){
     var app=self.app.stage;
     var leftCent=((parseInt(aplicacion.parentNode.style.left)/100)*parseInt(screen.width))+(app.width/2);
 
+    var white_arrow=document.createElement('DIV');
+        white_arrow.setAttribute("id","white_arrow");
+        white_arrow.setAttribute("class","white_arrow arrow_animation");
+        aplicacion.appendChild(white_arrow);
+
 
 
     var descript_txt=document.createElement('p')
         descript_txt.setAttribute("id","descript_txt");
+        descript_txt.setAttribute("class","question0");
         descript_txt.innerHTML="Ahora, ya que entendemos como está compuesto el Estado de Resultados de Cliente de Coppel (Indicadores de venta y perfiles de clientes) pasamos al siguiente bloque, en donde vamos a simular con datos reales como se comportan cada uno de los perfiles de clientes."
         descript_txt.setAttribute("style","position: absolute;top: 30%;left: 25%;font-size: "+factorScreen(22)+"px;font-family: roboto-black;color: #FFFFFF;width: 50%;text-align: center;display: inline-block;");
         aplicacion.appendChild(descript_txt);
+
+
 
     var leftCent=(parseInt(aplicacion.clientWidth)/2);
     var aplicacion=document.getElementById("aplicacion");
@@ -993,7 +1044,7 @@ for(var i=0;i<ctes.length;i++){
 
 
     var respuesta=document.createElement('p');
-        respuesta.innerHTML="Responde a la pregunta superior presionando los botones!";
+        respuesta.innerHTML="Responde correctamente y continua con la siguiente pregunta.!";
         respuesta.setAttribute("id","respuesta_p")
         respuesta.setAttribute("class","sin_margen")
         respuesta.setAttribute("style","font-size:"+factorScreen(30)+"px;position:absolute;top:70%;");
@@ -1036,10 +1087,26 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
     var button_continue=app.getChildByName("continue_button");
         button_continue.visible=false;
         button_continue.removeAllListeners();
+
         button_continue.on('pointertap',function(){
+
+          descript_txt.classList.remove('question'+(index))
+          white_arrow.classList.remove("arrow_animation");
           index++;
+          descript_txt.classList.add('question'+(index))
+
           descript_txt.innerHTML=bateria[index].pregunta;
-          respuesta.innerHTML="Responde a la pregunta superior presionando los botones!";
+          respuesta.innerHTML="Responde correctamente para avanzar.!";
+
+
+
+            white_arrow.classList.add("arrow_animation2");
+
+
+            respuesta.classList.add("arrow_animation");
+
+
+
           for(var i=0;i<9;i++){
 
             var buttonOK=container_buttons.getChildByName("buttonOK"+i).visible=true;
@@ -1073,6 +1140,8 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
           button_pressed.visible=false;
           button_pressed.removeAllListeners();
           buttonOK.on('pointertap',function(){
+
+
             this.visible=false;
             container_buttons.getChildByName("button_pressed"+this.numero).visible=true;
             if(bateria[index].botonOk[0]==this.numero||bateria[index].botonOk[1]==this.numero||bateria[index].botonOk[2]==this.numero){
@@ -1080,6 +1149,7 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
               //document.getElementById("respuesta_p").innerHTML=bateria[index].respuesta1;
 
                if(index==bateria.length-1){
+
                  var continue_button=self.app.stage.getChildByName("continue_button");
                  continue_button.visible=true;
                  continue_button.removeAllListeners();

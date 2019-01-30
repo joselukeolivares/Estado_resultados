@@ -144,7 +144,7 @@ function indicators() {
 
       let title = document.createElement("h2");
       if(i != 2) {
-        title.setAttribute("class", "content");
+        //title.setAttribute("class", "content");
       }
       title.innerHTML = titles[i];
       title.style.marginBottom="0";
@@ -162,6 +162,12 @@ function indicators() {
         let content = document.createElement("p");
         content.setAttribute("class", "content");
         content.setAttribute("id", "content_" + i + j);
+        //content.style.fontSize ="100%";
+        /*
+        if(i==2 && j==1){
+          content.style.fontSize =factorScreen(120)+"%";
+        }
+        */
         if(j != 0) {
           content.style.color = "#E7C82F";
           content.style.fontFamily = "Roboto-Regular";
@@ -176,7 +182,14 @@ function indicators() {
         icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
         icRightArrow.setAttribute("id", "arrow-point-to-right-" + i + j);
         icRightArrow.setAttribute("class", "arrow-point-to-right parpadeo");
-        icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: " + app.screen.width * 0.89  + "px;");
+        icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: calc(190% - 5rem)");
+
+        if(i==2){
+          debugger;
+          icRightArrow.style.right="-4rem";
+          icRightArrow.style.left="";
+          }
+
         icRightArrow.indicator_i=i;
         icRightArrow.indicator_j=j;
 
@@ -336,11 +349,11 @@ function indicators() {
 
 
 
-              circle1.style.left = circle1.parentNode.clientWidth * 0.33 - circle1.clientWidth + "px";
+              //circle1.style.left = circle1.parentNode.clientWidth * 0.33 - circle1.clientWidth + "px";
               //circle1.style.marginTop="1%";
               circle1.style.top=divobt.offsetTop+"px";
               debugger;
-              circle2.style.left =circle1.style.left;
+              //circle2.style.left =circle1.style.left;
               //circle2.style.marginTop="1%";
               circle2.style.top = content.offsetTop+"px";
 
@@ -505,7 +518,7 @@ function indicators() {
     circle2.setAttribute("class", "circle-tick-inside parpadeo");
     circle2.setAttribute("id", "circle-tick-inside-2");
 
-    circle2.style.left = app.screen.width * 0.02 + "px";
+    //circle2.style.left = app.screen.width * 0.02 + "px";
     circle2.style.display = "none";
     //appDiv.appendChild(circle2);
     document.getElementById('stage_2').appendChild(circle2);
@@ -514,9 +527,9 @@ function indicators() {
     let actualContent = document.getElementById("content_22");
     //actualContent.ClassList.add("parpadeo")
     actualContent.style.top=(titleContent.clientTop+titleContent.clientHeight)+"px;";
-    actualContent.style.left="32%";
-    actualContent.style.margin="1%";
-    actualContent.style.width="44%";
+    //actualContent.style.left="32%";
+    //actualContent.style.margin="1%";
+    //actualContent.style.width="44%";
     actualContent.style.position="absolute";
     actualContent.style.position="absolute";
     actualContent.style.cursor="pointer";
@@ -527,7 +540,7 @@ function indicators() {
     content.setAttribute("id", "content_23");
     content.innerHTML=subTitles[2][3];
     content.style.top="30%";
-    content.style.margin="1%";
+    //content.style.margin="1%";
     content.style.left=document.getElementById("content_22").style.left;
     content.style.position="absolute";
     content.style.color="rgb(231, 200, 47)";
@@ -560,6 +573,7 @@ function indicators() {
       icBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
       icBack.setAttribute("class", "arrow-point-to-right parpadeo");
       icBack.setAttribute("id", "icBack");
+
       icBack.setAttribute("style", "left:0px;transform:rotate(180deg);display:none;top: " + (app.screen.height * 0.1)+ "px;");
       document.getElementById("stage_2").appendChild(icBack);
       icBack.style.display = "block";

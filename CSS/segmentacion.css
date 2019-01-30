@@ -35,23 +35,46 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 #gsap-anim-text-1 span { /* !important for gsap, has to be in <div> with relative position */
 	position: relative;
 	font-family:roboto-regular;
-	font-size:1.13vw;
+	font-size:18px;
     line-height:35px;
     color:#FFFFFF;
 	font-weight:bold;
 	word-break: break-all;
 	hyphens: auto;
+
 
 
 }
 #post-title-text span { /* !important for gsap, has to be in <div> with relative position */
 	position: relative;
 	font-family:roboto-regular;
-	font-size:1.13vw;
+	font-size:18px;
     line-height:35px;
     color:#FFFFFF;
 	font-weight:bold;
 	word-break: break-all;
 	hyphens: auto;
+
+}
+
+#contenedor{
+	height: 40%;
+	width: 40%;
+	position: absolute;
+	top: 25%;
+	right: 5%;
+
+}
+
+@media screen and (max-height:480px) {
+	#gsap-anim-text-1 span{
+		font-size:13px;
+		line-height:18px;
+		/*color:red;*/
+	}
+
+	#post-title-text span {
+	font-size:13px;
+	}
 
 }

@@ -1,0 +1,11 @@
+.p_tags{
+  font-size: 16px;
+  /*text-decoration: line-through;*/
+
+}
+/*@media screen and(max-height:480px),screen (max-width:30px) */
+@media screen and (max-height:1024px),screen (max-width:768px){
+  .p_tags{
+    font-size: 14px;
+  }
+}

@@ -29,14 +29,27 @@ var tags_div=document.getElementsByClassName('erase');
   });
 
   if ( document.getElementById('contenedor') ){
+try{
+  let contenedor=document.getElementById('contenedor');
+  debugger;
+  contenedor.parentNode.removeChild(contenedor);
 
-document.body.removeChild(contenedor);
+}catch(e){
+  console.log(e);
+}
 
 }
 
 if ( document.getElementById('contenedor_2') ){
 
-document.body.removeChild(contenedor_2);
+  try{
+    let contenedor=document.getElementById('contenedor_2');
+    debugger;
+    contenedor.parentNode.removeChild(contenedor);
+
+  }catch(e){
+    console.log(e);
+  }
 
 }
   if(self.app == null) return self;
@@ -135,8 +148,20 @@ function createSprite(app){
       contButton.interactive = true;
       contButton.buttonMode = true;
 
+      var contButton_2 = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
+      contButton_2.x = self.app.screen.width-100;
+      contButton_2.y = self.app.screen.height-50;
+      contButton_2.anchor.set(0.5);
+      contButton_2.scale.set(factorScreen(0.6));
+      contButton_2.interactive = true;
+      contButton_2.buttonMode = true;
+      contButton_2.visible=false;
+      contButton_2.name="contButton_2"
+      contButton_2.on('pointerdown',description);
+
 
       app.stage.addChild(contButton);
+      app.stage.addChild(contButton_2);
 
 
     var Loader = PIXI.loader;
@@ -148,16 +173,17 @@ function createSprite(app){
 
 
       contButton
-      .on("pointertap",click);
+      .on("pointerdown",introduction);
 
 
       if ( !document.getElementById('contenedor') ){
 
         var contenedor = document.createElement("DIV");
          contenedor.setAttribute("id","contenedor");
-         contenedor.setAttribute("style","height: 40%;width: 36%;position: absolute;right:"+(self.app.view.width/4)+"px;top: 25%;");
-         document.body.appendChild(contenedor);
-         debugger;
+         //contenedor.style.right=(self.app.view.width/4)+"px";
+         //document.body.appendChild(contenedor);
+         document.getElementById("aplicacion").appendChild(contenedor);
+         //debugger;
 
            var x = document.createElement("DIV");
            var br= document.createElement("br");
@@ -174,8 +200,8 @@ function createSprite(app){
            var contenedor_2 = document.createElement("DIV");
             contenedor_2.setAttribute("id","contenedor_2");
             debugger;
-            contenedor_2.setAttribute("style","word-break: keep-all;width:36%;position: absolute;right:"+(self.app.view.width/4)+"px;top:"+(parseInt(contenedor.style.top)+(parseInt(contenedor.style.height)/2))+"%;");
-            document.body.appendChild(contenedor_2);
+            contenedor_2.setAttribute("style","word-break: keep-all;width:36%;position: absolute;right:10%;top:"+(parseInt(contenedor.offsetTop)+(parseInt(contenedor.offsetHeight)))+"px;");
+            document.getElementById("aplicacion").appendChild(contenedor_2);
 
 
            var y = document.createElement("DIV");
@@ -213,13 +239,17 @@ function createSprite(app){
 
           var i=0;
 
-    function click(){
+    function introduction(){
+      debugger;
+      this.parent.getChildByName("contButton_2").visible=true;
+      this.parent.removeChild(this);
+      //simpleObject.removeAllListeners()
+
 
       app.stage.removeChild(background);
 
-          i = i + 1;
-          console.log(i);
-        if(i==1){
+
+
 
           //app.renderer.backgroundColor = 0x175383;
 
@@ -255,8 +285,8 @@ function createSprite(app){
          });
 
 
-         document.body.removeChild(contenedor);
-         document.body.removeChild(contenedor_2);
+         document.getElementById("aplicacion").removeChild(contenedor);
+         document.getElementById("aplicacion").removeChild(contenedor_2);
 
          var Loader = PIXI.loader;
          var ctesAtlas=PIXI.loader.resources['assets/ui/bloque_4/clientes_min/clientes_min.json'].textures;
@@ -273,7 +303,7 @@ function createSprite(app){
          var charDiv1=document.createElement('div');
              charDiv1.setAttribute("class","tags_div erase");
              charDiv1.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+cliente_nunca_entre15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              debugger;
+              //debugger;
          var char1_p1=document.createElement('p');
 
              char1_p1.innerHTML="Nunca 0-15";
@@ -294,7 +324,7 @@ function createSprite(app){
          var charDiv2=document.createElement('div');
              charDiv2.setAttribute("class","tags_div erase");
              charDiv2.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+activo_sin_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
-              debugger;
+              //debugger;
          var char2_p1=document.createElement('p');
 
              char2_p1.innerHTML="Activo Sin Vencido";
@@ -314,7 +344,7 @@ function createSprite(app){
          var charDiv3=document.createElement('div');
              charDiv3.setAttribute("class","tags_div erase");
              charDiv3.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+cliente_saldado_entre15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              debugger;
+              //debugger;
          var char3_p1=document.createElement('p');
 
              char3_p1.innerHTML="Saldado 0-15";
@@ -334,7 +364,7 @@ function createSprite(app){
          var charDiv4=document.createElement('div');
              charDiv4.setAttribute("class","tags_div erase");
              charDiv4.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+cliente_nunca_mas15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              debugger;
+              //debugger;
          var char4_p1=document.createElement('p');
 
              char4_p1.innerHTML="Nunca +15";
@@ -414,7 +444,7 @@ function createSprite(app){
 
              function acvLetters(event){
                vencidoDiv.style.left=(event.target.x+this.parent.x)+(parseFloat(main.style.left)/100*screen.width)-(this.width/2)+"px";
-             debugger;
+             //debugger;
                vencidoDiv.style.top=(event.target.y+this.parent.y)+this.height+"px";
                p_tagACV.innerHTML=this.letter+"!";
                p_tagACV.style.textAlign="center";
@@ -428,7 +458,7 @@ function createSprite(app){
          var charDiv5=document.createElement('div');
              charDiv5.setAttribute("class","tags_div erase");
              charDiv5.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+activo_con_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
-              debugger;
+              //debugger;
          var char5_p1=document.createElement('p');
 
              char5_p1.innerHTML="Activo con Vencido";
@@ -489,7 +519,7 @@ function createSprite(app){
          var charDiv6=document.createElement('div');
              charDiv6.setAttribute("class","tags_div erase");
              charDiv6.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+clientes_saldado_mas15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              debugger;
+              //debugger;
          var char6_p1=document.createElement('p');
 
              char6_p1.innerHTML="Saldado +15";
@@ -509,7 +539,7 @@ function createSprite(app){
          var charDiv7=document.createElement('div');
              charDiv7.setAttribute("class","tags_div erase");
              charDiv7.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+generados.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              debugger;
+              //debugger;
          var char7_p1=document.createElement('p');
 
              char7_p1.innerHTML="Generados";
@@ -529,7 +559,7 @@ function createSprite(app){
          var charDiv8=document.createElement('div');
              charDiv8.setAttribute("class","tags_div erase");
              charDiv8.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+z.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
-              debugger;
+              //debugger;
          var char8_p1=document.createElement('p');
 
              char8_p1.innerHTML="Clientes Z";
@@ -549,12 +579,12 @@ function createSprite(app){
          var charDiv9=document.createElement('div');
              charDiv9.setAttribute("class","tags_div erase");
              charDiv9.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+quebrantados.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              debugger;
+              //debugger;
          var char9_p1=document.createElement('p');
 
              char9_p1.innerHTML="Quebrantados";
          var char9_p2=document.createElement('p');
-                 char9_p2.innerHTML="Clientes vendidos por Bancoppel.";
+                 char9_p2.innerHTML="Clientes vencidos por BanCoppel a Coppel.";
               charDiv9.appendChild(char9_p1);
               charDiv9.appendChild(char9_p2);
          document.body.appendChild(charDiv9);
@@ -568,47 +598,43 @@ function createSprite(app){
          TweenMax.from(charDiv7, 1, {y: -50, opacity: 0});
          TweenMax.from(charDiv8, 1, {y: -50, opacity: 0});
          TweenMax.from(charDiv9, 1, {y: -50, opacity: 0});
-}
-
-
-
-        else if(i==2){
-
-          jQuery(document).ready(function($){
-
-            var $startAnim = $("#start-anim");
-            var $exitAnim = $("#exit-anim");
-            var $demoText = $("#gsap-anim-text-1");
-            var $postTitleText = $("#post-title-text");
-
-            startAnimation2();
-            function startAnimation2(){
-                TweenLite.set($startAnim, {autoAlpha:0});
-                TweenMax.staggerFromTo( $demoText.find("span"), 0.09, {autoAlpha:1, scale:1}, {autoAlpha:0, scale:2}, 0.001, reset2);
-                TweenMax.staggerFromTo( $postTitleText.find("span"), 0.09, {autoAlpha:1, scale:1}, {autoAlpha:0, scale:2}, 0.001, reset2 );}
-
-           function reset2(){
-               TweenMax.to($demoText, 1, {autoAlpha:0});
-               TweenMax.to($postTitleText, 1, {autoAlpha:0});}
-
-          });
-
-
-
-                   toSlide("simulador");
-                   circle5.style.backgroundColor = "white";
-                   circle1.style.backgroundColor = "gray";
-           		    circle2.style.backgroundColor = "gray";
-                  circle3.style.backgroundColor = "gray";
-           		    circle4.style.backgroundColor = "gray";
-           		    circle6.style.backgroundColor = "gray";
-           		    circle7.style.backgroundColor = "gray";
 
 
 
 
-        }
 
+
+    }
+
+    function description(){
+
+
+        jQuery(document).ready(function($){
+
+          var $startAnim = $("#start-anim");
+          var $exitAnim = $("#exit-anim");
+          var $demoText = $("#gsap-anim-text-1");
+          var $postTitleText = $("#post-title-text");
+
+          startAnimation2();
+          function startAnimation2(){
+              TweenLite.set($startAnim, {autoAlpha:0});
+              TweenMax.staggerFromTo( $demoText.find("span"), 0.09, {autoAlpha:1, scale:1}, {autoAlpha:0, scale:2}, 0.001, reset2);
+              TweenMax.staggerFromTo( $postTitleText.find("span"), 0.09, {autoAlpha:1, scale:1}, {autoAlpha:0, scale:2}, 0.001, reset2 );}
+
+         function reset2(){
+             TweenMax.to($demoText, 1, {autoAlpha:0});
+             TweenMax.to($postTitleText, 1, {autoAlpha:0});}
+
+        });
+                 toSlide("simulador");
+                 circle5.style.backgroundColor = "white";
+                 circle1.style.backgroundColor = "gray";
+                circle2.style.backgroundColor = "gray";
+                circle3.style.backgroundColor = "gray";
+                circle4.style.backgroundColor = "gray";
+                circle6.style.backgroundColor = "gray";
+                circle7.style.backgroundColor = "gray";
     }
 
 }
