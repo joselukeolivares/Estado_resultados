@@ -41,3 +41,13 @@
 	}
 
 }
+
+.p_tc{
+	font-size:15px;
+}
+
+@media screen and(max-width:768px) {
+	.p_tc{
+		font-size: 12px;
+	}
+}

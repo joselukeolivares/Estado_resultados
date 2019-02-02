@@ -31,7 +31,7 @@ var tags_div=document.getElementsByClassName('erase');
   if ( document.getElementById('contenedor') ){
 try{
   let contenedor=document.getElementById('contenedor');
-  debugger;
+  ////debugger;
   contenedor.parentNode.removeChild(contenedor);
 
 }catch(e){
@@ -44,7 +44,7 @@ if ( document.getElementById('contenedor_2') ){
 
   try{
     let contenedor=document.getElementById('contenedor_2');
-    debugger;
+    ////debugger;
     contenedor.parentNode.removeChild(contenedor);
 
   }catch(e){
@@ -183,7 +183,7 @@ function createSprite(app){
          //contenedor.style.right=(self.app.view.width/4)+"px";
          //document.body.appendChild(contenedor);
          document.getElementById("aplicacion").appendChild(contenedor);
-         //debugger;
+         //////debugger;
 
            var x = document.createElement("DIV");
            var br= document.createElement("br");
@@ -199,8 +199,8 @@ function createSprite(app){
 
            var contenedor_2 = document.createElement("DIV");
             contenedor_2.setAttribute("id","contenedor_2");
-            debugger;
-            contenedor_2.setAttribute("style","word-break: keep-all;width:36%;position: absolute;right:10%;top:"+(parseInt(contenedor.offsetTop)+(parseInt(contenedor.offsetHeight)))+"px;");
+
+            contenedor_2.setAttribute("style","word-break: keep-all;width:36%;position: absolute;right:10%;");
             document.getElementById("aplicacion").appendChild(contenedor_2);
 
 
@@ -223,6 +223,8 @@ function createSprite(app){
           //$startAnim.ready(startAnimation);
           //$startAnim.on("click", startAnimation);
           //$exitAnim.on("click", startAnimation2);
+          debugger;
+          contenedor_2.style.top="calc(25% + "+(parseInt(contenedor.offsetHeight))+"px)";
           startAnimation();
           function startAnimation(){
           TweenLite.set($startAnim, {autoAlpha:0});
@@ -240,7 +242,7 @@ function createSprite(app){
           var i=0;
 
     function introduction(){
-      debugger;
+      ////debugger;
       this.parent.getChildByName("contButton_2").visible=true;
       this.parent.removeChild(this);
       //simpleObject.removeAllListeners()
@@ -292,18 +294,18 @@ function createSprite(app){
          var ctesAtlas=PIXI.loader.resources['assets/ui/bloque_4/clientes_min/clientes_min.json'].textures;
 
          var cliente_nunca_entre15 = new PIXI.Sprite(ctesAtlas["4.-N-15 125X193.png"]);
-         cliente_nunca_entre15.x = self.app.screen.width*.1;
-         cliente_nunca_entre15.y = self.app.screen.height/6;
+             cliente_nunca_entre15.y = self.app.screen.height/6;
          //cliente_nunca_entre15.anchor.set(0.5);
          cliente_nunca_entre15.scale.set(factorScreen(.99));
          app.stage.addChild(cliente_nunca_entre15);
+         cliente_nunca_entre15.x =factorScreen(self.app.screen.width*.05);
          var aplicacionDiv=document.getElementById('main');
          var mainDiv={};
              mainDiv.left=(parseFloat(aplicacionDiv.style.left)/100)*screen.width;
          var charDiv1=document.createElement('div');
              charDiv1.setAttribute("class","tags_div erase");
-             charDiv1.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+cliente_nunca_entre15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              //debugger;
+             charDiv1.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+cliente_nunca_entre15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+              //////debugger;
          var char1_p1=document.createElement('p');
 
              char1_p1.innerHTML="Nunca 0-15";
@@ -315,7 +317,7 @@ function createSprite(app){
 
 
          var activo_sin_vencido = new PIXI.Sprite(ctesAtlas["6.-ASV 163X193.png"]);
-         activo_sin_vencido.x = self.app.screen.width*.4;
+         activo_sin_vencido.x = self.app.screen.width*.35;
          activo_sin_vencido.y = self.app.screen.height/6;
          //activo_sin_vencido.anchor.set(0.5);
          activo_sin_vencido.scale.set(factorScreen(.99));
@@ -323,8 +325,8 @@ function createSprite(app){
 
          var charDiv2=document.createElement('div');
              charDiv2.setAttribute("class","tags_div erase");
-             charDiv2.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+activo_sin_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
-              //debugger;
+             charDiv2.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+activo_sin_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
+              //////debugger;
          var char2_p1=document.createElement('p');
 
              char2_p1.innerHTML="Activo Sin Vencido";
@@ -335,7 +337,7 @@ function createSprite(app){
          document.body.appendChild(charDiv2);
 
          var cliente_saldado_entre15 = new PIXI.Sprite(ctesAtlas["8.-S-15 168X196.png"]);
-         cliente_saldado_entre15.x = self.app.screen.width*.7;
+         cliente_saldado_entre15.x = self.app.screen.width*.65;
          cliente_saldado_entre15.y = self.app.screen.height/6;
          //cliente_saldado_entre15.anchor.set(0.5);
          cliente_saldado_entre15.scale.set(factorScreen(.99));
@@ -343,8 +345,8 @@ function createSprite(app){
 
          var charDiv3=document.createElement('div');
              charDiv3.setAttribute("class","tags_div erase");
-             charDiv3.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+cliente_saldado_entre15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              //debugger;
+             charDiv3.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+cliente_saldado_entre15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+              //////debugger;
          var char3_p1=document.createElement('p');
 
              char3_p1.innerHTML="Saldado 0-15";
@@ -363,8 +365,8 @@ function createSprite(app){
 
          var charDiv4=document.createElement('div');
              charDiv4.setAttribute("class","tags_div erase");
-             charDiv4.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+cliente_nunca_mas15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              //debugger;
+             charDiv4.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+cliente_nunca_mas15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+              //////debugger;
          var char4_p1=document.createElement('p');
 
              char4_p1.innerHTML="Nunca +15";
@@ -444,7 +446,7 @@ function createSprite(app){
 
              function acvLetters(event){
                vencidoDiv.style.left=(event.target.x+this.parent.x)+(parseFloat(main.style.left)/100*screen.width)-(this.width/2)+"px";
-             //debugger;
+             //////debugger;
                vencidoDiv.style.top=(event.target.y+this.parent.y)+this.height+"px";
                p_tagACV.innerHTML=this.letter+"!";
                p_tagACV.style.textAlign="center";
@@ -457,8 +459,8 @@ function createSprite(app){
 
          var charDiv5=document.createElement('div');
              charDiv5.setAttribute("class","tags_div erase");
-             charDiv5.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+activo_con_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
-              //debugger;
+             charDiv5.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+activo_con_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
+              //////debugger;
          var char5_p1=document.createElement('p');
 
              char5_p1.innerHTML="Activo con Vencido";
@@ -518,8 +520,8 @@ function createSprite(app){
 
          var charDiv6=document.createElement('div');
              charDiv6.setAttribute("class","tags_div erase");
-             charDiv6.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+clientes_saldado_mas15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              //debugger;
+             charDiv6.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+clientes_saldado_mas15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+              //////debugger;
          var char6_p1=document.createElement('p');
 
              char6_p1.innerHTML="Saldado +15";
@@ -538,8 +540,8 @@ function createSprite(app){
 
          var charDiv7=document.createElement('div');
              charDiv7.setAttribute("class","tags_div erase");
-             charDiv7.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+generados.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              //debugger;
+             charDiv7.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+generados.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+              //////debugger;
          var char7_p1=document.createElement('p');
 
              char7_p1.innerHTML="Generados";
@@ -558,8 +560,8 @@ function createSprite(app){
 
          var charDiv8=document.createElement('div');
              charDiv8.setAttribute("class","tags_div erase");
-             charDiv8.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+z.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
-              //debugger;
+             charDiv8.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+z.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
+              //////debugger;
          var char8_p1=document.createElement('p');
 
              char8_p1.innerHTML="Clientes Z";
@@ -578,8 +580,8 @@ function createSprite(app){
 
          var charDiv9=document.createElement('div');
              charDiv9.setAttribute("class","tags_div erase");
-             charDiv9.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:100px;top:"+quebrantados.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
-              //debugger;
+             charDiv9.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+quebrantados.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+              //////debugger;
          var char9_p1=document.createElement('p');
 
              char9_p1.innerHTML="Quebrantados";

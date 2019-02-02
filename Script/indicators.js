@@ -97,7 +97,7 @@ function indicators() {
     appDiv.appendChild(intro);
 
     let contButton = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b-continue.png")].texture);
-    contButton.x = app.screen.width*.9;
+
     contButton.y = app.screen.height*.9;
     //contButton.anchor.set(0.5);
 
@@ -106,6 +106,7 @@ function indicators() {
     contButton.interactive = true;
     contButton.cursor = "pointer";
     app.stage.addChild(contButton);
+    contButton.x = app.screen.width-contButton.width;
 
     contButton.on("mouseover", function () {
       contButton.setTexture(PIXI.loader.resources[("assets/ui/bloque_3/b-continue-selected.png")].texture);
@@ -182,7 +183,7 @@ function indicators() {
         icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
         icRightArrow.setAttribute("id", "arrow-point-to-right-" + i + j);
         icRightArrow.setAttribute("class", "arrow-point-to-right parpadeo");
-        icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: calc(190% - 5rem)");
+        icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: calc(200% - 5rem)");
 
         if(i==2){
           debugger;

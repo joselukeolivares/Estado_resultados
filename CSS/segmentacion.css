@@ -58,7 +58,7 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 }
 
 #contenedor{
-	height: 40%;
+	/*height: 40%;*/
 	width: 40%;
 	position: absolute;
 	top: 25%;

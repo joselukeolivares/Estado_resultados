@@ -69,7 +69,7 @@ function simulador_global() {
      total_vta.scale.set(factorScreen(.85),self.app.screen.width * .45 / 950);
 
      let total = document.createElement("p");
-     total.className = "tags";
+     total.className = "tags final_tags";
      total.id="total_p_tag"
      total.innerHTML = "TOTAL";
      total.style.top = self.app.screen.height * 0.91 + "px";
@@ -79,18 +79,18 @@ function simulador_global() {
      total.style.left = (total_tc.x-total.clientWidth) + "px";
 
      let tcTotal = document.createElement("p");
-     tcTotal.className = "tags";
+     tcTotal.className = "tags final_tags";
      tcTotal.innerHTML = "T.C.";
      tcTotal.style.left = self.app.screen.width * 0.4 + "px";
      app.appendChild(tcTotal);
      tcTotal.style.top = (total_vta.y-tcTotal.clientHeight) + "px";
 
      let vtaTotal = document.createElement("p");
-     vtaTotal.className = "tags";
+     vtaTotal.className = "tags final_tags";
      vtaTotal.innerHTML = "VENTA";
-     vtaTotal.style.top = self.app.screen.height * 0.87 + "px";
      vtaTotal.style.left = self.app.screen.width * 0.56 + "px";
      app.appendChild(vtaTotal);
+     vtaTotal.style.top = total_vta.y+ "px";
      vtaTotal.style.top = (total_vta.y-vtaTotal.clientHeight) + "px";
 
      var tcTotalElm = document.createElement("p");
@@ -174,7 +174,7 @@ function simulador_global() {
      character.interactive=true;
      character.datos="information_"+i;
      character.indice=i;
-     character.on('pointertap',show_hide_data)
+     character.on('pointerdown',show_hide_data)
 
      self.app.stage.addChild(subContainer);
      self.app.stage.addChild(subContainer2);
@@ -631,7 +631,7 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
 self.app.stage.addChild(contButton);
 
 contButton
-.on("pointertap",click);
+.on("pointerdown",click);
 
 function click (){
 
@@ -874,7 +874,7 @@ button
  clearButton
    .on("mouseover",onMouseOverClear)
    .on("mouseout", onMouseOutClear)
-   .on("pointertap", onClickClear);
+   .on("pointerdown", onClickClear);
 
  function onMouseOverClear() {
    this.Over = true;

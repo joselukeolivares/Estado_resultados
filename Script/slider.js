@@ -39,7 +39,14 @@ function slider(appDiv, app, index) {
     tc_square = new PIXI.Sprite(loader.resources["assets/ui/bloque_3/tasa_indicador.png"].texture);
     tc_square.x = app.width * 0.7;
     tc_square.y = app.height * 1.3;
-    tc_square.scale.set(factorScreen(.85),factorScreen(.85));
+    var scale_temp=.8;
+    if(app.width<=1024 && app.height <=768){
+      scale_temp= .6;
+    }
+    if(app.width<=740 && app.height <=360){
+      scale_temp= .4;
+    }
+    tc_square.scale.set(scale_temp);
     tc_square.name = "tc_square";
     interactiveSquares.addChild(tc_square);
 
@@ -47,8 +54,9 @@ function slider(appDiv, app, index) {
 
     tcCts = document.createElement("p");
     tcCts.setAttribute("id", "tcCts");
+    tcCts.setAttribute("class", "p_tc");
     tcCts.innerHTML = "500<br>Clientes";
-    tcCts.style.left = tc_square.x * 1.02 + "px";
+    tcCts.style.left = tc_square.x + factorScreen(10) + "px";
     tcCts.style.top = tc_square.y+"px";
     tcCts.style.display = "none";
     tcCts.style.width = "5%";
@@ -63,7 +71,7 @@ function slider(appDiv, app, index) {
     tcPer.style.margin="0px";
     tcPer.style.width = "10%";
     tcPer.style.textAlign = "right";
-    tcPer.style.left = tc_square.x * 1.15 + "px";
+    tcPer.style.left = tc_square.x + tc_square.width*.5 + "px";
     tcPer.style.top = tc_square.y + "px";
     tcPer.style.display = "none";
     tcPer.style.fontSize = factorScreen(58)+"px";

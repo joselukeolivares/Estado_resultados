@@ -244,13 +244,12 @@ document.querySelector("#main").appendChild(containerB);
 			paused.name="paused_button";
 
 			next_block.scale.set(factorScreen(.6));
-			next_block.x=width*.9;
-
-			next_block.y=height*.9;
 			next_block.name="next_block";
 			next_block.interactive = true;
 			next_block.cursor = "pointer";
 			app.stage.addChild(next_block);
+			next_block.x=width-next_block.width;
+			next_block.y=height-next_block.height;
 			next_block.on("pointertap", function() {
 				toSlide("indicators");
 				circle3.style.backgroundColor = "white";

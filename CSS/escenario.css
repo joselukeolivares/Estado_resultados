@@ -9,3 +9,13 @@
     font-size: 14px;
   }
 }
+
+@media screen and (max-height:360px),screen (max-width:740px){
+  .p_tags{
+    font-size: 10px;
+  }
+
+  .final_tags{
+    font-size: 13px;
+  }
+}

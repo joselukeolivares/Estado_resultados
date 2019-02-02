@@ -31,7 +31,7 @@ var self={};
   ]
 
   self.showBaloon=function(target){
-    debugger;
+    //debugger;
     let p_tagCte=document.getElementById("p_tagCte");
     p_tagCte.innerHTML=target.tagInDiv;
     p_tagCte.parentNode.style.display="block";
@@ -53,7 +53,7 @@ var self={};
 
 
     var leftCent=(parseInt(aplicacion.clientWidth)/2);
-    debugger;
+    //debugger;
     var title=document.createElement('p')
         title.innerHTML="Estado de Resultados de Clientes"
         title.setAttribute("style","text-shadow: 3px 0px #09102C;font-weight: bold;position: absolute;top: 5%;font-size: "+factorScreen(40)+"px;margin: 0px;font-family: Roboto-Regular;color: #FFFFFF;");
@@ -131,7 +131,7 @@ var self={};
     var buttonNull=new PIXI.Sprite(atlasBlock5[buttons[0]]);
         buttonNull.scale.set(factorScreen(.65));
 var b_x=(width/2)-(buttonNull.width*4)-75;
-debugger;
+//debugger;
 var b_y=height/2;
 
 var cteNameDiv=document.createElement('div');
@@ -148,7 +148,7 @@ var p_tagCte=document.createElement('p');
 
 
     self.hideBaloon=function(){
-      //debugger;
+      ////debugger;
       let p_tagCte=document.getElementById("p_tagCte");
       p_tagCte.parentNode.style.display="none";
 
@@ -207,7 +207,7 @@ var p_tagCte=document.createElement('p');
              });
 
              button_pressed.on("mouseout",function(event){
-               debugger;
+               //debugger;
                let p_tagCte=document.getElementById("p_tagCte");
                p_tagCte.parentNode.style.display="none";
 
@@ -333,13 +333,13 @@ var p_tagCte=document.createElement('p');
          //Espacios para indicar la selección de personajes con botones con nombre de la segmentacion
          //Solo podrán seleccionar dos segmentos
          var grayCte=new PIXI.Sprite(atlasBlock5['16. MONITO GRIS 1.png']);
-                  grayCte.x=width*.10;
+                  //grayCte.x=width*.10;
                   grayCte.y=height/2;
                   grayCte.scale.set(factorScreen(.6));
                   grayCte.name="leftCteGray";
                   self.app.stage.addChild(grayCte);
               var grayCte_2=new PIXI.Sprite(atlasBlock5['17. MONITO GRIS 2.png']);
-                  grayCte_2.x=width*.85;
+
                   grayCte_2.y=height/2;
                   grayCte_2.scale.set(factorScreen(.6));
                   grayCte_2.name="rightCteGray";
@@ -357,24 +357,24 @@ var p_tagCte=document.createElement('p');
 
          ]
 
-for(var i=0;i<ctes.length;i++){
+                  for(var i=0;i<ctes.length;i++){
 
-  var leftCte=new PIXI.Sprite(atlasCtes5[ctes[i]+".png"]);
-         leftCte.x=width*.10;
-         leftCte.y=height/2;
-         leftCte.scale.set(factorScreen(.3));
-         leftCte.name="leftCte"+i;
-         //leftCte.positionG="leftCte"+i;
-         leftCte.visible=false;
-         self.app.stage.addChild(leftCte);
-     var rightCte=new PIXI.Sprite(atlasCtes5[ctes[i]+" 2.png"]);
-         rightCte.x=width*.85;
-         rightCte.y=height/2;
-         rightCte.scale.set(factorScreen(.3));
-         rightCte.name="rightCte"+i;
-         //rightCte.positionG="rightCte"+i;
-         rightCte.visible=false;
-         self.app.stage.addChild(rightCte);}
+                    var leftCte=new PIXI.Sprite(atlasCtes5[ctes[i]+".png"]);
+                           leftCte.x=width*.10;
+                           leftCte.y=height/2;
+                           leftCte.scale.set(factorScreen(.3));
+                           leftCte.name="leftCte"+i;
+                           //leftCte.positionG="leftCte"+i;
+                           leftCte.visible=false;
+                           self.app.stage.addChild(leftCte);
+                       var rightCte=new PIXI.Sprite(atlasCtes5[ctes[i]+" 2.png"]);
+                           rightCte.x=width*.85;
+                           rightCte.y=height/2;
+                           rightCte.scale.set(factorScreen(.3));
+                           rightCte.name="rightCte"+i;
+                           //rightCte.positionG="rightCte"+i;
+                           rightCte.visible=false;
+                           self.app.stage.addChild(rightCte);}
 
          //Botones para Iniciar simulación (botones activo e inactivo)
      var iniciarButtonOff=new PIXI.Sprite(atlasBlock5['15. RECUADRO DE INICIAR 2.png']);
@@ -445,6 +445,7 @@ for(var i=0;i<ctes.length;i++){
          self.app.stage.addChild(tc_sprite);
         //<p>con TC, numero de clientes y "clientes" tag de primer personaje seleccionado
          var aplicacion=document.getElementById("aplicacion");
+         grayCte.x+=tc_sprite.x-grayCte.width;
 
          var tc_pTag=document.createElement("p");
          tc_pTag.innerHTML="0%";
@@ -469,6 +470,8 @@ for(var i=0;i<ctes.length;i++){
 
 
              aplicacion.appendChild(tc_pTag);
+
+             grayCte_2.x=tc_sprite.x-grayCte_2.width-tc_pTag.clientWidth;
              aplicacion.appendChild(ctes_numero);
              aplicacion.appendChild(ctes_pTag);
         //Se inserta slider en div id:"aplciacion" (informacion de los parametros en el script sliderB5B6)
@@ -479,6 +482,8 @@ for(var i=0;i<ctes.length;i++){
          tc_base2.y=height/2;
          tc_base2.scale.set(factorScreen(1));
          self.app.stage.addChild(tc_base2);
+         grayCte_2.x=tc_base2.x+tc_base2.width;
+
          //<p>con TC, numero de clientes y "clientes" tag de segundo personaje seleccionado
          var tc_pTag2=document.createElement("p");
          tc_pTag2.innerHTML="0%";
@@ -522,9 +527,13 @@ for(var i=0;i<ctes.length;i++){
             tc_pTag.style.color="#FFFFFF";
             tc_pTag.style.fontSize=factorScreen(40)+"px";
             tc_pTag.style.fontFamily='Roboto-Bold';
-            tc_pTag.style.left=(leftCte.x+leftCte.width*.9+leftCte.parent.x)+"px";
             tc_pTag.style.top=(leftCte.y+leftCte.parent.y)+"px";
             aplicacion.appendChild(tc_pTag);
+            tc_pTag.style.left=(tc_sprite.x-tc_pTag.clientWidth)+"px";
+            debugger;
+
+            self.app.stage.getChildByName("leftCteGray").x-=parseInt(tc_pTag.clientWidth);
+
 
         var tc_pTag2=document.createElement('p');
             tc_pTag2.setAttribute("id","tc_pTag");
@@ -1098,16 +1107,8 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
           descript_txt.innerHTML=bateria[index].pregunta;
           respuesta.innerHTML="Responde correctamente para avanzar.!";
 
-
-
-            white_arrow.classList.add("arrow_animation2");
-
-
-            respuesta.classList.add("arrow_animation");
-
-
-
-          for(var i=0;i<9;i++){
+          white_arrow.classList.add("arrow_animation2");
+            for(var i=0;i<9;i++){
 
             var buttonOK=container_buttons.getChildByName("buttonOK"+i).visible=true;
             var buttonOK=container_buttons.getChildByName("button_pressed"+i).visible=false;
@@ -1132,7 +1133,7 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
         for(var j=0;j<9;j++){
           var buttonOK=container_buttons.getChildByName("buttonOK"+j);
           buttonOK.visible=true;
-          debugger;
+          //debugger;
           //buttonOK.removeAllListeners();
           buttonOK.removeListener('pointertap')
 
