@@ -3,6 +3,12 @@ body{
   margin:0px;
 }
 
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .intro {
   font-size: 14px;
 
@@ -22,6 +28,34 @@ body{
     opacity: 1;
   }
 
+}
+
+.circulos {
+  user-select: none;
+}
+
+.contButtonIntro {
+  font-style: Robot-Regular;
+  position: absolute;
+  user-select: none;
+  font-size: 26px;
+  height: 70px;
+  line-height: 70px;
+  width: 200px;
+  margin-left: -100px;
+  color: #FFFFFF;
+  border-radius: 100px;
+  background: #ff8000;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.contButtonIntro:hover {
+  background: #BA5400;
+  height: 72px;
+  line-height: 72px;
+  width: 202px;
+  margin-left: -101px;
 }
 
 .title{
