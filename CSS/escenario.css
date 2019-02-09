@@ -3,19 +3,44 @@
   /*text-decoration: line-through;*/
 
 }
+
+#ctes-total-tag{
+  font-size: 18px;
+}
+
+.tc_clientes{
+  font-size: 14px;
+}
+
+
+
+
 /*@media screen and(max-height:480px),screen (max-width:30px) */
-@media screen and (max-height:1024px),screen (max-width:768px){
+@media screen and (max-width:1024px) and (max-height:768px){
   .p_tags{
     font-size: 14px;
   }
+
+  #ctes-total-tag{
+    font-size: 13px;
+    color:red;
+  }
+
+  .tc_clientes{
+    font-size: 11px;
+  }
 }
 
-@media screen and (max-height:360px),screen (max-width:740px){
+@media screen and (max-height:360px) and (max-width:740px){
   .p_tags{
     font-size: 10px;
   }
 
   .final_tags{
     font-size: 13px;
+  }
+  #ctes-total-tag{
+    font-size: 11px;
+    color:red;
   }
 }

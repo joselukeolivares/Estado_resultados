@@ -138,6 +138,7 @@ function createSprite(app){
   subTitle.className = "subTitle erase";
   subTitle.innerHTML = "Perfil de Clientes";
   subTitle.style.top = "10%";
+  subTitle.style.left=0;
   document.getElementById("aplicacion").appendChild(subTitle);
 
       var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
@@ -188,7 +189,7 @@ function createSprite(app){
            var x = document.createElement("DIV");
            var br= document.createElement("br");
            x.setAttribute("id","gsap-anim-text-1");
-           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y análisis de nuestros  clientes, se crearon perfiles en base al ciclo de vida del cliente.        Esto nos ayudara a monitorear y crear estrategias especializadas  para cada tipo de cliente Coppel.");
+           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y análisis de nuestros  clientes, se crearon perfiles en base al ciclo de vida del cliente. Esto nos ayudara a monitorear y crear estrategias especializadas  para cada tipo de cliente Coppel.");
            x.appendChild(t);
            document.body.appendChild(x);
            contenedor.appendChild(x);
@@ -200,7 +201,7 @@ function createSprite(app){
            var contenedor_2 = document.createElement("DIV");
             contenedor_2.setAttribute("id","contenedor_2");
 
-            contenedor_2.setAttribute("style","word-break: keep-all;width:36%;position: absolute;right:10%;");
+            //contenedor_2.setAttribute("style","word-break: keep-all;width:36%;position: absolute;right:10%;");
             document.getElementById("aplicacion").appendChild(contenedor_2);
 
 
@@ -224,7 +225,7 @@ function createSprite(app){
           //$startAnim.on("click", startAnimation);
           //$exitAnim.on("click", startAnimation2);
           debugger;
-          contenedor_2.style.top="calc(25% + "+(parseInt(contenedor.offsetHeight))+"px)";
+          //contenedor_2.style.top="calc(25% + "+(parseInt(contenedor.offsetHeight))+"px)";
           startAnimation();
           function startAnimation(){
           TweenLite.set($startAnim, {autoAlpha:0});
@@ -586,7 +587,7 @@ function createSprite(app){
 
              char9_p1.innerHTML="Quebrantados";
          var char9_p2=document.createElement('p');
-                 char9_p2.innerHTML="Clientes vencidos por BanCoppel a Coppel.";
+                 char9_p2.innerHTML="Clientes vendidos por BanCoppel a Coppel.";
               charDiv9.appendChild(char9_p1);
               charDiv9.appendChild(char9_p2);
          document.body.appendChild(charDiv9);

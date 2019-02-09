@@ -96,21 +96,21 @@ function simulador_global() {
      var tcTotalElm = document.createElement("p");
      tcTotalElm.setAttribute("id", "tc-total-tag");
      tcTotalElm.setAttribute("class","sin_margen");
-     tcTotalElm.setAttribute("style", "position: absolute; top: " + (total_tc.y) + "px; left: " + (total_tc.x + total_tc.width / 2) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(28)+"px; font-weight: bold;");
+     tcTotalElm.setAttribute("style", "position: absolute; top: " + (total_tc.y+total_tc.height/4) + "px; left: " + (total_tc.x + total_tc.width / 2) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(28)+"px; font-weight: bold;");
      tcTotalElm.typeObj = 1;
      app.appendChild(tcTotalElm);
 
      var totalVentaElm = document.createElement("p");
      totalVentaElm.setAttribute("id", "total-vta-tag");
      totalVentaElm.setAttribute("class","sin_margen");
-     totalVentaElm.setAttribute("style", "position:absolute;top:"+(total_vta.y)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(28)+"px;font-weight:bold;");
+     totalVentaElm.setAttribute("style", "position:absolute;top:"+(total_vta.y+total_vta.height/4)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(28)+"px;font-weight:bold;");
      totalVentaElm.typeObj=1;
      app.appendChild(totalVentaElm);
 
      var tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
      tcTotalCtesElm.setAttribute("class","sin_margen p_tags");
-     tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(18)+"px;font-weight:bold;color:#175383;");
+     tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-weight:bold;color:#175383;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
 
@@ -166,7 +166,13 @@ function simulador_global() {
      character.scale.set(factorScreen(.6));
       if(i==0)
      character.scale.set(factorScreen(.6));
-     character.x = (i % 3) * self.app.screen.width/3;
+     var space=window.matchMedia("(max-width:1024px), and (max-height:768px)")
+     debugger;
+     if(space.matches){
+       character.x = ((i % 3) * self.app.screen.width/3);
+     }else{
+       character.x = ((i % 3) * self.app.screen.width/3)+(self.app.screen.width*factorScreen(.05));
+     }
      character.y =Math.floor(i / 3) * self.app.screen.height/4.5+height/4;
 
      character.name ="character"+i;
@@ -205,14 +211,15 @@ function simulador_global() {
      venta_TXT.name="venta_TXT"+i;
 
 
-     tc.scale.set(factorScreen(.9),factorScreen(.8));
+
      tc.x=tc_TXT.x+tc_TXT.width*1.1;
      tc.y=tc_TXT.y;
 
+     tc.scale.set(factorScreen(.8),factorScreen(.9))
      tc.name="tc"+i;
      subContainer2.addChild(tc);
-     //console.log(tc_TXT.y);
-     //console.log(tcIndi.getBoundingClientRect().top);
+
+
 
      cpa.scale.set(self.app.screen.width*.45/950);
      cpa.x=cpa_TXT.x+cpa_TXT.width;
@@ -221,7 +228,7 @@ function simulador_global() {
      subContainer2.addChild(cpa);
 
      vta.scale.set(factorScreen(1),self.app.screen.width*.50/950);
-     vta.x=venta_TXT.x+venta_TXT.width*1.1;
+     vta.x=venta_TXT.x+venta_TXT.width;
      vta.y=venta_TXT.y;
      vta.name="vta"+i;
 
@@ -241,9 +248,9 @@ function simulador_global() {
 
          var tc_clientes=document.createElement("p");
          tc_clientes.innerHTML="0";
-         tc_clientes.setAttribute("class","sin_margen hide_element sh_obj"+i);
+         tc_clientes.setAttribute("class","sin_margen hide_element tc_clientes sh_obj"+i);
          tc_clientes.setAttribute("id","tc_clientes"+i);
-         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(16)+"px;font-weight:bold;color:#175383;");
+         tc_clientes.setAttribute("style","position:absolute;top:"+(tc.y)+"px;left:"+(tc.x+tc.width*.05)+"px;font-Family:roboto-regular;font-weight:bold;color:#175383;");
          tc_clientes.typeObj=1;
              app.appendChild(tc_clientes);
 
@@ -284,6 +291,26 @@ function simulador_global() {
      SliderB5B6(app, tc_test,"slider1"+i,"slider_fam",(tc.x)/width,(tc.y+tc.height*1.2+tc.parent.y)/height,tc.width,cpa.height,self);
      addCharacter(i);
 }
+
+
+var items=[];
+for(var i=0;i<9;i++){
+  items.push(self.app.stage.getChildByName("information_"+i).getChildByName("tc"+i));
+}
+var mediaQ=window.matchMedia("(max-height:768px),(max-widtht:1024px)");
+   validate(mediaQ);
+   mediaQ.addListener(validate)
+   function validate(x){
+     debugger;
+     if(x.matches){
+
+       TweenMax.to(items,1,{pixi:{scaleX:.7}})
+     }else {
+       TweenMax.to(items,1,{pixi:{scaleX:.8}})
+     }
+   }
+
+
 var vencidos=["Vencidos2","Vencidos3","Vencidos+4"]
 
 for(var j=0;j<vencidos.length;j++){
@@ -356,9 +383,9 @@ var container_globos = new PIXI.Container();
 
 
 
-//container_globos.scale.set(self.app.screen.width*.35/950);
+
 container_globos.width=100;
-container_globos.x=self.app.screen.width/3;
+container_globos.x=self.app.stage.getChildByName("Characters_4").getChildByName("character4").x;
 container_globos.y=self.app.screen.height/1.7;
 container_globos.scale.set(self.app.screen.width*.50/950);
 
@@ -662,7 +689,7 @@ var title_descrp1=document.createElement('h3');
     aplicacion.appendChild(title_descrp1);
 
 var paragraph1=document.createElement('p');
-    paragraph1.innerHTML="La cartera potencial está compuesta por 4 perfiles de clientes: Activos sin Vencidos, Saldados 0-15, Clientes Generados y Vencidos 1. Se le denomina cartera potencial porque en conjunto participan con aproximadamente el 93% de las ventas totales.";
+    paragraph1.innerHTML="La cartera Potencial está compuesta por 5 perfiles de clientes: Nunca 0-15, Activos sin Vencido, Vencido 1, saldados 0-15 y Generados. Se denomina cartera potencial porque en conjunto participan aproximadamente con el 93% de las ventas totales.";
     paragraph1.style.color="#ffffff";
     paragraph1.style.fontSize=factorScreen(20)+"px";
     paragraph1.style.position="absolute";
@@ -684,28 +711,34 @@ var paragraph1=document.createElement('p');
                     "3.-Q 143X193.png"
                   ];
     var cteASV=new PIXI.Sprite(atlasBlock6[characters[0]]);
-        cteASV.scale.set(factorScreen(.5));
+        cteASV.scale.set(factorScreen(.55));
         cteASV.x=parseFloat(paragraph1.offsetLeft)+parseFloat(paragraph1.clientWidth)/4;
         cteASV.y=parseFloat(paragraph1.offsetTop)+parseFloat(paragraph1.clientHeight);
         self.app.stage.addChild(cteASV);
 
     var cteS15=new PIXI.Sprite(atlasBlock6[characters[1]]);
-        cteS15.scale.set(.5);
-        cteS15.x=cteASV.x+cteASV.width*2;
+        cteS15.scale.set(factorScreen(.5));
+        cteS15.x=cteASV.x+cteASV.width*factorScreen(2);
         cteS15.y=cteASV.y;
         self.app.stage.addChild(cteS15);
 
-    var cteG=new PIXI.Sprite(atlasBlock6[characters[4]]);
-        cteG.scale.set(.5)
-        cteG.x=cteS15.x+cteS15.width*2;
-        cteG.y=cteASV.y;
-        self.app.stage.addChild(cteG);
-
-    var cteACV=new PIXI.Sprite(atlasBlock6[characters[6]]);
-        cteACV.scale.set(.5)
-        cteACV.x=cteG.x+cteG.width*2;
+    var cteACV=new PIXI.Sprite(atlasBlock6[characters[4]]);
+        cteACV.scale.set(factorScreen(.5))
+        cteACV.x=cteS15.x+cteS15.width*factorScreen(2);
         cteACV.y=cteASV.y;
         self.app.stage.addChild(cteACV);
+
+    var cte_S15=new PIXI.Sprite(atlasBlock6[characters[2]]);
+        cte_S15.scale.set(factorScreen(.5))
+        cte_S15.x=cteACV.x+cteACV.width*factorScreen(2);
+        cte_S15.y=cteASV.y;
+        self.app.stage.addChild(cte_S15);
+
+    var cteG=new PIXI.Sprite(atlasBlock6[characters[6]]);
+        cteG.scale.set(factorScreen(.5))
+        cteG.x=cte_S15.x+cte_S15.width*factorScreen(2);
+        cteG.y=cteASV.y;
+        self.app.stage.addChild(cteG);
 
 var title_descrp2=document.createElement('h3');
     title_descrp2.innerHTML="Monitoreo de Indicadores";
@@ -728,14 +761,14 @@ var paragraph2=document.createElement('p');
     aplicacion.appendChild(paragraph2);
 
     var cteG2=new PIXI.Sprite(atlasBlock6[characters[6]]);
-        cteG2.scale.set(.5)
+        cteG2.scale.set(factorScreen(.5))
         cteG2.x = cteS15.x ;
         cteG2.y=parseFloat(paragraph2.offsetTop)+parseFloat(paragraph2.clientHeight);
         self.app.stage.addChild(cteG2);
 
     var cteACV2=new PIXI.Sprite(atlasBlock6[characters[4]]);
-        cteACV2.scale.set(.5)
-        cteACV2.x = cteG.x;
+        cteACV2.scale.set(factorScreen(.5))
+        cteACV2.x = cteG2.x+cteG2.width*2;
         cteACV2.y = cteG2.y;
         self.app.stage.addChild(cteACV2);
 
@@ -784,13 +817,13 @@ var paragraph2=document.createElement('p');
 
 
 }
-debugger;
+
 var regresar = PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png"].texture;
 var regresar_2 =PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"].texture;
 var button = new PIXI.Sprite(regresar);
 
 button.x = self.app.screen.width*.75;
-button.y = self.app.screen.height/1.1;
+button.y = contButton.y-20;
 button.scale.set(self.app.screen.width*.35/950);
 button.interactive = true;
 button.buttonMode = true;
@@ -800,7 +833,7 @@ self.app.stage.addChild(button);
 button
  .on("mouseover",mouseover_regresar)
  .on("pointerdown",function(){
- debugger;
+
    self.historyFlag=false;
    if(self.indexHistory!=0)
    self.indexHistory--;
@@ -864,7 +897,7 @@ button
  var clearButton = new PIXI.Sprite(clear);
 
  clearButton.x = self.app.screen.width * .8;
- clearButton.y = self.app.screen.height / 1.1;
+ clearButton.y = contButton.y-20;
 
  clearButton.scale.set(self.app.screen.width*.35/950);
  clearButton.interactive = true;
@@ -926,7 +959,7 @@ button
      var knob = sliders[i].childNodes[1];
      knob.style.left = ((sliders[i].getBoundingClientRect().width * defaultVals[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
    }
-   debugger;
+
    self.stepBack.length=1;
    self.indexHistory=0;
    self.historyFlag=true;
@@ -966,7 +999,7 @@ function addCharacter(index) {
     mmaa["Venta \n" + segmentos[index]],
     toDate["Venta \n" + segmentos[index]]
   );
-  debugger;
+
   if(index==4)
   char.vencido=1;
   self.characters.push(char);
@@ -987,7 +1020,7 @@ function addCharacter(index) {
     document.getElementById("var-global").innerHTML = (Math.round(variacionGlob)) + "%";
   }
 
-  debugger;
+
   var sliders = document.getElementsByClassName("slider");
   var knob = sliders[index].childNodes[1];
   knob.style.left = ((sliders[index].getBoundingClientRect().width * self.characters[index].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
@@ -1016,7 +1049,7 @@ function addCharacter(index) {
 
 self.updateTotal = function (newTC,target) {
   let vtaTotal = 0, vtaTotalMMAA = 0,ctsTotal=0,ctsXtc=0,CtesBuyTotal=0,ctesTotal=0,CtesBuyTotalOriginal=0;
-debugger;
+
   for(let i = 0; i < self.characters.length; i++) {
     let cte=self.characters[i];
     if(i<self.characters.length-3){
@@ -1092,7 +1125,7 @@ debugger;
   var varTotal=document.getElementById("tc-total-tag");
       varTotal.innerHTML=Math.round(ctsXtc/ctsTotal)+"%";
 
-debugger;
+
 if(self.historyFlag&&self.stepBack.length<100){
   self.stepBack.push(JSON.stringify(self.characters));
   self.indexHistory++;
@@ -1127,7 +1160,7 @@ function show_hide_data(){
 
   console.log("personaje seleccionado")
   let app=document.getElementById('aplicacion')
-  debugger;
+
 
   let char_data=this.parent.parent.getChildByName(this.datos);
   let selected=document.getElementsByClassName("sh_obj"+this.indice);
@@ -1174,7 +1207,7 @@ function show_hide_data(){
 
        try{
          pTags[0].parentNode.removeChild(pTags[0])
-       }catch(e){debugger; console.log(e)}
+       }catch(e){ console.log(e)}
     }
 
     var sliders=document.getElementsByClassName('slider');
@@ -1183,7 +1216,7 @@ function show_hide_data(){
 
        try{
          sliders[0].parentNode.removeChild(sliders[0])
-       }catch(e){debugger; console.log(e)}
+       }catch(e){console.log(e)}
     }
 
     var h3=document.getElementsByTagName('h3');
@@ -1192,7 +1225,7 @@ function show_hide_data(){
 
        try{
          h3[0].parentNode.removeChild(h3[0])
-       }catch(e){debugger; console.log(e)}
+       }catch(e){ console.log(e)}
     }
 
     var h1=document.getElementsByTagName('h1');
@@ -1201,7 +1234,7 @@ function show_hide_data(){
 
        try{
          h1[0].parentNode.removeChild(h1[0])
-       }catch(e){debugger; console.log(e)}
+       }catch(e){ console.log(e)}
     }
 
   };

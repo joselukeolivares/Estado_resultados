@@ -272,7 +272,7 @@ var p_tagCte=document.createElement('p');
        TweenMax.to([followMe,descript_txt],1,{pixi:{alpha:0},onComplete:function(){
          aplicacion.removeChild(followMe);
          descript_txt.innerHTML="Selecciona dos perfiles de clientes dando clic en los botones, a continuación se visualiza la Tasa de Compra, Compra Promedio Anual, Venta y Venta Total de los perfiles seleccionados.<br>Analiza los indicadores de cada perfil e interactúa con la Tasa de compra para visualizar las variaciones en  Venta y Venta Total."
-         TweenMax.to(descript_txt,1,{alpha:1,top:"20%"});
+         TweenMax.to(descript_txt,1,{alpha:1,top:factorScreen(20)+"%"});
        }})
 
        TweenMax.to(buttons_container.children,2,{pixi:{y:height/3},onComplete:function(){
