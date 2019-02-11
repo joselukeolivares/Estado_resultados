@@ -86,7 +86,15 @@ function loader_pixi(){
           "assets/ui/bloque_7/EQUIPOCREADO 7.png",
           "assets/ui/bloque_7/EQUIPOCREADO 8.png",
           "assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 1.png",
-          "assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"
+          "assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png",
+          "assets/ui/bloque_6/Globo-01.png",
+          "assets/ui/bloque_6/Globo-02.png",
+          "assets/ui/bloque_6/Globo-03.png",
+          "assets/ui/bloque_6/Globo-04.png",
+          "assets/ui/bloque_6/Globo-01-clicked.png",
+          "assets/ui/bloque_6/Globo-02-clicked.png",
+          "assets/ui/bloque_6/Globo-03-clicked.png",
+          "assets/ui/bloque_6/Globo-04-clicked.png"
         ])
         .on("progress",loadProgressHandler)
         .load(charged);

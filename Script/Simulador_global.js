@@ -401,24 +401,24 @@ contButton.interactive = true;
 contButton.buttonMode = true;
 
 
-var unVdoB = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo1.png"].texture);
+var unVdoB = new PIXI.Sprite(Loader.resources["assets/ui/bloque_6/Globo-01.png"].texture);
     unVdoB.numero="1";
-var dosVdoB =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo2.png"].texture);
+var dosVdoB =new PIXI.Sprite(Loader.resources["assets/ui/bloque_6/Globo-02.png"].texture);
     dosVdoB.numero="2";
-var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo3.png"].texture);
+var tresVdoB = new PIXI.Sprite(Loader.resources["assets/ui/bloque_6/Globo-03.png"].texture);
     tresVdoB.numero="3";
-var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo4.png"].texture);
+var cuatroVdoB =new PIXI.Sprite(Loader.resources["assets/ui/bloque_6/Globo-04.png"].texture);
     cuatroVdoB.numero="+4";
 
-var unVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo1_click.png"].texture);
+var unVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/bloque_6/Globo-01-clicked.png"].texture);
     unVdoClked.name="unVdoClkedSprite";
-var dosVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo2_click.png"].texture);
+var dosVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/bloque_6/Globo-02-clicked.png"].texture);
     dosVdoClked.name="dosVdoClkedSprite";
     dosVdoClked.visible=false;
-var tresVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo3_click.png"].texture);
+var tresVdoClked = new PIXI.Sprite(Loader.resources["assets/ui/bloque_6/Globo-03-clicked.png"].texture);
     tresVdoClked.name="tresVdoClkedSprite";
     tresVdoClked.visible=false;
-var cuatroVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/bloque_4/clientes/globo4_click.png"].texture);
+var cuatroVdoClked =new PIXI.Sprite(Loader.resources["assets/ui/bloque_6/Globo-04-clicked.png"].texture);
     cuatroVdoClked.name="cuatroVdoClkedSprite";
     cuatroVdoClked.visible=false;
 
@@ -446,19 +446,19 @@ var container_globos = new PIXI.Container();
 
 //container_globos.scale.set(self.app.screen.width*.35/950);
 container_globos.width=100;
-container_globos.x=self.app.screen.width/3;
-container_globos.y=self.app.screen.height/1.7;
-container_globos.scale.set(self.app.screen.width*.50/950);
+container_globos.x = self.app.screen.width / 2.97;
+container_globos.y = self.app.screen.height / 1.66;
+container_globos.scale.set(self.app.screen.width * .65 / 950);
 
-
-unVdoB.x=-10;
+let bMargin = unVdoB.width + 3;
+unVdoB.x =-10;
 unVdoB.name="unVdoB";
 //unVdoB.scale.set();
 unVdoB.interactive = true;
 unVdoB.buttonMode = true;
 unVdoB.visible = false;
 
-unVdoClked.x =unVdoB.x;
+unVdoClked.x = unVdoB.x;
 //unVdoClked.scale.set(self.app.screen.width * .45 / 950);
 //dosVdoClked.scale.set(self.app.screen.width * .45 / 950);
 //tresVdoClked.scale.set(self.app.screen.width * .45 / 950);
@@ -466,19 +466,19 @@ unVdoClked.x =unVdoB.x;
 //unVdoClked.interactive = true;
 //unVdoClked.buttonMode = true;
 
-dosVdoB.x=unVdoB.x+unVdoB.width;
+dosVdoB.x=unVdoB.x+bMargin;
 dosVdoB.name="dosVdoB";
 //dosVdoB.scale.set(self.app.screen.width*.45/950);
 dosVdoB.interactive = true;
 dosVdoB.buttonMode = true;
 
-tresVdoB.x=unVdoB.x+unVdoB.width*2;
+tresVdoB.x=unVdoB.x+bMargin * 2;
 tresVdoB.name="tresVdoB";
 //tresVdoB.scale.set(self.app.screen.width*.45/950);
 tresVdoB.interactive = true;
 tresVdoB.buttonMode = true;
 
-cuatroVdoB.x=unVdoB.x+unVdoB.width*3;
+cuatroVdoB.x=unVdoB.x + bMargin * 3;
 cuatroVdoB.name="cuatroVdoB";
 //cuatroVdoB.scale.set(self.app.screen.width*.45/950);
 cuatroVdoB.interactive = true;
@@ -702,11 +702,11 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
 
 
   container_globos.addChild(unVdoClked);
-  dosVdoClked.x=unVdoClked.x+unVdoClked.width;
+  dosVdoClked.x=unVdoClked.x+bMargin;
   container_globos.addChild(dosVdoClked);
-  tresVdoClked.x=unVdoClked.x+unVdoClked.width*2;
+  tresVdoClked.x=unVdoClked.x+bMargin*2;
   container_globos.addChild(tresVdoClked);
-  cuatroVdoClked.x=unVdoClked.x+unVdoClked.width*3;
+  cuatroVdoClked.x=unVdoClked.x+bMargin*3;
   container_globos.addChild(cuatroVdoClked);
   container_globos.addChild(unVdoB);
   container_globos.addChild(dosVdoB);

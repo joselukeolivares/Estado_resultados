@@ -9,9 +9,12 @@ canvas {
   left: 0;
 }
 
+footer {
+  user-select: none;
+}
+
 .intro {
   font-size: 14px;
-
 }
 
 .parpadeo{
@@ -60,7 +63,10 @@ canvas {
 
 .title{
   font-size: 40px;
+}
 
+.subTitle{
+  font-size: 28px;
 }
 
 .sin_margen{
