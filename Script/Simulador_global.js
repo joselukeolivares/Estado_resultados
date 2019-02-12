@@ -23,24 +23,6 @@ function simulador_global() {
                     "2.-Z 135X193.png",
                     "3.-Q 143X193.png"
                   ];
-    let title = document.createElement("h1");
-    title.className = "title";
-    title.innerHTML = "Estado de Resultados de Clientes";
-    title.style.top = self.app.screen.height * 0.05  + "px";
-    app.appendChild(title);
-
-    let subTitle = document.createElement("h3");
-    subTitle.className = "subTitle";
-    subTitle.innerHTML = "Simluador Global";
-    subTitle.style.top = self.app.screen.height * 0.13 + "px";
-    app.appendChild(subTitle);
-
-    let estrategia = document.createElement("h3");
-    estrategia.className = "subTitle";
-    estrategia.innerHTML = "Ahora, te invitamos a crear tu propia estrategia de clientes. Selecciona uno o varios perfiles de clientes para comenzar a mostrar e interactuar con su Tasa de Compra para que visualices el efecto en la Tasa de Compra y Venta Total.";
-    estrategia.style.top = self.app.screen.height * 0.18 + "px";
-    estrategia.style.fontSize=factorScreen(20)+"px";
-    app.appendChild(estrategia);
 
 
     var container_characters = new PIXI.Container();
@@ -130,6 +112,111 @@ function simulador_global() {
 
      self.app.stage.addChild(total_tc);
      self.app.stage.addChild(total_vta);
+
+     let square = document.createElement("div");
+     square.className = "square";
+     square.style.height = height + "px";
+     square.style.width = width + "px";
+     square.style.backgroundColor = "#000";
+     square.style.opacity = 0.7;
+     square.style.position = "absolute";
+     square.style.top = "0px";
+     app.appendChild(square);
+
+     let title = document.createElement("h1");
+     title.className = "title";
+     title.innerHTML = "Estado de Resultados de Clientes";
+     title.style.top = self.app.screen.height * 0.25  + "px";
+     app.appendChild(title);
+
+     let subTitle = document.createElement("h3");
+     subTitle.className = "subTitle";
+     subTitle.innerHTML = "Simluador Global";
+     subTitle.style.top = self.app.screen.height * 0.33 + "px";
+     app.appendChild(subTitle);
+
+     let estrategia = document.createElement("h3");
+     estrategia.className = "subTitle";
+     estrategia.innerHTML = "Ahora, te invitamos a crear tu propia estrategia de clientes. Selecciona uno o varios perfiles de clientes para comenzar a mostrar e interactuar con su Tasa de Compra para que visualices el efecto en la Tasa de Compra y Venta Total.";
+     estrategia.style.top = self.app.screen.height * 0.4 + "px";
+     estrategia.style.left = "50%";
+     estrategia.style.width = "60%";
+     estrategia.style.fontSize = factorScreen(20) + "px";
+     app.appendChild(estrategia);
+     estrategia.style.marginLeft = "-" + estrategia.offsetWidth / 2 + "px";
+
+     let contButtonIntro = document.createElement("div");
+     contButtonIntro.className = "contButtonIntro";
+     contButtonIntro.innerHTML = "CONTINUAR";
+     contButtonIntro.style.left = "50%";
+     contButtonIntro.style.top = self.app.screen.height * 0.6 + "px";
+     app.appendChild(contButtonIntro);
+
+     // let contButtonIntro = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
+     // contButtonIntro.x = width * .5;
+     // contButtonIntro.y = height * .95;
+     // contButtonIntro.anchor.set(0.5);
+     // contButtonIntro.scale.set(factorScreen(.6));
+     // contButtonIntro.interactive = true;
+     // contButtonIntro.buttonMode = true;
+     // self.app.stage.addChild(contButtonIntro);
+
+
+
+    contButtonIntro.addEventListener("click", function() {
+    TweenLite.to([title, subTitle, estrategia, contButtonIntro], 0.2, {opacity: 0, onComplete: function() {
+        app.removeChild(contButtonIntro);
+        app.removeChild(estrategia);
+        app.removeChild(subTitle);
+        title.innerHTML = "Da Click en cualquier personaje para interactuar";
+        title.style.top = self.app.screen.height * 0.65 + "px";
+        TweenLite.to(title, 0.2, {opacity: 1});
+
+        tempApp = new PIXI.Application(width, height, {transparent: true});
+        app.appendChild(tempApp.renderer.view);
+
+        let clienteG = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/CTES EN 500X350/2. GENERADOS 500x350.png"].texture);
+        clienteG.anchor.set(0.5);
+        clienteG.alpha = 0;
+        clienteG.x = width * 0.5;
+        clienteG.y = height * 0.4;
+        clienteG.scale.set(factorScreen(0.6));
+        clienteG.interactive = true;
+        clienteG.buttonMode = true;
+        tempApp.stage.addChild(clienteG);
+
+        let pointer = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/ic-hand.png"].texture);
+        pointer.anchor.set(0.5);
+        pointer.alpha = 0;
+        pointer.x = width * 0.8;
+        pointer.y = height * 0.55;
+        pointer.scale.set(factorScreen(0.75));
+        tempApp.stage.addChild(pointer);
+
+        clienteG.on("pointerover", function(e) {
+          let tl = new TimelineMax()
+          tl
+            .to(clienteG, 0.2, {y: "-=40"})
+            .to(clienteG, 0.7, {y: height * 0.4, ease:Bounce.easeOut});
+        });
+
+        clienteG.on("pointertap", function() {
+          TweenLite.to([square, title], 0.5, {opacity: 0});
+          TweenLite.to([clienteG, pointer], 0.5, {alpha: 0, onComplete: function() {
+            tempApp.destroy(true);
+            app.removeChild(square);
+            app.removeChild(title);
+          }});
+        });
+
+        TweenLite.to([clienteG, pointer], 0.2, {alpha: 1, onComplete: function() {
+          tl = new TimelineMax({repeat: 3});
+          tl
+            .to(pointer, 1.7, {x: width * 0.5, y: height * 0.4})
+            .to(pointer, 1.7, {x: width * 0.8, y: height * 0.55});
+        }});
+      }});
+    });
 
      for(let i = 0 ; i < characters.length; i++) {
 
@@ -327,6 +414,7 @@ for(var j=0;j<vencidos.length;j++){
   ));
   self.characters[self.characters.length-1].vencido=j+2;
 }
+
 
 self.updateTotal(99999,"NA");
 self.stepBack.push(JSON.stringify(self.characters));

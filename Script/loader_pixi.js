@@ -52,6 +52,8 @@ function loader_pixi(){
           "assets/ui/bloque_3/num-800mil.png",
           "assets/ui/bloque_4/LEVANTANDO_LA_ MANO.png",
           "assets/ui/bloque_5/bloque5_ctes.json",
+          "assets/ui/bloque_5/ic-hand.png",
+          "assets/ui/bloque_5/CTES EN 500X350/2. GENERADOS 500x350.png",
           "assets/ui/bloque_5/spritesheet_bloque_5.json",
           "assets/ui/bloque_5/botones/13. RECUADRO DE TASA DE COMPRA.png",
           "assets/ui/bloque_5/botones/14. RECUADRO DE TASA DE C.P.A Y VENTA.png",
