@@ -1,6 +1,7 @@
 function simulador_global() {
   var self = {};
   var app = document.getElementById("aplicacion");
+  let scale1 = height * 0.5 / 950;
   self.characters = [];
   self.stepBack=[];
   self.historyFlag=true;
@@ -23,10 +24,51 @@ function simulador_global() {
                     "2.-Z 135X193.png",
                     "3.-Q 143X193.png"
                   ];
+    let background = new PIXI.Sprite(PIXI.loader.resources["assets/Interior tienda.png"].texture);
+    background.anchor.set(0.5);
+    background.x = self.app.screen.width * 0.5;
+    background.y = self.app.screen.height * 0.5;
+    background.name = "background";
+    background.scale.set(scale1, scale1);
+    self.app.stage.addChild(background);
 
+    let container = new PIXI.Container();
+    container.name = "muebles";
+    let id = Loader.resources['assets/ui/bloque_1/Articulos.json'].textures;
 
-    var container_characters = new PIXI.Container();
-    self.app.stage.addChild(container_characters);
+    let audio = new PIXI.Sprite(id["8. AUDIO.png"]);
+    audio.name = "audio";
+    audio.anchor.set(0.5);
+    audio.scale.set(scale1, scale1);
+    audio.x = background.width * 0.88;
+    audio.y = background.height * 0.42;
+    container.addChild(audio);
+
+    let tvs = new PIXI.Sprite(id["5. TVS.png"]);
+    tvs.name = "tvs";
+    tvs.anchor.set(0.5);
+    tvs.scale.set(scale1, scale1);
+    tvs.x = background.width * 1;
+    tvs.y = background.height * 0.63;
+    container.addChild(tvs);
+
+    let sala = new PIXI.Sprite(id["6. SALA.png"]);
+    sala.name = "sala";
+    sala.anchor.set(0.5);
+    sala.scale.set(scale1, scale1);
+    sala.x = background.width * 0.1;
+    sala.y = background.height * 0.35;
+    container.addChild(sala);
+
+    let lineablanca = new PIXI.Sprite(id["9. LINEA BLANCA.png"]);
+    lineablanca.name = "lineablanca";
+    lineablanca.anchor.set(0.5);
+    lineablanca.scale.set(scale1, scale1);
+    lineablanca.x = background.width * 0.1;
+    lineablanca.y = background.height * 0.45;
+    container.addChild(lineablanca);
+
+    self.app.stage.addChild(container);
 
     var estilo1 = {
        fontFamily:"Roboto-Bold",
@@ -42,12 +84,12 @@ function simulador_global() {
 
      var total_tc = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES 1.png"].texture);
      total_tc.x = self.app.screen.width / 4;
-     total_tc.y = self.app.screen.height / 1.1;
+     total_tc.y = self.app.screen.height / 20;
      total_tc.scale.set(self.app.screen.width * .45 / 950);
 
      var total_vta = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/botones/12. RECUADRO DE RESULTADOS FINALES.png"].texture);
      total_vta.x = self.app.screen.width / 2;
-     total_vta.y = self.app.screen.height / 1.1;
+     total_vta.y = self.app.screen.height / 20;
      total_vta.scale.set(factorScreen(.85),self.app.screen.width * .45 / 950);
 
      let total = document.createElement("p");
@@ -78,35 +120,35 @@ function simulador_global() {
      var tcTotalElm = document.createElement("p");
      tcTotalElm.setAttribute("id", "tc-total-tag");
      tcTotalElm.setAttribute("class","sin_margen");
-     tcTotalElm.setAttribute("style", "position: absolute; top: " + (total_tc.y) + "px; left: " + (total_tc.x + total_tc.width / 2) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(28)+"px; font-weight: bold;");
+     tcTotalElm.setAttribute("style", "position: absolute; top:" + (total_tc.y + 10) + "px; left: " + (total_tc.x + total_tc.width / 1.65) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(28)+"px; font-weight: bold;");
      tcTotalElm.typeObj = 1;
      app.appendChild(tcTotalElm);
 
      var totalVentaElm = document.createElement("p");
      totalVentaElm.setAttribute("id", "total-vta-tag");
      totalVentaElm.setAttribute("class","sin_margen");
-     totalVentaElm.setAttribute("style", "position:absolute;top:"+(total_vta.y)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(28)+"px;font-weight:bold;");
-     totalVentaElm.typeObj=1;
+     totalVentaElm.setAttribute("style", "position:absolute;top:"+(total_vta.y + 9)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(28)+"px;font-weight:bold;");
+     totalVentaElm.typeObj = 1;
      app.appendChild(totalVentaElm);
 
      var tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
      tcTotalCtesElm.setAttribute("class","sin_margen p_tags");
-     tcTotalCtesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y)+"px;left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(18)+"px;font-weight:bold;color:#175383;");
+     tcTotalCtesElm.setAttribute("style", "position: absolute; top:" + (total_tc.y + 6) + "px; left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(20)+"px;font-weight:bold;color:#175383;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
 
      var ctesElm=document.createElement("p");
-     ctesElm.innerHTML="Clientes";
+     ctesElm.innerHTML = "Clientes";
      ctesElm.setAttribute("id", "ctesElm");
      ctesElm.setAttribute("class","sin_margen");
-     ctesElm.setAttribute("style", "position:absolute;top:"+(total_tc.y+(total_tc.height/2))+"px;left:"+(total_tc.x+total_tc.width/8)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#175383;");
-     ctesElm.typeObj=1;
+     ctesElm.setAttribute("style", "position: absolute; top:"+(total_tc.y + (total_tc.height / 1.7))+"px; left:"+(total_tc.x + total_tc.width / 10)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(17)+"px;font-weight:bold;color:#175383;");
+     ctesElm.typeObj = 1;
      app.appendChild(ctesElm);
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
-     varGlobalElm.setAttribute("style","position:absolute;top:"+(total_vta.y-16)+"px;left:"+(total_vta.x+total_vta.width)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;color:#00CD00;");
+     varGlobalElm.setAttribute("style","position: absolute; top:"+(total_vta.y - 13)+"px; left:"+(total_vta.x + total_vta.width + 10)+"px; font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;color:#00CD00;");
      varGlobalElm.typeObj=1;
      app.appendChild(varGlobalElm);
 
@@ -877,8 +919,8 @@ var regresar = PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN P
 var regresar_2 =PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"].texture;
 var button = new PIXI.Sprite(regresar);
 
-button.x = self.app.screen.width*.75;
-button.y = self.app.screen.height/1.1;
+button.x = self.app.screen.width * .75;
+button.y = self.app.screen.height / 20;
 button.scale.set(self.app.screen.width*.35/950);
 button.interactive = true;
 button.buttonMode = true;
@@ -952,7 +994,7 @@ button
  var clearButton = new PIXI.Sprite(clear);
 
  clearButton.x = self.app.screen.width * .8;
- clearButton.y = self.app.screen.height / 1.1;
+ clearButton.y = self.app.screen.height / 20;
 
  clearButton.scale.set(self.app.screen.width*.35/950);
  clearButton.interactive = true;

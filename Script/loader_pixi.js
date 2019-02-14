@@ -4,6 +4,7 @@ function loader_pixi(){
   var Loader = PIXI.loader;
   Loader
         .add([
+          "assets/Interior tienda.png",
           "assets/ui/bloque_1/Articulos.json",
           "assets/video/ESTADO DE RESULTADO.mp4",
           {name:"Cliente_naranja",url:"assets/CTE CAMINANDO/CTECAMINANDO.json"},
