@@ -7,6 +7,7 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
+  user-select: none;
 }
 
 footer {
@@ -35,6 +36,89 @@ footer {
 
 .circulos {
   user-select: none;
+}
+
+#toolTip {
+  overflow: hidden;
+  visibility: hidden;
+  text-align: center;
+  position: absolute;
+  user-select: none;
+  border-radius: 30px;
+  left: 50%;
+  height: 520px;
+  width: 440px;
+  margin-left: -220px;
+  color: #FFFFFF;
+  background: #114C99;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease-in;
+}
+
+.tc{
+  position: absolute;
+  width: 350px;
+  height: 60px;
+  text-align: center;
+}
+
+.cpa {
+  position: absolute;
+  width: 330px;
+  height: 50px;
+  text-align: center;
+}
+
+.vta {
+  position: absolute;
+  width: 330px;
+  height: 50px;
+  text-align: center;
+}
+
+.rect1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ffde41;
+  border-radius: 30px;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.rect2 {
+  position: relative;
+  float: right;
+  width: 60%;
+  height: 100%;
+  background: #FFFFFF;
+  border-radius: 29px;
+  box-shadow: -8px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#okButton {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  align-self: center;
+  background: #ffde41;
+  border-radius: 15px;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+
+#tooltipFilter {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.filter {
+  opacity: 0.7;
+  position: absolute;
+  top: 0px;
 }
 
 .contButtonIntro {
