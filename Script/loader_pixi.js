@@ -138,7 +138,7 @@ function loader_pixi(){
 
 
         function charged(){
-           actual_app=simulador_global().createApp();
+           actual_app=start().createApp();
         }
 
 
