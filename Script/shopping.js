@@ -21,7 +21,7 @@ function shopping(){
 
                 tienda_dentro.x =shop.width/2-tienda_dentro.width/2;
                 tienda_dentro.y = 0;
-                debugger;
+               // debugger;
                 //tienda_dentro.anchor.set(0.5,0.5);
 
                 app.stage.addChild(tienda_dentro);
@@ -130,7 +130,7 @@ var mueblesY=tienda_dentro.y+tienda_dentro.height/3.5;
      comedor.parentGroup=group_2;
      //comedor.y= app.screen.height / 1.4;
 
-
+     debugger;
      perfumeria = new PIXI.Sprite(id['PERFUMERIA.png']);
 	   perfumeria.position.set(shop.width*.01, screen.height / 6.2);
 	   perfumeria.scale.set(shop.escala_2,shop.escala_2);
@@ -313,7 +313,7 @@ function LoadButton(){
      TweenMax.to([tienda_dentro,sala,tvs,lavanderia,audio,lineablanca,celulares,comedor,perfumeria],3,{alpha:1});
      app.stage.addChild(container);
      //console.log(self.app.stage);
-     debugger;
+    // debugger;
 
     clientes(app);
 
