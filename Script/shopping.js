@@ -14,7 +14,7 @@ function shopping(){
   shop.width=app.screen.width;
   shop.height=app.screen.height;
 
-    var texture = PIXI.loader.resources['assets/4. TIENDA FONDO.png'].texture;
+    var texture = PIXI.loader.resources['assets/Interior tienda.png'].texture;
     var tienda_dentro = new PIXI.Sprite(texture);
     tienda_dentro.alpha=0;
     tienda_dentro.scale.set(shop.escala_2,shop.escala_2);
@@ -69,6 +69,7 @@ var mueblesX1=tienda_dentro.x;
 var mueblesY=tienda_dentro.y+tienda_dentro.height/3.5;
 
      var id = Loader.resources['assets/ui/bloque_1/Articulos.json'].textures;
+     debugger;
 
        tvs = new PIXI.Sprite(id['5. TVS.png']);
 	   tvs.position.set(mueblesX2, mueblesY);

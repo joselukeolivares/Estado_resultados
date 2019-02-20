@@ -13,7 +13,7 @@ function start() {
   self.createApp = function() {
     let appDiv = document.getElementById("aplicacion");
     self.app = new PIXI.Application(width, height, {transparent: true});
-    debugger;
+
     self.width = self.app.screen.width;
     self.height = self.app.screen.height;
 
