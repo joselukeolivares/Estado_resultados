@@ -186,7 +186,7 @@ function indicators() {
         icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: calc(200% - 5rem)");
 
         if(i==2){
-          debugger;
+          //debugger;
           icRightArrow.style.right="-4rem";
           icRightArrow.style.left="";
           }
@@ -204,7 +204,7 @@ function indicators() {
         stepBack.addEventListener('pointerdown',function(){
           let indicator_i=this.indicator_i;
           let indicator_j=this.indicator_j;
-          debugger;
+          //debugger;
           if(indicator_j-1>0){
 
             goToIndicator(this.indicator_i,j,1)
@@ -246,7 +246,7 @@ function indicators() {
         }
 
         function goToIndicator(i,j,direction) {
-          debugger;
+          //debugger;
           if(i<2 && j!=0 && !direction){
             j=2;
           }
@@ -353,7 +353,7 @@ function indicators() {
               //circle1.style.left = circle1.parentNode.clientWidth * 0.33 - circle1.clientWidth + "px";
               //circle1.style.marginTop="1%";
               circle1.style.top=divobt.offsetTop+"px";
-              debugger;
+              //debugger;
               //circle2.style.left =circle1.style.left;
               //circle2.style.marginTop="1%";
               circle2.style.top = content.offsetTop+"px";
@@ -416,15 +416,15 @@ function indicators() {
       things.name="thingsX"
       things.scale.set(scale2);
       //things.anchor.set(0.5);
-      things.x = app.screen.width / 1.55;
+      things.x = app.screen.width / 1.9;
       things.y = app.screen.height / 1.9;
 
       var sliderX=document.getElementById("slider_"+i);
       if(i<2){
-      things.x = parseFloat(sliderX.style.left);
+      things.x = parseFloat(sliderX.style.left)-50;
       things.y = parseFloat(sliderX.style.top)-things.height*2.4;
       }
-      debugger;
+      //debugger;
 
 
       things.visible = false;
@@ -534,7 +534,7 @@ function indicators() {
     actualContent.style.position="absolute";
     actualContent.style.position="absolute";
     actualContent.style.cursor="pointer";
-    debugger;
+    //debugger;
 
     let content = document.createElement("p");
     content.setAttribute("class", "content");
@@ -580,7 +580,7 @@ function indicators() {
       icBack.style.display = "block";
 
       icBack.addEventListener("pointerdown", function() {
-        debugger;
+        //debugger;
         var back=stages[2].querySelector("#stepBack22");
             back.style.display = "block";
         actualContent.innerHTML = subTitles[2][2];
@@ -702,7 +702,7 @@ function indicators() {
         });
 
         self.tasaCompra_= function() {
-          debugger;
+          //debugger;
           self.offStepBack();
 
           if(stages[1].style.display == "block") {
@@ -948,7 +948,7 @@ function indicators() {
             self.turnOn_VTA();
 
           var icBack=app.stage.getChildByName("vSprites1").getChildByName("icBack");
-          debugger;
+          //debugger;
           app.stage.getChildByName("vSprites1").removeChild(icBack);
         };
       }});

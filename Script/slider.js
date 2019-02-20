@@ -8,7 +8,8 @@ function slider(appDiv, app, index) {
   dom.setAttribute("id", "slider_" + index);
   dom.className = "slider";
   //dom.style.left = app.width * 0.57 + "px";
-  dom.style.top = app.height * 1.6 + "px";
+  debugger;
+
   dom.style.width = "200px";
   dom.style.height = "50px";
   dom.style.position = "absolute";
@@ -34,23 +35,26 @@ function slider(appDiv, app, index) {
   interactiveSquares.name = "interactiveSquares" + index;
   var loader = PIXI.loader;
   let tc_square, cp_square, tcCts, tcPer, cpSls;
+  var scale_temp=.8;
+  if(app.width<=1024 && app.height <=768){
+    scale_temp= .6;
+  }
+  if(app.width<=740 && app.height <=360){
+    scale_temp= .4;
+  }
 
   if(index == 0) {
     tc_square = new PIXI.Sprite(loader.resources["assets/ui/bloque_3/tasa_indicador.png"].texture);
     tc_square.x = app.width * 0.7;
     tc_square.y = app.height * 1.3;
-    var scale_temp=.8;
-    if(app.width<=1024 && app.height <=768){
-      scale_temp= .6;
-    }
-    if(app.width<=740 && app.height <=360){
-      scale_temp= .4;
-    }
+
+
     tc_square.scale.set(scale_temp);
     tc_square.name = "tc_square";
     interactiveSquares.addChild(tc_square);
+    dom.style.top =(tc_square.y+tc_square.height)+25+ "px";
 
-    dom.style.left = tc_square.x+"px";
+    dom.style.left = tc_square.x+((tc_square.width-200)/2)+"px";
 
     tcCts = document.createElement("p");
     tcCts.setAttribute("id", "tcCts");
@@ -82,19 +86,20 @@ function slider(appDiv, app, index) {
     cp_square = new PIXI.Sprite(loader.resources["assets/ui/bloque_3/compraProm_indicador.png"].texture);
     cp_square.x = app.width * 0.7;
     cp_square.y = app.height * 1.3;
-    cp_square.scale.set(factorScreen(1.7));
+    cp_square.scale.set(scale_temp);
     cp_square.name = "cp_square";
     interactiveSquares.addChild(cp_square);
 
-    dom.style.left = cp_square.x+"px";
+    dom.style.top =(cp_square.y+cp_square.height)+25+ "px";
+    dom.style.left = cp_square.x+((cp_square.width-200)/2)+"px";
 
     cpSls = document.createElement("p");
     cpSls.setAttribute("id", "cpSls");
     cpSls.innerHTML = "$1,000.00";
     cpSls.style.fontSize = factorScreen(40)+"px";
     cpSls.style.margin="0px";
-    cpSls.style.left = cp_square.x * 1.02 + "px";
-    cpSls.style.top = cp_square.y * 1.02 + "px";
+    cpSls.style.left = cp_square.x + (cp_square.width*.25) + "px";
+    cpSls.style.top = cp_square.y + (cp_square.height*.25) + "px";
     cpSls.style.display = "none";
     appDiv.appendChild(cpSls);
   }

@@ -120,21 +120,27 @@ function simulador_global() {
      var tcTotalElm = document.createElement("p");
      tcTotalElm.setAttribute("id", "tc-total-tag");
      tcTotalElm.setAttribute("class","sin_margen");
+
      tcTotalElm.setAttribute("style", "position: absolute; top:" + (total_tc.y + 10) + "px; left: " + (total_tc.x + total_tc.width / 1.65) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(28)+"px; font-weight: bold;");
+
      tcTotalElm.typeObj = 1;
      app.appendChild(tcTotalElm);
 
      var totalVentaElm = document.createElement("p");
      totalVentaElm.setAttribute("id", "total-vta-tag");
      totalVentaElm.setAttribute("class","sin_margen");
+
      totalVentaElm.setAttribute("style", "position:absolute;top:"+(total_vta.y + 9)+"px;left:"+(total_vta.x+total_vta.width / 10)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(28)+"px;font-weight:bold;");
      totalVentaElm.typeObj = 1;
+
      app.appendChild(totalVentaElm);
 
      var tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
      tcTotalCtesElm.setAttribute("class","sin_margen p_tags");
+
      tcTotalCtesElm.setAttribute("style", "position: absolute; top:" + (total_tc.y + 6) + "px; left:"+(total_tc.x+total_tc.width*.05)+"px;font-Family:roboto-regular;font-Size:"+factorScreen(20)+"px;font-weight:bold;color:#175383;");
+
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
 
@@ -436,6 +442,7 @@ function simulador_global() {
        SliderB5B6(app, tc_test, "slider1" + i, "slider_fam", (tcX) / width, (tcY + tc2.offsetHeight * 1.2) / height, tc2.offsetWidth, cpa2.offsetHeight, self);
        addCharacter(i);
     }
+
 var vencidos=["Vencidos2","Vencidos3","Vencidos+4"]
 
 for(var j=0;j<vencidos.length;j++){
@@ -509,11 +516,13 @@ var container_globos = new PIXI.Container();
 
 
 
-//container_globos.scale.set(self.app.screen.width*.35/950);
+
 container_globos.width=100;
+
 container_globos.x = self.app.screen.width / 2.97;
 container_globos.y = self.app.screen.height / 1.66;
 container_globos.scale.set(self.app.screen.width * .65 / 950);
+
 
 let bMargin = unVdoB.width + 3;
 unVdoB.x =-10;
@@ -814,7 +823,7 @@ var title_descrp1=document.createElement('h3');
     aplicacion.appendChild(title_descrp1);
 
 var paragraph1=document.createElement('p');
-    paragraph1.innerHTML="La cartera potencial está compuesta por 4 perfiles de clientes: Activos sin Vencidos, Saldados 0-15, Clientes Generados y Vencidos 1. Se le denomina cartera potencial porque en conjunto participan con aproximadamente el 93% de las ventas totales.";
+    paragraph1.innerHTML="La cartera Potencial está compuesta por 5 perfiles de clientes: Nunca 0-15, Activos sin Vencido, Vencido 1, saldados 0-15 y Generados. Se denomina cartera potencial porque en conjunto participan aproximadamente con el 93% de las ventas totales.";
     paragraph1.style.color="#ffffff";
     paragraph1.style.fontSize=factorScreen(20)+"px";
     paragraph1.style.position="absolute";
@@ -836,28 +845,34 @@ var paragraph1=document.createElement('p');
                     "3.-Q 143X193.png"
                   ];
     var cteASV=new PIXI.Sprite(atlasBlock6[characters[0]]);
-        cteASV.scale.set(factorScreen(.5));
+        cteASV.scale.set(factorScreen(.55));
         cteASV.x=parseFloat(paragraph1.offsetLeft)+parseFloat(paragraph1.clientWidth)/4;
         cteASV.y=parseFloat(paragraph1.offsetTop)+parseFloat(paragraph1.clientHeight);
         self.app.stage.addChild(cteASV);
 
     var cteS15=new PIXI.Sprite(atlasBlock6[characters[1]]);
-        cteS15.scale.set(.5);
-        cteS15.x=cteASV.x+cteASV.width*2;
+        cteS15.scale.set(factorScreen(.5));
+        cteS15.x=cteASV.x+cteASV.width*factorScreen(2);
         cteS15.y=cteASV.y;
         self.app.stage.addChild(cteS15);
 
-    var cteG=new PIXI.Sprite(atlasBlock6[characters[4]]);
-        cteG.scale.set(.5)
-        cteG.x=cteS15.x+cteS15.width*2;
-        cteG.y=cteASV.y;
-        self.app.stage.addChild(cteG);
-
-    var cteACV=new PIXI.Sprite(atlasBlock6[characters[6]]);
-        cteACV.scale.set(.5)
-        cteACV.x=cteG.x+cteG.width*2;
+    var cteACV=new PIXI.Sprite(atlasBlock6[characters[4]]);
+        cteACV.scale.set(factorScreen(.5))
+        cteACV.x=cteS15.x+cteS15.width*factorScreen(2);
         cteACV.y=cteASV.y;
         self.app.stage.addChild(cteACV);
+
+    var cte_S15=new PIXI.Sprite(atlasBlock6[characters[2]]);
+        cte_S15.scale.set(factorScreen(.5))
+        cte_S15.x=cteACV.x+cteACV.width*factorScreen(2);
+        cte_S15.y=cteASV.y;
+        self.app.stage.addChild(cte_S15);
+
+    var cteG=new PIXI.Sprite(atlasBlock6[characters[6]]);
+        cteG.scale.set(factorScreen(.5))
+        cteG.x=cte_S15.x+cte_S15.width*factorScreen(2);
+        cteG.y=cteASV.y;
+        self.app.stage.addChild(cteG);
 
 var title_descrp2=document.createElement('h3');
     title_descrp2.innerHTML="Monitoreo de Indicadores";
@@ -880,14 +895,14 @@ var paragraph2=document.createElement('p');
     aplicacion.appendChild(paragraph2);
 
     var cteG2=new PIXI.Sprite(atlasBlock6[characters[6]]);
-        cteG2.scale.set(.5)
+        cteG2.scale.set(factorScreen(.5))
         cteG2.x = cteS15.x ;
         cteG2.y=parseFloat(paragraph2.offsetTop)+parseFloat(paragraph2.clientHeight);
         self.app.stage.addChild(cteG2);
 
     var cteACV2=new PIXI.Sprite(atlasBlock6[characters[4]]);
-        cteACV2.scale.set(.5)
-        cteACV2.x = cteG.x;
+        cteACV2.scale.set(factorScreen(.5))
+        cteACV2.x = cteG2.x+cteG2.width*2;
         cteACV2.y = cteG2.y;
         self.app.stage.addChild(cteACV2);
 
@@ -943,6 +958,7 @@ var button = new PIXI.Sprite(regresar);
 
 button.x = self.app.screen.width * .75;
 button.y = self.app.screen.height / 20;
+
 button.scale.set(self.app.screen.width*.35/950);
 button.interactive = true;
 button.buttonMode = true;
@@ -1016,7 +1032,9 @@ button
  var clearButton = new PIXI.Sprite(clear);
 
  clearButton.x = self.app.screen.width * .8;
+
  clearButton.y = self.app.screen.height / 20;
+
 
  clearButton.scale.set(self.app.screen.width*.35/950);
  clearButton.interactive = true;
@@ -1275,6 +1293,7 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal) {
   };
 }
 
+
 function show_hide_data() {
   console.log("clicked");
   let app = document.getElementById('aplicacion');
@@ -1301,6 +1320,7 @@ function show_hide_data() {
       selected[i].classList.remove('hide_element');
       document.getElementById("slider1" + this.indice).classList.remove('hide_element')
     }
+
 
     TweenLite.to(tooltipFilter, 0.6, {opacity: 1});
     TweenLite.to(toolTip, 0.3, {opacity: 1});
@@ -1336,6 +1356,7 @@ function show_hide_data() {
        try{
          pTags[0].parentNode.removeChild(pTags[0])
        }catch(e){console.log(e)}
+
     }
 
     var sliders=document.getElementsByClassName('slider');

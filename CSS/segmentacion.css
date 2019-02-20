@@ -59,11 +59,19 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 
 #contenedor{
 	/*height: 40%;*/
-	width: 40%;
+	width: 560px;
 	position: absolute;
 	top: 25%;
-	right: 5%;
+	right: 1%;
 
+}
+
+#contenedor_2{
+	word-break: keep-all;
+	width: 390px;
+	position: absolute;
+	right: 1%;
+	top: calc(25% + 210px);
 }
 
 @media screen and (max-height:480px) {
@@ -75,6 +83,22 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 
 	#post-title-text span {
 	font-size:13px;
+	}
+
+	#contenedor{
+		width: 404px;
+		position: absolute;
+		top: 25%;
+		right: 1%;
+
+	}
+
+	#contenedor_2{
+		word-break: keep-all;
+		width: 390px;
+		position: absolute;
+		right: 1%;
+		top: calc(35% + 66px);
 	}
 
 }
