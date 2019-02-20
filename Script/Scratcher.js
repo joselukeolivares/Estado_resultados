@@ -5,7 +5,7 @@ var div=document.createElement("div");
     //div.style.left="7.4%";
     div.style.display="none";
     div.style.height=aplicacion.style.height;
-    debugger;
+    
 
 
 
