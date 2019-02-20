@@ -297,7 +297,7 @@ function simulador_global() {
      tooltipFilter.setAttribute("id", "tooltipFilter");
      tooltipFilter.style.height = height + "px";
      tooltipFilter.style.width = width + "px";
-     tooltipFilter.style.backgroundColor = "rgba(255, 244, 223, 0.3)";
+     tooltipFilter.style.backgroundColor = "rgba(255, 244, 223, 0.5)";
      // tooltipFilter.style.display = "none";
      app.appendChild(tooltipFilter);
 
@@ -1456,18 +1456,18 @@ function show_hide_data() {
     }
     toolTip.classList.remove(toolTip.classList.item(1));
   } else {
-    toolTip.style.visibility = "visible";
-    tooltipFilter.style.visibility = "visible";
     toolTip.classList.add(this.indice);
+    TweenMax.to(tooltipFilter, 0.5, {visibility: "visible", opacity: 1, ease:Power1.easeInOut})
+    TweenMax.to(toolTip, 0.6, {visibility: "visible", opacity: 1, ease:Power1.easeInOut});
+
+    // toolTip.style.visibility = "visible";
+    // tooltipFilter.style.visibility = "visible";
+
 
     for(var i = 0 ; i < selected.length; i++) {
       selected[i].classList.remove('hide_element');
       document.getElementById("slider1" + this.indice).classList.remove('hide_element')
     }
-
-
-    TweenLite.to(tooltipFilter, 0.6, {opacity: 1});
-    TweenLite.to(toolTip, 0.3, {opacity: 1});
   }
 }
 

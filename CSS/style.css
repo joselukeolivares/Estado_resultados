@@ -39,6 +39,7 @@ footer {
 }
 
 #toolTip {
+  opacity: 0;
   overflow: hidden;
   visibility: hidden;
   text-align: center;
@@ -53,6 +54,11 @@ footer {
   background: #114C99;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
   transition: all 0.1s ease-in;
+}
+
+#tooltipFilter {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .tc{
@@ -96,6 +102,7 @@ footer {
 }
 
 #okButton {
+  font-style: Roboto-Regular;
   font-size: 24px;
   font-weight: bold;
   color: #000;
@@ -107,17 +114,15 @@ footer {
   border-radius: 15px;
   box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  transition: all 0.1s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 #okButton:hover {
-  background: #9C8728;
+  background: #827121;  
+  box-shadow: 5px -5px 5px rgba(0, 0, 0, 0.5);
 }
 
-#tooltipFilter {
-  visibility: hidden;
-  opacity: 0;
-}
+
 
 .filter {
   opacity: 0.7;
