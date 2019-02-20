@@ -107,8 +107,12 @@ footer {
   border-radius: 15px;
   box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  transition: all 0.1s ease-in;
 }
 
+#okButton:hover {
+  background: #9C8728;
+}
 
 #tooltipFilter {
   visibility: hidden;

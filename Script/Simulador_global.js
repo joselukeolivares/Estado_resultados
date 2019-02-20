@@ -11,7 +11,7 @@ function simulador_global() {
   self.scoresBuilder=function(){
     debugger;
     let app=document.getElementById("aplicacion");
-    let table=document.createElement('div');
+    let table = document.createElement('div');
         table.setAttribute("id","table_scores");
     let scores_container=document.createElement('div');
         scores_container.setAttribute("id","scores_container");
@@ -435,7 +435,7 @@ function simulador_global() {
             app.removeChild(introFilter);
             app.removeChild(title);
           }});
-          TweenLite.to("#table_scores",2,{display:"block",opacity:1})
+          TweenLite.to("#table_scores", 1.5, {display:"block", opacity:1})
 
         });
 
