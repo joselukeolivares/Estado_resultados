@@ -1533,6 +1533,9 @@ function show_hide_data() {
 }
 
   self.destroyApp = function() {
+    var table_scores=document.getElementById("table_scores")
+        table_scores.parentNode.removeChild(table_scores);
+        
     if(self.app == null) return self;
     self.app.destroy(true);
     self.removeText();
