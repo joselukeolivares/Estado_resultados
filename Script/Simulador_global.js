@@ -9,7 +9,7 @@ function simulador_global() {
   let Loader = PIXI.loader;
 
   self.scoresBuilder=function(){
-    debugger;
+
     let app=document.getElementById("aplicacion");
     let table=document.createElement('div');
         table.setAttribute("id","table_scores");
@@ -131,7 +131,7 @@ function simulador_global() {
   }
 
   self.createApp = function () {
-    debugger;
+
 
     self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
     app.appendChild(self.app.renderer.view);
@@ -219,6 +219,7 @@ function simulador_global() {
      total.className = "tags final_tags";
      total.id="total_p_tag"
      total.innerHTML = "TOTAL";
+     total.style.color='black'
      total.style.top = self.app.screen.height * 0.91 + "px";
      total.style.left = self.app.screen.width * 0.16 + "px";
      app.appendChild(total);
@@ -229,12 +230,14 @@ function simulador_global() {
      tcTotal.className = "tags final_tags";
      tcTotal.innerHTML = "T.C.";
      tcTotal.style.left = self.app.screen.width * 0.4 + "px";
+     tcTotal.style.color="black"
      app.appendChild(tcTotal);
      tcTotal.style.top = (total_vta.y-tcTotal.clientHeight) + "px";
 
      let vtaTotal = document.createElement("p");
      vtaTotal.className = "tags final_tags";
      vtaTotal.innerHTML = "VENTA";
+     vtaTotal.style.color = "black";
      vtaTotal.style.left = self.app.screen.width * 0.56 + "px";
      app.appendChild(vtaTotal);
      vtaTotal.style.top = total_vta.y+ "px";
@@ -304,19 +307,35 @@ function simulador_global() {
      let toolTip = document.createElement("div");
      toolTip.setAttribute("id", "toolTip");
      toolTip.setAttribute("class", "toolTip");
-     toolTip.style.top = height * 0.2 + "px";
+     //toolTip.style.top = height * 0.2 + "px";
      app.appendChild(toolTip);
+
+     let icon_title=document.createElement('div')
+         icon_title.setAttribute("id","icon_title")
+
+     let head_selected=document.createElement('div')
+         head_selected.setAttribute("id","head_selected")
+
+     let title_selected=document.createElement("h2")
+         title_selected.setAttribute("id","title_selected")
+         title_selected.innerHTML="NO Character name selected"
+
+         icon_title.appendChild(head_selected)
+         icon_title.appendChild(title_selected)
+         toolTip.appendChild(icon_title);
+
 
      let tc2 = document.createElement("div");
      tc2.setAttribute("id", "tc-");
      tc2.className = "tc";
-     tc2.style.top = self.app.screen.width * 0.13 + "px";
+     //tc2.style.top = self.app.screen.width * 0.13 + "px";
      tc2.style.left = "50%";
      toolTip.appendChild(tc2);
      tc2.style.marginLeft = "-" + tc2.offsetWidth / 2 + "px";
 
      let tcRectY = document.createElement("div");
      tcRectY.className = "rect1";
+     tcRectY.setAttribute("id","tc_yellowDiv")
      tc2.appendChild(tcRectY);
 
      let tcRectW = document.createElement("div");
@@ -326,13 +345,14 @@ function simulador_global() {
      let cpa2 = document.createElement("div");
      cpa2.setAttribute("id", "cpa-");
      cpa2.className = "cpa";
-     cpa2.style.top = self.app.screen.width * 0.205 + "px";
+     //cpa2.style.top = self.app.screen.width * 0.205 + "px";
      cpa2.style.left = "50%";
      toolTip.appendChild(cpa2);
      cpa2.style.marginLeft = "-" + cpa2.offsetWidth / 2 + "px";
 
      let cpaRectY = document.createElement("div");
      cpaRectY.className = "rect1";
+     cpaRectY.setAttribute("id","cp_yellowDiv")
      cpa2.appendChild(cpaRectY);
 
      let cpaRectW = document.createElement("div");
@@ -342,13 +362,14 @@ function simulador_global() {
      let vta2 = document.createElement("div");
      vta2.setAttribute("id", "vta-");
      vta2.className = "vta";
-     vta2.style.top = self.app.screen.width * 0.25 + "px";
+     //vta2.style.top = self.app.screen.width * 0.25 + "px";
      vta2.style.left = "50%";
      toolTip.appendChild(vta2);
      vta2.style.marginLeft = "-" + vta2.offsetWidth / 2 + "px";
 
      let vtaRectY = document.createElement("div");
      vtaRectY.className = "rect1";
+     vtaRectY.setAttribute("id","vta_yellowDiv")
      vta2.appendChild(vtaRectY);
 
      let vtaRectW = document.createElement("div");
@@ -358,7 +379,7 @@ function simulador_global() {
      let okButton = document.createElement("div");
      okButton.setAttribute("id", "okButton");
      okButton.innerHTML = "OK";
-     okButton.style.margin = self.app.screen.width * 0.3 + "px auto";
+     //okButton.style.margin = self.app.screen.width * 0.3 + "px auto";
      toolTip.appendChild(okButton);
      okButton.addEventListener("click", show_hide_data);
 
@@ -436,6 +457,9 @@ function simulador_global() {
             app.removeChild(title);
           }});
           TweenLite.to("#table_scores",2,{display:"block",opacity:1})
+          for(var i=0;i<self.characters.length;i++)
+            document.getElementById("vta-character-"+i).classList.remove("hide_element");
+            //document.getElementById("vta-character-" + i).classList.remove('hide_element')
 
         });
 
@@ -475,6 +499,13 @@ function simulador_global() {
        character.datos="information_"+i;
        character.indice=i;
        character.on('pointerdown',show_hide_data);
+
+       let vta_seg=document.createElement('div')
+           vta_seg.setAttribute("id","vta-character-"+i)
+           vta_seg.setAttribute("class","hide_element")
+           vta_seg.setAttribute("style","position:absolute;left:"+character.x+"px;top:"+(character.y-18)+"px;background-color:white;border-radius: 10px;border-color: black;border-width: 1px;border-style: solid;")
+           app.appendChild(vta_seg);
+
 
        self.app.stage.addChild(subContainer);
        self.app.stage.addChild(subContainer2);
@@ -591,7 +622,7 @@ for(var j=0;j<vencidos.length;j++){
 self.scoresBuilder();
 self.updateTotal(99999,"NA");
 self.stepBack.push(JSON.stringify(self.characters));
-debugger;
+
 self.winners();
 
 var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
@@ -1210,6 +1241,7 @@ button
      document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(defaultVals[i].nCtes);
      document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].cpa));
      document.getElementById("vta-tag-" + i).innerHTML = "$"+ numberWithCommas(parseInt(defaultVals[i].vtaOriginal));
+     document.getElementById("vta-character-" + i).innerHTML = "$"+ numberWithCommas(parseInt(defaultVals[i].vtaOriginal));
      document.getElementById("tc-tag-" + i).innerHTML = (parseFloat(defaultVals[i].tcOriginal).toFixed(1))+"%";
 
 
@@ -1280,6 +1312,8 @@ function addCharacter(index) {
   document.getElementById("tc_clientes" + index).innerHTML = numberWithCommas(self.characters[index].countCtes);
   document.getElementById("cpa-tag-" + index).innerHTML = "$" + numberWithCommas(Math.round(self.characters[index].cpa));
   document.getElementById("vta-tag-" + index).innerHTML = "$"+ numberWithCommas(Math.round(self.characters[index].sale()));
+  document.getElementById("vta-character-" + index).innerHTML = "$"+ numberWithCommas(Math.round(self.characters[index].sale()));
+
   document.getElementById("tc-tag-" + index).innerHTML = parseFloat(self.characters[index].tc).toFixed(1) + "%";
   document.getElementById("tc-total-tag").innerHTML = toDate["TC \nTotal"] + "%";
   document.getElementById("vta_porcent"+ index).innerHTML = 0 + "%";
@@ -1364,7 +1398,12 @@ self.updateTotal = function (newTC,target) {
           if(variacion_cte<0)
             var_Seg.style.color="red";
 
-      document.getElementById("vta-tag-" + i).innerHTML="$"+numberWithCommas(Math.round(cte.sale()));}
+      var vta="$"+numberWithCommas(Math.round(cte.sale()));
+      var obj=document.getElementById("vta-character-"+i)
+      obj.innerHTML=vta;
+      debugger;
+      document.getElementById("vta-tag-"+ i).innerHTML=vta
+      }
   }//end if i<characters.leng-3
 
     ctsXtc+=cte.tc*cte.countCtes;
@@ -1414,7 +1453,7 @@ if(self.historyFlag&&self.stepBack.length<100){
   //self.indexHistory--;
   self.historyFlag=true;
 }
-  debugger;
+
   self.winners();
   return self;
 };
@@ -1453,6 +1492,7 @@ function show_hide_data() {
     for(var i=0; i<selectedOff.length; i++) {
       selectedOff[i].classList.add('hide_element');
       document.getElementById("slider1" + toolTip.classList[1]).classList.add('hide_element')
+      document.getElementById("vta-character-" + i).classList.remove('hide_element')
     }
     toolTip.classList.remove(toolTip.classList.item(1));
   } else {
@@ -1463,8 +1503,29 @@ function show_hide_data() {
     for(var i = 0 ; i < selected.length; i++) {
       selected[i].classList.remove('hide_element');
       document.getElementById("slider1" + this.indice).classList.remove('hide_element')
+      document.getElementById("vta-character-" + i).classList.add('hide_element')
+
     }
 
+    let segmentos = [
+      "Nunca015",
+      "Activos_SinVdo",
+      "Saldado015",
+      "Nunca+15",
+      "Vencidos1",
+      "Saldado+15",
+      "Generados",
+      "ClientesZ",
+      "Quebrantados",
+      "Vencidos2",
+      "Vencidos3",
+      "Vencidos4"
+    ];
+    let obj=document.getElementById("head_selected");
+    obj.style.backgroundImage="url(assets/ui/bloque_6/ERC-Characters/heads_characters/"+(segmentos[this.indice]).replace('+','_')+".png)";
+
+
+    document.getElementById("title_selected").innerHTML=segmentos[this.indice];
 
     TweenLite.to(tooltipFilter, 0.6, {opacity: 1});
     TweenLite.to(toolTip, 0.3, {opacity: 1});
