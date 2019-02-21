@@ -61,6 +61,10 @@ footer {
   visibility: hidden;
 }
 
+#toolTitle {
+  text-align: center;
+}
+
 .tc{
   position: absolute;
   width: 350px;

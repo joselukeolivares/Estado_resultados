@@ -307,6 +307,12 @@ function simulador_global() {
      toolTip.style.top = height * 0.2 + "px";
      app.appendChild(toolTip);
 
+     let toolTitle = document.createElement("h1");
+     toolTitle.setAttribute("id", "toolTitle");
+     toolTitle.innerHTML = "TEST";
+     toolTitle.style.margin = self.app.screen.height * 0.1 + "px auto 0";
+     toolTip.appendChild(toolTitle);
+
      let tc2 = document.createElement("div");
      tc2.setAttribute("id", "tc-");
      tc2.className = "tc";
@@ -358,7 +364,7 @@ function simulador_global() {
      let okButton = document.createElement("div");
      okButton.setAttribute("id", "okButton");
      okButton.innerHTML = "OK";
-     okButton.style.margin = self.app.screen.width * 0.3 + "px auto";
+     okButton.style.margin = self.app.screen.height * 0.36 + "px auto 0";
      toolTip.appendChild(okButton);
      okButton.addEventListener("click", show_hide_data);
 
@@ -1440,9 +1446,12 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) 
 
 function show_hide_data() {
   console.log("Clicked");
+  let sgments = ["Nunca 0-15", "Activo Sin Vencido", "Saldado 0-15", "Nunca +15", "Activo Con Vencido", "Saldado +15", "Generados", "Clientes Z", "Quebrantados"];
+  let title = document.getElementById("toolTitle");
   let app = document.getElementById('aplicacion');
   let selected = document.getElementsByClassName("sh_obj" + this.indice);
   let selectedOff = document.getElementsByClassName("sh_obj" + toolTip.classList[1]);
+
 
   if(toolTip.style.visibility == "visible") {
     TweenLite.to(tooltipFilter, 0.5, {opacity: 0});
@@ -1456,6 +1465,7 @@ function show_hide_data() {
     }
     toolTip.classList.remove(toolTip.classList.item(1));
   } else {
+    title.innerHTML = sgments[this.indice];
     toolTip.classList.add(this.indice);
     TweenMax.to(tooltipFilter, 0.5, {visibility: "visible", opacity: 1, ease:Power1.easeInOut})
     TweenMax.to(toolTip, 0.3, {visibility: "visible", opacity: 1, ease:Power1.easeInOut});
