@@ -9,7 +9,7 @@ function simulador_global() {
   let Loader = PIXI.loader;
 
   self.scoresBuilder=function(){
-    debugger;
+
     let app=document.getElementById("aplicacion");
     let table = document.createElement('div');
         table.setAttribute("id","table_scores");
@@ -131,7 +131,7 @@ function simulador_global() {
   }
 
   self.createApp = function () {
-    debugger;
+
 
     self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
     app.appendChild(self.app.renderer.view);
@@ -591,7 +591,7 @@ for(var j=0;j<vencidos.length;j++){
 self.scoresBuilder();
 self.updateTotal(99999,"NA");
 self.stepBack.push(JSON.stringify(self.characters));
-debugger;
+
 self.winners();
 
 var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
@@ -1414,7 +1414,7 @@ if(self.historyFlag&&self.stepBack.length<100){
   //self.indexHistory--;
   self.historyFlag=true;
 }
-  debugger;
+
   self.winners();
   return self;
 };
@@ -1439,13 +1439,13 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) 
 
 
 function show_hide_data() {
-  console.log("clicked");
+  console.log("Clicked");
   let app = document.getElementById('aplicacion');
   let selected = document.getElementsByClassName("sh_obj" + this.indice);
   let selectedOff = document.getElementsByClassName("sh_obj" + toolTip.classList[1]);
 
   if(toolTip.style.visibility == "visible") {
-    TweenLite.to(tooltipFilter, 0.6, {opacity: 0});
+    TweenLite.to(tooltipFilter, 0.5, {opacity: 0});
     TweenLite.to(toolTip, 0.3, {opacity: 0});
     toolTip.style.visibility = "hidden";
     tooltipFilter.style.visibility = "hidden";
@@ -1458,11 +1458,7 @@ function show_hide_data() {
   } else {
     toolTip.classList.add(this.indice);
     TweenMax.to(tooltipFilter, 0.5, {visibility: "visible", opacity: 1, ease:Power1.easeInOut})
-    TweenMax.to(toolTip, 0.6, {visibility: "visible", opacity: 1, ease:Power1.easeInOut});
-
-    // toolTip.style.visibility = "visible";
-    // tooltipFilter.style.visibility = "visible";
-
+    TweenMax.to(toolTip, 0.3, {visibility: "visible", opacity: 1, ease:Power1.easeInOut});
 
     for(var i = 0 ; i < selected.length; i++) {
       selected[i].classList.remove('hide_element');
@@ -1480,7 +1476,6 @@ function show_hide_data() {
   };
 
   self.removeElements = function() {
-
     if(self.app.stage == null) return false;
     let app = self.app;
 
@@ -1492,6 +1487,11 @@ function show_hide_data() {
 
   self.removeText = function() {
     var aplicacion=document.getElementById("aplicacion");
+
+    //THIS REMOVES THE TOOLTIP//
+    aplicacion.removeChild(document.getElementById("toolTip"));
+    aplicacion.removeChild(document.getElementById("tooltipFilter"));
+    //THIS REMOVES THE TOOLTIP//
 
     var pTags=document.getElementsByTagName('p');
 
