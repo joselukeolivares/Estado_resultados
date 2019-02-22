@@ -11,7 +11,7 @@ function simulador_global() {
   self.scoresBuilder=function(){
 
     let app=document.getElementById("aplicacion");
-    let table=document.createElement('div');
+    let table = document.createElement('div');
         table.setAttribute("id","table_scores");
     let scores_container=document.createElement('div');
         scores_container.setAttribute("id","scores_container");
@@ -300,7 +300,7 @@ function simulador_global() {
      tooltipFilter.setAttribute("id", "tooltipFilter");
      tooltipFilter.style.height = height + "px";
      tooltipFilter.style.width = width + "px";
-     tooltipFilter.style.backgroundColor = "rgba(255, 244, 223, 0.3)";
+     tooltipFilter.style.backgroundColor = "rgba(255, 244, 223, 0.5)";
      // tooltipFilter.style.display = "none";
      app.appendChild(tooltipFilter);
 
@@ -309,6 +309,7 @@ function simulador_global() {
      toolTip.setAttribute("class", "toolTip");
      //toolTip.style.top = height * 0.2 + "px";
      app.appendChild(toolTip);
+
 
      let icon_title=document.createElement('div')
          icon_title.setAttribute("id","icon_title")
@@ -323,6 +324,7 @@ function simulador_global() {
          icon_title.appendChild(head_selected)
          icon_title.appendChild(title_selected)
          toolTip.appendChild(icon_title);
+
 
 
      let tc2 = document.createElement("div");
@@ -379,7 +381,7 @@ function simulador_global() {
      let okButton = document.createElement("div");
      okButton.setAttribute("id", "okButton");
      okButton.innerHTML = "OK";
-     //okButton.style.margin = self.app.screen.width * 0.3 + "px auto";
+
      toolTip.appendChild(okButton);
      okButton.addEventListener("click", show_hide_data);
 
@@ -456,10 +458,12 @@ function simulador_global() {
             app.removeChild(introFilter);
             app.removeChild(title);
           }});
-          TweenLite.to("#table_scores",2,{display:"block",opacity:1})
+
+          TweenLite.to("#table_scores", 1.5, {display:"block", opacity:1})
           for(var i=0;i<self.characters.length-3;i++)
             document.getElementById("vta-character-"+i).classList.remove("hide_element");
             //document.getElementById("vta-character-" + i).classList.remove('hide_element')
+
 
         });
 
@@ -1478,14 +1482,14 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) 
 
 
 function show_hide_data() {
-  console.log("clicked");
 
   let app = document.getElementById('aplicacion');
   let selected = document.getElementsByClassName("sh_obj" + this.indice);
   let selectedOff = document.getElementsByClassName("sh_obj" + toolTip.classList[1]);
 
+
   if(toolTip.style.visibility == "visible") {
-    TweenLite.to(tooltipFilter, 0.6, {opacity: 0});
+    TweenLite.to(tooltipFilter, 0.5, {opacity: 0});
     TweenLite.to(toolTip, 0.3, {opacity: 0});
     toolTip.style.visibility = "hidden";
     tooltipFilter.style.visibility = "hidden";
@@ -1497,9 +1501,10 @@ function show_hide_data() {
     }
     toolTip.classList.remove(toolTip.classList.item(1));
   } else {
-    toolTip.style.visibility = "visible";
-    tooltipFilter.style.visibility = "visible";
+    title.innerHTML = sgments[this.indice];
     toolTip.classList.add(this.indice);
+    TweenMax.to(tooltipFilter, 0.5, {visibility: "visible", opacity: 1, ease:Power1.easeInOut})
+    TweenMax.to(toolTip, 0.3, {visibility: "visible", opacity: 1, ease:Power1.easeInOut});
 
     for(var i = 0 ; i < selected.length; i++) {
       selected[i].classList.remove('hide_element');
@@ -1507,6 +1512,7 @@ function show_hide_data() {
       document.getElementById("vta-character-" + i).classList.add('hide_element')
 
     }
+
 
     let segmentos = [
       "Nunca015",
@@ -1530,6 +1536,7 @@ function show_hide_data() {
 
     TweenLite.to(tooltipFilter, 0.6, {opacity: 1});
     TweenLite.to(toolTip, 0.3, {opacity: 1});
+
   }
 }
 
@@ -1549,7 +1556,6 @@ function show_hide_data() {
   };
 
   self.removeElements = function() {
-
     if(self.app.stage == null) return false;
     let app = self.app;
 
@@ -1563,12 +1569,14 @@ function show_hide_data() {
     var aplicacion=document.getElementById("aplicacion");
 
     //THIS REMOVES THE TOOLTIP//
+
     aplicacion.removeChild(document.getElementById("table_scores"));
     aplicacion.removeChild(document.getElementById("toolTip"));
     aplicacion.removeChild(document.getElementById("tooltipFilter"));
 
     for(var i=0;i<9;i++)
         aplicacion.removeChild(document.getElementById("vta-character-"+i));
+
     var pTags=document.getElementsByTagName('p');
 
     while(pTags.length>0) {
