@@ -1501,7 +1501,7 @@ function show_hide_data() {
     }
     toolTip.classList.remove(toolTip.classList.item(1));
   } else {
-    title.innerHTML = sgments[this.indice];
+    //title.innerHTML = sgments[this.indice];
     toolTip.classList.add(this.indice);
     TweenMax.to(tooltipFilter, 0.5, {visibility: "visible", opacity: 1, ease:Power1.easeInOut})
     TweenMax.to(toolTip, 0.3, {visibility: "visible", opacity: 1, ease:Power1.easeInOut});
