@@ -457,7 +457,7 @@ function simulador_global() {
             app.removeChild(title);
           }});
           TweenLite.to("#table_scores",2,{display:"block",opacity:1})
-          for(var i=0;i<self.characters.length;i++)
+          for(var i=0;i<self.characters.length-3;i++)
             document.getElementById("vta-character-"+i).classList.remove("hide_element");
             //document.getElementById("vta-character-" + i).classList.remove('hide_element')
 
@@ -958,8 +958,8 @@ contButton.on("pointerdown",click);
 
 function click (){
 
-var table_scores=document.getElementById("table_scores");
-    table_scores.parentNode.removeChild(table_scores);
+
+
 self.removeElements();
 self.removeText();
 var aplicacion=document.getElementById("aplicacion");
@@ -1479,6 +1479,7 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) 
 
 function show_hide_data() {
   console.log("clicked");
+
   let app = document.getElementById('aplicacion');
   let selected = document.getElementsByClassName("sh_obj" + this.indice);
   let selectedOff = document.getElementsByClassName("sh_obj" + toolTip.classList[1]);
@@ -1524,8 +1525,8 @@ function show_hide_data() {
     let obj=document.getElementById("head_selected");
     obj.style.backgroundImage="url(assets/ui/bloque_6/ERC-Characters/heads_characters/"+(segmentos[this.indice]).replace('+','_')+".png)";
 
-
-    document.getElementById("title_selected").innerHTML=segmentos[this.indice];
+    let sgments = ["Nunca 0-15", "Activo Sin Vencido", "Saldado 0-15", "Nunca +15", "Activo Con Vencido", "Saldado +15", "Generados", "Clientes Z", "Quebrantados"];
+    document.getElementById("title_selected").innerHTML=sgments[this.indice];
 
     TweenLite.to(tooltipFilter, 0.6, {opacity: 1});
     TweenLite.to(toolTip, 0.3, {opacity: 1});
@@ -1533,12 +1534,16 @@ function show_hide_data() {
 }
 
   self.destroyApp = function() {
-    var table_scores=document.getElementById("table_scores")
-        table_scores.parentNode.removeChild(table_scores);
-        
+
     if(self.app == null) return self;
     self.app.destroy(true);
-    self.removeText();
+
+    while (aplicacion.firstChild) {
+
+      aplicacion.removeChild(aplicacion.firstChild)
+    }
+
+
 
     return self;
   };
@@ -1557,6 +1562,13 @@ function show_hide_data() {
   self.removeText = function() {
     var aplicacion=document.getElementById("aplicacion");
 
+    //THIS REMOVES THE TOOLTIP//
+    aplicacion.removeChild(document.getElementById("table_scores"));
+    aplicacion.removeChild(document.getElementById("toolTip"));
+    aplicacion.removeChild(document.getElementById("tooltipFilter"));
+
+    for(var i=0;i<9;i++)
+        aplicacion.removeChild(document.getElementById("vta-character-"+i));
     var pTags=document.getElementsByTagName('p');
 
     while(pTags.length>0) {
@@ -1595,6 +1607,7 @@ function show_hide_data() {
     }
 
   };
+
 
   return self;
 }
