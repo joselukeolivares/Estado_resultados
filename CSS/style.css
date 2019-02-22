@@ -38,6 +38,7 @@ footer {
   user-select: none;
 }
 
+
 #toolTip {
   opacity: 0;
   overflow: hidden;
@@ -132,6 +133,7 @@ footer {
   position: absolute;
   top: 0px;
 }
+
 
 .contButtonIntro {
   font-style: Robot-Regular;
