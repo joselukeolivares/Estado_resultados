@@ -57,7 +57,6 @@ function simulador_global() {
     }
 
   //top scores
-
     let score_1=document.createElement('p');
         score_1.setAttribute("id","score_1");
         score_1.innerHTML="NA%";
@@ -133,7 +132,7 @@ function simulador_global() {
   self.createApp = function () {
 
 
-    self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
+    self.app = new PIXI.Application(width, height);
     app.appendChild(self.app.renderer.view);
 
     var atlasBlock6  = Loader.resources["assets/ui/bloque_4/clientes_min/clientes_min.json"].textures;
@@ -152,7 +151,7 @@ function simulador_global() {
     background.x = self.app.screen.width * 0.5;
     background.y = self.app.screen.height * 0.5;
     background.name = "background";
-    background.scale.set(scale1, scale1);
+    background.scale.set(factorScreen(.5),factorScreen(.4));
     self.app.stage.addChild(background);
 
     let container = new PIXI.Container();
@@ -161,17 +160,17 @@ function simulador_global() {
 
     let audio = new PIXI.Sprite(id["8. AUDIO.png"]);
     audio.name = "audio";
-    audio.anchor.set(0.5);
+    //audio.anchor.set(0.5);
     audio.scale.set(scale1, scale1);
-    audio.x = background.width * 0.88;
-    audio.y = background.height * 0.42;
+    audio.x = self.app.stage.width * 0.6;
+    audio.y = background.height * 0.3;
     container.addChild(audio);
 
     let tvs = new PIXI.Sprite(id["5. TVS.png"]);
     tvs.name = "tvs";
-    tvs.anchor.set(0.5);
+    //tvs.anchor.set(0.5);
     tvs.scale.set(scale1, scale1);
-    tvs.x = background.width * 1;
+    tvs.x = audio.x
     tvs.y = background.height * 0.63;
     container.addChild(tvs);
 
@@ -526,8 +525,8 @@ function simulador_global() {
        let vtaX = vtaRect.left - appRect.left;
        let vtaY = vtaRect.top;
 
-       console.log(tcY);
-       console.log(tc.y);
+       //console.log(tcY);
+       //console.log(tc.y);
 
        var tc_test=document.createElement("p");
        tc_test.setAttribute("id","tc-tag-"+i);
@@ -787,9 +786,10 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
 
   for(var k=0;k<characters.length;k++){
       if(characters[k].vencido==mesVencido){
-
+        debugger;
         var aux=characters[4];
         characters[4]=characters[k];
+        //characters[4].vencido=mesVencido;
         characters[k]=aux;
 /*
         document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
@@ -1146,6 +1146,7 @@ button
      self.characters[i].sale = function() {
          return this.cpa*((this.tc)/100)*this.countCtes;
        };
+
    }
    var vencSelected=self.characters[4].vencido;
 
@@ -1167,8 +1168,7 @@ button
 
               }
 
-
-
+              debugger;
    self.updateTotal(99999,"Reset");
  })
  .on("mouseout",borrar_regresar);
@@ -1370,21 +1370,27 @@ self.updateTotal = function (newTC,target) {
          self.characters[i].tc=newTC;}
       if(self.historyFlag)
       {/*Pendiente revisar*/}else{
+        debugger;
         var sliders = document.getElementsByClassName("slider");
+            sliders[i].classList.remove("hide_element");
         var knob = sliders[i].childNodes[1];
-        knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
-      }
+        //var uno=sliders[i].getBoundingClientRect().width;
+            knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+            sliders[i].classList.add("hide_element");
+            debugger;
+        }
       let tc_pTag = document.getElementById("tc-tag-" + i);
       tc_pTag.innerHTML = (cte.tc).toFixed(1) + "%";
 
       if(target==4||target=="Reset"){
         document.getElementById("tc_clientes4").innerHTML=numberWithCommas(self.characters[4].countCtes);
         document.getElementById("cpa-tag-4").innerHTML="$"+numberWithCommas(parseInt(self.characters[4].cpa));
-        if(newTC==99999)
-        self.characters[4].tc = newTC;
+
         var sliders = document.getElementsByClassName("slider");
+        sliders[4].classList.remove("hide_element");
         var knob = sliders[4].childNodes[1];
         knob.style.left = ((sliders[4].getBoundingClientRect().width * self.characters[4].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+        sliders[4].classList.add("hide_element");
 
       }
 
@@ -1413,8 +1419,8 @@ self.updateTotal = function (newTC,target) {
     ctsXtc+=cte.tc*cte.countCtes;
     ctsTotal+=cte.countCtes;
     vtaTotal += cte.sale();
-    //console.log("Cliente "+i+": "+cte.sale());
-    //console.log("Venta total: "+vtaTotal);
+    console.log("Cliente "+i+": "+cte.sale());
+    console.log("Venta total: "+vtaTotal);
     vtaTotalMMAA += cte.vtaMMAA;
     CtesBuyTotal+=cte.tc/100*cte.countCtes;
     ctesTotal+=cte.countCtes;
@@ -1422,6 +1428,7 @@ self.updateTotal = function (newTC,target) {
   }
 
   var ponderadores=[],ponderadoresReal=[];
+  debugger;
   for(var j=0;j<self.characters.length;j++){
       var cte=self.characters[j];
       ponderadores[j]=(cte.tc/100*cte.countCtes)/CtesBuyTotal;
@@ -1430,6 +1437,7 @@ self.updateTotal = function (newTC,target) {
   }
 
   var TotalCPA=0,TotalCPAOriginal=0;
+
   for(var j=0;j<self.characters.length;j++){
     var cte=self.characters[j];
       TotalCPA+=ponderadores[j]*cte.cpa;
@@ -1531,8 +1539,15 @@ function show_hide_data() {
     let obj=document.getElementById("head_selected");
     obj.style.backgroundImage="url(assets/ui/bloque_6/ERC-Characters/heads_characters/"+(segmentos[this.indice]).replace('+','_')+".png)";
 
-    let sgments = ["Nunca 0-15", "Activo Sin Vencido", "Saldado 0-15", "Nunca +15", "Activo Con Vencido", "Saldado +15", "Generados", "Clientes Z", "Quebrantados"];
-    document.getElementById("title_selected").innerHTML=sgments[this.indice];
+    let sgments = ["Nunca 0-15", "Activo Sin Vencido", "Saldado 0-15", "Nunca +15", "Activo Con 1 Mes Vencido", "Saldado +15", "Generados", "Clientes Z", "Quebrantados","Activo Con 2 Meses Vencidos","Activo Con 3 Meses Vencidos","Activo Con 4 Meses Vencidos"];
+    let name_idx=this.indice
+    if(this.indice==4){
+      debugger;
+      if(self.characters[4].vencido!=1){
+        name_idx+=3+self.characters[4].vencido;
+      }
+    }
+    document.getElementById("title_selected").innerHTML=sgments[name_idx];
 
     TweenLite.to(tooltipFilter, 0.6, {opacity: 1});
     TweenLite.to(toolTip, 0.3, {opacity: 1});
