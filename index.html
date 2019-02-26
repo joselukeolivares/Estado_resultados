@@ -71,7 +71,7 @@
 <!--<img src="assets/ui/Archivo_001.png" alt="animatedimg">-->
 
 </main>
-<footer>
+<footer style="display:none;">
   <div id="container" style="height:10%;"align="center" >
     <div id="CoppelLogo" style="background-image: url('assets/ui/logo_coppel.png');
                 height: 100%;
@@ -259,21 +259,17 @@
                 //880--1080
                  height=main.clientHeight;
 
-             if(md.os()=="iOS"||md.os()=="AndroidOS"){
-         document.getElementsByTagName("footer")[0].style.display="none";
-         document.getElementById("mdl_menu").style.display="block";
-         main.style.height="99%";
-         height=main.clientHeight;
-       }
+
 
       let  actual_app;
 
       console.log(width,height);
 
 
-      d3.csv("data/Estado de Resultados Mx_sep18.csv",funcion);
+      d3.csv("data/Estado de Resultados Mx Ene19_test.csv",funcion);
 
       function funcion(data){
+
       try{
         var mes_actual=d3.max(data,function(d){return d.Fecha});
               var datos_obj=[];
@@ -281,7 +277,7 @@
                   var year;
 
                 if(data[i].Fecha==mes_actual){
-
+                     
                      datos_obj[0]=data[i];
                      year=new Date(datos_obj[0].Fecha).getFullYear();
                      if(year-1==new Date(data[i-12].Fecha).getFullYear())
@@ -315,7 +311,7 @@
   div.setAttribute("style","width:"+width+"px;height:"+height+"px;");
   main.style.width=width+"px";
   main.style.left=(((1-(width/document.body.clientWidth))/2)*100)+"%";
-  
+
   main.appendChild(div);
 
 

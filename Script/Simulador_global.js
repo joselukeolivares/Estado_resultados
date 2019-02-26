@@ -56,19 +56,7 @@ function simulador_global() {
 
     }
 
-  //top scores
-    let score_1=document.createElement('p');
-        score_1.setAttribute("id","score_1");
-        score_1.innerHTML="NA%";
-        score_1.setAttribute("class","scores")
-    let score_2=document.createElement('p');
-        score_2.setAttribute("id","score_2");
-        score_2.setAttribute("class","scores")
-        score_2.innerHTML="NA%";
-    let score_3=document.createElement('p');
-        score_3.setAttribute("id","score_3");
-        score_3.setAttribute("class","scores")
-        score_3.innerHTML="NA%";
+
 
         app.appendChild(table);
         table.appendChild(title);
@@ -76,9 +64,15 @@ function simulador_global() {
 
         container_1.appendChild(container_heads);
         container_1.appendChild(scores_container);
-        scores_container.appendChild(score_1);
-        scores_container.appendChild(score_2);
-        scores_container.appendChild(score_3);
+        //top scores
+        for(var i=1;i<6;i++)
+        {   let score=document.createElement('p');
+        score.setAttribute("id","score_"+i);
+        score.innerHTML="NA%";
+        score.setAttribute("class","scores")
+        scores_container.appendChild(score);
+      }
+
   }
 
   self.winners=function(){
@@ -92,7 +86,7 @@ function simulador_global() {
     }
 
     ranking.sort((a, b) => a - b);
-    //
+
 
     for(var i=0;i<self.characters.length;i++){
 
@@ -101,19 +95,32 @@ function simulador_global() {
       name=name.replace("+","_").replace(" ","_");
 
 
+
       if(sale==ranking[ranking.length-1]){
         //console.log("Top 1: "+i+" "+self.characters[i].name+" $"+self.characters[i].sale());
         var porcent=parseInt(sale/total);
         document.getElementById("score_1").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
-        TweenMax.to(name,1,{top:"0%",zIndex:3})
+        TweenMax.to(name,1,{top:"0%",zIndex:5})
       }else if(sale==ranking[ranking.length-2]){
         //console.log("Top 2: "+i+" "+self.characters[i].name+" $"+self.characters[i].sale());
         document.getElementById("score_2").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
-        TweenMax.to(name,1,{top:"33%",zIndex:2})
+        TweenMax.to(name,1,{top:"20%",zIndex:4})
       }else if(sale==ranking[ranking.length-3]){
         //console.log("Top 3: "+i+" "+name+" $"+self.characters[i].sale());
         document.getElementById("score_3").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
-        TweenMax.to(name,1,{top:"66%",zIndex:1})
+        TweenMax.to(name,1,{top:"40%",zIndex:3})
+        //document.getElementById(name.replace("#","")).style.top="60%";
+
+      }else if(sale==ranking[ranking.length-4]){
+        //console.log("Top 3: "+i+" "+name+" $"+self.characters[i].sale());
+        document.getElementById("score_4").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
+        TweenMax.to(name,1,{top:"60%",zIndex:2})
+        //document.getElementById(name.replace("#","")).style.top="60%";
+
+      }else if(sale==ranking[ranking.length-5]){
+        //console.log("Top 3: "+i+" "+name+" $"+self.characters[i].sale());
+        document.getElementById("score_5").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
+        TweenMax.to(name,1,{top:"80%",zIndex:1})
         //document.getElementById(name.replace("#","")).style.top="60%";
 
       }else{
@@ -133,6 +140,7 @@ function simulador_global() {
 
 
     self.app = new PIXI.Application(width, height);
+
     app.appendChild(self.app.renderer.view);
 
     var atlasBlock6  = Loader.resources["assets/ui/bloque_4/clientes_min/clientes_min.json"].textures;
@@ -162,7 +170,7 @@ function simulador_global() {
     audio.name = "audio";
     //audio.anchor.set(0.5);
     audio.scale.set(scale1, scale1);
-    audio.x = self.app.stage.width * 0.6;
+    audio.x = self.app.stage.width * 0.7;
     audio.y = background.height * 0.3;
     container.addChild(audio);
 
@@ -619,6 +627,7 @@ for(var j=0;j<vencidos.length;j++){
     vencidos[j]
   ));
   self.characters[self.characters.length-1].vencido=j+2;
+  console.log(self.characters[self.characters.length-1]);
 }
 
 
@@ -966,6 +975,8 @@ function click (){
 
 self.removeElements();
 self.removeText();
+
+self.app.renderer.backgroundColor="0x175383";
 var aplicacion=document.getElementById("aplicacion");
 
 let title = document.createElement("h1");
@@ -1306,6 +1317,10 @@ function addCharacter(index) {
     segmentos[index]
   );
 
+
+    console.log(char);
+
+
   if(index==4)
   char.vencido=1;
   self.characters.push(char);
@@ -1471,12 +1486,13 @@ if(self.historyFlag&&self.stepBack.length<100){
 };
 
 function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) {
+  debugger;
   this.name=name;
   this.index = index;
-  this.cpa = parseFloat(cpa);
+  this.cpa = Number.parseInt(cpa.replace(/,/g,''));
   this.tc = parseFloat(tc);
   this.position = position;
-  this.countCtes = parseInt(numCtes);
+  this.countCtes = parseInt(numCtes.replace(/,/g,''));
   this.vtaMMAA = parseInt(vtaMMAA);
   this.vtaOriginal=vtaOriginal;
   this.tcOriginal=parseFloat(tc);
