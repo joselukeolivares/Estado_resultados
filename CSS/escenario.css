@@ -1,11 +1,51 @@
+
+#totals {
+  position: absolute;
+  width: 800px;
+  height: 80px;
+  top: 4%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#tc-total {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  background: #ffde41;
+  border-radius: 50px;
+  box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.5);
+}
+
+#tc-total::after {
+  content: "";
+  width: 50%;
+  height: 100%;
+  border-radius: 50px;
+  text-align: center;
+  background: #fff;
+  float: right;
+  box-shadow: -8px 0 3px rgba(0, 0, 0, 0.3);
+}
+
+#vta-total {
+  width: 45%;
+  height: 100%;
+  text-align: center;
+  background: #fff;
+  border-radius: 50px;
+  float: right;
+  box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.5);
+}
+
 .p_tags{
   font-size: 16px;
   /*text-decoration: line-through;*/
-
 }
 
 #ctes-total-tag{
-  font-size: 18px;
+
 }
 
 .tc_clientes{
@@ -22,6 +62,7 @@
   top:10%;
   opacity: 0;
   display: none;
+  box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.5);
 }
 
 #scores_container{
@@ -61,9 +102,11 @@ top:100%;
   user-select: none;
   border-radius: 30px;
   left: 50%;
+  top: 20%;
   height: 520px;
   width: 440px;
-  margin-left: -220px;
+  transform: translate(-50%);
+  -ms-transform: translate(-50%);
   color: #FFFFFF;
   background: #114C99;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
@@ -71,12 +114,12 @@ top:100%;
   top: 20%;
 }
 
-.tc{
+.tc {
   position: absolute;
   width: 350px;
   height: 60px;
   text-align: center;
-  top:30%
+  top: 37%
 }
 
 .cpa {
@@ -84,7 +127,7 @@ top:100%;
   width: 330px;
   height: 50px;
   text-align: center;
-  top:50%
+  top: 57%
 }
 
 .vta {
@@ -92,7 +135,7 @@ top:100%;
   width: 330px;
   height: 50px;
   text-align: center;
-  top:63%;
+  top: 70%;
 }
 
 .rect1 {
@@ -132,7 +175,6 @@ top:100%;
   bottom: 5%;
 }
 
-
 #tooltipFilter {
   visibility: hidden;
   opacity: 0;
@@ -144,16 +186,27 @@ top:100%;
   top: 0px;
 }
 
+#estrategia {
+  left: 50%;
+  width: 60%;
+  transform: translate(-50%);
+}
+
 #icon_title{
-  height: 20%;
+  height: 25%;
+  padding: 4%;
+  margin-top: 4%;
+}
+
+#title_selected {
+  font-size: 38px;
+  padding: 5px;
 }
 
 #head_selected{
   /*background-image: url("../assets/ui/bloque_6/ERC-Characters/heads_characters/Activos_SinVdo.png");*/
-  top: 12%;
+  padding: 5px;
   height: 50%;
-  position: static;
-  margin-top: 5%;
   background-repeat: no-repeat;
   background-size: contain;
   background-position-x: center;
