@@ -38,25 +38,6 @@ footer {
   user-select: none;
 }
 
-
-#toolTip {
-  opacity: 0;
-  overflow: hidden;
-  visibility: hidden;
-  text-align: center;
-  position: absolute;
-  user-select: none;
-  border-radius: 30px;
-  left: 50%;
-  height: 520px;
-  width: 440px;
-  margin-left: -220px;
-  color: #FFFFFF;
-  background: #114C99;
-  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
-  transition: all 0.1s ease-in;
-}
-
 #tooltipFilter {
   opacity: 0;
   visibility: hidden;
@@ -142,9 +123,10 @@ footer {
   user-select: none;
   font-size: 26px;
   height: 70px;
+  left: 50%;
+  transform: translate(-50%);
   line-height: 70px;
   width: 200px;
-  margin-left: -100px;
   color: #FFFFFF;
   border-radius: 100px;
   background: #ff8000;
@@ -154,7 +136,7 @@ footer {
 
 .contButtonIntro:hover {
   background: #BA5400;
-  transform: scale(1.1);
+  transform: translate(-50%) scale(1.1);
 }
 
 .title{
