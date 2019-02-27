@@ -2,6 +2,10 @@ body {
   font-size: 18px;
 }
 
+#aplicacion {
+  position: relative;
+}
+
 .title {
   font-family: Roboto-Regular;
   font-weight: bold;
@@ -49,64 +53,82 @@ body {
 }
 
 .stages {
-  width: 50%;
-  height: 55%;
   position: absolute;
   font-family: Roboto-Regular;
   color: #FFFFFF;
   text-align: center;
-  /*left:3rem;*/
+}
+
+#stage_0 {
+  width: 30%;
+  height: 30%;
+  top: 60%;
+  left: 15%;
+  transform: translateY(-50%);
+}
+
+#stage_1 {
+  width: 30%;
+  height: 30%;
+  top: 60%;
+  left: 15%;
+  transform: translateY(-50%);
 }
 
 #stage_2 {
-  width: 93%;
+  width: 65%;
+  height: 20%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.arrow-point-to-right {
+  position: absolute;
+  cursor: pointer;
+  width: 10%;
+  height: 20%;
+  top: 50%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.step-back-arrow {
+  position: absolute;
+  cursor: pointer;
+  width: 10%;
+  height: 20%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(180deg);
+  display: none;
 }
 
 .content {
-  font-family: Roboto-regular;
+  font-size: 100%;
+  font-family: Roboto-Regular;
   text-align: justify;
   -moz-text-align-last: center;
   text-align-last: center;
-  position: relative;
-  left:5rem;
-  font-size: 18px;
-  margin-left: 5rem;
-  width: 50%;
-
-
 }
 
 #content_01 br, #content_11 br {
   line-height: 200%;
 }
 
-#content_20, #content_21 {
-  font-size: 18px;
-  width: 80%;
-}
 
-#content_22,#content_23 {
-  font-size: 18px;
+#content_22, #content_23 {
   text-align: left;
   text-align-last: left;
-  line-height: 150%;
   left: 7rem;
   width: calc(100% - 12rem);
-  margin-left: 0;
-
-  }
+}
 
   #circle-tick-inside-1,#circle-tick-inside-2{
     left:5rem;
     height: 18px;
   }
-
-.arrow-point-to-right {
-  position: absolute;
-  width: 5rem;
-  height: 5rem;
-  cursor: pointer;
-}
 
 #tcCts {
   position: absolute;
@@ -161,7 +183,8 @@ body {
   body{
     /*background-color: red;*/
   }
-  h2{
+
+  h2 {
     font-size: 16px;
     left: 5rem;
     position: relative;

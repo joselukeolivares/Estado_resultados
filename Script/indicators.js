@@ -141,14 +141,13 @@ function indicators() {
       stages[i] = document.createElement("div");
       stages[i].setAttribute("id", "stage_" + i);
       stages[i].setAttribute("class", "stages");
-      stages[i].setAttribute("style", "top: " + app.screen.height * 0.35  + "px;");
+      //stages[i].setAttribute("style", "top: " + app.screen.height * 0.35  + "px;");
 
       let title = document.createElement("h2");
       if(i != 2) {
         //title.setAttribute("class", "content");
       }
       title.innerHTML = titles[i];
-      title.style.marginBottom="0";
       stages[i].appendChild(title);
 
       if(i != 2) {
@@ -183,13 +182,12 @@ function indicators() {
         icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
         icRightArrow.setAttribute("id", "arrow-point-to-right-" + i + j);
         icRightArrow.setAttribute("class", "arrow-point-to-right parpadeo");
-        icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: calc(200% - 5rem)");
+        //icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: calc(200% - 5rem)");
 
-        if(i==2){
-          //debugger;
+        if(i == 2) {
           icRightArrow.style.right="-4rem";
           icRightArrow.style.left="";
-          }
+        }
 
         icRightArrow.indicator_i=i;
         icRightArrow.indicator_j=j;
@@ -199,18 +197,18 @@ function indicators() {
         stepBack.setAttribute("id", "stepBack" + i + j);
         stepBack.indicator_i=i;
         stepBack.indicator_j=j;
-        stepBack.setAttribute("class", "arrow-point-to-right parpadeo");
-        stepBack.setAttribute("style", "left:0px;transform:rotate(180deg);display:none;top: " + (app.screen.height * 0.1)+ "px;");
+        stepBack.setAttribute("class", "step-back-arrow parpadeo");
+        stepBack.setAttribute("style", "display: none;");
         stepBack.addEventListener('pointerdown',function(){
-          let indicator_i=this.indicator_i;
-          let indicator_j=this.indicator_j;
+          let indicator_i = this.indicator_i;
+          let indicator_j = this.indicator_j;
           //debugger;
-          if(indicator_j-1>0){
+          if(indicator_j-1>0) {
 
             goToIndicator(this.indicator_i,j,1)
           }else{
             if(indicator_j-1<=0){
-              stages[i].querySelector("#stepBack" + i +""+ (1)).style.display = "none";
+              appDiv.querySelector("#stepBack" + i +""+ (1)).style.display = "none";
               stages[i].querySelector("#content_"+i+""+j).innerHTML=subTitles[i][j];
               if(indicator_i==0){
                 self.tasaCompra_();
@@ -227,12 +225,7 @@ function indicators() {
 
         if(i == 2) {
           var arrow0=document.getElementById('arrow-point-to-right-00');
-          //icRightArrow.style.top ="";
-          //icRightArrow.style.width ="14%";
-
-          //icRightArrow.style.height = "34%";
         }
-        icRightArrow.style.cursor = "pointer";
         if(j != 0) {
           icRightArrow.style.display = "none";
         }
@@ -258,19 +251,19 @@ function indicators() {
 
           if(j != 2 ||direction) {
 
-            stages[i].querySelector("#arrow-point-to-right-" + i + (j)).style.display = "none";
+            appDiv.querySelector("#arrow-point-to-right-" + i + (j)).style.display = "none";
             if(!direction){
               //if(i==2)
-              stages[i].querySelector("#stepBack" + i + (j+1+alter)).style.display = "block";
+              appDiv.querySelector("#stepBack" + i + (j+1+alter)).style.display = "block";
               if(j!=0)
-              stages[i].querySelector("#stepBack" + i + (j)).style.display = "none";
+              appDiv.querySelector("#stepBack" + i + (j)).style.display = "none";
             }else {
-              stages[i].querySelector("#stepBack" + i + (j)).style.display = "none";
+              appDiv.querySelector("#stepBack" + i + (j)).style.display = "none";
               if(j!=1)
-              stages[i].querySelector("#stepBack" + i + (j+1+alter)).style.display = "block";
+              appDiv.querySelector("#stepBack" + i + (j+1+alter)).style.display = "block";
 
               if(i==2 && j==2){
-                let arrowR=stages[i].querySelector("#arrow-point-to-right-21");
+                let arrowR=appDiv.querySelector("#arrow-point-to-right-21");
                 arrowR.style.display = "block";
 
               }
@@ -329,7 +322,7 @@ function indicators() {
                 }})
               tl.to(slider1.childNodes[1],.5,{opacity:.1});
             }else if(i == 2 && j == 0) {
-              stages[i].querySelector("#arrow-point-to-right-2"+(j+1+alter)).style.display = "block";
+              appDiv.querySelector("#arrow-point-to-right-2"+(j+1+alter)).style.display = "block";
               var vSprites=app.stage.getChildByName("vSprites"+(j+1+alter));
               vSprites.visible=true;
               app.stage.getChildByName("vSprites"+j).visible=false;
@@ -377,8 +370,8 @@ function indicators() {
             if(i!=2){
                stages[i+1].style.display = "block";
 
-               if(stages[i+1].querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display == "none") {
-                 stages[i+1].querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display = "block";
+               if(appDiv.querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display == "none") {
+                 appDiv.querySelector("#arrow-point-to-right-" + (i+1) + 0).style.display = "block";
                  stages[i+1].querySelector("#content_" + (i+1) + 0).style.display = "block";
                }
             }
@@ -407,9 +400,9 @@ function indicators() {
 
           }
         };
-        stages[i].appendChild(icRightArrow);
+        appDiv.appendChild(icRightArrow);
         if(j!=0)
-        stages[i].appendChild(stepBack);
+        appDiv.appendChild(stepBack);
       }
 
       let things = new PIXI.Sprite(interactive[i]);
@@ -572,23 +565,20 @@ function indicators() {
 
       let icBack = document.createElement("img");
       icBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
-      icBack.setAttribute("class", "arrow-point-to-right parpadeo");
+      icBack.setAttribute("class", "step-back-arrow parpadeo");
       icBack.setAttribute("id", "icBack");
-
-      icBack.setAttribute("style", "left:0px;transform:rotate(180deg);display:none;top: " + (app.screen.height * 0.1)+ "px;");
-      document.getElementById("stage_2").appendChild(icBack);
+      appDiv.appendChild(icBack);
       icBack.style.display = "block";
 
       icBack.addEventListener("pointerdown", function() {
-        //debugger;
-        var back=stages[2].querySelector("#stepBack22");
+        var back = appDiv.querySelector("#stepBack22");
             back.style.display = "block";
         actualContent.innerHTML = subTitles[2][2];
 
         circle1.style.display = "block";
         content.style.display = "block";
         circle2.style.display = "block";
-        stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
+        appDiv.querySelector("#arrow-point-to-right-22").style.display = "block";
         icBack.style.display = "none";
         vSprites.getChildByName("tdcPer").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/tasa-50percent.png")].texture);
         vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil.png")].texture);
@@ -596,7 +586,7 @@ function indicators() {
 
       });
 
-      stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
+      appDiv.querySelector("#arrow-point-to-right-22").style.display = "block";
       document.getElementById("arrow-point-to-right-22").addEventListener("pointerdown", function() {
         toSlide("segmentacion");
         circle4.style.backgroundColor = "white";
@@ -629,7 +619,7 @@ function indicators() {
       actualContent.style.textAlignLast = "center";
       */
       actualContent.innerHTML = "Bien, un aumento en la Compra Promedio Anual a $2,000.00 incrementa las ventas a $1,000,000.00<br>No debemos olvidar, que para incrementar las ventas es muy importante una estrategia integral e impulsar ambos indicadores, combinada por un mayor volumen de clientes y cantidad de compra, potencializando un incremento en ventas.";
-      stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
+      appDiv.querySelector("#arrow-point-to-right-22").style.display = "block";
       circle2.style.display = "none";
       circle1.style.display = "none";
       content.style.display = "none";
@@ -647,18 +637,16 @@ function indicators() {
 
       let icBack = document.createElement("img");
       icBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
-      icBack.setAttribute("class", "arrow-point-to-right parpadeo");
+      icBack.setAttribute("class", "step-back-arrow parpadeo");
       icBack.setAttribute("id", "icBack");
-      icBack.setAttribute("style", "left:0px;transform:rotate(180deg);display:none;top: " + (app.screen.height * 0.1)+ "px;");
-      document.getElementById("stage_2").appendChild(icBack);
+      appDiv.appendChild(icBack);
       icBack.style.display = "block";
-      icBack.style.cursor = "pointer";
 
       icBack.addEventListener("pointerdown", function() {
-        var back=stages[2].querySelector("#stepBack22").style.display = "block";
+        var back = appDiv.querySelector("#stepBack22").style.display = "block";
 
         actualContent.innerHTML = subTitles[2][2];
-        stages[2].querySelector("#arrow-point-to-right-22").style.display = "block";
+        appDiv.querySelector("#arrow-point-to-right-22").style.display = "block";
         circle1.style.display = "block";
         circle2.style.display = "block";
         content.style.display = "block";
@@ -673,18 +661,20 @@ function indicators() {
 
     self.offStepBack=function(){
       for(var i=0;i<3;i++){
-        stages[i].querySelector("#stepBack"+(i+""+1)).style.display = "none";
+        appDiv.querySelector("#stepBack"+(i+""+1)).style.display = "none";
         if(i==2)
-        stages[i].querySelector("#stepBack"+(i+""+2)).style.display = "none";
+        appDiv.querySelector("#stepBack"+(i+""+2)).style.display = "none";
       }
     }
 
     contButton.on("pointertap", function() {
+
       contButton.visible = false;
       TweenMax.to(intro, 0.2, {alpha: 0});
       TweenMax.to([tasaDeCompra, compraPromedio, venta], 0.7, {y: (app.screen.height * 62) / 220, onComplete: function () {
         intro.style.display = "none";
         stages[0].style.display = "block";
+        appDiv.querySelector("#arrow-point-to-right-00").style.display = "block";
         TweenMax.fromTo(stages[0], 0.2, {alpha: 0}, {alpha: 1});
         tasaDeCompra.scale.set(factorScreen(0.9));
         compraPromedio.scale.set(factorScreen(0.8));
@@ -768,8 +758,8 @@ function indicators() {
 
         self.turnOff_TC=function(){
           slider0.style.display = "none";
-          stages[0].querySelector("#arrow-point-to-right-00").style.display = "none";
-          stages[0].querySelector("#arrow-point-to-right-01").style.display = "none";
+          appDiv.querySelector("#arrow-point-to-right-00").style.display = "none";
+          appDiv.querySelector("#arrow-point-to-right-01").style.display = "none";
           //stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
           stages[0].style.display = "none";
           stages[0].querySelector("#content_00").style.display = "none";
@@ -785,7 +775,7 @@ function indicators() {
           app.stage.getChildByName("thing_0").visible = true;
           stages[0].style.display = "block";
           //stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
-          stages[0].querySelector("#arrow-point-to-right-00").style.display = "block";
+          appDiv.querySelector("#arrow-point-to-right-00").style.display = "block";
           //stages[0].querySelector("#content_02").style.display = "none";
           stages[0].querySelector("#content_00").style.display = "block";
           stages[0].querySelector("#content_01").innerHTML=subTitles[0][1];
@@ -794,8 +784,8 @@ function indicators() {
 
           self.turnOff_CP=function(){
             slider1.style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-10").style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-11").style.display = "none";
+            appDiv.querySelector("#arrow-point-to-right-10").style.display = "none";
+            appDiv.querySelector("#arrow-point-to-right-11").style.display = "none";
             //stages[1].querySelector("#arrow-point-to-right-12").style.display = "none";
             stages[1].style.display = "none";
             stages[1].querySelector("#content_10").style.display = "none";
@@ -809,8 +799,8 @@ function indicators() {
           self.turnOn_CP=function(){
             app.stage.getChildByName("thing_1").visible = true;
             stages[1].style.display = "block";
-            stages[1].querySelector("#arrow-point-to-right-11").style.display = "none";
-            stages[1].querySelector("#arrow-point-to-right-10").style.display = "block";
+            appDiv.querySelector("#arrow-point-to-right-11").style.display = "none";
+            appDiv.querySelector("#arrow-point-to-right-10").style.display = "block";
             stages[1].querySelector("#content_11").style.display = "none";
             stages[1].querySelector("#content_11").innerHTML=subTitles[1][1];
             stages[1].querySelector("#content_10").style.display = "block";
@@ -830,9 +820,9 @@ function indicators() {
           }
 
           self.turnOff_VTA=function(){
-            stages[2].querySelector("#arrow-point-to-right-20").style.display = "none";
-            stages[2].querySelector("#arrow-point-to-right-21").style.display = "none";
-            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
+            appDiv.querySelector("#arrow-point-to-right-20").style.display = "none";
+            appDiv.querySelector("#arrow-point-to-right-21").style.display = "none";
+            appDiv.querySelector("#arrow-point-to-right-22").style.display = "none";
             stages[2].style.display = "none";
             stages[2].querySelector("#content_20").style.display = "none";
             stages[2].querySelector("#content_21").style.display = "none";
@@ -848,8 +838,8 @@ function indicators() {
 
           self.turnOn_VTA=function(){
             stages[2].style.display = "block";
-            stages[2].querySelector("#arrow-point-to-right-22").style.display = "none";
-            stages[2].querySelector("#arrow-point-to-right-20").style.display = "block";
+            appDiv.querySelector("#arrow-point-to-right-22").style.display = "none";
+            appDiv.querySelector("#arrow-point-to-right-20").style.display = "block";
             stages[2].querySelector("#content_22").style.display = "none";
             stages[2].querySelector("#content_23").style.display = "none";
             stages[2].querySelector("#content_20").style.display = "block";

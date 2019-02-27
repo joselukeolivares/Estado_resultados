@@ -8,7 +8,7 @@ function slider(appDiv, app, index) {
   dom.setAttribute("id", "slider_" + index);
   dom.className = "slider";
   //dom.style.left = app.width * 0.57 + "px";
-  debugger;
+
 
   dom.style.width = "200px";
   dom.style.height = "50px";
@@ -134,7 +134,7 @@ function slider(appDiv, app, index) {
           tcCts.innerHTML = self.value + "00" + "<br>Clientes";
 
           stage0.querySelector("#content_01").innerHTML = "Como puedes observar, una mayor tasa de compra indica que más clientes están comprando y en sentido contrario, una menor tasa de compra indica menos clientes comprando.";
-          stage0.querySelector("#arrow-point-to-right-01").style.display = "block";
+          appDiv.querySelector("#arrow-point-to-right-01").style.display = "block";
 
 
       } else {
@@ -170,7 +170,7 @@ function slider(appDiv, app, index) {
           //if (newValue >= 6)
            {
             //stage1.querySelector("#content_11").innerHTML = "";
-            let arrowR=stage1.querySelector("#arrow-point-to-right-11");
+            let arrowR=appDiv.querySelector("#arrow-point-to-right-11");
             arrowR.style.display = "block";
             /*
             var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
@@ -190,7 +190,7 @@ function slider(appDiv, app, index) {
 
           //if(newValue <= 4)
            {
-            let arrowR=stage1.querySelector("#arrow-point-to-right-12");
+            let arrowR=appDiv.querySelector("#arrow-point-to-right-12");
             arrowR.style.display = "block";
             var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
               TweenLite.to(arrowR,1,{opacity:1});
