@@ -29,13 +29,13 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
   // Background
   var bg = document.createElement("div");
   bg.className = "slider_bg";
-  bg.style.height=factorScreen(30)+"px";
+  bg.style.height="30px";
   dom.appendChild(bg);
 
   // Knob
   var knob = document.createElement("div");
   knob.className = "slider_knob";
-  knob.style.height=factorScreen(30)+"px";
+  knob.style.height="30px";
   knob.style.width=knob.style.height;
   knob.style.left=((divWidth-(DivHeight*.6))/2)+"px";
 

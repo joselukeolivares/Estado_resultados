@@ -142,10 +142,14 @@ function loader_pixi(){
             document.getElementsByTagName("footer")[0].style.display="none";
             document.getElementById("mdl_menu").style.display="block";
             main.style.height="99%";
-            height=main.clientHeight;
+            document.getElementById("aplicacion").style.height=main.clientHeight+"px";
+
           }else{
+            main.style.height="90%";
             document.getElementsByTagName("footer")[0].style.display="block";
           }
+
+           height=main.clientHeight;
            actual_app=start().createApp();
         }
 

@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="CSS/indicators.css">
   <link rel="stylesheet" href="mdl/icon.css">
   <link rel="stylesheet" href="mdl/material.blue_grey-indigo.min.css" />
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
 
@@ -237,7 +237,7 @@
         dataCSV=null,
         dataMax,dataMaxMMA;
         main=document.getElementById('main');
-        main.style.height="90%";
+        main.style.height="99%";
         //main.style.backgroundColor="red";
         console.log(screen.width,screen.height);
         console.log(main.clientHeight);
@@ -248,16 +248,16 @@
                   var heightAux=(1-(parseFloat(container.style.height)/100)*2)
                       //heightAux=heightAux*2;
                       heightAux=heightAux*parseFloat(screen.height);
-                  height=(1-(parseFloat(container.style.height)/100)*2)*parseFloat(screen.height);
+                  //height=(1-(parseFloat(container.style.height)/100)*2)*parseFloat(screen.height);
                 }else if(screen.width>1200&&screen.width<1560){
                   width=1080;
-                  height=(1-(parseFloat(container.style.height)/100))*parseFloat(screen.height);;
+                  //height=(1-(parseFloat(container.style.height)/100))*parseFloat(screen.height);;
                 }else{
                   width=screen.width;
-                  height=(1-(parseFloat(container.style.height)/100))*parseFloat(screen.height);
+                  //height=(1-(parseFloat(container.style.height)/100))*parseFloat(screen.height);
                 }
                 //880--1080
-                 height=main.clientHeight;
+                height=main.clientHeight;
 
 
 
@@ -266,7 +266,7 @@
       console.log(width,height);
 
 
-      d3.csv("data/Estado de Resultados Mx Ene19_test.csv",funcion);
+      d3.csv("data/Estado de Resultados Mx Ene19.csv",funcion);
 
       function funcion(data){
 
@@ -277,7 +277,7 @@
                   var year;
 
                 if(data[i].Fecha==mes_actual){
-                     
+
                      datos_obj[0]=data[i];
                      year=new Date(datos_obj[0].Fecha).getFullYear();
                      if(year-1==new Date(data[i-12].Fecha).getFullYear())
@@ -308,7 +308,7 @@
 
 
   div.setAttribute("id","aplicacion");
-  div.setAttribute("style","width:"+width+"px;height:"+height+"px;");
+  div.setAttribute("style","width:"+width+"px;height:"+height+"px;position:relative;overflow:hidden;");
   main.style.width=width+"px";
   main.style.left=(((1-(width/document.body.clientWidth))/2)*100)+"%";
 

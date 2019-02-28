@@ -31,7 +31,7 @@ var self={};
   ]
 
   self.showBaloon=function(target){
-    //debugger;
+    //
     let p_tagCte=document.getElementById("p_tagCte");
     p_tagCte.innerHTML=target.tagInDiv;
     p_tagCte.parentNode.style.display="block";
@@ -53,7 +53,7 @@ var self={};
 
 
     var leftCent=(parseInt(aplicacion.clientWidth)/2);
-    //debugger;
+    //
     var title=document.createElement('p')
         title.innerHTML="Estado de Resultados de Clientes"
         title.setAttribute("style","text-shadow: 3px 0px #09102C;font-weight: bold;position: absolute;top: 5%;font-size: "+factorScreen(40)+"px;margin: 0px;font-family: Roboto-Regular;color: #FFFFFF;");
@@ -61,6 +61,7 @@ var self={};
         title.style.left=(leftCent-(title.clientWidth/2))+"px";
 
     var subtitle=document.createElement('p')
+            subtitle.setAttribute("id","subTitle");
             subtitle.innerHTML="Simulador"
             subtitle.setAttribute("style","font-weight: bold;position:absolute;top:10%;font-size: "+factorScreen(22)+"px;font-family: Roboto-Regular;color: #FFFFFF;");
             aplicacion.appendChild(subtitle);
@@ -131,7 +132,7 @@ var self={};
     var buttonNull=new PIXI.Sprite(atlasBlock5[buttons[0]]);
         buttonNull.scale.set(factorScreen(.65));
 var b_x=(width/2)-(buttonNull.width*4)-75;
-//debugger;
+//
 var b_y=height/2;
 
 var cteNameDiv=document.createElement('div');
@@ -148,7 +149,7 @@ var p_tagCte=document.createElement('p');
 
 
     self.hideBaloon=function(){
-      ////debugger;
+      ////
       let p_tagCte=document.getElementById("p_tagCte");
       p_tagCte.parentNode.style.display="none";
 
@@ -207,7 +208,7 @@ var p_tagCte=document.createElement('p');
              });
 
              button_pressed.on("mouseout",function(event){
-               //debugger;
+               //
                let p_tagCte=document.getElementById("p_tagCte");
                p_tagCte.parentNode.style.display="none";
 
@@ -272,7 +273,9 @@ var p_tagCte=document.createElement('p');
        TweenMax.to([followMe,descript_txt],1,{pixi:{alpha:0},onComplete:function(){
          aplicacion.removeChild(followMe);
          descript_txt.innerHTML="Selecciona dos perfiles de clientes dando clic en los botones, a continuación se visualiza la Tasa de Compra, Compra Promedio Anual, Venta y Venta Total de los perfiles seleccionados.<br>Analiza los indicadores de cada perfil e interactúa con la Tasa de compra para visualizar las variaciones en  Venta y Venta Total."
-         TweenMax.to(descript_txt,1,{alpha:1,top:factorScreen(20)+"%"});
+         let subTitle=document.getElementById("subTitle");
+         debugger;
+         TweenMax.to(descript_txt,1,{alpha:1,top:"16%"});
        }})
 
        TweenMax.to(buttons_container.children,2,{pixi:{y:height/3},onComplete:function(){
@@ -445,7 +448,7 @@ var p_tagCte=document.createElement('p');
          self.app.stage.addChild(tc_sprite);
         //<p>con TC, numero de clientes y "clientes" tag de primer personaje seleccionado
          var aplicacion=document.getElementById("aplicacion");
-         grayCte.x+=tc_sprite.x-grayCte.width;
+         grayCte.x+=tc_sprite.x-(grayCte.width*2);
 
          var tc_pTag=document.createElement("p");
          tc_pTag.innerHTML="0%";
@@ -471,7 +474,7 @@ var p_tagCte=document.createElement('p');
 
              aplicacion.appendChild(tc_pTag);
 
-             grayCte_2.x=tc_sprite.x-grayCte_2.width-tc_pTag.clientWidth;
+
              aplicacion.appendChild(ctes_numero);
              aplicacion.appendChild(ctes_pTag);
         //Se inserta slider en div id:"aplciacion" (informacion de los parametros en el script sliderB5B6)
@@ -482,7 +485,7 @@ var p_tagCte=document.createElement('p');
          tc_base2.y=height/2;
          tc_base2.scale.set(factorScreen(1));
          self.app.stage.addChild(tc_base2);
-         grayCte_2.x=tc_base2.x+tc_base2.width;
+         grayCte_2.x=tc_base2.x+tc_base2.width+grayCte_2.width;
 
          //<p>con TC, numero de clientes y "clientes" tag de segundo personaje seleccionado
          var tc_pTag2=document.createElement("p");
@@ -530,7 +533,7 @@ var p_tagCte=document.createElement('p');
             tc_pTag.style.top=(leftCte.y+leftCte.parent.y)+"px";
             aplicacion.appendChild(tc_pTag);
             tc_pTag.style.left=(tc_sprite.x-tc_pTag.clientWidth)+"px";
-            debugger;
+
 
             self.app.stage.getChildByName("leftCteGray").x-=parseInt(tc_pTag.clientWidth);
 
@@ -1133,7 +1136,7 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
         for(var j=0;j<9;j++){
           var buttonOK=container_buttons.getChildByName("buttonOK"+j);
           buttonOK.visible=true;
-          //debugger;
+          //
           //buttonOK.removeAllListeners();
           buttonOK.removeListener('pointertap')
 
