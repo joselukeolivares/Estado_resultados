@@ -18,20 +18,16 @@ footer {
   font-size: 14px;
 }
 
-.parpadeo{
-  animation-name: parpadeoKF;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-}
+  /* .parpadeo {
+    animation-name: parpadeoKF;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  } */
 
 @keyframes parpadeoKF {
-  from{
-    opacity: .1;
+  70% {
+    opacity: 0.1;
   }
-  to{
-    opacity: 1;
-  }
-
 }
 
 .circulos {
@@ -143,9 +139,6 @@ footer {
   font-size: 40px;
 }
 
-.subTitle{
-  font-size: 28px;
-}
 
 .sin_margen{
   margin: 0 0 0 0;

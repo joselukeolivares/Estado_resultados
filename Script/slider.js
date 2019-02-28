@@ -2,15 +2,11 @@ function slider(appDiv, app, index) {
   let self = this;
   self.value = 4.9;
 
-
   // Create DOM
   let dom = document.createElement("div");
   dom.setAttribute("id", "slider_" + index);
   dom.className = "slider";
-  //dom.style.left = app.width * 0.57 + "px";
-  debugger;
-
-  dom.style.width = "200px";
+  dom.style.width = "20%";
   dom.style.height = "50px";
   dom.style.position = "absolute";
   dom.style.display = "none";
@@ -31,30 +27,34 @@ function slider(appDiv, app, index) {
 
   appDiv.appendChild(dom);
 
-  var interactiveSquares = new PIXI.Container();
+  let interactiveSquares = new PIXI.Container();
   interactiveSquares.name = "interactiveSquares" + index;
-  var loader = PIXI.loader;
+  let loader = PIXI.loader;
   let tc_square, cp_square, tcCts, tcPer, cpSls;
-  var scale_temp=.8;
-  if(app.width<=1024 && app.height <=768){
-    scale_temp= .6;
+  let scale_temp = 0.7;
+  let temp_width = app.width * 0.25;
+  let temp_height = app.height * 0.20;
+  console.log(temp_height);
+
+  if(app.width<=1024 && app.height <=768) {
+    scale_temp= 0.6;
   }
-  if(app.width<=740 && app.height <=360){
-    scale_temp= .4;
+  if(app.width<=740 && app.height <=360) {
+    scale_temp= 0.4;
   }
 
   if(index == 0) {
     tc_square = new PIXI.Sprite(loader.resources["assets/ui/bloque_3/tasa_indicador.png"].texture);
     tc_square.x = app.width * 0.7;
     tc_square.y = app.height * 1.3;
-
-
-    tc_square.scale.set(scale_temp);
+    tc_square.width = temp_width;
+    tc_square.height = temp_height;
+    // tc_square.scale.set(scale_temp);
     tc_square.name = "tc_square";
     interactiveSquares.addChild(tc_square);
-    dom.style.top =(tc_square.y+tc_square.height)+25+ "px";
 
-    dom.style.left = tc_square.x+((tc_square.width-200)/2)+"px";
+    dom.style.top = (tc_square.y + (tc_square.height * 1.15)) + "px";
+    dom.style.left = (tc_square.x + (tc_square.width * 0.05)) + "px";
 
     tcCts = document.createElement("p");
     tcCts.setAttribute("id", "tcCts");
@@ -86,20 +86,22 @@ function slider(appDiv, app, index) {
     cp_square = new PIXI.Sprite(loader.resources["assets/ui/bloque_3/compraProm_indicador.png"].texture);
     cp_square.x = app.width * 0.7;
     cp_square.y = app.height * 1.3;
-    cp_square.scale.set(scale_temp);
+    cp_square.width = temp_width;
+    cp_square.height = temp_height;
+    // cp_square.scale.set(scale_temp);
     cp_square.name = "cp_square";
     interactiveSquares.addChild(cp_square);
 
-    dom.style.top =(cp_square.y+cp_square.height)+25+ "px";
-    dom.style.left = cp_square.x+((cp_square.width-200)/2)+"px";
+    dom.style.top = (cp_square.y + (cp_square.height * 1.15)) + "px";
+    dom.style.left = (cp_square.x + (cp_square.width * 0.05)) + "px";
 
     cpSls = document.createElement("p");
     cpSls.setAttribute("id", "cpSls");
     cpSls.innerHTML = "$1,000.00";
-    cpSls.style.fontSize = factorScreen(40)+"px";
-    cpSls.style.margin="0px";
-    cpSls.style.left = cp_square.x + (cp_square.width*.25) + "px";
-    cpSls.style.top = cp_square.y + (cp_square.height*.25) + "px";
+    cpSls.style.fontSize = factorScreen(40) + "px";
+    cpSls.style.margin = "0px";
+    cpSls.style.left = cp_square.x + (cp_square.width * 0.25) + "px";
+    cpSls.style.top = cp_square.y + (cp_square.height * 0.25) + "px";
     cpSls.style.display = "none";
     appDiv.appendChild(cpSls);
   }
@@ -111,8 +113,8 @@ function slider(appDiv, app, index) {
   var _offsetX = 0;
   var _mouseToParam = function(event) {
     TweenLite.killTweensOf(knob);
-    knob.style.opacity=1;
-    var param = (event.clientX - dom.getBoundingClientRect().left - _offsetX) / 200;
+    knob.style.opacity = 1;
+    var param = (event.clientX - dom.getBoundingClientRect().left - _offsetX) / bg.offsetWidth;
     var newValue;
     if(param < 0) param = 0;
     if(param > 1) param = 1;
@@ -134,7 +136,7 @@ function slider(appDiv, app, index) {
           tcCts.innerHTML = self.value + "00" + "<br>Clientes";
 
           stage0.querySelector("#content_01").innerHTML = "Como puedes observar, una mayor tasa de compra indica que más clientes están comprando y en sentido contrario, una menor tasa de compra indica menos clientes comprando.";
-          stage0.querySelector("#arrow-point-to-right-01").style.display = "block";
+          appDiv.querySelector("#arrow-point-to-right-01").style.display = "block";
 
 
       } else {
@@ -170,7 +172,7 @@ function slider(appDiv, app, index) {
           //if (newValue >= 6)
            {
             //stage1.querySelector("#content_11").innerHTML = "";
-            let arrowR=stage1.querySelector("#arrow-point-to-right-11");
+            let arrowR=appDiv.querySelector("#arrow-point-to-right-11");
             arrowR.style.display = "block";
             /*
             var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
@@ -190,7 +192,7 @@ function slider(appDiv, app, index) {
 
           //if(newValue <= 4)
            {
-            let arrowR=stage1.querySelector("#arrow-point-to-right-12");
+            let arrowR=appDiv.querySelector("#arrow-point-to-right-12");
             arrowR.style.display = "block";
             var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
               TweenLite.to(arrowR,1,{opacity:1});
@@ -201,6 +203,10 @@ function slider(appDiv, app, index) {
       }
     }
   };
+
+  // let function tcSquare() {
+  //
+  // }
 
 	var _onDomMouseDown = function(event) {
     _mouseToParam(event);
@@ -243,4 +249,3 @@ function numberWithCommas(x) {
 function factorScreen(value){
   return height*value/880;
 }
-//Slider();
