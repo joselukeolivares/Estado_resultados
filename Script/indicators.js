@@ -48,6 +48,7 @@ function indicators() {
     let venta = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b_venta.png")].texture);
 
     tasaDeCompra.anchor.set(0.5);
+    tasaDeCompra.name = "tasaDeCompraSprite";
     tasaDeCompra.x = app.screen.width / 5.5;
     tasaDeCompra.y = app.screen.height / 2;
     tasaDeCompra.scale.set(factorScreen(0.8));
@@ -61,6 +62,7 @@ function indicators() {
     app.stage.addChild(compraPromedio);
 
     venta.anchor.set(0.5);
+    venta.name = "ventaSprite";
     venta.x = app.screen.width / 1.22;
     venta.y = app.screen.height / 2;
     venta.scale.set(factorScreen(0.8));
@@ -98,11 +100,9 @@ function indicators() {
 
     let contButton = new PIXI.Sprite(PIXI.loader.resources[("assets/ui/bloque_3/b-continue.png")].texture);
 
-    contButton.y = app.screen.height*.9;
-    //contButton.anchor.set(0.5);
-
-    contButton.scale.set(factorScreen(.6));
-
+    contButton.y = app.screen.height * 0.9;
+    contButton.anchor.set(0.5);
+    contButton.scale.set(factorScreen(0.9));
     contButton.interactive = true;
     contButton.cursor = "pointer";
     app.stage.addChild(contButton);
@@ -406,22 +406,23 @@ function indicators() {
       }
 
       let things = new PIXI.Sprite(interactive[i]);
-      things.name="thingsX"
       things.scale.set(scale2);
-      //things.anchor.set(0.5);
-      things.x = app.screen.width / 1.9;
-      things.y = app.screen.height / 1.9;
-
-      var sliderX=document.getElementById("slider_"+i);
-      if(i<2){
-      things.x = parseFloat(sliderX.style.left)-50;
-      things.y = parseFloat(sliderX.style.top)-things.height*2.4;
-      }
-      //debugger;
-
-
+      things.anchor.set(0.5);
       things.visible = false;
       things.name = "thing_" + i;
+
+      if(i == 0) {
+        let container = app.stage.getChildByName("interactiveSquares0");
+        let tcSquare = container.getChildByName("tc_square");
+        things.x = tcSquare.x + (tcSquare.width * 0.5);
+        things.y = tcSquare.y - (tcSquare.height);
+      } else if(i == 1) {
+        let container = app.stage.getChildByName("interactiveSquares1");
+        let cpSquare = container.getChildByName("cp_square");
+        things.x = cpSquare.x + (cpSquare.width * 0.5);
+        things.y = cpSquare.y - (cpSquare.height);
+      }
+
       app.stage.addChild(things);
 
       let vSprites = new PIXI.Container();
@@ -520,12 +521,11 @@ function indicators() {
     let titleContent = document.getElementById("titleIndicator");
     let actualContent = document.getElementById("content_22");
     //actualContent.ClassList.add("parpadeo")
-    actualContent.style.top=(titleContent.clientTop+titleContent.clientHeight)+"px;";
+    //actualContent.style.top=(titleContent.clientTop+titleContent.clientHeight)+"px;";
     //actualContent.style.left="32%";
     //actualContent.style.margin="1%";
     //actualContent.style.width="44%";
-    actualContent.style.position="absolute";
-    actualContent.style.position="absolute";
+    // actualContent.style.position="absolute";
     actualContent.style.cursor="pointer";
     //debugger;
 
@@ -533,10 +533,10 @@ function indicators() {
     content.setAttribute("class", "content");
     content.setAttribute("id", "content_23");
     content.innerHTML=subTitles[2][3];
-    content.style.top="30%";
+    //content.style.top="30%";
     //content.style.margin="1%";
-    content.style.left=document.getElementById("content_22").style.left;
-    content.style.position="absolute";
+    content.style.left = document.getElementById("content_22").style.left;
+    //content.style.position="absolute";
     content.style.color="rgb(231, 200, 47)";
     content.style.display="none";
     content.style.cursor="pointer";
@@ -660,14 +660,14 @@ function indicators() {
     };
 
     self.offStepBack=function(){
-      for(var i=0;i<3;i++){
-        appDiv.querySelector("#stepBack"+(i+""+1)).style.display = "none";
+      for(var i = 0; i < 3; i++){
+        appDiv.querySelector("#stepBack" + ( i + "" + 1)).style.display = "none";
         if(i==2)
-        appDiv.querySelector("#stepBack"+(i+""+2)).style.display = "none";
+        appDiv.querySelector("#stepBack" + ( i + "" + 2)).style.display = "none";
       }
     }
 
-    contButton.on("pointertap", function() {
+    contButton.on("pointerdown", function() {
 
       contButton.visible = false;
       TweenMax.to(intro, 0.2, {alpha: 0});
@@ -687,7 +687,7 @@ function indicators() {
         tasaDeCompra.interactive = true;
         tasaDeCompra.buttonMode = true;
 
-        tasaDeCompra.on("click",function(){
+        tasaDeCompra.on("pointerdown",function(){
           self.tasaCompra_();
         });
 
@@ -760,7 +760,7 @@ function indicators() {
           slider0.style.display = "none";
           appDiv.querySelector("#arrow-point-to-right-00").style.display = "none";
           appDiv.querySelector("#arrow-point-to-right-01").style.display = "none";
-          //stages[0].querySelector("#arrow-point-to-right-02").style.display = "none";
+          //appDiv.querySelector("#arrow-point-to-right-02").style.display = "none";
           stages[0].style.display = "none";
           stages[0].querySelector("#content_00").style.display = "none";
           stages[0].querySelector("#content_01").style.display = "none";
@@ -852,7 +852,7 @@ function indicators() {
         // Compra promedio boton
         compraPromedio.interactive = true;
         compraPromedio.buttonMode = true;
-        compraPromedio.on("click",function(){
+        compraPromedio.on("pointerdown",function(){
           self.compraPromedio_();
         });
 
@@ -911,7 +911,7 @@ function indicators() {
         venta.interactive = true;
         venta.buttonMode = true;
 
-        venta.on("click",function(){
+        venta.on("pointerdown",function(){
           self.venta_();
         });
         self.venta_=function() {
@@ -937,7 +937,7 @@ function indicators() {
             self.turnOff_VTA();
             self.turnOn_VTA();
 
-          var icBack=app.stage.getChildByName("vSprites1").getChildByName("icBack");
+          var icBack = app.stage.getChildByName("vSprites1").getChildByName("icBack");
           //debugger;
           app.stage.getChildByName("vSprites1").removeChild(icBack);
         };
