@@ -1137,8 +1137,8 @@ var regresar = PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN P
 var regresar_2 =PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"].texture;
 var button = new PIXI.Sprite(regresar);
 
-button.x = self.app.screen.width * 0.8;
-button.y = self.app.screen.height * 0.03;
+button.x = self.app.screen.width * 0.815;
+button.y = self.app.screen.height * 0.06;
 
 button.scale.set(self.app.screen.width*.35/950);
 button.interactive = true;
@@ -1212,11 +1212,8 @@ button
  var clearSelected = PIXI.Texture.fromImage("assets/ui/bloque_6/23. BOTON CLEAR 2.png");
  var clearButton = new PIXI.Sprite(clear);
 
- clearButton.x = self.app.screen.width * 0.85;
-
- clearButton.y = self.app.screen.height * 0.03;
-
-
+ clearButton.x = self.app.screen.width * 0.86;
+ clearButton.y = self.app.screen.height * 0.06;
  clearButton.scale.set(self.app.screen.width*.35/950);
  clearButton.interactive = true;
  clearButton.buttonMode = true;
