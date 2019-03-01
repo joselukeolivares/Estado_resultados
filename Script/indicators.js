@@ -527,16 +527,18 @@ function indicators() {
     //actualContent.style.width="44%";
     // actualContent.style.position="absolute";
     actualContent.style.cursor="pointer";
+    actualContent.style.textAlignLast="left";
+    actualContent.style.textAlign="left";
     //debugger;
 
     let content = document.createElement("p");
-    content.setAttribute("class", "content");
+    //content.setAttribute("class", "content");
     content.setAttribute("id", "content_23");
     content.innerHTML=subTitles[2][3];
     //content.style.top="30%";
     //content.style.margin="1%";
     content.style.left = document.getElementById("content_22").style.left;
-    //content.style.position="absolute";
+
     content.style.color="rgb(231, 200, 47)";
     content.style.display="none";
     content.style.cursor="pointer";
