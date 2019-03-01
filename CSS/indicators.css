@@ -94,6 +94,11 @@ body {
   left: 95%;
   transform: translate(-50%, -50%);
   display: none;
+  transition: transform 100ms ease-in;
+}
+
+.arrow-point-to-right:hover {
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 .step-back-arrow {
@@ -105,10 +110,11 @@ body {
   left: 0;
   transform: translateY(-50%) rotate(180deg);
   display: none;
+  transition: transform 100ms ease-in;
 }
 
-.arrow-anim:hover {
-  transform: scale(1.5);
+.step-back-arrow:hover {
+  transform: translateY(-50%) rotate(180deg) scale(1.2);
 }
 
 .content {
@@ -127,11 +133,17 @@ body {
 
 
 #content_22, #content_23 {
+  color: rgb(231, 200, 47);
   /* text-align: center; */
   /* text-align-last: left; */
   left: 7rem;
   /* width: calc(100% - 12rem); */
   text-decoration: underline;
+  cursor: pointer;
+}
+
+#content_22:hover, #content_23:hover {
+  color: #FFFFFF;
 }
 
   #circle-tick-inside-1,#circle-tick-inside-2{
