@@ -1,16 +1,17 @@
 
 #totals {
-  position: absolute;
-  width: 55%;
+
+  position: relative;
+  width: 100%;
   height: 80px;
   top: 4%;
-  left: 50%;
-  transform: translate(-50%);
+  display: flex;
+  justify-content: center;
 }
 
 #tc-total {
-  position: absolute;
-  width: 50%;
+
+  width: 30%;
   height: 100%;
   text-align: center;
   background: #ffde41;
@@ -27,19 +28,20 @@
   background: #fff;
   float: right;
   box-shadow: -8px 0 3px rgba(0, 0, 0, 0.3);
+
 }
 
 #vta-total {
-  width: 45%;
+  width: 30%;
   height: 100%;
   text-align: center;
   background: #fff;
   border-radius: 50px;
-  float: right;
   box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.5);
+  margin:0% 1%;
 }
 
-.p_tags{
+.p_tags,#estrategia{
   font-size: 16px;
   /*text-decoration: line-through;*/
 }
@@ -55,11 +57,11 @@
 #table_scores{
   position: absolute;
   width: 15%;
-  height:30%;
+  height:45%;
   background-color: #114C99;
   border-radius: 30px;
-  right: 5%;
-  top:10%;
+  right: 1%;
+  top:15%;
   opacity: 0;
   display: none;
   box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.5);
@@ -79,7 +81,7 @@
 
 .head_top{
 width: 100%;
-height: 30%;
+height: 18%;
 position: absolute;
 /*background-image: url('../assets/ui/bloque_6/ERC-Characters/heads_characters/Vencidos1.png');*/
 background-repeat: no-repeat;
@@ -190,6 +192,7 @@ top:100%;
   left: 50%;
   width: 60%;
   transform: translate(-50%);
+  margin-top: 1%;
 }
 
 #icon_title{
@@ -199,7 +202,7 @@ top:100%;
 }
 
 #title_selected {
-  font-size: 38px;
+  font-size: 20px;
   padding: 5px;
 }
 
@@ -266,13 +269,117 @@ top:100%;
   #table_scores{
 
     width: 20%;
-    height:40%;
+    height:75%;
     right: 2%;
   }
 
   .scores{
     font-size: 20px;
     margin:0px;
+  }
+
+  #totals{
+    height: 14%;
+
+  }
+
+  #ctes-total-name,#ctes-total-tag,#ctesElm,#white_box,#estrategia{
+    font-size: 12px;
+  }
+
+  #money_icon{
+    position: absolute;
+    width: 3%;
+    height: 7%;
+    background-color: red;
+    right: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: dotted;
+    border-radius: 20px;
+    border-width: 1.5px;
+    top: 3%;
+    background-color: #ffde41;
+    color: rgb(44,45,151);
+
+  }
+
+
+  .hide_scores{
+    animation-name: hide_table;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+
+  }
+
+  .show_scores{
+    animation-name: show_table;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+
+  }
+
+  #toolTip {
+
+    top: 3%;
+    left: 50%;
+    height: 94%;
+    width: 40%;
+  }
+
+  #icon_title{
+    height: 15%
+  }
+
+  #title_selected{
+    font-size: 18px;
+  }
+
+  #tc-,#cpa-,#vta-{
+    left:0;
+    width: 80%;
+    height:10%;
+
+  }
+
+  .white_box,.yellow_box{
+    font-size: 15px;
+  }
+
+
+
+
+
+  @keyframes hide_table {
+    from{
+      right: 0%;
+      opacity:1;
+    }
+
+    to{
+      right: -50%;
+      opacity: 0;
+      display: none;
+    }
+
+  }
+
+  @keyframes show_table {
+    from{
+      right: -50%;
+      opacity:0;
+    }
+
+    to{
+      right: 0%;
+      opacity: 1;
+      display:
+    }
+
   }
 
 }

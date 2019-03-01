@@ -11,12 +11,23 @@ function simulador_global() {
   self.scoresBuilder=function(){
 
     let app=document.getElementById("aplicacion");
+    let money_icon=document.createElement("div")
+        money_icon.setAttribute("id","money_icon");
+    let icon=document.createElement("i")
+        icon.setAttribute("class","fas fa-dollar-sign")
+        money_icon.appendChild(icon);
+
+
+
+
+
     let table = document.createElement('div');
         table.setAttribute("id","table_scores");
+        table.setAttribute("class","show_scores");
     let scores_container=document.createElement('div');
         scores_container.setAttribute("id","scores_container");
-    let title=document.createElement("h5");
-        title.innerHTML="Top Ventas";
+    let title=document.createElement("p");
+        title.innerHTML="Top % Participación en Ventas";
         title.setAttribute("style","color:white;text-align:center:left:0;text-align:center;")
     let container_1=document.createElement('div');
         container_1.style.display='flex';
@@ -56,30 +67,36 @@ function simulador_global() {
 
     }
 
-  //top scores
 
-    let score_1=document.createElement('p');
-        score_1.setAttribute("id","score_1");
-        score_1.innerHTML="NA%";
-        score_1.setAttribute("class","scores")
-    let score_2=document.createElement('p');
-        score_2.setAttribute("id","score_2");
-        score_2.setAttribute("class","scores")
-        score_2.innerHTML="NA%";
-    let score_3=document.createElement('p');
-        score_3.setAttribute("id","score_3");
-        score_3.setAttribute("class","scores")
-        score_3.innerHTML="NA%";
 
         app.appendChild(table);
+        app.appendChild(money_icon);
         table.appendChild(title);
         table.appendChild(container_1);
 
         container_1.appendChild(container_heads);
         container_1.appendChild(scores_container);
-        scores_container.appendChild(score_1);
-        scores_container.appendChild(score_2);
-        scores_container.appendChild(score_3);
+        //top scores
+        for(var i=1;i<6;i++)
+        {   let score=document.createElement('p');
+        score.setAttribute("id","score_"+i);
+        score.innerHTML="NA%";
+        score.setAttribute("class","scores")
+        scores_container.appendChild(score);
+      }
+
+      //Show and hide Table scores
+      money_icon.addEventListener("click",function(){
+        debugger;
+        if(table.classList[0]=="hide_scores"){
+          table.classList.remove("hide_scores");
+          table.classList.add("show_scores");
+        }else{
+          table.classList.remove("show_scores");
+          table.classList.add("hide_scores");
+        }
+      })
+
   }
 
   self.winners=function(){
@@ -93,7 +110,7 @@ function simulador_global() {
     }
 
     ranking.sort((a, b) => a - b);
-    //
+
 
     for(var i=0;i<self.characters.length;i++){
 
@@ -102,19 +119,32 @@ function simulador_global() {
       name=name.replace("+","_").replace(" ","_");
 
 
+
       if(sale==ranking[ranking.length-1]){
         //console.log("Top 1: "+i+" "+self.characters[i].name+" $"+self.characters[i].sale());
         var porcent=parseInt(sale/total);
         document.getElementById("score_1").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
-        TweenMax.to(name,1,{top:"0%",zIndex:3})
+        TweenMax.to(name,1,{top:"0%",zIndex:5})
       }else if(sale==ranking[ranking.length-2]){
         //console.log("Top 2: "+i+" "+self.characters[i].name+" $"+self.characters[i].sale());
         document.getElementById("score_2").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
-        TweenMax.to(name,1,{top:"33%",zIndex:2})
+        TweenMax.to(name,1,{top:"20%",zIndex:4})
       }else if(sale==ranking[ranking.length-3]){
         //console.log("Top 3: "+i+" "+name+" $"+self.characters[i].sale());
         document.getElementById("score_3").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
-        TweenMax.to(name,1,{top:"66%",zIndex:1})
+        TweenMax.to(name,1,{top:"40%",zIndex:3})
+        //document.getElementById(name.replace("#","")).style.top="60%";
+
+      }else if(sale==ranking[ranking.length-4]){
+        //console.log("Top 3: "+i+" "+name+" $"+self.characters[i].sale());
+        document.getElementById("score_4").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
+        TweenMax.to(name,1,{top:"60%",zIndex:2})
+        //document.getElementById(name.replace("#","")).style.top="60%";
+
+      }else if(sale==ranking[ranking.length-5]){
+        //console.log("Top 3: "+i+" "+name+" $"+self.characters[i].sale());
+        document.getElementById("score_5").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
+        TweenMax.to(name,1,{top:"80%",zIndex:1})
         //document.getElementById(name.replace("#","")).style.top="60%";
 
       }else{
@@ -133,7 +163,8 @@ function simulador_global() {
   self.createApp = function () {
 
 
-    self.app = new PIXI.Application(width, height, {backgroundColor: 0x175383});
+    self.app = new PIXI.Application(width, height);
+
     app.appendChild(self.app.renderer.view);
 
     var atlasBlock6  = Loader.resources["assets/ui/bloque_4/clientes_min/clientes_min.json"].textures;
@@ -152,7 +183,7 @@ function simulador_global() {
     background.x = self.app.screen.width * 0.5;
     background.y = self.app.screen.height * 0.5;
     background.name = "background";
-    background.scale.set(scale1, scale1);
+    background.scale.set(factorScreen(.6),factorScreen(.4));
     self.app.stage.addChild(background);
 
     let container = new PIXI.Container();
@@ -161,17 +192,17 @@ function simulador_global() {
 
     let audio = new PIXI.Sprite(id["8. AUDIO.png"]);
     audio.name = "audio";
-    audio.anchor.set(0.5);
+    //audio.anchor.set(0.5);
     audio.scale.set(scale1, scale1);
-    audio.x = background.width * 0.88;
-    audio.y = background.height * 0.42;
+    audio.x = self.app.stage.width * 0.7;
+    audio.y = background.height * 0.3;
     container.addChild(audio);
 
     let tvs = new PIXI.Sprite(id["5. TVS.png"]);
     tvs.name = "tvs";
-    tvs.anchor.set(0.5);
+    //tvs.anchor.set(0.5);
     tvs.scale.set(scale1, scale1);
-    tvs.x = background.width * 1;
+    tvs.x = audio.x
     tvs.y = background.height * 0.63;
     container.addChild(tvs);
 
@@ -236,14 +267,14 @@ function simulador_global() {
      tcTotalName.innerHTML = "T.C. Total"
      tcTotalName.setAttribute("id", "ctes-total-name");
      tcTotalName.setAttribute("class","sin_margen p_tags");
-     tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.15) + "px; font-Family: roboto-regular;font-Size: " + factorScreen(22) + "px; font-weight: bold; color: #000;");
+     tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.15) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
      tcTotalName.typeObj=1;
      app.appendChild(tcTotalName);
 
      let tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
      tcTotalCtesElm.setAttribute("class","sin_margen p_tags");
-     tcTotalCtesElm.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.07) + "px; font-Family: roboto-regular;font-Size: " + factorScreen(18) + "px; font-weight: bold; color: #000;");
+     tcTotalCtesElm.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.07) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
 
@@ -251,9 +282,9 @@ function simulador_global() {
      ctesElm.innerHTML = "Clientes";
      ctesElm.setAttribute("id", "ctesElm");
      ctesElm.setAttribute("class","sin_margen");
-     ctesElm.setAttribute("style", "position: absolute; top: " + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left: " + (tcTotalX + tcTotal.offsetWidth * 0.3) + "px; font-Family: roboto-regular; font-Size:" + factorScreen(18) + "px; font-weight: bold; color: #000;");
+     ctesElm.setAttribute("style", "position: absolute; top: " + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left: " + (tcTotalX + tcTotal.offsetWidth * 0.3) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
      ctesElm.typeObj = 1;
-     app.appendChild(ctesElm);
+     //app.appendChild(ctesElm);
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
@@ -374,7 +405,7 @@ function simulador_global() {
      estrategia.className = "subTitle";
      estrategia.innerHTML = "Ahora, te invitamos a crear tu propia estrategia de clientes. Selecciona uno o varios perfiles de clientes para comenzar a mostrar e interactuar con su Tasa de Compra para que visualices el efecto en la Tasa de Compra y Venta Total.";
      estrategia.style.top = self.app.screen.height * 0.4 + "px";
-     estrategia.style.fontSize = factorScreen(20) + "px";
+     //estrategia.style.fontSize = factorScreen(20) + "px";
      app.appendChild(estrategia);
 
      let contButtonIntro = document.createElement("div");
@@ -495,68 +526,68 @@ function simulador_global() {
        let vtaX = vtaRect.left - appRect.left;
        let vtaY = vtaRect.top;
 
-       console.log(tcY);
-       console.log(tc.y);
+       //console.log(tcY);
+       //console.log(tc.y);
 
        var tc_test=document.createElement("p");
        tc_test.setAttribute("id","tc-tag-"+i);
-       tc_test.setAttribute("class","sin_margen hide_element sh_obj"+i)
-       tc_test.setAttribute("style","position:absolute;top:" + (tcY + tc2.offsetHeight / 3.8) +"px; left:" + (tcX + (tc2.offsetWidth * 0.63)) + "px; font-Family:roboto-regular;font-Size:" + factorScreen(24) + "px; font-weight: bold;");
+       tc_test.setAttribute("class","sin_margen hide_element white_box sh_obj"+i)
+       tc_test.setAttribute("style","position:absolute;top:" + (tcY + tc2.offsetHeight / 3.8) +"px; left:" + (tcX + (tc2.offsetWidth * 0.63)) + "px; font-Family:roboto-regular; font-weight: bold;");
        tc_test.typeObj = 1;
        app.appendChild(tc_test);
 
        var tcName=document.createElement("p");
-       tcName.innerHTML="Tasa de Compra";
-       tcName.setAttribute("class","sin_margen hide_element sh_obj"+i);
+       tcName.innerHTML="TC";
+       tcName.setAttribute("class","sin_margen hide_element yellow_box sh_obj"+i);
        tcName.setAttribute("id","tcName" + i);
-       tcName.setAttribute("style","position:absolute;top:"+(tcY + tc2.offsetHeight / 6)+"px;left:"+ (tcX + (tc2.offsetWidth * 0.05)) + "px;font-Family:roboto-regular;font-Size:"+factorScreen(16)+"px;font-weight:bold;color:#000000;");
+       tcName.setAttribute("style","position:absolute;top:"+(tcY + tc2.offsetHeight / 6)+"px;left:"+ (tcX + (tc2.offsetWidth * 0.15)) + "px;font-Family:roboto-regular;font-weight:bold;color:#000000;");
        tcName.typeObj = 1;
        app.appendChild(tcName);
 
        var tc_clientes=document.createElement("p");
        tc_clientes.innerHTML="0";
-       tc_clientes.setAttribute("class","sin_margen hide_element sh_obj"+i);
+       tc_clientes.setAttribute("class","sin_margen hide_element white_box sh_obj"+i);
        tc_clientes.setAttribute("id","tc_clientes"+i);
-       tc_clientes.setAttribute("style","position:absolute;top:"+(tcY + tc2.offsetHeight / 2)+"px;left:"+ (tcX + (tc2.offsetWidth * 0.08)) + "px;font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#000000;");
+       tc_clientes.setAttribute("style","position:absolute;top:"+(tcY - 30 )+"px;left:"+ (tcX + (tc2.offsetWidth * 0.5)) + "px;font-Family:roboto-regular;font-weight:bold;color:#ffffff;");
        tc_clientes.typeObj = 1;
        app.appendChild(tc_clientes);
 
        var tc_clientestxt=document.createElement("p");
-       tc_clientestxt.innerHTML="Ctes";
-       tc_clientestxt.setAttribute("class","sin_margen hide_element sh_obj"+i);
+       tc_clientestxt.innerHTML="Ctes:";
+       tc_clientestxt.setAttribute("class","sin_margen hide_element white_box sh_obj"+i);
        tc_clientestxt.setAttribute("id","tc_clientestxt"+i);
-       tc_clientestxt.setAttribute("style","position:absolute;top:"+(tcY + tc2.offsetHeight / 2) + "px;left:" + (tcX + (tc2.offsetWidth * 0.26)) + "px; text-align: center; font-Family:roboto-regular;font-Size:"+factorScreen(14)+"px;font-weight:bold;color:#000000;");
+       tc_clientestxt.setAttribute("style","position:absolute;top:"+(tcY - 30) + "px;left:" + (tcX + (tc2.offsetWidth * .3)) + "px; text-align: center; font-Family:roboto-regular;font-weight:bold;color:#ffffff;");
        tc_clientestxt.typeObj = 1;
        app.appendChild(tc_clientestxt);
 
        var cpa_test=document.createElement("p");
        cpa_test.innerHTML="$"+"0";
-       cpa_test.setAttribute("class","sin_margen hide_element sh_obj"+i);
+       cpa_test.setAttribute("class","sin_margen hide_element white_box sh_obj"+i);
        cpa_test.setAttribute("id", "cpa-tag-"+i);
-       cpa_test.setAttribute("style", "position: absolute; top:" + (cpaY + cpa2.offsetHeight / 5) + "px; left:" + (cpaX + (cpa2.offsetWidth * 0.58)) +"px;font-Family:roboto-regular;font-Size:"+factorScreen(24)+"px;font-weight:bold;");
+       cpa_test.setAttribute("style", "position: absolute; top:" + (cpaY + cpa2.offsetHeight / 5) + "px; left:" + (cpaX + (cpa2.offsetWidth * 0.58)) +"px;font-Family:roboto-regular;font-weight:bold;");
        cpa_test.typeObj = 1;
        app.appendChild(cpa_test);
 
        var cpaName=document.createElement("p");
-       cpaName.innerHTML = "Compra Promedio <br> Anual";
-       cpaName.setAttribute("class","sin_margen hide_element sh_obj" + i);
+       cpaName.innerHTML = "CPA";
+       cpaName.setAttribute("class","sin_margen hide_element yellow_box sh_obj" + i);
        cpaName.setAttribute("id", "cpa-name-" + i);
-       cpaName.setAttribute("style", "position: absolute; top:"+ (cpaY + cpa2.offsetHeight / 5.5 ) + "px; left:" + (cpaX + (cpa2.offsetWidth * 0.05)) +"px;font-Family:roboto-regular;font-Size:"+factorScreen(14) + "px;font-weight:bold;");
+       cpaName.setAttribute("style", "position: absolute; top:"+ (cpaY + cpa2.offsetHeight / 5.5 ) + "px; left:" + (cpaX + (cpa2.offsetWidth * 0.15)) +"px;font-Family:roboto-regular;font-weight:bold;");
        cpaName.typeObj = 1;
        app.appendChild(cpaName);
 
        var vtaName = document.createElement("p");
        vtaName.innerHTML = "Venta";
-       vtaName.setAttribute("class","sin_margen hide_element sh_obj" + i);
+       vtaName.setAttribute("class","sin_margen hide_element yellow_box sh_obj" + i);
        vtaName.setAttribute("id", "venta-name-" + i);
-       vtaName.setAttribute("style", "position: absolute; top:"+ (vtaY + vta2.offsetHeight / 3.5) + "px; left:" + (vtaX + (vta2.offsetWidth * 0.15)) +"px;font-Family:roboto-regular;font-Size:"+factorScreen(16) + "px;font-weight:bold;");
+       vtaName.setAttribute("style", "position: absolute; top:"+ (vtaY + vta2.offsetHeight / 3.5) + "px; left:" + (vtaX + (vta2.offsetWidth * 0.15)) +"px;font-Family:roboto-regular;font-weight:bold;");
        vtaName.typeObj = 1;
        app.appendChild(vtaName);
 
        var vta_test=document.createElement("p");
        vta_test.setAttribute("id","vta-tag-" + i);
-       vta_test.setAttribute("class","sin_margen hide_element sh_obj"+i);
-       vta_test.setAttribute("style", "position:absolute; top:" + (vtaY + vta2.offsetHeight / 5) + "px; left:" + (vtaX + (vta2.offsetWidth * 0.45)) + "px;font-Family:roboto-regular;font-Size:"+factorScreen(22)+"px;font-weight:bold;");
+       vta_test.setAttribute("class","sin_margen hide_element white_box sh_obj"+i);
+       vta_test.setAttribute("style", "position:absolute; top:" + (vtaY + vta2.offsetHeight / 5) + "px; left:" + (vtaX + (vta2.offsetWidth * 0.45)) + "px;font-Family:roboto-regular;font-weight:bold;");
        vta_test.typeObj = 1;
        app.appendChild(vta_test);
 
@@ -589,6 +620,7 @@ for(var j=0;j<vencidos.length;j++){
     vencidos[j]
   ));
   self.characters[self.characters.length-1].vencido=j+2;
+  console.log(self.characters[self.characters.length-1]);
 }
 
 
@@ -759,6 +791,7 @@ let dataSet = (dataCSV[dataCSV.length - 1]);
 
         var aux=characters[4];
         characters[4]=characters[k];
+        //characters[4].vencido=mesVencido;
         characters[k]=aux;
 /*
         document.getElementById("tc-tag-4").innerHTML = self.characters[4].tc + "%";
@@ -935,6 +968,8 @@ function click (){
 
 self.removeElements();
 self.removeText();
+
+self.app.renderer.backgroundColor="0x175383";
 var aplicacion=document.getElementById("aplicacion");
 
 let title = document.createElement("h1");
@@ -980,34 +1015,36 @@ var paragraph1=document.createElement('p');
                     "2.-Z 135X193.png",
                     "3.-Q 143X193.png"
                   ];
+    var cte_S15=new PIXI.Sprite(atlasBlock6[characters[2]]);
+        cte_S15.scale.set(factorScreen(.5))
+        cte_S15.x=(self.app.renderer.width/2)-(cte_S15.width/2);
+        cte_S15.y=parseFloat(paragraph1.offsetTop)+parseFloat(paragraph1.clientHeight);
+
     var cteASV=new PIXI.Sprite(atlasBlock6[characters[0]]);
         cteASV.scale.set(factorScreen(.55));
-        cteASV.x=parseFloat(paragraph1.offsetLeft)+parseFloat(paragraph1.clientWidth)/4;
-        cteASV.y=parseFloat(paragraph1.offsetTop)+parseFloat(paragraph1.clientHeight);
-        self.app.stage.addChild(cteASV);
+        cteASV.x=cte_S15.x-(cte_S15.width*4);
+        cteASV.y=cte_S15.y
 
     var cteS15=new PIXI.Sprite(atlasBlock6[characters[1]]);
         cteS15.scale.set(factorScreen(.5));
-        cteS15.x=cteASV.x+cteASV.width*factorScreen(2);
-        cteS15.y=cteASV.y;
-        self.app.stage.addChild(cteS15);
+        cteS15.x=cte_S15.x-(cte_S15.width*2);
+        cteS15.y=cte_S15.y
 
     var cteACV=new PIXI.Sprite(atlasBlock6[characters[4]]);
         cteACV.scale.set(factorScreen(.5))
-        cteACV.x=cteS15.x+cteS15.width*factorScreen(2);
-        cteACV.y=cteASV.y;
-        self.app.stage.addChild(cteACV);
+        cteACV.x=cte_S15.x+(cte_S15.width*2);
+        cteACV.y=cte_S15.y
 
-    var cte_S15=new PIXI.Sprite(atlasBlock6[characters[2]]);
-        cte_S15.scale.set(factorScreen(.5))
-        cte_S15.x=cteACV.x+cteACV.width*factorScreen(2);
-        cte_S15.y=cteASV.y;
-        self.app.stage.addChild(cte_S15);
 
     var cteG=new PIXI.Sprite(atlasBlock6[characters[6]]);
         cteG.scale.set(factorScreen(.5))
-        cteG.x=cte_S15.x+cte_S15.width*factorScreen(2);
-        cteG.y=cteASV.y;
+        cteG.x=cte_S15.x+(cte_S15.width*4);
+        cteG.y=cte_S15.y
+
+        self.app.stage.addChild(cteASV);
+        self.app.stage.addChild(cteS15);
+        self.app.stage.addChild(cte_S15);
+        self.app.stage.addChild(cteACV);
         self.app.stage.addChild(cteG);
 
 var title_descrp2=document.createElement('h3');
@@ -1032,13 +1069,13 @@ var paragraph2=document.createElement('p');
 
     var cteG2=new PIXI.Sprite(atlasBlock6[characters[6]]);
         cteG2.scale.set(factorScreen(.5))
-        cteG2.x = cteS15.x ;
+        cteG2.x = cteS15.x;
         cteG2.y=parseFloat(paragraph2.offsetTop)+parseFloat(paragraph2.clientHeight);
         self.app.stage.addChild(cteG2);
 
     var cteACV2=new PIXI.Sprite(atlasBlock6[characters[4]]);
         cteACV2.scale.set(factorScreen(.5))
-        cteACV2.x = cteG2.x+cteG2.width*2;
+        cteACV2.x = cteACV.x;
         cteACV2.y = cteG2.y;
         self.app.stage.addChild(cteACV2);
 
@@ -1115,6 +1152,7 @@ button
      self.characters[i].sale = function() {
          return this.cpa*((this.tc)/100)*this.countCtes;
        };
+
    }
    var vencSelected=self.characters[4].vencido;
 
@@ -1135,7 +1173,6 @@ button
                     unClicked.visible=false;
 
               }
-
 
 
    self.updateTotal(99999,"Reset");
@@ -1224,7 +1261,7 @@ button
      if(i == 8)  {
        document.getElementById("tc-total-tag").innerHTML = parseFloat(defaultVals[i].tcTotal).toFixed(1) + "%";
        document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].vtaTotal));
-       document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal);
+       document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal)+" Ctes.";
        document.getElementById("var-global").innerHTML = "0%";
        document.getElementById("var-global").style.color="#FFFFFF";
      }
@@ -1275,6 +1312,10 @@ function addCharacter(index) {
     segmentos[index]
   );
 
+
+    console.log(char);
+
+
   if(index==4)
   char.vencido=1;
   self.characters.push(char);
@@ -1292,7 +1333,9 @@ function addCharacter(index) {
   document.getElementById("vta_porcent"+ index).innerHTML = 0 + "%";
   if(index == 8)  {
     document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(ventaTotal));
-    document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(Math.round(toDate["Total de \nClientes"]));
+    debugger;
+    document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(Math.round(toDate["Total de \nClientes"]))+" Ctes.";
+
     var variacionGlob = ((ventaTotal - ventaTotalMMAA) / ventaTotalMMAA) * 100;
     document.getElementById("var-global").innerHTML = (Math.round(variacionGlob)) + "%";
   }
@@ -1339,21 +1382,27 @@ self.updateTotal = function (newTC,target) {
          self.characters[i].tc=newTC;}
       if(self.historyFlag)
       {/*Pendiente revisar*/}else{
+
         var sliders = document.getElementsByClassName("slider");
+            sliders[i].classList.remove("hide_element");
         var knob = sliders[i].childNodes[1];
-        knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
-      }
+        //var uno=sliders[i].getBoundingClientRect().width;
+            knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+            sliders[i].classList.add("hide_element");
+
+        }
       let tc_pTag = document.getElementById("tc-tag-" + i);
       tc_pTag.innerHTML = (cte.tc).toFixed(1) + "%";
 
       if(target==4||target=="Reset"){
         document.getElementById("tc_clientes4").innerHTML=numberWithCommas(self.characters[4].countCtes);
         document.getElementById("cpa-tag-4").innerHTML="$"+numberWithCommas(parseInt(self.characters[4].cpa));
-        if(newTC==99999)
-        self.characters[4].tc = newTC;
+
         var sliders = document.getElementsByClassName("slider");
+        //sliders[4].classList.remove("hide_element");
         var knob = sliders[4].childNodes[1];
         knob.style.left = ((sliders[4].getBoundingClientRect().width * self.characters[4].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+        //sliders[4].classList.add("hide_element");
 
       }
 
@@ -1374,7 +1423,7 @@ self.updateTotal = function (newTC,target) {
       var vta="$"+numberWithCommas(Math.round(cte.sale()));
       var obj=document.getElementById("vta-character-"+i)
       obj.innerHTML=vta;
-      debugger;
+
       document.getElementById("vta-tag-"+ i).innerHTML=vta
       }
   }//end if i<characters.leng-3
@@ -1382,8 +1431,8 @@ self.updateTotal = function (newTC,target) {
     ctsXtc+=cte.tc*cte.countCtes;
     ctsTotal+=cte.countCtes;
     vtaTotal += cte.sale();
-    //console.log("Cliente "+i+": "+cte.sale());
-    //console.log("Venta total: "+vtaTotal);
+    console.log("Cliente "+i+": "+cte.sale());
+    console.log("Venta total: "+vtaTotal);
     vtaTotalMMAA += cte.vtaMMAA;
     CtesBuyTotal+=cte.tc/100*cte.countCtes;
     ctesTotal+=cte.countCtes;
@@ -1391,6 +1440,7 @@ self.updateTotal = function (newTC,target) {
   }
 
   var ponderadores=[],ponderadoresReal=[];
+
   for(var j=0;j<self.characters.length;j++){
       var cte=self.characters[j];
       ponderadores[j]=(cte.tc/100*cte.countCtes)/CtesBuyTotal;
@@ -1399,6 +1449,7 @@ self.updateTotal = function (newTC,target) {
   }
 
   var TotalCPA=0,TotalCPAOriginal=0;
+
   for(var j=0;j<self.characters.length;j++){
     var cte=self.characters[j];
       TotalCPA+=ponderadores[j]*cte.cpa;
@@ -1432,12 +1483,13 @@ if(self.historyFlag&&self.stepBack.length<100){
 };
 
 function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) {
+
   this.name=name;
   this.index = index;
-  this.cpa = parseFloat(cpa);
+  this.cpa = Number.parseInt(cpa.replace(/,/g,''));
   this.tc = parseFloat(tc);
   this.position = position;
-  this.countCtes = parseInt(numCtes);
+  this.countCtes = parseInt(numCtes.replace(/,/g,''));
   this.vtaMMAA = parseInt(vtaMMAA);
   this.vtaOriginal=vtaOriginal;
   this.tcOriginal=parseFloat(tc);
@@ -1500,8 +1552,15 @@ function show_hide_data() {
     let obj=document.getElementById("head_selected");
     obj.style.backgroundImage="url(assets/ui/bloque_6/ERC-Characters/heads_characters/"+(segmentos[this.indice]).replace('+','_')+".png)";
 
-    let sgments = ["Nunca 0-15", "Activo Sin Vencido", "Saldado 0-15", "Nunca +15", "Activo Con Vencido", "Saldado +15", "Generados", "Clientes Z", "Quebrantados"];
-    document.getElementById("title_selected").innerHTML=sgments[this.indice];
+    let sgments = ["Nunca 0-15", "Activo Sin Vencido", "Saldado 0-15", "Nunca +15", "Activo Con 1 Mes Vencido", "Saldado +15", "Generados", "Clientes Z", "Quebrantados","Activo Con 2 Meses Vencidos","Activo Con 3 Meses Vencidos","Activo Con 4 Meses Vencidos"];
+    let name_idx=this.indice
+    if(this.indice==4){
+
+      if(self.characters[4].vencido!=1){
+        name_idx+=3+self.characters[4].vencido;
+      }
+    }
+    document.getElementById("title_selected").innerHTML=sgments[name_idx];
 
     TweenLite.to(tooltipFilter, 0.6, {opacity: 1});
     TweenLite.to(toolTip, 0.3, {opacity: 1});
@@ -1538,10 +1597,11 @@ function show_hide_data() {
     var aplicacion=document.getElementById("aplicacion");
 
     //THIS REMOVES THE TOOLTIP//
-
     aplicacion.removeChild(document.getElementById("table_scores"));
     aplicacion.removeChild(document.getElementById("toolTip"));
     aplicacion.removeChild(document.getElementById("tooltipFilter"));
+    aplicacion.removeChild(document.getElementById("totals"));
+    //aplicacion.removeChild(document.getElementById("tc-total"));
 
     for(var i=0;i<9;i++)
         aplicacion.removeChild(document.getElementById("vta-character-"+i));
