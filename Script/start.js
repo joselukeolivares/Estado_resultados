@@ -12,13 +12,14 @@ function start() {
 
   self.createApp = function() {
     let appDiv = document.getElementById("aplicacion");
+
     self.app = new PIXI.Application(width, height, {transparent: true});
 
     self.width = self.app.screen.width;
     self.height = self.app.screen.height;
 
     self.app.view.style.width = appDiv.width;
-    self.app.view.style.height = appDiv.height;
+    //self.app.view.style.height = appDiv.height;
 
     appDiv.appendChild(self.app.view);
 

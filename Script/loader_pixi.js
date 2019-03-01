@@ -138,6 +138,18 @@ function loader_pixi(){
 
 
         function charged(){
+          if(md.os()=="iOS"||md.os()=="AndroidOS"){
+            document.getElementsByTagName("footer")[0].style.display="none";
+            document.getElementById("mdl_menu").style.display="block";
+            main.style.height="99%";
+            document.getElementById("aplicacion").style.height=main.clientHeight+"px";
+
+          }else{
+            main.style.height="90%";
+            document.getElementsByTagName("footer")[0].style.display="block";
+          }
+
+           height=main.clientHeight;
            actual_app=start().createApp();
         }
 
