@@ -87,7 +87,7 @@ function simulador_global() {
 
       //Show and hide Table scores
       money_icon.addEventListener("click",function(){
-        debugger;
+
         if(table.classList[0]=="hide_scores"){
           table.classList.remove("hide_scores");
           table.classList.add("show_scores");
@@ -263,7 +263,15 @@ function simulador_global() {
      totalVentaElm.typeObj = 1;
      app.appendChild(totalVentaElm);
 
-     tcTotalName = document.createElement("p");
+     let vtaTotalName = document.createElement("p");
+     vtaTotalName.innerHTML = "Venta"
+     vtaTotalName.setAttribute("id", "vta-total-name");
+     vtaTotalName.setAttribute("class","sin_margen p_tags");
+     vtaTotalName.setAttribute("style", "position: absolute; top:" + (vtaTotalY) + "px; left:" + (vtaTotalX + vtaTotal.offsetWidth * 0.5) + "px; font-Family: roboto-regular; font-weight: bold; color: #000; transform: translate(-50%)");
+     vtaTotalName.typeObj=1;
+     app.appendChild(vtaTotalName);
+
+     let tcTotalName = document.createElement("p");
      tcTotalName.innerHTML = "T.C. Total"
      tcTotalName.setAttribute("id", "ctes-total-name");
      tcTotalName.setAttribute("class","sin_margen p_tags");
@@ -288,7 +296,7 @@ function simulador_global() {
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
-     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth + 10)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
+     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth * 0.8)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
      varGlobalElm.typeObj = 1;
      app.appendChild(varGlobalElm);
 
@@ -1333,7 +1341,7 @@ function addCharacter(index) {
   document.getElementById("vta_porcent"+ index).innerHTML = 0 + "%";
   if(index == 8)  {
     document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(ventaTotal));
-    debugger;
+
     document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(Math.round(toDate["Total de \nClientes"]))+" Ctes.";
 
     var variacionGlob = ((ventaTotal - ventaTotalMMAA) / ventaTotalMMAA) * 100;
