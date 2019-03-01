@@ -296,7 +296,7 @@ function simulador_global() {
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
-     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth * 0.8)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
+     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth * 0.75)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
      varGlobalElm.typeObj = 1;
      app.appendChild(varGlobalElm);
 
