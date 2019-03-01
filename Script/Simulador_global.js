@@ -87,7 +87,7 @@ function simulador_global() {
 
       //Show and hide Table scores
       money_icon.addEventListener("click",function(){
-        debugger;
+
         if(table.classList[0]=="hide_scores"){
           table.classList.remove("hide_scores");
           table.classList.add("show_scores");
@@ -263,7 +263,15 @@ function simulador_global() {
      totalVentaElm.typeObj = 1;
      app.appendChild(totalVentaElm);
 
-     tcTotalName = document.createElement("p");
+     let vtaTotalName = document.createElement("p");
+     vtaTotalName.innerHTML = "Venta"
+     vtaTotalName.setAttribute("id", "vta-total-name");
+     vtaTotalName.setAttribute("class","sin_margen p_tags");
+     vtaTotalName.setAttribute("style", "position: absolute; top:" + (vtaTotalY) + "px; left:" + (vtaTotalX + vtaTotal.offsetWidth * 0.5) + "px; font-Family: roboto-regular; font-weight: bold; color: #000; transform: translate(-50%)");
+     vtaTotalName.typeObj=1;
+     app.appendChild(vtaTotalName);
+
+     let tcTotalName = document.createElement("p");
      tcTotalName.innerHTML = "T.C. Total"
      tcTotalName.setAttribute("id", "ctes-total-name");
      tcTotalName.setAttribute("class","sin_margen p_tags");
@@ -288,7 +296,7 @@ function simulador_global() {
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
-     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth + 10)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
+     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth * 0.75)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
      varGlobalElm.typeObj = 1;
      app.appendChild(varGlobalElm);
 
@@ -1129,8 +1137,8 @@ var regresar = PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN P
 var regresar_2 =PIXI.loader.resources["assets/ui/bloque_6/22. BOTON REGRESAR UN PASO PARA ATRAS 2.png"].texture;
 var button = new PIXI.Sprite(regresar);
 
-button.x = self.app.screen.width * 0.8;
-button.y = self.app.screen.height * 0.03;
+button.x = self.app.screen.width * 0.815;
+button.y = self.app.screen.height * 0.06;
 
 button.scale.set(self.app.screen.width*.35/950);
 button.interactive = true;
@@ -1204,11 +1212,8 @@ button
  var clearSelected = PIXI.Texture.fromImage("assets/ui/bloque_6/23. BOTON CLEAR 2.png");
  var clearButton = new PIXI.Sprite(clear);
 
- clearButton.x = self.app.screen.width * 0.85;
-
- clearButton.y = self.app.screen.height * 0.03;
-
-
+ clearButton.x = self.app.screen.width * 0.86;
+ clearButton.y = self.app.screen.height * 0.06;
  clearButton.scale.set(self.app.screen.width*.35/950);
  clearButton.interactive = true;
  clearButton.buttonMode = true;
@@ -1333,7 +1338,7 @@ function addCharacter(index) {
   document.getElementById("vta_porcent"+ index).innerHTML = 0 + "%";
   if(index == 8)  {
     document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(Math.round(ventaTotal));
-    debugger;
+
     document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(Math.round(toDate["Total de \nClientes"]))+" Ctes.";
 
     var variacionGlob = ((ventaTotal - ventaTotalMMAA) / ventaTotalMMAA) * 100;

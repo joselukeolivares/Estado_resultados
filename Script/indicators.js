@@ -162,16 +162,6 @@ function indicators() {
         let content = document.createElement("p");
         content.setAttribute("class", "content");
         content.setAttribute("id", "content_" + i + j);
-        //content.style.fontSize ="100%";
-        /*
-        if(i==2 && j==1){
-          content.style.fontSize =factorScreen(120)+"%";
-        }
-        */
-        if(j != 0) {
-          content.style.color = "#E7C82F";
-          content.style.fontFamily = "Roboto-Regular";
-        }
         content.innerHTML = subTitles[i][j];
         if(j != 0) {
           content.style.display = "none";
@@ -181,16 +171,20 @@ function indicators() {
         let icRightArrow = document.createElement("img");
         icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
         icRightArrow.setAttribute("id", "arrow-point-to-right-" + i + j);
-        icRightArrow.setAttribute("class", "arrow-point-to-right parpadeo");
+        icRightArrow.setAttribute("class", "arrow-point-to-right parpadeo arrow-anim");
         //icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: calc(200% - 5rem)");
+
+        // icRightArrow.addEventListener("mouseover", function() {
+        //   this.ClassList.toggle("arrow-anim");
+        // });
 
         if(i == 2) {
           icRightArrow.style.right="-4rem";
           icRightArrow.style.left="";
         }
 
-        icRightArrow.indicator_i=i;
-        icRightArrow.indicator_j=j;
+        icRightArrow.indicator_i = i;
+        icRightArrow.indicator_j = j;
 
         let stepBack = document.createElement("img");
         stepBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
@@ -512,10 +506,7 @@ function indicators() {
     circle2.setAttribute("src", "assets/ui/bloque_3/ic-tick-inside-circle.svg");
     circle2.setAttribute("class", "circle-tick-inside parpadeo");
     circle2.setAttribute("id", "circle-tick-inside-2");
-
-    //circle2.style.left = app.screen.width * 0.02 + "px";
     circle2.style.display = "none";
-    //appDiv.appendChild(circle2);
     document.getElementById('stage_2').appendChild(circle2);
 
     let titleContent = document.getElementById("titleIndicator");
@@ -535,13 +526,10 @@ function indicators() {
     //content.setAttribute("class", "content");
     content.setAttribute("id", "content_23");
     content.innerHTML=subTitles[2][3];
-    //content.style.top="30%";
-    //content.style.margin="1%";
     content.style.left = document.getElementById("content_22").style.left;
 
     content.style.color="rgb(231, 200, 47)";
     content.style.display="none";
-    content.style.cursor="pointer";
     document.getElementById('stage_2').appendChild(content);
 
 
@@ -556,10 +544,6 @@ function indicators() {
       vSprites.getChildByName("cpnom").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-mil.png")].texture);
       vSprites.getChildByName("vNum").setTexture(PIXI.loader.resources[("assets/ui/bloque_3/num-800mil.png")].texture);
       let actualContent = document.getElementById("content_22");
-      //actualContent.style.lineHeight = "150%";
-      //actualContent.style.textAlign = "center";
-      //actualContent.style.display = "absolute";
-      //actualContent.style.textAlignLast = "center";
       actualContent.innerHTML = "Bien, aumentar a 80% la Tasa de Compra incrementa las ventas a $800,000.00.<br>No debemos olvidar, que para incrementar las ventas es muy importante una estrategia integral e impulsar ambos indicadores, combinada por un mayor volumen de clientes y cantidad de compra, potencializando un incremento en ventas.";
       circle1.style.display = "none";
       circle2.style.display = "none";
