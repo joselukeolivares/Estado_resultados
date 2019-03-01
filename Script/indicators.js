@@ -394,7 +394,7 @@ function indicators() {
               compraPromedio.setTexture(PIXI.loader.resources["assets/ui/bloque_3/b_compra_promedio_gray.png"].texture);
               app.stage.getChildByName("thing_1").visible = false;
               //vSprites.visible = true;
-              //stages[2].style.top = app.screen.height * 0.4 + "px";
+              //stages[2].style.top = app.screen.height * 0.4 + "pfx";
               //stages[2].style.left = app.screen.height * 0.1 + "px";
             }
 
@@ -415,12 +415,12 @@ function indicators() {
         let container = app.stage.getChildByName("interactiveSquares0");
         let tcSquare = container.getChildByName("tc_square");
         things.x = tcSquare.x + (tcSquare.width * 0.5);
-        things.y = tcSquare.y - (tcSquare.height);
+        things.y = tcSquare.y - (tcSquare.height * 1.1);
       } else if(i == 1) {
         let container = app.stage.getChildByName("interactiveSquares1");
         let cpSquare = container.getChildByName("cp_square");
         things.x = cpSquare.x + (cpSquare.width * 0.5);
-        things.y = cpSquare.y - (cpSquare.height);
+        things.y = cpSquare.y - (cpSquare.height * 1.3);
       }
 
       app.stage.addChild(things);
@@ -667,6 +667,19 @@ function indicators() {
       }
     }
 
+    let rightArrow01 = appDiv.querySelector("#arrow-point-to-right-01");
+    let rightArrow11 = appDiv.querySelector("#arrow-point-to-right-11");
+
+    rightArrow01.addEventListener("pointerdown", function() {
+      self.compraPromedio_();
+    });
+
+    rightArrow11.addEventListener("pointerdown", function() {
+      self.venta_();
+    });
+
+
+
     contButton.on("pointerdown", function() {
 
       contButton.visible = false;
@@ -856,7 +869,7 @@ function indicators() {
           self.compraPromedio_();
         });
 
-        self.compraPromedio_=function() {
+        self.compraPromedio_ = function() {
           self.offStepBack();
           if(stages[0].style.display == "block") {
             self.turnOff_TC();
