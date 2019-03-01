@@ -34,7 +34,6 @@ function slider(appDiv, app, index) {
   let scale_temp = 0.7;
   let temp_width = app.width * 0.25;
   let temp_height = app.height * 0.20;
-  console.log(temp_height);
 
   if(app.width<=1024 && app.height <=768) {
     scale_temp= 0.6;
@@ -61,22 +60,22 @@ function slider(appDiv, app, index) {
     tcCts.setAttribute("class", "p_tc");
     tcCts.innerHTML = "500<br>Clientes";
     tcCts.style.left = tc_square.x + factorScreen(10) + "px";
-    tcCts.style.top = tc_square.y+"px";
+    tcCts.style.top = tc_square.y + (tc_square.height * 0.15) + "px";
     tcCts.style.display = "none";
-    tcCts.style.width = "5%";
-    tcCts.style.textAlign = "right";
-    tcCts.style.margin = factorScreen(1)+"%";
-    tcCts.style.fontSize = factorScreen(28)+"px";
+    tcCts.style.width = "7%";
+    tcCts.style.textAlign = "center";
+    tcCts.style.margin = "0";
+    tcCts.style.fontSize = factorScreen(24)+"px";
     appDiv.appendChild(tcCts);
 
     tcPer = document.createElement("p");
     tcPer.setAttribute("id", "tcPer");
     tcPer.innerHTML = "50%";
-    tcPer.style.margin="0px";
+    tcPer.style.margin="0";
     tcPer.style.width = "10%";
-    tcPer.style.textAlign = "right";
-    tcPer.style.left = tc_square.x + tc_square.width*.5 + "px";
-    tcPer.style.top = tc_square.y + "px";
+    tcPer.style.textAlign = "center";
+    tcPer.style.left = tc_square.x + tc_square.width * 0.45 + "px";
+    tcPer.style.top = tc_square.y + (tc_square.height * 0.1) + "px";
     tcPer.style.display = "none";
     tcPer.style.fontSize = factorScreen(58)+"px";
     appDiv.appendChild(tcPer);
@@ -98,10 +97,10 @@ function slider(appDiv, app, index) {
     cpSls = document.createElement("p");
     cpSls.setAttribute("id", "cpSls");
     cpSls.innerHTML = "$1,000.00";
-    cpSls.style.fontSize = factorScreen(40) + "px";
-    cpSls.style.margin = "0px";
-    cpSls.style.left = cp_square.x + (cp_square.width * 0.25) + "px";
-    cpSls.style.top = cp_square.y + (cp_square.height * 0.25) + "px";
+    cpSls.style.fontSize = factorScreen(48) + "px";
+    cpSls.style.margin = "0";
+    cpSls.style.left = cp_square.x + (cp_square.width * 0.1) + "px";
+    cpSls.style.top = cp_square.y + (cp_square.height * 0.15) + "px";
     cpSls.style.display = "none";
     appDiv.appendChild(cpSls);
   }
@@ -162,8 +161,7 @@ function slider(appDiv, app, index) {
       }
     } else if (index == 1 && newValue!=null) {
       if (stage1.querySelector("#content_11").style.display == "block") {
-
-          self.value = newValue;
+        self.value = newValue;
           //knob.style.left = (event.clientX - bg.getBoundingClientRect().x - 15) + "px";
           cpSls.innerHTML = "$" + numberWithCommas(newValue * 1000 / 5) + ".00";
           app.getChildByName("thing_1").setTexture(PIXI.Texture.fromFrame("compra_" + self.value + ".png"));
@@ -184,7 +182,7 @@ function slider(appDiv, app, index) {
           }
 
       } else {
-        if(stage1.querySelector("#content_12").style.display == "block") {
+        if(stage1.querySelector("#content_11").style.display == "block") {
           self.value = newValue;
           //knob.style.left = (event.clientX - bg.getBoundingClientRect().x - 15) + "px";
           cpSls.innerHTML = "$" + numberWithCommas(newValue * 1000 / 5) + ".00";
@@ -192,7 +190,7 @@ function slider(appDiv, app, index) {
 
           //if(newValue <= 4)
            {
-            let arrowR=appDiv.querySelector("#arrow-point-to-right-12");
+            let arrowR=appDiv.querySelector("#arrow-point-to-right-11");
             arrowR.style.display = "block";
             var tl=new TimelineMax({repeat:5,delay:1,onComplete:function(){
               TweenLite.to(arrowR,1,{opacity:1});

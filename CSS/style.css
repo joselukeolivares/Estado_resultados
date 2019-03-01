@@ -1,3 +1,4 @@
+
 body{
   font-family: "Roboto-Regular";
   margin:0px;
@@ -18,11 +19,11 @@ footer {
   font-size: 14px;
 }
 
-  /* .parpadeo {
+  .parpadeo {
     animation-name: parpadeoKF;
     animation-duration: 2s;
-    animation-iteration-count: infinite;
-  } */
+    animation-iteration-count: 3;
+  }
 
 @keyframes parpadeoKF {
   70% {
