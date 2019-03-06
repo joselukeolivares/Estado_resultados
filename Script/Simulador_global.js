@@ -103,8 +103,10 @@ function simulador_global() {
 
     var ranking=[];
     var total=0;
+    debugger;
     for(var i=0;i<self.characters.length;i++){
       let sale=self.characters[i].sale();
+      console.log("vta "+(i+1)+": "+sale);
       total+=parseInt(sale);
       ranking.push(parseInt(sale))
     }
@@ -252,7 +254,7 @@ function simulador_global() {
      let tcTotalElm = document.createElement("p");
      tcTotalElm.setAttribute("id", "tc-total-tag");
      tcTotalElm.setAttribute("class","sin_margen");
-     tcTotalElm.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left: " + (tcTotalX + tcTotal.offsetWidth * 0.65) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(45)+"px; font-weight: bold;");
+     tcTotalElm.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left: " + (tcTotalX + tcTotal.offsetWidth * 0.75) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(45)+"px; font-weight: bold;");
      tcTotalElm.typeObj = 1;
      app.appendChild(tcTotalElm);
 
@@ -273,16 +275,16 @@ function simulador_global() {
 
      let tcTotalName = document.createElement("p");
      tcTotalName.innerHTML = "T.C. Total"
-     tcTotalName.setAttribute("id", "ctes-total-name");
+     tcTotalName.setAttribute("id", "tc-total-name");
      tcTotalName.setAttribute("class","sin_margen p_tags");
-     tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.15) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
+     tcTotalName.setAttribute("style", "position: absolute; top:" + (vtaTotalY) + "px; left:calc(" + (tcTotalElm.style.left) + " - 3%); font-Family: roboto-regular; font-weight: bold; color: #000;");
      tcTotalName.typeObj=1;
      app.appendChild(tcTotalName);
 
      let tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
      tcTotalCtesElm.setAttribute("class","sin_margen p_tags");
-     tcTotalCtesElm.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.07) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
+     tcTotalCtesElm.setAttribute("style", "position: absolute; top:" + (tcTotalElm.style.top) + "; left:" + (tcTotalX + tcTotal.offsetWidth * 0.07) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
 
@@ -290,13 +292,15 @@ function simulador_global() {
      ctesElm.innerHTML = "Clientes";
      ctesElm.setAttribute("id", "ctesElm");
      ctesElm.setAttribute("class","sin_margen");
-     ctesElm.setAttribute("style", "position: absolute; top: " + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left: " + (tcTotalX + tcTotal.offsetWidth * 0.3) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
+     ctesElm.setAttribute("style", "position: absolute; top: " + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left: " + (tcTotalX + totalVentaElm.clientWidth) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
      ctesElm.typeObj = 1;
      //app.appendChild(ctesElm);
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
-     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth * 0.75)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
+     varGlobalElm.setAttribute("class","sin_margen")
+     debugger;
+     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY+(vtaTotalRect.height/4)) + "px; left: calc(6% + "+(parseInt(vtaTotalName.style.left)+(parseInt(vtaTotalName.clientWidth)))+"px); font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
      varGlobalElm.typeObj = 1;
      app.appendChild(varGlobalElm);
 
@@ -403,7 +407,7 @@ function simulador_global() {
 
      let subTitle = document.createElement("h3");
      subTitle.className = "subTitle";
-     subTitle.innerHTML = "Simluador Global";
+     subTitle.innerHTML = "Simulador Global";
      subTitle.style.top = self.app.screen.height * 0.33 + "px";
      app.appendChild(subTitle);
 
@@ -499,9 +503,12 @@ function simulador_global() {
                subContainer2.visible=false;
 
        character.scale.set(factorScreen(.6));
-        if(i==0)
+
+       if(i==0)
        character.scale.set(factorScreen(.6));
-       character.x = (i % 3) * self.app.screen.width/3;
+       let escenario_width=self.app.screen.width;
+
+       character.x = (i % 3) * escenario_width/4+50;
        character.y =Math.floor(i / 3) * self.app.screen.height/4.5+height/4;
 
        character.name ="character"+i;
@@ -602,7 +609,7 @@ function simulador_global() {
        vta_porcent.innerHTML=""+"%";
        vta_porcent.setAttribute("id","vta_porcent"+i);
        vta_porcent.setAttribute("class","sin_margen hide_element p_tags sh_obj"+i);
-       vta_porcent.setAttribute("style","position:absolute; top:"+ (vtaY + vta2.offsetHeight / 3) +"px; left:" + (vtaX + (vta2.offsetWidth * 1.03)) + "px;font-Family:roboto-regular;font-weight:bold;color:#FFFFFF");
+       vta_porcent.setAttribute("style","position:absolute; top:"+ (vtaY + vta2.offsetHeight / 3) +"px; left:" + (vtaX + (vta2.offsetWidth)) + "px;font-Family:roboto-regular;color:#FFFFFF");
        vta_porcent.typeObj=1;
        app.appendChild(vta_porcent);
 
@@ -627,6 +634,8 @@ for(var j=0;j<vencidos.length;j++){
     vencidos[j]
   ));
   self.characters[self.characters.length-1].vencido=j+2;
+  defaultVals[8].vtaTotal+=self.characters[self.characters.length-1].sale();
+
 }
 
 
@@ -1242,6 +1251,7 @@ button
 
  function onClickClear() {
 
+
    container_globos.getChildByName("unVdoClkedSprite").visible=true;
    container_globos.getChildByName("dosVdoClkedSprite").visible=false;
    container_globos.getChildByName("tresVdoClkedSprite").visible=false;
@@ -1252,21 +1262,21 @@ button
    container_globos.getChildByName("cuatroVdoB").visible=true;
 
    for(let i = 0; i < defaultVals.length; i++) {
-
-     document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(defaultVals[i].nCtes);
-     document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].cpa));
-     document.getElementById("vta-tag-" + i).innerHTML = "$"+ numberWithCommas(parseInt(defaultVals[i].vtaOriginal));
-     document.getElementById("vta-character-" + i).innerHTML = "$"+ numberWithCommas(parseInt(defaultVals[i].vtaOriginal));
+     debugger;
+     document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(parseInt(defaultVals[i].nCtes));
+     document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(Math.round(defaultVals[i].cpa));
+     document.getElementById("vta-tag-" + i).innerHTML = "$"+ numberWithCommas(Math.round(defaultVals[i].vtaOriginal));
+     document.getElementById("vta-character-" + i).innerHTML = "$"+ numberWithCommas(Math.round(defaultVals[i].vtaOriginal));
      document.getElementById("tc-tag-" + i).innerHTML = (parseFloat(defaultVals[i].tcOriginal).toFixed(1))+"%";
-
-
      document.getElementById("vta_porcent" + i).innerHTML = "0%";
      document.getElementById("vta_porcent" + i).style.color="#FFFFFF";
+
+
 
      if(i == 8)  {
        document.getElementById("tc-total-tag").innerHTML = parseFloat(defaultVals[i].tcTotal).toFixed(1) + "%";
        document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].vtaTotal));
-       document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal)+" Ctes.";
+       //document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal)+" Ctes.";
        document.getElementById("var-global").innerHTML = "0%";
        document.getElementById("var-global").style.color="#FFFFFF";
      }
@@ -1278,9 +1288,20 @@ button
 
    self.stepBack.length=1;
    self.indexHistory=0;
-   self.historyFlag=true;
- }
+   self.historyFlag=false;
+   debugger;
+   self.characters=null;
+   self.characters = JSON.parse(self.stepBack[0]);
+   for(var i = 0; i < self.characters.length; i++) {
+     self.characters[i].sale = function() {
+         return this.cpa*((this.tc)/100)*this.countCtes;
+       };
 
+   }
+   self.winners();
+   debugger;
+   //self.updateTotal(99999,"Reset");
+ }
 
 
 
@@ -1316,6 +1337,7 @@ function addCharacter(index) {
     toDate["Venta \n" + segmentos[index]],
     segmentos[index]
   );
+
 
   if(index==4)
   char.vencido=1;
@@ -1363,7 +1385,7 @@ function addCharacter(index) {
     tcOriginal: toDate["TC \n" + segmentos[index]],
     vtaOriginal:toDate["Venta \n" + segmentos[index]]
   };
-
+  console.log(defaultChar.sale())
   defaultVals.push(defaultChar);
 
 }
@@ -1485,7 +1507,7 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) 
 
   this.name=name;
   this.index = index;
-  this.cpa = Number.parseInt(cpa.replace(/,/g,''));
+  this.cpa = Number.parseFloat(cpa.replace(/,/g,''));
   this.tc = parseFloat(tc);
   this.position = position;
   this.countCtes = parseInt(numCtes.replace(/,/g,''));
@@ -1496,7 +1518,7 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) 
     //console.log("CPA: "+this.cpa);
     //console.log("TC: "+this.tc);
     //console.log("Ctes: "+this.countCtes);
-    return this.cpa*((this.tc)/100)*this.countCtes;
+    return this.cpa*(this.tc/100)*this.countCtes;
   };
 }
 

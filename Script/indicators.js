@@ -156,8 +156,10 @@ function indicators() {
       slider0 = document.getElementById("slider_0");
       slider1 = document.getElementById("slider_1");
       var tope=2;
-      if(i==2)
-          tope=3;
+      if(i==2){
+        tope=3;
+        title.style.marginBottom="0px";
+      }
       for(let j = 0; j < tope; j++) {
         let content = document.createElement("p");
         content.setAttribute("class", "content");
@@ -511,12 +513,24 @@ function indicators() {
 
     let titleContent = document.getElementById("titleIndicator");
     let actualContent = document.getElementById("content_22");
+    //actualContent.ClassList.add("parpadeo")
+    //actualContent.style.top=(titleContent.clientTop+titleContent.clientHeight)+"px;";
+    //actualContent.style.left="32%";
+    //actualContent.style.margin="1%";
+    //actualContent.style.width="44%";
+    // actualContent.style.position="absolute";
+    actualContent.style.cursor="pointer";
+    actualContent.style.textAlignLast="left";
+    actualContent.style.textAlign="left";
+    //debugger;
 
     let content = document.createElement("p");
-    content.setAttribute("class", "content");
+    //content.setAttribute("class", "content");
     content.setAttribute("id", "content_23");
     content.innerHTML=subTitles[2][3];
     content.style.left = document.getElementById("content_22").style.left;
+
+    content.style.color="rgb(231, 200, 47)";
     content.style.display="none";
     document.getElementById('stage_2').appendChild(content);
 

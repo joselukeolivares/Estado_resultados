@@ -139,6 +139,7 @@ function createSprite(app){
   subTitle.innerHTML = "Perfil de Clientes";
   subTitle.style.top = "10%";
   subTitle.style.left=0;
+  
   document.getElementById("aplicacion").appendChild(subTitle);
 
       var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));

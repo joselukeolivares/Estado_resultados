@@ -62,8 +62,9 @@ var self={};
 
     var subtitle=document.createElement('p')
             subtitle.setAttribute("id","subTitle");
+            subtitle.setAttribute("class","subTitle");
             subtitle.innerHTML="Simulador"
-            subtitle.setAttribute("style","font-weight: bold;position:absolute;top:10%;font-size: "+factorScreen(22)+"px;font-family: Roboto-Regular;color: #FFFFFF;");
+            subtitle.setAttribute("style","font-weight: bold;position:absolute;top:10%;font-family: Roboto-Regular;color: #FFFFFF;");
             aplicacion.appendChild(subtitle);
             subtitle.style.left=(leftCent-(subtitle.clientWidth/2))+"px";
 
@@ -1030,11 +1031,12 @@ var p_tagCte=document.createElement('p');
     var app=self.app.stage;
     var leftCent=((parseInt(aplicacion.parentNode.style.left)/100)*parseInt(screen.width))+(app.width/2);
 
+    /*
     var white_arrow=document.createElement('DIV');
         white_arrow.setAttribute("id","white_arrow");
         white_arrow.setAttribute("class","white_arrow arrow_animation");
         aplicacion.appendChild(white_arrow);
-
+    */
 
 
     var descript_txt=document.createElement('p')
@@ -1053,6 +1055,14 @@ var p_tagCte=document.createElement('p');
         title.setAttribute("style","text-shadow: 3px 0px #09102C;font-weight: bold;position: absolute;top: 5%;font-size: "+factorScreen(40)+"px;margin: 0px;font-family: Roboto-Regular;color: #FFFFFF;");
         aplicacion.appendChild(title);
         title.style.left=(leftCent-(title.clientWidth/2))+"px";
+
+        var subtitle=document.createElement('p')
+                subtitle.setAttribute("id","subTitle");
+                subtitle.setAttribute("class","subTitle");
+                subtitle.innerHTML="Simulador"
+                subtitle.setAttribute("style","font-weight: bold;position:absolute;top:10%;font-family: Roboto-Regular;color: #FFFFFF;");
+                aplicacion.appendChild(subtitle);
+                subtitle.style.left=(leftCent-(subtitle.clientWidth/2))+"px";
 
 
     var respuesta=document.createElement('p');
@@ -1103,14 +1113,14 @@ var menores=tcAll[0].segmento+","+tcAll[1].segmento+","+tcAll[2].segmento;
         button_continue.on('pointertap',function(){
 
           descript_txt.classList.remove('question'+(index))
-          white_arrow.classList.remove("arrow_animation");
+          //white_arrow.classList.remove("arrow_animation");
           index++;
           descript_txt.classList.add('question'+(index))
 
           descript_txt.innerHTML=bateria[index].pregunta;
           respuesta.innerHTML="Responde correctamente para avanzar.!";
 
-          white_arrow.classList.add("arrow_animation2");
+          //white_arrow.classList.add("arrow_animation2");
             for(var i=0;i<9;i++){
 
             var buttonOK=container_buttons.getChildByName("buttonOK"+i).visible=true;
