@@ -156,8 +156,10 @@ function indicators() {
       slider0 = document.getElementById("slider_0");
       slider1 = document.getElementById("slider_1");
       var tope=2;
-      if(i==2)
-          tope=3;
+      if(i==2){
+        tope=3;
+        title.style.marginBottom="0px";
+      }
       for(let j = 0; j < tope; j++) {
         let content = document.createElement("p");
         content.setAttribute("class", "content");
