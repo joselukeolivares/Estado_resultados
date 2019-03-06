@@ -44,68 +44,6 @@ footer {
   text-align: center;
 }
 
-.tc{
-  position: absolute;
-  width: 350px;
-  height: 60px;
-  text-align: center;
-}
-
-.cpa {
-  position: absolute;
-  width: 330px;
-  height: 50px;
-  text-align: center;
-}
-
-.vta {
-  position: absolute;
-  width: 330px;
-  height: 50px;
-  text-align: center;
-}
-
-.rect1 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #ffde41;
-  border-radius: 30px;
-  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
-}
-
-.rect2 {
-  position: relative;
-  float: right;
-  width: 60%;
-  height: 100%;
-  background: #FFFFFF;
-  border-radius: 29px;
-  box-shadow: -8px 0 5px rgba(0, 0, 0, 0.3);
-}
-
-#okButton {
-  font-style: Roboto-Regular;
-  font-size: 24px;
-  font-weight: bold;
-  color: #000;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  align-self: center;
-  background: #ffde41;
-  border-radius: 15px;
-  box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  transition: box-shadow 0.3s ease-in, transform 0.1s ease-in;
-}
-
-#okButton:hover {
-
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-  transform: scale(1.1);
-}
-
 .filter {
   opacity: 0.7;
   position: absolute;
