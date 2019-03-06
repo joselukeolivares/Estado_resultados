@@ -344,7 +344,7 @@ function simulador_global() {
      //tc2.style.top = self.app.screen.width * 0.13 + "px";
      tc2.style.left = "50%";
      toolTip.appendChild(tc2);
-     tc2.style.marginLeft = "-" + tc2.offsetWidth / 2 + "px";
+     //tc2.style.marginLeft = "-" + tc2.offsetWidth / 2 + "px";
 
      let tcRectY = document.createElement("div");
      tcRectY.className = "rect1";
@@ -361,7 +361,7 @@ function simulador_global() {
      //cpa2.style.top = self.app.screen.width * 0.205 + "px";
      cpa2.style.left = "50%";
      toolTip.appendChild(cpa2);
-     cpa2.style.marginLeft = "-" + cpa2.offsetWidth / 2 + "px";
+     //cpa2.style.marginLeft = "-" + cpa2.offsetWidth / 2 + "px";
 
      let cpaRectY = document.createElement("div");
      cpaRectY.className = "rect1";
@@ -378,7 +378,7 @@ function simulador_global() {
      //vta2.style.top = self.app.screen.width * 0.25 + "px";
      vta2.style.left = "50%";
      toolTip.appendChild(vta2);
-     vta2.style.marginLeft = "-" + vta2.offsetWidth / 2 + "px";
+     //vta2.style.marginLeft = "-" + vta2.offsetWidth / 2 + "px";
 
      let vtaRectY = document.createElement("div");
      vtaRectY.className = "rect1";
@@ -392,7 +392,6 @@ function simulador_global() {
      let okButton = document.createElement("div");
      okButton.setAttribute("id", "okButton");
      okButton.innerHTML = "OK";
-
      toolTip.appendChild(okButton);
      okButton.addEventListener("click", show_hide_data);
 
@@ -628,7 +627,6 @@ for(var j=0;j<vencidos.length;j++){
     vencidos[j]
   ));
   self.characters[self.characters.length-1].vencido=j+2;
-  console.log(self.characters[self.characters.length-1]);
 }
 
 
@@ -691,12 +689,14 @@ var container_globos = new PIXI.Container();
 
 
 
-container_globos.width=100;
-
+container_globos.width = 100;
 container_globos.x = self.app.screen.width / 2.97;
 container_globos.y = self.app.screen.height / 1.66;
-container_globos.scale.set(self.app.screen.width * .65 / 950);
+container_globos.scale.set(self.app.screen.width * 0.65 / 950);
 
+if(document.documentElement.clientHeight <= 800) {
+  container_globos.scale.set(1);
+}
 
 let bMargin = unVdoB.width + 3;
 unVdoB.x =-10;
@@ -1317,10 +1317,6 @@ function addCharacter(index) {
     segmentos[index]
   );
 
-
-    console.log(char);
-
-
   if(index==4)
   char.vencido=1;
   self.characters.push(char);
@@ -1436,8 +1432,6 @@ self.updateTotal = function (newTC,target) {
     ctsXtc+=cte.tc*cte.countCtes;
     ctsTotal+=cte.countCtes;
     vtaTotal += cte.sale();
-    console.log("Cliente "+i+": "+cte.sale());
-    console.log("Venta total: "+vtaTotal);
     vtaTotalMMAA += cte.vtaMMAA;
     CtesBuyTotal+=cte.tc/100*cte.countCtes;
     ctesTotal+=cte.countCtes;
@@ -1508,13 +1502,14 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) 
 
 
 function show_hide_data() {
-
   let app = document.getElementById('aplicacion');
   let selected = document.getElementsByClassName("sh_obj" + this.indice);
   let selectedOff = document.getElementsByClassName("sh_obj" + toolTip.classList[1]);
 
-
   if(toolTip.style.visibility == "visible") {
+    if(document.getElementById("slider-tutorial")) {
+      return;
+    }
     TweenLite.to(tooltipFilter, 0.4, {opacity: 0});
     TweenLite.to(toolTip, 0.2, {opacity: 0});
     toolTip.style.visibility = "hidden";
@@ -1536,9 +1531,9 @@ function show_hide_data() {
       selected[i].classList.remove('hide_element');
       document.getElementById("slider1" + this.indice).classList.remove('hide_element')
       document.getElementById("vta-character-" + i).classList.add('hide_element')
-
     }
 
+    sliderTutorial(this.indice);
 
     let segmentos = [
       "Nunca015",
@@ -1573,6 +1568,60 @@ function show_hide_data() {
   }
 }
 
+  let executed = false;
+  function sliderTutorial(index) {
+    if(!executed) {
+      executed = true;
+      let slider = document.getElementById("slider1" + index);
+      let knob = slider.children[1];
+      let knobRect = knob.getBoundingClientRect();
+      let appRect = app.getBoundingClientRect();
+      let knobX = knobRect.left - appRect.left;
+      let knobY = knobRect.top;
+
+      document.styleSheets[0].addRule("div#slider-tutorial::after", "left: " + (knobX + knob.offsetWidth * 0.5) + "px;");
+
+      let text = document.createElement("p");
+      text.setAttribute("id", "slider-tutorial-text");
+      text.innerHTML = "Arrastra el slider para interactuar";
+      app.appendChild(text);
+
+      let overlay = document.createElement("div");
+      overlay.setAttribute("id", "slider-tutorial");
+      overlay.style.width = self.app.screen.width + "px";
+      overlay.style.height = self.app.screen.height + "px";
+      app.appendChild(overlay);
+
+      let close = document.createElement("svg");
+      close.setAttribute("id", "close-button");
+      close.setAttribute("width", "100");
+      close.setAttribute("height", "100");
+
+      let line1 = document.createElement("line");
+      line1.setAttribute("x1", "20");
+      line1.setAttribute("y1", "20");
+      line1.setAttribute("x2", "80");
+      line1.setAttribute("y2", "80");
+      line1.setAttribute("style", "stroke: rgb(255, 255, 255); stroke-width: 6");
+      close.appendChild(line1);
+
+      let line2 = document.createElement("line");
+      line2.setAttribute("x1", "80");
+      line2.setAttribute("y1", "20");
+      line2.setAttribute("x2", "20");
+      line2.setAttribute("y2", "80");
+      line2.setAttribute("style", "stroke: rgb(255, 255, 255); stroke-width: 6");
+      close.appendChild(line2);
+
+      document.querySelector("body").appendChild(close);
+
+      knob.addEventListener("pointerdown", function() {
+        app.removeChild(overlay);
+        app.removeChild(text);
+      });
+    }
+  }
+
   self.destroyApp = function() {
 
     if(self.app == null) return self;
@@ -1599,7 +1648,7 @@ function show_hide_data() {
   };
 
   self.removeText = function() {
-    var aplicacion=document.getElementById("aplicacion");
+    var aplicacion = document.getElementById("aplicacion");
 
     //THIS REMOVES THE TOOLTIP//
     aplicacion.removeChild(document.getElementById("table_scores"));
