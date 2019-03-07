@@ -20,7 +20,7 @@ body {
 .subTitle {
   font-family: Roboto-Regular;
   font-weight: bold;
-  font-size: 220%;
+  font-size: 25px;
   color: #FFFFFF;
   position: absolute;
   width: 100%;
@@ -78,11 +78,10 @@ body {
 }
 
 #stage_2 {
-  width: 65%;
+  width: calc(100% - 13rem);
   height: 20%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 32%;
+  left: 12%;
 }
 
 .arrow-point-to-right {
@@ -117,6 +116,8 @@ body {
   transform: translateY(-50%) rotate(180deg) scale(1.2);
 }
 
+
+
 .content {
   font-size: 100%;
   font-family: Roboto-Regular;
@@ -124,8 +125,6 @@ body {
   -moz-text-align-last: center;
   text-align-last: center;
 }
-
-
 
 #content_01 br, #content_11 br {
   line-height: 200%;
@@ -135,7 +134,7 @@ body {
 #content_22, #content_23 {
   color: rgb(231, 200, 47);
   /* text-align: center; */
-  /* text-align-last: left; */
+   text-align: left;
   left: 7rem;
   /* width: calc(100% - 12rem); */
   text-decoration: underline;
@@ -147,7 +146,7 @@ body {
 }
 
   #circle-tick-inside-1,#circle-tick-inside-2{
-    left:5rem;
+    left:-2rem;
     height: 18px;
   }
 
