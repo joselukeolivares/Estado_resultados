@@ -150,7 +150,7 @@ function loader_pixi(){
           }
 
            height=main.clientHeight;
-           actual_app=simulador_global().createApp();
+           actual_app=start().createApp();
         }
 
 
