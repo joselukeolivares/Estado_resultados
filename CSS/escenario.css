@@ -6,7 +6,6 @@ body {
   position: absolute;
   left: 80%;
   top: 10%;
-  
 }
 
 #slider-tutorial {
@@ -18,7 +17,6 @@ body {
 #slider-tutorial::after {
   content: "";
   position: absolute;
-  left: 40%;
   top: 48%;
   transform: translate(-50%, -50%);
   border-radius: 100%;
@@ -28,8 +26,9 @@ body {
 }
 
 #slider-tutorial-text {
+  text-align: center;
   position: relative;
-  top: 20%;
+  top: 17%;
   font-size: 200%;
   font-weight: bold;
   color: rgb(240, 240, 240);
@@ -38,18 +37,17 @@ body {
 
 #totals {
   position: relative;
-  width: 100%;
-  height: 12%;
-  max-height: 80px;
+  width: 60%;
+  height: 10%;
+  max-height: 70px;
   top: 4%;
-  display: flex;
-  justify-content: center;
-  left:20%
+  left: 50%;
+  transform: translate(-50%);
 }
 
 #tc-total {
-
-  width: 50%;
+  position: absolute;
+  width: 49%;
   height: 100%;
   text-align: center;
   background: #ffde41;
@@ -66,8 +64,8 @@ body {
   background: #fff;
   float: right;
   box-shadow: -8px 0 3px rgba(0, 0, 0, 0.3);
-
 }
+
 #vta-total {
   width: 50%;
   height: 100%;
@@ -75,7 +73,8 @@ body {
   background: #fff;
   border-radius: 50px;
   box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.5);
-  margin: 0% 1%;
+  float: right;
+  /* margin: 0% 1%; */
 }
 
 #vta-total-name {
