@@ -430,7 +430,7 @@ function simulador_global() {
         title.style.top = self.app.screen.height * 0.65 + "px";
         TweenLite.to(title, 0.2, {opacity: 1});
 
-        tempApp = new PIXI.Application(width, height, {transparent: true});
+        let tempApp = new PIXI.Application(width, height, {transparent: true});
         app.appendChild(tempApp.renderer.view);
 
         let clienteG = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/CTES EN 500X350/2. GENERADOS 500x350.png"].texture);
@@ -475,7 +475,7 @@ function simulador_global() {
         });
 
         TweenLite.to([clienteG, pointer], 0.2, {alpha: 1, onComplete: function() {
-          tl = new TimelineMax({repeat: 3});
+          let tl = new TimelineMax({repeat: 3});
           tl
             .to(pointer, 1.7, {x: width * 0.5, y: height * 0.4})
             .to(pointer, 1.7, {x: width * 0.8, y: height * 0.55});
@@ -1521,6 +1521,7 @@ function show_hide_data() {
   } else {
     //title.innerHTML = sgments[this.indice];
     toolTip.classList.add(this.indice);
+    //toolTip.classList.add("show");
     TweenMax.to(tooltipFilter, 0.4, {visibility: "visible", opacity: 1, ease:Power1.easeInOut})
     TweenMax.to(toolTip, 0.2, {visibility: "visible", opacity: 1, ease:Power1.easeInOut});
 
@@ -1576,9 +1577,7 @@ function show_hide_data() {
       let knobX = knobRect.left - appRect.left;
       let knobY = knobRect.top;
 
-      // document.styleSheets[0].addRule("div#slider-tutorial::after", "left: " + (knobX + knob.offsetWidth * 0.5) + "px;");
       document.styleSheets[0].insertRule("#slider-tutorial::after { left: " + (knobX + knob.offsetWidth * 0.5) + "px; }", 0);
-      console.log(document.styleSheets[0].cssRules[0]);
 
       toolTip.classList.toggle("no-events");
 
@@ -1593,6 +1592,31 @@ function show_hide_data() {
       overlay.style.width = self.app.screen.width + "px";
       overlay.style.height = self.app.screen.height + "px";
       app.appendChild(overlay);
+
+      let pointer = document.createElement("div");
+      pointer.setAttribute("id", "tutorial-pointer");
+      // pointer.setAttribute("style", "background-img: url('assets/ui/bloque_5/ic-hand.png')");
+      pointer.style.left = knobX - knob.offsetWidth * 2 + "px";
+      pointer.style.top = knobY + knob.offsetHeight + "px";
+      app.appendChild(pointer);
+
+      let tl = new TimelineMax({repeat: 3});
+      tl
+        .to(pointer, 1.2, {left:  knobX + knob.offsetWidth * 2 + "px" })
+        .to(pointer, 1.2, {left:  knobX - knob.offsetWidth * 2 + "px" });
+
+
+      // let pointer = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/ic-hand.png"].texture);
+      // pointer.name = "sliderTutorial";
+      // pointer.anchor.set(0.5);
+      // //pointer.alpha = 0;
+      // pointer.x = width * 0.8;
+      // pointer.y = height * 0.55;
+      // pointer.scale.set(factorScreen(0.5));
+      // tempApp.stage.addChild(pointer);
+
+
+
 
       // let close = document.createElement("svg");
       // close.setAttribute("id", "close-button");
@@ -1620,6 +1644,7 @@ function show_hide_data() {
       let downHandler = function() {
         app.removeChild(overlay);
         app.removeChild(text);
+        app.removeChild(pointer);
         document.styleSheets[0].deleteRule(0);
         toolTip.classList.toggle("no-events");
         console.log("pointerdown...");

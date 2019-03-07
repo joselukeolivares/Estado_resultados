@@ -35,6 +35,16 @@ body {
   z-index: 1;
 }
 
+#tutorial-pointer {
+  position: absolute;
+  width: 5%;
+  height: 7%;
+  background-image: url("../assets/ui/bloque_5/ic-hand.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 #totals {
   position: relative;
   width: 60%;
@@ -140,7 +150,9 @@ top:100%;
   pointer-events: none;
 }
 
-#toolTip {
+
+
+.toolTip {
   overflow: hidden;
   visibility: hidden;
   text-align: center;
@@ -158,6 +170,14 @@ top:100%;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
   transition: all 0.1s ease-in;
   top: 20%;
+}
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 .tc {
