@@ -1507,9 +1507,6 @@ function show_hide_data() {
   let selectedOff = document.getElementsByClassName("sh_obj" + toolTip.classList[1]);
 
   if(toolTip.style.visibility == "visible") {
-    if(document.getElementById("slider-tutorial")) {
-      return;
-    }
     TweenLite.to(tooltipFilter, 0.4, {opacity: 0});
     TweenLite.to(toolTip, 0.2, {opacity: 0});
     toolTip.style.visibility = "hidden";
@@ -1583,6 +1580,7 @@ function show_hide_data() {
       document.styleSheets[0].insertRule("#slider-tutorial::after { left: " + (knobX + knob.offsetWidth * 0.5) + "px; }", 0);
       console.log(document.styleSheets[0].cssRules[0]);
 
+      toolTip.classList.toggle("no-events");
 
       let text = document.createElement("p");
       text.setAttribute("id", "slider-tutorial-text");
@@ -1596,33 +1594,34 @@ function show_hide_data() {
       overlay.style.height = self.app.screen.height + "px";
       app.appendChild(overlay);
 
-      let close = document.createElement("svg");
-      close.setAttribute("id", "close-button");
-      close.setAttribute("width", "100");
-      close.setAttribute("height", "100");
-
-      let line1 = document.createElement("line");
-      line1.setAttribute("x1", "20");
-      line1.setAttribute("y1", "20");
-      line1.setAttribute("x2", "80");
-      line1.setAttribute("y2", "80");
-      line1.setAttribute("style", "stroke: rgb(255, 255, 255); stroke-width: 6");
-      close.appendChild(line1);
-
-      let line2 = document.createElement("line");
-      line2.setAttribute("x1", "80");
-      line2.setAttribute("y1", "20");
-      line2.setAttribute("x2", "20");
-      line2.setAttribute("y2", "80");
-      line2.setAttribute("style", "stroke: rgb(255, 255, 255); stroke-width: 6");
-      close.appendChild(line2);
-
-      document.body.appendChild(close);
+      // let close = document.createElement("svg");
+      // close.setAttribute("id", "close-button");
+      // close.setAttribute("width", "100");
+      // close.setAttribute("height", "100");
+      //
+      // let line1 = document.createElement("line");
+      // line1.setAttribute("x1", "20");
+      // line1.setAttribute("y1", "20");
+      // line1.setAttribute("x2", "80");
+      // line1.setAttribute("y2", "80");
+      // line1.setAttribute("style", "stroke: rgb(255, 255, 255); stroke-width: 6");
+      // close.appendChild(line1);
+      //
+      // let line2 = document.createElement("line");
+      // line2.setAttribute("x1", "80");
+      // line2.setAttribute("y1", "20");
+      // line2.setAttribute("x2", "20");
+      // line2.setAttribute("y2", "80");
+      // line2.setAttribute("style", "stroke: rgb(255, 255, 255); stroke-width: 6");
+      // close.appendChild(line2);
+      //
+      // document.body.appendChild(close);
 
       let downHandler = function() {
         app.removeChild(overlay);
         app.removeChild(text);
         document.styleSheets[0].deleteRule(0);
+        toolTip.classList.toggle("no-events");
         console.log("pointerdown...");
         this.removeEventListener("pointerdown", downHandler);
       };
