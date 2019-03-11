@@ -1,3 +1,4 @@
+
 body {
   font-family: Roboto-regular;
 }
@@ -25,6 +26,7 @@ body {
   height: 125px;
   box-shadow: 0px 0px 0px 2000px rgba(0, 0, 0, 0.8);
 }
+
 
 #slider-tutorial-text {
   text-align: center;
