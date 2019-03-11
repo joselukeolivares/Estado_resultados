@@ -1,4 +1,5 @@
 function simulador_global() {
+
   var self = {};
   var app = document.getElementById("aplicacion");
   let scale1 = height * 0.5 / 950;
@@ -102,8 +103,10 @@ function simulador_global() {
 
       head.setAttribute("style","background-image:url('assets/ui/bloque_6/ERC-Characters/heads_characters/"+img+".png')");
       head.classList.add("head_top")
-
-
+      let head_name=document.createElement('p')
+          head_name.setAttribute("class","head_name")
+          head_name.innerHTML=segmentos[i]+"   ";
+      head.appendChild(head_name);
       container_heads.appendChild(head);
 
     }
@@ -192,7 +195,7 @@ function simulador_global() {
         TweenMax.to(name,1,{top:"100%",zIndex:-1})
       }
 
-      //console.log("Se comparó: ")
+      console.log("Se comparó: ")
 
 
 
@@ -316,7 +319,13 @@ function simulador_global() {
      tcTotalName.innerHTML = "TC Total"
      tcTotalName.setAttribute("id", "ctes-total-name");
      tcTotalName.setAttribute("class","sin_margen p_tags");
+<<<<<<< HEAD
      tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.75) + "px; font-Family: roboto-regular; font-weight: bold; color: #000; transform: translate(-50%)");
+=======
+
+     tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.15) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
+
+>>>>>>> master
      tcTotalName.typeObj=1;
      app.appendChild(tcTotalName);
 
@@ -1302,7 +1311,13 @@ button
      if(i == 8)  {
        document.getElementById("tc-total-tag").innerHTML = parseFloat(defaultVals[i].tcTotal).toFixed(1) + "%";
        document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].vtaTotal));
+<<<<<<< HEAD
        document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal) + " Ctes.";
+=======
+
+       //document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal)+" Ctes.";
+
+>>>>>>> master
        document.getElementById("var-global").innerHTML = "0%";
        document.getElementById("var-global").style.color="#FFFFFF";
      }
@@ -1314,7 +1329,22 @@ button
 
    self.stepBack.length=1;
    self.indexHistory=0;
-   self.historyFlag=true;
+
+   self.historyFlag=false;
+
+   self.characters=null;
+   self.characters = JSON.parse(self.stepBack[0]);
+   for(var i = 0; i < self.characters.length; i++) {
+
+     self.characters[i].sale = function() {
+         return this.cpa*((this.tc)/100)*this.countCtes;
+       };
+
+   }
+   self.winners();
+
+   //self.updateTotal(99999,"Reset");
+
  }
 
 
