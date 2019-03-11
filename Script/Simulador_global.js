@@ -1278,6 +1278,7 @@ button
        document.getElementById("tc-total-tag").innerHTML = parseFloat(defaultVals[i].tcTotal).toFixed(1) + "%";
        document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].vtaTotal));
        //document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal)+" Ctes.";
+       console.log("change")
        document.getElementById("var-global").innerHTML = "0%";
        document.getElementById("var-global").style.color="#FFFFFF";
      }
