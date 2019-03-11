@@ -18,7 +18,6 @@ body {
 #slider-tutorial::after {
   content: "";
   position: absolute;
-  left: 40%;
   top: 48%;
   transform: translate(-50%, -50%);
   border-radius: 100%;
@@ -28,12 +27,23 @@ body {
 }
 
 #slider-tutorial-text {
+  text-align: center;
   position: relative;
-  top: 20%;
+  top: 17%;
   font-size: 200%;
   font-weight: bold;
   color: rgb(240, 240, 240);
   z-index: 1;
+}
+
+#tutorial-pointer {
+  position: absolute;
+  width: 5%;
+  height: 7%;
+  background-image: url("../assets/ui/bloque_5/ic-hand.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 #totals {
@@ -41,14 +51,13 @@ body {
   width: 60%;
   height: 65px;
   top: 4%;
-  display: flex;
-  justify-content: center;
-  left:20%
+  left: 50%;
+  transform: translate(-50%);
 }
 
 #tc-total {
-
-  width: 50%;
+  position: absolute;
+  width: 49%;
   height: 100%;
   text-align: center;
   background: #ffde41;
@@ -65,8 +74,8 @@ body {
   background: #fff;
   float: right;
   box-shadow: -8px 0 3px rgba(0, 0, 0, 0.3);
-
 }
+
 #vta-total {
   width: 50%;
   height: 100%;
@@ -74,7 +83,8 @@ body {
   background: #fff;
   border-radius: 50px;
   box-shadow: -5px 5px 3px rgba(0, 0, 0, 0.5);
-  margin: 0% 1%;
+  float: right;
+  /* margin: 0% 1%; */
 }
 
 #vta-total-name {
@@ -82,7 +92,7 @@ body {
 }
 
 .p_tags,#estrategia{
-  font-size: 16px;
+  font-size: 18px;
   /*text-decoration: line-through;*/
 }
 
@@ -136,7 +146,13 @@ top:100%;
   overflow: hidden;
 }
 
-#toolTip {
+.no-events {
+  pointer-events: none;
+}
+
+
+
+.toolTip {
   overflow: hidden;
   visibility: hidden;
   text-align: center;
@@ -154,6 +170,14 @@ top:100%;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
   transition: all 0.1s ease-in;
   top: 20%;
+}
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 .tc {
