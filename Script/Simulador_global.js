@@ -1294,6 +1294,7 @@ button
    self.characters=null;
    self.characters = JSON.parse(self.stepBack[0]);
    for(var i = 0; i < self.characters.length; i++) {
+     console.log("change")
      self.characters[i].sale = function() {
          return this.cpa*((this.tc)/100)*this.countCtes;
        };
