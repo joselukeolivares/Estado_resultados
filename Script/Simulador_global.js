@@ -1,4 +1,5 @@
 function simulador_global() {
+  console.log("test")
   var self = {};
   var app = document.getElementById("aplicacion");
   let scale1 = height * 0.5 / 950;
@@ -1674,6 +1675,6 @@ function show_hide_data() {
 
   };
 
-
+  console.log("test")
   return self;
 }
