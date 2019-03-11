@@ -61,8 +61,10 @@ function simulador_global() {
 
       head.setAttribute("style","background-image:url('assets/ui/bloque_6/ERC-Characters/heads_characters/"+img+".png')");
       head.classList.add("head_top")
-
-
+      let head_name=document.createElement('p')
+          head_name.setAttribute("class","head_name")
+          head_name.innerHTML=segmentos[i]+"   ";
+      head.appendChild(head_name);
       container_heads.appendChild(head);
 
     }
