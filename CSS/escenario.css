@@ -8,6 +8,10 @@ body {
   top: 10%;
 }
 
+.slider_knob {
+  pointer-events: all;
+}
+
 #slider-tutorial {
   margin: 0;
   overflow: hidden;
@@ -77,6 +81,10 @@ body {
   background: #fff;
   float: right;
   box-shadow: -8px 0 3px rgba(0, 0, 0, 0.3);
+}
+
+#ctes-total-name {
+  font-size: 70%;
 }
 
 #vta-total {
