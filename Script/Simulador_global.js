@@ -1,5 +1,5 @@
 function simulador_global() {
-  console.log("test")
+  
   var self = {};
   var app = document.getElementById("aplicacion");
   let scale1 = height * 0.5 / 950;
@@ -106,10 +106,8 @@ function simulador_global() {
 
     var ranking=[];
     var total=0;
-    debugger;
     for(var i=0;i<self.characters.length;i++){
       let sale=self.characters[i].sale();
-      console.log("vta "+(i+1)+": "+sale);
       total+=parseInt(sale);
       ranking.push(parseInt(sale))
     }
@@ -257,7 +255,7 @@ function simulador_global() {
      let tcTotalElm = document.createElement("p");
      tcTotalElm.setAttribute("id", "tc-total-tag");
      tcTotalElm.setAttribute("class","sin_margen");
-     tcTotalElm.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left: " + (tcTotalX + tcTotal.offsetWidth * 0.75) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(45)+"px; font-weight: bold;");
+     tcTotalElm.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left: " + (tcTotalX + tcTotal.offsetWidth * 0.65) + "px; font-Family: roboto-regular; font-Size: "+factorScreen(45)+"px; font-weight: bold;");
      tcTotalElm.typeObj = 1;
      app.appendChild(tcTotalElm);
 
@@ -278,16 +276,18 @@ function simulador_global() {
 
      let tcTotalName = document.createElement("p");
      tcTotalName.innerHTML = "T.C. Total"
-     tcTotalName.setAttribute("id", "tc-total-name");
+     tcTotalName.setAttribute("id", "ctes-total-name");
      tcTotalName.setAttribute("class","sin_margen p_tags");
-     tcTotalName.setAttribute("style", "position: absolute; top:" + (vtaTotalY+0) + "px; left:calc(" + (tcTotalElm.style.left) + " - 3%); font-Family: roboto-regular; font-weight: bold; color: #000;");
+
+     tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.15) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
+
      tcTotalName.typeObj=1;
      app.appendChild(tcTotalName);
 
      let tcTotalCtesElm = document.createElement("p");
      tcTotalCtesElm.setAttribute("id", "ctes-total-tag");
      tcTotalCtesElm.setAttribute("class","sin_margen p_tags");
-     tcTotalCtesElm.setAttribute("style", "position: absolute; top:" + (tcTotalElm.style.top) + "; left:" + (tcTotalX + tcTotal.offsetWidth * 0.07) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
+     tcTotalCtesElm.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.07) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
      tcTotalCtesElm.typeObj=1;
      app.appendChild(tcTotalCtesElm);
 
@@ -295,15 +295,13 @@ function simulador_global() {
      ctesElm.innerHTML = "Clientes";
      ctesElm.setAttribute("id", "ctesElm");
      ctesElm.setAttribute("class","sin_margen");
-     ctesElm.setAttribute("style", "position: absolute; top: " + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left: " + (tcTotalX + totalVentaElm.clientWidth) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
+     ctesElm.setAttribute("style", "position: absolute; top: " + (tcTotalY + (tcTotal.offsetHeight * 0.5)) + "px; left: " + (tcTotalX + tcTotal.offsetWidth * 0.3) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
      ctesElm.typeObj = 1;
      //app.appendChild(ctesElm);
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
-     varGlobalElm.setAttribute("class","sin_margen")
-     debugger;
-     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY+(vtaTotalRect.height/4)) + "px; left: calc(6% + "+(parseInt(vtaTotalName.style.left)+(parseInt(vtaTotalName.clientWidth)))+"px); font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
+     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth * 0.75)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
      varGlobalElm.typeObj = 1;
      app.appendChild(varGlobalElm);
 
@@ -351,7 +349,7 @@ function simulador_global() {
      //tc2.style.top = self.app.screen.width * 0.13 + "px";
      tc2.style.left = "50%";
      toolTip.appendChild(tc2);
-     tc2.style.marginLeft = "-" + tc2.offsetWidth / 2 + "px";
+     //tc2.style.marginLeft = "-" + tc2.offsetWidth / 2 + "px";
 
      let tcRectY = document.createElement("div");
      tcRectY.className = "rect1";
@@ -368,7 +366,7 @@ function simulador_global() {
      //cpa2.style.top = self.app.screen.width * 0.205 + "px";
      cpa2.style.left = "50%";
      toolTip.appendChild(cpa2);
-     cpa2.style.marginLeft = "-" + cpa2.offsetWidth / 2 + "px";
+     //cpa2.style.marginLeft = "-" + cpa2.offsetWidth / 2 + "px";
 
      let cpaRectY = document.createElement("div");
      cpaRectY.className = "rect1";
@@ -385,7 +383,7 @@ function simulador_global() {
      //vta2.style.top = self.app.screen.width * 0.25 + "px";
      vta2.style.left = "50%";
      toolTip.appendChild(vta2);
-     vta2.style.marginLeft = "-" + vta2.offsetWidth / 2 + "px";
+     //vta2.style.marginLeft = "-" + vta2.offsetWidth / 2 + "px";
 
      let vtaRectY = document.createElement("div");
      vtaRectY.className = "rect1";
@@ -399,7 +397,6 @@ function simulador_global() {
      let okButton = document.createElement("div");
      okButton.setAttribute("id", "okButton");
      okButton.innerHTML = "OK";
-
      toolTip.appendChild(okButton);
      okButton.addEventListener("click", show_hide_data);
 
@@ -411,7 +408,7 @@ function simulador_global() {
 
      let subTitle = document.createElement("h3");
      subTitle.className = "subTitle";
-     subTitle.innerHTML = "Simulador Global";
+     subTitle.innerHTML = "Simluador Global";
      subTitle.style.top = self.app.screen.height * 0.33 + "px";
      app.appendChild(subTitle);
 
@@ -438,7 +435,7 @@ function simulador_global() {
         title.style.top = self.app.screen.height * 0.65 + "px";
         TweenLite.to(title, 0.2, {opacity: 1});
 
-        tempApp = new PIXI.Application(width, height, {transparent: true});
+        let tempApp = new PIXI.Application(width, height, {transparent: true});
         app.appendChild(tempApp.renderer.view);
 
         let clienteG = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/CTES EN 500X350/2. GENERADOS 500x350.png"].texture);
@@ -483,7 +480,7 @@ function simulador_global() {
         });
 
         TweenLite.to([clienteG, pointer], 0.2, {alpha: 1, onComplete: function() {
-          tl = new TimelineMax({repeat: 3});
+          let tl = new TimelineMax({repeat: 3});
           tl
             .to(pointer, 1.7, {x: width * 0.5, y: height * 0.4})
             .to(pointer, 1.7, {x: width * 0.8, y: height * 0.55});
@@ -507,12 +504,9 @@ function simulador_global() {
                subContainer2.visible=false;
 
        character.scale.set(factorScreen(.6));
-
-       if(i==0)
+        if(i==0)
        character.scale.set(factorScreen(.6));
-       let escenario_width=self.app.screen.width;
-
-       character.x = (i % 3) * escenario_width/4+50;
+       character.x = (i % 3) * self.app.screen.width/3;
        character.y =Math.floor(i / 3) * self.app.screen.height/4.5+height/4;
 
        character.name ="character"+i;
@@ -613,7 +607,7 @@ function simulador_global() {
        vta_porcent.innerHTML=""+"%";
        vta_porcent.setAttribute("id","vta_porcent"+i);
        vta_porcent.setAttribute("class","sin_margen hide_element p_tags sh_obj"+i);
-       vta_porcent.setAttribute("style","position:absolute; top:"+ (vtaY + vta2.offsetHeight / 3) +"px; left:" + (vtaX + (vta2.offsetWidth)) + "px;font-Family:roboto-regular;color:#FFFFFF");
+       vta_porcent.setAttribute("style","position:absolute; top:"+ (vtaY + vta2.offsetHeight / 3) +"px; left:" + (vtaX + (vta2.offsetWidth * 1.03)) + "px;font-Family:roboto-regular;font-weight:bold;color:#FFFFFF");
        vta_porcent.typeObj=1;
        app.appendChild(vta_porcent);
 
@@ -638,8 +632,6 @@ for(var j=0;j<vencidos.length;j++){
     vencidos[j]
   ));
   self.characters[self.characters.length-1].vencido=j+2;
-  console.log(self.characters[self.characters.length-1]);
-  defaultVals[8].vtaTotal+=self.characters[self.characters.length-1].sale();
 }
 
 
@@ -702,12 +694,14 @@ var container_globos = new PIXI.Container();
 
 
 
-container_globos.width=100;
-
+container_globos.width = 100;
 container_globos.x = self.app.screen.width / 2.97;
 container_globos.y = self.app.screen.height / 1.66;
-container_globos.scale.set(self.app.screen.width * .65 / 950);
+container_globos.scale.set(self.app.screen.width * 0.65 / 950);
 
+if(document.documentElement.clientHeight <= 800) {
+  container_globos.scale.set(1);
+}
 
 let bMargin = unVdoB.width + 3;
 unVdoB.x =-10;
@@ -1253,7 +1247,6 @@ button
 
  function onClickClear() {
 
-
    container_globos.getChildByName("unVdoClkedSprite").visible=true;
    container_globos.getChildByName("dosVdoClkedSprite").visible=false;
    container_globos.getChildByName("tresVdoClkedSprite").visible=false;
@@ -1264,22 +1257,23 @@ button
    container_globos.getChildByName("cuatroVdoB").visible=true;
 
    for(let i = 0; i < defaultVals.length; i++) {
-     debugger;
-     document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(parseInt(defaultVals[i].nCtes));
-     document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(Math.round(defaultVals[i].cpa));
-     document.getElementById("vta-tag-" + i).innerHTML = "$"+ numberWithCommas(Math.round(defaultVals[i].vtaOriginal));
-     document.getElementById("vta-character-" + i).innerHTML = "$"+ numberWithCommas(Math.round(defaultVals[i].vtaOriginal));
+
+     document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(defaultVals[i].nCtes);
+     document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].cpa));
+     document.getElementById("vta-tag-" + i).innerHTML = "$"+ numberWithCommas(parseInt(defaultVals[i].vtaOriginal));
+     document.getElementById("vta-character-" + i).innerHTML = "$"+ numberWithCommas(parseInt(defaultVals[i].vtaOriginal));
      document.getElementById("tc-tag-" + i).innerHTML = (parseFloat(defaultVals[i].tcOriginal).toFixed(1))+"%";
+
+
      document.getElementById("vta_porcent" + i).innerHTML = "0%";
      document.getElementById("vta_porcent" + i).style.color="#FFFFFF";
-
-
 
      if(i == 8)  {
        document.getElementById("tc-total-tag").innerHTML = parseFloat(defaultVals[i].tcTotal).toFixed(1) + "%";
        document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].vtaTotal));
+
        //document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal)+" Ctes.";
-       console.log("change")
+
        document.getElementById("var-global").innerHTML = "0%";
        document.getElementById("var-global").style.color="#FFFFFF";
      }
@@ -1291,21 +1285,24 @@ button
 
    self.stepBack.length=1;
    self.indexHistory=0;
+
    self.historyFlag=false;
-   debugger;
+   
    self.characters=null;
    self.characters = JSON.parse(self.stepBack[0]);
    for(var i = 0; i < self.characters.length; i++) {
-     console.log("change")
+     
      self.characters[i].sale = function() {
          return this.cpa*((this.tc)/100)*this.countCtes;
        };
 
    }
    self.winners();
-   debugger;
+   
    //self.updateTotal(99999,"Reset");
+
  }
+
 
 
 
@@ -1341,10 +1338,6 @@ function addCharacter(index) {
     toDate["Venta \n" + segmentos[index]],
     segmentos[index]
   );
-
-
-    //console.log(char);
-
 
   if(index==4)
   char.vencido=1;
@@ -1392,7 +1385,7 @@ function addCharacter(index) {
     tcOriginal: toDate["TC \n" + segmentos[index]],
     vtaOriginal:toDate["Venta \n" + segmentos[index]]
   };
-  console.log(defaultChar.sale())
+
   defaultVals.push(defaultChar);
 
 }
@@ -1461,8 +1454,6 @@ self.updateTotal = function (newTC,target) {
     ctsXtc+=cte.tc*cte.countCtes;
     ctsTotal+=cte.countCtes;
     vtaTotal += cte.sale();
-    console.log("Cliente "+i+": "+cte.sale());
-    console.log("Venta total: "+vtaTotal);
     vtaTotalMMAA += cte.vtaMMAA;
     CtesBuyTotal+=cte.tc/100*cte.countCtes;
     ctesTotal+=cte.countCtes;
@@ -1516,7 +1507,7 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) 
 
   this.name=name;
   this.index = index;
-  this.cpa = Number.parseFloat(cpa.replace(/,/g,''));
+  this.cpa = Number.parseInt(cpa.replace(/,/g,''));
   this.tc = parseFloat(tc);
   this.position = position;
   this.countCtes = parseInt(numCtes.replace(/,/g,''));
@@ -1527,17 +1518,15 @@ function characters_erc(index,tc,cpa,position,numCtes,vtaMMAA,vtaOriginal,name) 
     //console.log("CPA: "+this.cpa);
     //console.log("TC: "+this.tc);
     //console.log("Ctes: "+this.countCtes);
-    return this.cpa*(this.tc/100)*this.countCtes;
+    return this.cpa*((this.tc)/100)*this.countCtes;
   };
 }
 
 
 function show_hide_data() {
-
   let app = document.getElementById('aplicacion');
   let selected = document.getElementsByClassName("sh_obj" + this.indice);
   let selectedOff = document.getElementsByClassName("sh_obj" + toolTip.classList[1]);
-
 
   if(toolTip.style.visibility == "visible") {
     TweenLite.to(tooltipFilter, 0.4, {opacity: 0});
@@ -1554,6 +1543,7 @@ function show_hide_data() {
   } else {
     //title.innerHTML = sgments[this.indice];
     toolTip.classList.add(this.indice);
+    //toolTip.classList.add("show");
     TweenMax.to(tooltipFilter, 0.4, {visibility: "visible", opacity: 1, ease:Power1.easeInOut})
     TweenMax.to(toolTip, 0.2, {visibility: "visible", opacity: 1, ease:Power1.easeInOut});
 
@@ -1561,9 +1551,9 @@ function show_hide_data() {
       selected[i].classList.remove('hide_element');
       document.getElementById("slider1" + this.indice).classList.remove('hide_element')
       document.getElementById("vta-character-" + i).classList.add('hide_element')
-
     }
 
+    sliderTutorial(this.indice);
 
     let segmentos = [
       "Nunca015",
@@ -1598,6 +1588,95 @@ function show_hide_data() {
   }
 }
 
+  let executed = false;
+  function sliderTutorial(index) {
+    if(!executed) {
+      executed = true;
+      let slider = document.getElementById("slider1" + index);
+      let knob = slider.children[1];
+      let knobRect = knob.getBoundingClientRect();
+      let appRect = app.getBoundingClientRect();
+      let knobX = knobRect.left - appRect.left;
+      let knobY = knobRect.top;
+
+      document.styleSheets[0].insertRule("#slider-tutorial::after { left: " + (knobX + knob.offsetWidth * 0.5) + "px; }", 0);
+
+      toolTip.classList.toggle("no-events");
+
+      let text = document.createElement("p");
+      text.setAttribute("id", "slider-tutorial-text");
+      text.innerHTML = "Arrastra la manija del slider para interactuar";
+      app.appendChild(text);
+
+      let overlay = document.createElement("div");
+      overlay.setAttribute("id", "slider-tutorial");
+      overlay.className = "slider-t"
+      overlay.style.width = self.app.screen.width + "px";
+      overlay.style.height = self.app.screen.height + "px";
+      app.appendChild(overlay);
+
+      let pointer = document.createElement("div");
+      pointer.setAttribute("id", "tutorial-pointer");
+      // pointer.setAttribute("style", "background-img: url('assets/ui/bloque_5/ic-hand.png')");
+      pointer.style.left = knobX - knob.offsetWidth * 2 + "px";
+      pointer.style.top = knobY + knob.offsetHeight + "px";
+      app.appendChild(pointer);
+
+      let tl = new TimelineMax({repeat: 3});
+      tl
+        .to(pointer, 1.2, {left:  knobX + knob.offsetWidth * 2 + "px" })
+        .to(pointer, 1.2, {left:  knobX - knob.offsetWidth * 2 + "px" });
+
+
+      // let pointer = new PIXI.Sprite(Loader.resources["assets/ui/bloque_5/ic-hand.png"].texture);
+      // pointer.name = "sliderTutorial";
+      // pointer.anchor.set(0.5);
+      // //pointer.alpha = 0;
+      // pointer.x = width * 0.8;
+      // pointer.y = height * 0.55;
+      // pointer.scale.set(factorScreen(0.5));
+      // tempApp.stage.addChild(pointer);
+
+
+
+
+      // let close = document.createElement("svg");
+      // close.setAttribute("id", "close-button");
+      // close.setAttribute("width", "100");
+      // close.setAttribute("height", "100");
+      //
+      // let line1 = document.createElement("line");
+      // line1.setAttribute("x1", "20");
+      // line1.setAttribute("y1", "20");
+      // line1.setAttribute("x2", "80");
+      // line1.setAttribute("y2", "80");
+      // line1.setAttribute("style", "stroke: rgb(255, 255, 255); stroke-width: 6");
+      // close.appendChild(line1);
+      //
+      // let line2 = document.createElement("line");
+      // line2.setAttribute("x1", "80");
+      // line2.setAttribute("y1", "20");
+      // line2.setAttribute("x2", "20");
+      // line2.setAttribute("y2", "80");
+      // line2.setAttribute("style", "stroke: rgb(255, 255, 255); stroke-width: 6");
+      // close.appendChild(line2);
+      //
+      // document.body.appendChild(close);
+
+      let downHandler = function() {
+        app.removeChild(overlay);
+        app.removeChild(text);
+        app.removeChild(pointer);
+        document.styleSheets[0].deleteRule(0);
+        toolTip.classList.toggle("no-events");
+        console.log("pointerdown...");
+        this.removeEventListener("pointerdown", downHandler);
+      };
+
+      knob.addEventListener("pointerdown", downHandler);
+    }
+  }
+
   self.destroyApp = function() {
 
     if(self.app == null) return self;
@@ -1624,7 +1703,7 @@ function show_hide_data() {
   };
 
   self.removeText = function() {
-    var aplicacion=document.getElementById("aplicacion");
+    var aplicacion = document.getElementById("aplicacion");
 
     //THIS REMOVES THE TOOLTIP//
     aplicacion.removeChild(document.getElementById("table_scores"));
@@ -1675,6 +1754,6 @@ function show_hide_data() {
 
   };
 
-  console.log("test")
+  
   return self;
 }
