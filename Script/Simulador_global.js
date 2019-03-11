@@ -279,7 +279,7 @@ function simulador_global() {
      tcTotalName.innerHTML = "T.C. Total"
      tcTotalName.setAttribute("id", "tc-total-name");
      tcTotalName.setAttribute("class","sin_margen p_tags");
-     tcTotalName.setAttribute("style", "position: absolute; top:" + (vtaTotalY) + "px; left:calc(" + (tcTotalElm.style.left) + " - 3%); font-Family: roboto-regular; font-weight: bold; color: #000;");
+     tcTotalName.setAttribute("style", "position: absolute; top:" + (vtaTotalY+0) + "px; left:calc(" + (tcTotalElm.style.left) + " - 3%); font-Family: roboto-regular; font-weight: bold; color: #000;");
      tcTotalName.typeObj=1;
      app.appendChild(tcTotalName);
 
