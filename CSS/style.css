@@ -35,21 +35,9 @@ footer {
   user-select: none;
 }
 
-#tooltipFilter {
-  opacity: 0;
-  visibility: hidden;
-}
-
 #toolTitle {
   text-align: center;
 }
-
-.filter {
-  opacity: 0.7;
-  position: absolute;
-  top: 0px;
-}
-
 
 .contButtonIntro {
   font-style: Robot-Regular;

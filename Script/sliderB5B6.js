@@ -17,7 +17,7 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
 
   // Create DOM
   var dom = document.createElement("div");
-  dom.setAttribute("id",id);
+  dom.setAttribute("id", id);
   dom.className = "slider";
   dom.style.left = width * left + "px";
   dom.style.top = height * top + "px";
