@@ -155,7 +155,7 @@ function simulador_global() {
         TweenMax.to(name,1,{top:"100%",zIndex:-1})
       }
 
-      //console.log("Se comparó: ")
+      console.log("Se comparó: ")
 
 
 
