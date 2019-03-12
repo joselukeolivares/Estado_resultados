@@ -47,7 +47,7 @@ function simulador_global() {
     case 11:
       self.mes = "Diciembre";
   }
-
+  self.mes=self.mes+"/"+(date.getYear()+1900);
   let Loader = PIXI.loader;
 
   self.scoresBuilder=function(){
@@ -319,13 +319,13 @@ function simulador_global() {
      tcTotalName.innerHTML = "TC Total"
      tcTotalName.setAttribute("id", "ctes-total-name");
      tcTotalName.setAttribute("class","sin_margen p_tags");
-<<<<<<< HEAD
+
      tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.75) + "px; font-Family: roboto-regular; font-weight: bold; color: #000; transform: translate(-50%)");
-=======
 
-     tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.15) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
 
->>>>>>> master
+     //tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.15) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
+
+
      tcTotalName.typeObj=1;
      app.appendChild(tcTotalName);
 
@@ -337,7 +337,7 @@ function simulador_global() {
      app.appendChild(tcTotalCtesElm);
 
      let fechaTotalTag = document.createElement("p");
-     fechaTotalTag.innerHTML = "Datos a " + self.mes + " con";
+     fechaTotalTag.innerHTML = "Datos a " + self.mes + ":";
      fechaTotalTag.setAttribute("class", "sin_margen p_tags");
      fechaTotalTag.setAttribute("id", "fecha-total-tag");
      fechaTotalTag.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.2)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.07) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
@@ -649,7 +649,7 @@ function simulador_global() {
        vta_porcent.innerHTML=""+"%";
        vta_porcent.setAttribute("id","vta_porcent"+i);
        vta_porcent.setAttribute("class","sin_margen tooltip-txt hide_element p_tags sh_obj"+i);
-       vta_porcent.setAttribute("style","position:absolute; top:"+ (vtaY + vta2.offsetHeight / 3) +"px; left:" + (vtaX + (vta2.offsetWidth * 1.03)) + "px;font-Family:roboto-regular;font-weight:bold;color:#FFFFFF");
+       vta_porcent.setAttribute("style","position:absolute; top:"+ (vtaY + vta2.offsetHeight / 3) +"px; left:" + (vtaX + (vta2.offsetWidth)) + "px;font-Family:roboto-regular;color:#FFFFFF");
        vta_porcent.typeObj=1;
        app.appendChild(vta_porcent);
 
@@ -672,6 +672,7 @@ for(var j=0;j<vencidos.length;j++){
     vencidos[j]
   ));
   self.characters[self.characters.length-1].vencido=j+2;
+  defaultVals[8].vtaTotal+=self.characters[self.characters.length-1].sale()
 }
 
 
@@ -1298,7 +1299,7 @@ button
 
    for(let i = 0; i < defaultVals.length; i++) {
 
-     document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(defaultVals[i].nCtes);
+     document.getElementById("tc_clientes" + i).innerHTML = numberWithCommas(parseInt(defaultVals[i].nCtes));
      document.getElementById("cpa-tag-" + i).innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].cpa));
      document.getElementById("vta-tag-" + i).innerHTML = "$"+ numberWithCommas(parseInt(defaultVals[i].vtaOriginal));
      document.getElementById("vta-character-" + i).innerHTML = "$"+ numberWithCommas(parseInt(defaultVals[i].vtaOriginal));
@@ -1311,20 +1312,20 @@ button
      if(i == 8)  {
        document.getElementById("tc-total-tag").innerHTML = parseFloat(defaultVals[i].tcTotal).toFixed(1) + "%";
        document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].vtaTotal));
-<<<<<<< HEAD
-       document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal) + " Ctes.";
-=======
 
        //document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal)+" Ctes.";
 
->>>>>>> master
+
        document.getElementById("var-global").innerHTML = "0%";
        document.getElementById("var-global").style.color="#FFFFFF";
      }
 
      var sliders = document.getElementsByClassName("slider");
      var knob = sliders[i].childNodes[1];
+     sliders[i].classList.remove("hide_element");
      knob.style.left = ((sliders[i].getBoundingClientRect().width * defaultVals[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+     console.log(knob.style.left);
+     sliders[i].classList.add("hide_element");
    }
 
    self.stepBack.length=1;
@@ -1450,11 +1451,11 @@ self.updateTotal = function (newTC,target) {
       {/*Pendiente revisar*/}else{
 
         var sliders = document.getElementsByClassName("slider");
-            sliders[i].classList.remove("hide_element");
+            //sliders[i].classList.remove("hide_element");
         var knob = sliders[i].childNodes[1];
         //var uno=sliders[i].getBoundingClientRect().width;
             knob.style.left = ((sliders[i].getBoundingClientRect().width * self.characters[i].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
-            sliders[i].classList.add("hide_element");
+            //sliders[i].classList.add("hide_element");
 
         }
       let tc_pTag = document.getElementById("tc-tag-" + i);
@@ -1468,7 +1469,6 @@ self.updateTotal = function (newTC,target) {
         //sliders[4].classList.remove("hide_element");
         var knob = sliders[4].childNodes[1];
         knob.style.left = ((sliders[4].getBoundingClientRect().width * self.characters[4].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
-        //sliders[4].classList.add("hide_element");
 
       }
 
