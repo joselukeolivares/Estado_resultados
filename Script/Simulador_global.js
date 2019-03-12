@@ -319,13 +319,7 @@ function simulador_global() {
      tcTotalName.innerHTML = "TC Total"
      tcTotalName.setAttribute("id", "ctes-total-name");
      tcTotalName.setAttribute("class","sin_margen p_tags");
-<<<<<<< HEAD
      tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.75) + "px; font-Family: roboto-regular; font-weight: bold; color: #000; transform: translate(-50%)");
-=======
-
-     tcTotalName.setAttribute("style", "position: absolute; top:" + (tcTotalY + (tcTotal.offsetHeight * 0.17)) + "px; left:" + (tcTotalX + tcTotal.offsetWidth * 0.15) + "px; font-Family: roboto-regular; font-weight: bold; color: #000;");
-
->>>>>>> master
      tcTotalName.typeObj=1;
      app.appendChild(tcTotalName);
 
@@ -560,8 +554,8 @@ function simulador_global() {
 
        let vta_seg=document.createElement('div')
            vta_seg.setAttribute("id","vta-character-"+i)
-           vta_seg.setAttribute("class","hide_element")
-           vta_seg.setAttribute("style","position:absolute;left:"+character.x+"px;top:"+(character.y-18)+"px;background-color:white;border-radius: 10px;border-color: black;border-width: 1px;border-style: solid;")
+           vta_seg.setAttribute("class","vta-seg hide_element")
+           vta_seg.setAttribute("style", "left:" + character.x + "px; top:" + (character.y - 18) + "px;")
            app.appendChild(vta_seg);
 
 
@@ -1311,13 +1305,7 @@ button
      if(i == 8)  {
        document.getElementById("tc-total-tag").innerHTML = parseFloat(defaultVals[i].tcTotal).toFixed(1) + "%";
        document.getElementById("total-vta-tag").innerHTML = "$" + numberWithCommas(parseInt(defaultVals[i].vtaTotal));
-<<<<<<< HEAD
        document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal) + " Ctes.";
-=======
-
-       //document.getElementById("ctes-total-tag").innerHTML = numberWithCommas(defaultVals[i].nCtesTotal)+" Ctes.";
-
->>>>>>> master
        document.getElementById("var-global").innerHTML = "0%";
        document.getElementById("var-global").style.color="#FFFFFF";
      }
