@@ -548,7 +548,7 @@ function simulador_global() {
        character.scale.set(factorScreen(.6));
         if(i==0)
        character.scale.set(factorScreen(.6));
-       character.x = (i % 3) * self.app.screen.width/3;
+       character.x = (i % 3) * self.app.screen.width/4+50;
        character.y =Math.floor(i / 3) * self.app.screen.height/4.5+height/4;
 
        character.name ="character"+i;
