@@ -78,10 +78,10 @@ body {
 }
 
 #stage_2 {
-  width: calc(100% - 13rem);
+  width: calc(100% - 16rem);
   height: 20%;
   top: 32%;
-  left: 12%;
+  left: 8.5rem;
 }
 
 .arrow-point-to-right {
@@ -90,7 +90,7 @@ body {
   width: 10%;
   height: 20%;
   top: 50%;
-  left: 95%;
+  left: 96%;
   transform: translate(-50%, -50%);
   display: none;
   transition: transform 100ms ease-in;
@@ -106,7 +106,7 @@ body {
   width: 10%;
   height: 20%;
   top: 50%;
-  left: 0;
+  left: -1rem;
   transform: translateY(-50%) rotate(180deg);
   display: none;
   transition: transform 100ms ease-in;
