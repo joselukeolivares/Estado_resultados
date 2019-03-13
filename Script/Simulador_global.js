@@ -360,7 +360,7 @@ function simulador_global() {
      app.appendChild(tooltipFilter);
 
      let toolTip = document.createElement("div");
-     toolTip.setAttribute("class", "toolTip hide");
+     toolTip.setAttribute("class", "toolTip");
      toolTip.setAttribute("id", "toolTip");
      app.appendChild(toolTip);
 

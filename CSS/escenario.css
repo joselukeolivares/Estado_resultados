@@ -107,6 +107,7 @@ body {
 .vta-seg {
   position: absolute;
   text-align: center;
+
   background-color: #fff;
   border: solid black 1px;
   border-radius: 15px;
