@@ -87,8 +87,8 @@ body {
 .arrow-point-to-right {
   position: absolute;
   cursor: pointer;
-  width: 10%;
-  height: 20%;
+  max-width: 7%;
+  height: auto;
   top: 50%;
   left: 96%;
   transform: translate(-50%, -50%);
@@ -103,8 +103,8 @@ body {
 .step-back-arrow {
   position: absolute;
   cursor: pointer;
-  width: 10%;
-  height: 20%;
+  max-width: 7%;
+  height: auto;
   top: 50%;
   left: -1rem;
   transform: translateY(-50%) rotate(180deg);

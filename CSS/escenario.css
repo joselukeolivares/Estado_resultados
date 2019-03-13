@@ -104,6 +104,17 @@ body {
   font-size: 70%;
 }
 
+.vta-seg {
+  position: absolute;
+  text-align: center;
+  background-color: #fff;
+  border: solid black 1px;
+  border-radius: 15px;
+  height: auto;
+  width: 10%;
+  box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+
 .p_tags,#estrategia{
   font-size: 18px;
   /*text-decoration: line-through;*/

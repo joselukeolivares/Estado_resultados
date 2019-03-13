@@ -171,7 +171,7 @@ function indicators() {
         stages[i].appendChild(content);
 
         let icRightArrow = document.createElement("img");
-        icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
+        icRightArrow.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.png");
         icRightArrow.setAttribute("id", "arrow-point-to-right-" + i + j);
         icRightArrow.setAttribute("class", "arrow-point-to-right parpadeo arrow-anim");
         //icRightArrow.setAttribute("style", "top: " + app.screen.height * 0.1  + "px; left: calc(200% - 5rem)");
@@ -189,7 +189,7 @@ function indicators() {
         icRightArrow.indicator_j = j;
 
         let stepBack = document.createElement("img");
-        stepBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
+        stepBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.png");
         stepBack.setAttribute("id", "stepBack" + i + j);
         stepBack.indicator_i=i;
         stepBack.indicator_j=j;
@@ -552,7 +552,7 @@ function indicators() {
       content.style.display = "none";
 
       let icBack = document.createElement("img");
-      icBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
+      icBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.png");
       icBack.setAttribute("class", "step-back-arrow parpadeo");
       icBack.setAttribute("id", "icBack");
       appDiv.appendChild(icBack);
@@ -624,7 +624,7 @@ function indicators() {
       });
 
       let icBack = document.createElement("img");
-      icBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.svg");
+      icBack.setAttribute("src", "assets/ui/bloque_3/ic-arrow-point-to-right.png");
       icBack.setAttribute("class", "step-back-arrow parpadeo");
       icBack.setAttribute("id", "icBack");
       appDiv.appendChild(icBack);
