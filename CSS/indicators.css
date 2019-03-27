@@ -106,7 +106,7 @@ body {
   max-width: 7%;
   height: auto;
   top: 50%;
-  left: -1rem;
+  left: 0%;
   transform: translateY(-50%) rotate(180deg);
   display: none;
   transition: transform 100ms ease-in;
