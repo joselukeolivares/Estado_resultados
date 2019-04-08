@@ -1,3 +1,4 @@
 #Ignora los CSV con datos necesarios para simulador (solicitar via correo jolivaresqcoppel.com)
 *.csv
 *.xlsx
+*.java
