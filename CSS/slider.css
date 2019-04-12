@@ -1,8 +1,8 @@
-.slider > div{
+.slider > div {
 	position: absolute;
 	touch-action: none;
 }
-.slider > .slider_bg{
+.slider > .slider_bg {
 	top: 0;
 	width: 100%;
 	height: 30px;
@@ -12,21 +12,21 @@
 }
 .slider > .slider_knob{
 	top: 0;
-	width: 30px;
-	height: 30px;
+	width: 25px;
+	height: 25px;
 	background: url(../assets/ui/bloque_3/handle.png);
-	background-size: 80% 80%;
+	background-size: 100% 100%;
 	cursor: -webkit-grab;
 	cursor: -moz-grab;
 	cursor: grab;
 	background-repeat: no-repeat;
 	user-select: none;
-	animation-name:knob;
-	animation-duration: 3s;
+	animation-name: knob;
+	animation-duration: 600ms;
 	animation-direction: alternate;
-	animation-iteration-count: infinite;
+	animation-iteration-count: 6;
 }
-.slider > .slider_knob:active{
+.slider > .slider_knob: active{
 	cursor: -webkit-grabbing;
 	cursor: -moz-grabbing;
 	cursor: grabbing;
@@ -34,7 +34,7 @@
 
 @keyframes knob {
 	from{
-		opacity:.1;
+		opacity: .1;
 	}
 	to{
 		opacity: 1;
