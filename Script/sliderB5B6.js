@@ -35,8 +35,8 @@ function SliderB5B6(divApp,target1,id,className,left,top,divWidth,DivHeight,upda
   // Knob
   var knob = document.createElement("div");
   knob.className = "slider_knob";
-  knob.style.height="30px";
-  knob.style.width=knob.style.height;
+  // knob.style.height = "30px";
+  // knob.style.width = knob.style.height;
   knob.style.left=((divWidth-(DivHeight*.6))/2)+"px";
 
   dom.appendChild(knob);

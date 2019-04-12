@@ -1572,7 +1572,7 @@ function show_hide_data() {
 
   if(toolTip.classList.contains("show")) {
     for(var i=0; i<selectedOff.length; i++) {
-      selectedOff[i].classList.add('hide_element');
+      selectedOff[i].classList.add("hide_element");
       document.getElementById("slider1" + toolTip.classList[2]).classList.add('hide_element')
       // document.getElementById("vta-character-" + i).classList.remove('hide_element')
     }
@@ -1632,7 +1632,7 @@ function show_hide_data() {
       let knobX = knobRect.left - appRect.left;
       let knobY = knobRect.top;
 
-      document.styleSheets[0].insertRule("#slider-tutorial::after { left: " + (knobX + knob.offsetWidth * 0.5) + "px; }", 0);
+      document.styleSheets[0].insertRule("#slider-tutorial::after { left: " + (knobX + knob.offsetWidth * 0.5) + "px; top: " + (knobY + knob.offsetHeight * 0.5) + "px; }", 0);
 
       toolTip.classList.toggle("no-events");
       slider.classList.toggle("no-events");

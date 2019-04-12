@@ -24,7 +24,7 @@ body {
 #slider-tutorial::after {
   content: "";
   position: absolute;
-  top: 48%;
+  /* top: 48%; */
   transform: translate(-50%, -50%);
   border-radius: 100%;
   width: 125px;
