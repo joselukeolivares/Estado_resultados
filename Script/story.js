@@ -6,7 +6,7 @@ function story() {
 	self.hideShowTxt=function(visible){
 
 		var texts =  document.getElementsByClassName("intro");
-				//debugger;
+				////debugger;
 				if(texts!=null)
 				{
 					for(var i=0;i<texts.length;i++){
@@ -50,14 +50,14 @@ function story() {
     		self.app.destroy(true);
 
 		var elements=document.getElementsByClassName("deleteItm");
-		//debugger;
+		////debugger;
 				if(elements!=null)
 				while (elements.length>0) {
 						var parent=elements[0].parentNode;
 								parent.removeChild(elements[0]);
 				}
 
- 		debugger;
+ 		//debugger;
 /*
 				if(elements!=null)
  				while (elements.length>0) {
@@ -105,7 +105,7 @@ function story() {
 		setup();
     function setup() {
 			var loader_ctes=PIXI.loader;
-			  //debugger;
+			  ////debugger;
 
 			let id = PIXI.loader.resources["assets/ui/bloque_2/interface.json"].textures;
 
@@ -115,7 +115,7 @@ function story() {
       }
 			let coins = new PIXI.Container();
 			app.stage.addChild(coins);
-			for(let i = 0; i < 99; i++) {
+			for(let i = 1; i < 99; i++) {
 
 				var p = i * (self.width/10);
 				var q = i * (self.height/10);
@@ -126,6 +126,8 @@ function story() {
 					coin= new PIXI.spine.Spine(loader_ctes.resources.cliente_negro.spineData);
 					coin.scale.set((self.height*.2)/950,(self.height*.2)/950);
 					coin.interactive = true;
+					coin.x = ((i % 11) * self.width*.1)-coin.width*.7;
+					debugger;
 
 					//clientes_t[i].state.setAnimation(0,'walk',true);
 					coin.on('mouseover',function(){
@@ -138,13 +140,13 @@ function story() {
 					coin = new PIXI.extras.AnimatedSprite(self.frames);
 					coin.play();
 					coin.animationSpeed = .1;
-					coin.anchor.set(0.5);
+					coin.anchor.set(0.5,0);
 					coin.scale.set(	self.escala_2,	self.escala_2);
 					coin.interactive=true;
+					coin.x = (i % 11) * self.width*.1;
 
 				}
 
-				coin.x = (i % 11) * self.width*.1;
 				coin.y =Math.floor(i / 11) * self.height*.1;
 				coins.addChild(coin);
 			}
@@ -210,7 +212,7 @@ var leftRom=0,rightRom=0;
 const textContainer=document.querySelector("#textContainer");
 var containerB=document.createElement("div");
     containerB.setAttribute("class","deleteItm")
-		debugger;
+		//debugger;
     containerB.style.width=textContainer.clientWidth+"px";
 		containerB.style.height=textContainer.clientHeight+"px";
 		containerB.style.position="absolute";
@@ -224,7 +226,7 @@ var containerB=document.createElement("div");
 		containerB.addEventListener("touch",pause);
 		containerB.addEventListener("click",pause);
 document.querySelector("#main").appendChild(containerB);
-//debugger;
+////debugger;
 
 
 			var button_video_1=new PIXI.Sprite(PIXI.Texture.fromImage('assets/ui/bloque_2/ERC_video_1.png'));
@@ -248,9 +250,10 @@ document.querySelector("#main").appendChild(containerB);
 			next_block.interactive = true;
 			next_block.cursor = "pointer";
 			app.stage.addChild(next_block);
-			next_block.x=width-next_block.width;
-			next_block.y=height-next_block.height;
-			next_block.on("pointertap", function() {
+			next_block.x = self.app.screen.width-100;
+      next_block.y = self.app.screen.height-50;
+      next_block.anchor.set(0.5);
+      next_block.on("pointertap", function() {
 				toSlide("indicators");
 				circle3.style.backgroundColor = "white";
 		    circle2.style.backgroundColor = "gray";
@@ -283,7 +286,7 @@ document.querySelector("#main").appendChild(containerB);
 				TweenMax.to(containerB,1,{css:{opacity:.9,scale:.1,left:"-10%",top:"50%",backgroundColor:'white'}});
 				this.visible=false;
 				document.querySelector("#textContainer").style.opacity=1;
-				//debugger;
+				////debugger;
 
 
 			};
@@ -309,7 +312,7 @@ document.querySelector("#main").appendChild(containerB);
 
 
 				var texture=PIXI.Texture.fromVideo('assets/video/ESTADO DE RESULTADO.mp4');
-				//debugger;
+				////debugger;
 				var videoSprite=new PIXI.Sprite(texture);
 						//videoSprite.texture.baseTexture.source.pause();
 						//videoSprite.texture.baseTexture.source.currentTime=30;
@@ -325,7 +328,7 @@ document.querySelector("#main").appendChild(containerB);
 						videoSprite.texture.baseTexture.source.currenTime=5;
 						videoSprite.alpha=.85;
 		  			videoSprite.on('pointertap',pause);
-						//debugger;
+						////debugger;
 
 
 

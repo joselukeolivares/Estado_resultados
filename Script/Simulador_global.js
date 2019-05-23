@@ -70,7 +70,7 @@ function simulador_global() {
         scores_container.setAttribute("id","scores_container");
     let title=document.createElement("p");
         title.innerHTML="Top % Participación en Ventas";
-        title.setAttribute("style","color:white;text-align:center:left:0;text-align:center;")
+        title.setAttribute("style","color:black;text-align:center:left:0;text-align:center;")
     let container_1=document.createElement('div');
         container_1.style.display='flex';
 
@@ -89,6 +89,21 @@ function simulador_global() {
           "Vencidos4"
         ];
 
+        let colors_segmentos=[
+        "#ae6cb2",
+          "#47ab44",
+          "#32afb6",
+          "#8c3b99",
+          "#18451a",
+          "#153e4b",
+          "#fea621",
+          "#fb142a",
+          "#fb142a",
+          "#18451a",
+          "#18451a",
+          "#18451a"
+        ]
+
     //Heads on the top
     let container_heads=document.createElement('div');
         container_heads.setAttribute("id","container_heads");
@@ -106,6 +121,8 @@ function simulador_global() {
       let head_name=document.createElement('p')
           head_name.setAttribute("class","head_name")
           head_name.innerHTML=segmentos[i]+"   ";
+          head_name.style.color=colors_segmentos[i];
+          head_name.style.textDecoration="underline";
       head.appendChild(head_name);
       container_heads.appendChild(head);
 
@@ -168,15 +185,15 @@ function simulador_global() {
         //console.log("Top 1: "+i+" "+self.characters[i].name+" $"+self.characters[i].sale());
         var porcent=parseInt(sale/total);
         document.getElementById("score_1").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
-        TweenMax.to(name,1,{top:"0%",zIndex:5})
+        TweenMax.to(name,1,{top:"0%",zIndex:2})
       }else if(sale==ranking[ranking.length-2]){
         //console.log("Top 2: "+i+" "+self.characters[i].name+" $"+self.characters[i].sale());
         document.getElementById("score_2").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
-        TweenMax.to(name,1,{top:"20%",zIndex:4})
+        TweenMax.to(name,1,{top:"20%",zIndex:1})
       }else if(sale==ranking[ranking.length-3]){
         //console.log("Top 3: "+i+" "+name+" $"+self.characters[i].sale());
         document.getElementById("score_3").innerHTML=(parseInt((parseInt(sale)/parseInt(total))*100))+"%";
-        TweenMax.to(name,1,{top:"40%",zIndex:3})
+        TweenMax.to(name,1,{top:"40%",zIndex:1})
         //document.getElementById(name.replace("#","")).style.top="60%";
 
       }else if(sale==ranking[ranking.length-4]){
@@ -350,7 +367,7 @@ function simulador_global() {
 
      var varGlobalElm = document.createElement("p");
      varGlobalElm.setAttribute("id", "var-global");
-     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth * 0.75)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
+     varGlobalElm.setAttribute("style","position: absolute; top:" + (vtaTotalY) + "px; left: " + (vtaTotalX + vtaTotal.offsetWidth * .85)+"px; font-Family: roboto-regular; font-Size:" + factorScreen(24) + "px; font-weight: bold; color: #00CD00;");
      varGlobalElm.typeObj = 1;
      app.appendChild(varGlobalElm);
 
@@ -385,8 +402,13 @@ function simulador_global() {
          title_selected.setAttribute("id","title_selected");
          title_selected.innerHTML="No Character name selected";
 
+     let ctes_number=document.createElement("div");
+         ctes_number.setAttribute("id","ctes_number");
+         ctes_number.style.display="flex";
+
          icon_title.appendChild(head_selected);
          icon_title.appendChild(title_selected);
+         icon_title.appendChild(ctes_number);
          toolTip.appendChild(icon_title);
 
      let tc2 = document.createElement("div");
@@ -403,6 +425,7 @@ function simulador_global() {
      tc2.appendChild(tcRectY);
 
      let tcRectW = document.createElement("div");
+     tcRectW.idName = "tc_whiteDiv";
      tcRectW.className = "rect2";
      tc2.appendChild(tcRectW);
 
@@ -420,6 +443,7 @@ function simulador_global() {
      cpa2.appendChild(cpaRectY);
 
      let cpaRectW = document.createElement("div");
+     cpaRectW.setAttribute("id","cp_whiteDiv");
      cpaRectW.className = "rect2";
      cpa2.appendChild(cpaRectW);
 
@@ -437,6 +461,7 @@ function simulador_global() {
      vta2.appendChild(vtaRectY);
 
      let vtaRectW = document.createElement("div");
+     vtaRectW.setAttribute("id","vta_whiteDiv");
      vtaRectW.className = "rect2";
      vta2.appendChild(vtaRectW);
 
@@ -562,6 +587,7 @@ function simulador_global() {
        character.indice=i;
        character.on('pointerdown',show_hide_data);
 
+       //Div blanco para insertas vetas de cada segmento
        let vta_seg=document.createElement('div')
            vta_seg.setAttribute("id","vta-character-"+i)
            vta_seg.setAttribute("class","vta-seg hide_element")
@@ -590,72 +616,78 @@ function simulador_global() {
        var tc_test=document.createElement("p");
        tc_test.setAttribute("id","tc-tag-"+i);
        tc_test.setAttribute("class","sin_margen tooltip-txt hide_element white_box sh_obj"+i)
-       tc_test.setAttribute("style","position:absolute;top:" + (tcY + tc2.offsetHeight / 3.8) +"px; left:" + (tcX + (tc2.offsetWidth * 0.63)) + "px; font-Family:roboto-regular; font-weight: bold;");
+       tc_test.setAttribute("style","font-Family:roboto-regular; font-weight: bold;color:black");
        tc_test.typeObj = 1;
-       app.appendChild(tc_test);
+       tcRectW.appendChild(tc_test);
 
        var tcName=document.createElement("p");
        tcName.innerHTML = "TC";
        tcName.setAttribute("class","sin_margen tooltip-txt hide_element yellow_box sh_obj"+i);
        tcName.setAttribute("id","tcName" + i);
-       tcName.setAttribute("style","position:absolute;top:"+(tcY + tc2.offsetHeight / 6)+"px;left:"+ (tcX + (tc2.offsetWidth * 0.15)) + "px;font-Family:roboto-regular;font-weight:bold;color:#000000;");
+       tcName.setAttribute("style","font-Family:roboto-regular;font-weight:bold;color:#000000;text-align:left;margin-left:17%;");
        tcName.typeObj = 1;
-       app.appendChild(tcName);
+       tcRectY.appendChild(tcName);
 
        var tc_clientes=document.createElement("p");
        tc_clientes.innerHTML="0";
        tc_clientes.setAttribute("class","sin_margen tooltip-txt hide_element white_box sh_obj"+i);
        tc_clientes.setAttribute("id","tc_clientes"+i);
-       tc_clientes.setAttribute("style","position:absolute;top:"+(tcY - 30 )+"px;left:"+ (tcX + (tc2.offsetWidth * 0.5)) + "px;font-Family:roboto-regular;font-weight:bold;color:#ffffff;");
+       tc_clientes.setAttribute("style","font-Family: roboto-regular;font-weight: bold;color: #ffffff;width: 45%");
        tc_clientes.typeObj = 1;
-       app.appendChild(tc_clientes);
 
        var tc_clientestxt=document.createElement("p");
        tc_clientestxt.innerHTML="Ctes:";
        tc_clientestxt.setAttribute("class","sin_margen tooltip-txt hide_element white_box sh_obj"+i);
        tc_clientestxt.setAttribute("id","tc_clientestxt"+i);
-       tc_clientestxt.setAttribute("style","position:absolute;top:"+(tcY - 30) + "px;left:" + (tcX + (tc2.offsetWidth * .3)) + "px; text-align: center; font-Family:roboto-regular;font-weight:bold;color:#ffffff;");
+       tc_clientestxt.setAttribute("style","text-align: right;font-Family: roboto-regular;font-weight: bold;color: #ffffff;width: 45%;");
        tc_clientestxt.typeObj = 1;
-       app.appendChild(tc_clientestxt);
+
+       ctes_number.appendChild(tc_clientestxt);
+       ctes_number.appendChild(tc_clientes);
 
        var cpa_test=document.createElement("p");
        cpa_test.innerHTML="$"+"0";
        cpa_test.setAttribute("class","sin_margen tooltip-txt hide_element white_box sh_obj"+i);
        cpa_test.setAttribute("id", "cpa-tag-"+i);
-       cpa_test.setAttribute("style", "position: absolute; top:" + (cpaY + cpa2.offsetHeight / 5) + "px; left:" + (cpaX + (cpa2.offsetWidth * 0.58)) +"px;font-Family:roboto-regular;font-weight:bold;");
+       cpa_test.setAttribute("style", "font-Family: roboto-regular;font-weight: bold;color: #000000;width: 45%");
        cpa_test.typeObj = 1;
-       app.appendChild(cpa_test);
+
 
        var cpaName=document.createElement("p");
        cpaName.innerHTML = "CPA";
        cpaName.setAttribute("class","sin_margen tooltip-txt hide_element yellow_box sh_obj" + i);
        cpaName.setAttribute("id", "cpa-name-" + i);
-       cpaName.setAttribute("style", "position: absolute; top:"+ (cpaY + cpa2.offsetHeight / 5.5 ) + "px; left:" + (cpaX + (cpa2.offsetWidth * 0.15)) +"px;font-Family:roboto-regular;font-weight:bold;");
+       cpaName.setAttribute("style", "font-Family: roboto-regular;font-weight: bold;color: #000000;text-align: left;margin-left: 17%;");
        cpaName.typeObj = 1;
-       app.appendChild(cpaName);
+
+       cpaRectY.appendChild(cpaName);
+       cpaRectW.appendChild(cpa_test);
 
        var vtaName = document.createElement("p");
        vtaName.innerHTML = "Venta";
        vtaName.setAttribute("class","sin_margen tooltip-txt hide_element yellow_box sh_obj" + i);
        vtaName.setAttribute("id", "venta-name-" + i);
-       vtaName.setAttribute("style", "position: absolute; top:"+ (vtaY + vta2.offsetHeight / 3.5) + "px; left:" + (vtaX + (vta2.offsetWidth * 0.15)) +"px;font-Family:roboto-regular;font-weight:bold;");
+       vtaName.setAttribute("style", "font-Family: roboto-regular;font-weight: bold;color: #000000;width: 45%;");
        vtaName.typeObj = 1;
-       app.appendChild(vtaName);
+
 
        var vta_test=document.createElement("p");
        vta_test.setAttribute("id","vta-tag-" + i);
        vta_test.setAttribute("class","sin_margen tooltip-txt hide_element white_box sh_obj"+i);
-       vta_test.setAttribute("style", "position:absolute; top:" + (vtaY + vta2.offsetHeight / 5) + "px; left:" + (vtaX + (vta2.offsetWidth * 0.45)) + "px;font-Family:roboto-regular;font-weight:bold;");
+       vta_test.setAttribute("style", "font-Family: roboto-regular;font-weight: bold;color: #000000;text-align: left;margin-left: 17%;");
        vta_test.typeObj = 1;
-       app.appendChild(vta_test);
 
+       vtaRectY.appendChild(vtaName);
+       vtaRectW.appendChild(vta_test);
+
+       //Variacion
        var vta_porcent=document.createElement("p");
        vta_porcent.innerHTML=""+"%";
        vta_porcent.setAttribute("id","vta_porcent"+i);
        vta_porcent.setAttribute("class","sin_margen tooltip-txt hide_element p_tags sh_obj"+i);
-       vta_porcent.setAttribute("style","position:absolute; top:"+ (vtaY + vta2.offsetHeight / 3) +"px; left:" + (vtaX + (vta2.offsetWidth)) + "px;font-Family:roboto-regular;color:#FFFFFF");
+       vta_porcent.setAttribute("style","position:absolute; left:100%;font-Family:roboto-regular;color:#FFFFFF;font-size:14px;top:40%");
        vta_porcent.typeObj=1;
-       app.appendChild(vta_porcent);
+       vta2.appendChild(vta_porcent);
 
        SliderB5B6(app, tc_test, "slider1" + i, "slider_fam", (tcX) / width, (tcY + tc2.offsetHeight * 1.2) / height, tc2.offsetWidth, cpa2.offsetHeight, self);
        addCharacter(i);
@@ -1412,7 +1444,11 @@ function addCharacter(index) {
 
   var sliders = document.getElementsByClassName("slider");
   var knob = sliders[index].childNodes[1];
-  knob.style.left = ((sliders[index].getBoundingClientRect().width * self.characters[index].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+  knob.style.left=0;
+  debugger;
+  knob.style.left="calc("+self.characters[index].tc+"% - 12.5px)"
+  //knob.style.left = ((sliders[index].getBoundingClientRect().width * self.characters[index].tc / 100) - (parseInt(knob.style.width) / 2)) + "px";
+
   sliders[index].classList.add("hide_element");
   let defaultChar =  {
     index: index,
@@ -1575,7 +1611,10 @@ function show_hide_data() {
   let animationEndHandler = function() {
     for(var i = 0; i < selected.length; i++) {
       selected[i].classList.remove('hide_element');
-      document.getElementById("slider1" + this.classList[2]).classList.remove('hide_element')
+      let slider=document.getElementById("slider1" + this.classList[2])
+      slider.classList.remove('hide_element')
+      let tc_divs=document.getElementById("tc-").getBoundingClientRect();
+      slider.style.top=parseInt(tc_divs.top)+parseInt(tc_divs.height)*1.1+"px";
       // document.getElementById("vta-character-" + i).classList.add('hide_element')
     }
     sliderTutorial(this.classList[2]);
@@ -1638,12 +1677,16 @@ function show_hide_data() {
   function sliderTutorial(index) {
     if(!executed) {
       executed = true;
+
       let slider = document.getElementById("slider1" + index);
       let knob = slider.children[1];
       let knobRect = knob.getBoundingClientRect();
       let appRect = app.getBoundingClientRect();
       let knobX = knobRect.left - appRect.left;
       let knobY = knobRect.top;
+      let tc_divs=document.getElementById("tc-").getBoundingClientRect();
+      slider.style.top=parseInt(tc_divs.top)+parseInt(tc_divs.height)*1.1+"px";
+      debugger;
 
       document.styleSheets[0].insertRule("#slider-tutorial::after { left: " + (knobX + knob.offsetWidth * 0.5) + "px; top: " + (knobY + knob.offsetHeight * 0.5) + "px; }", 0);
 

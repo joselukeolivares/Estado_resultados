@@ -55,8 +55,9 @@ var self={};
     var leftCent=(parseInt(aplicacion.clientWidth)/2);
     //
     var title=document.createElement('p')
-        title.innerHTML="Estado de Resultados de Clientes"
-        title.setAttribute("style","text-shadow: 3px 0px #09102C;font-weight: bold;position: absolute;top: 5%;font-size: "+factorScreen(40)+"px;margin: 0px;font-family: Roboto-Regular;color: #FFFFFF;");
+        title.innerHTML="Estado de Resultados de Clientes";
+        title.setAttribute("class","title erase")
+        title.style.top = self.app.screen.height * 0.05+"px";
         aplicacion.appendChild(title);
         title.style.left=(leftCent-(title.clientWidth/2))+"px";
 
@@ -64,14 +65,14 @@ var self={};
             subtitle.setAttribute("id","subTitle");
             subtitle.setAttribute("class","subTitle");
             subtitle.innerHTML="Simulador"
-            subtitle.setAttribute("style","font-weight: bold;position:absolute;top:10%;font-family: Roboto-Regular;color: #FFFFFF;");
+            subtitle.style.top = self.app.screen.height * 0.13+"px";
             aplicacion.appendChild(subtitle);
             subtitle.style.left=(leftCent-(subtitle.clientWidth/2))+"px";
 
     var descript_txt=document.createElement('p')
             descript_txt.setAttribute("id","descript_txt");
             descript_txt.innerHTML="Ahora, ya que entendemos como está compuesto el Estado de Resultados de Clientes Coppel (Indicadores de venta y perfiles de clientes) pasamos al siguiente bloque, en donde vamos a simular con datos reales como se comportan cada uno de los perfiles de clientes."
-            descript_txt.setAttribute("style","margin: 0 10% 0 10%;position: absolute;top: 30%;font-size: "+factorScreen(22)+"px;font-family: roboto-regular;color: #FFFFFF;width: 80%;text-align: center;");
+            //descript_txt.setAttribute("style","margin: 0 10% 0 10%;position: absolute;top: 30%;font-size: "+factorScreen(22)+"px;font-family: roboto-regular;color: #FFFFFF;width: 80%;text-align: center;");
             aplicacion.appendChild(descript_txt);
             //descript_txt.style.left=(leftCent-(descript_txt.clientWidth/2))+"px";
 
@@ -699,20 +700,9 @@ var p_tagCte=document.createElement('p');
          vtaTotal.setAttribute("class","recuadro_blanco sin_margen");
          vtaTotal.setAttribute("style","width:"+(resultado_caja.width*.95)+"px;text-align:right;position:absolute;top:"+resultado_caja.y+"px;left:"+(resultado_caja.x)+"px;font-size:"+fontSizeVTATC+"px;");
                   aplicacion.appendChild(vtaTotal);
+
          //Texto para recuadros de resultados
-/*
-         var vtaTotal_pTagf=document.createElement('p');
-             vtaTotal_pTagf.setAttribute("id","vtaTotal_pTagf");
-             vtaTotal_pTagf.setAttribute("class","sin_margen");
-             vtaTotal_pTagf.innerHTML="VENTA";
-             vtaTotal_pTagf.style.position="absolute";
-             vtaTotal_pTagf.style.color="#FFFFFF";
-             vtaTotal_pTagf.style.fontSize=factorScreen(40)+"px";
-             vtaTotal_pTagf.style.fontFamily='Roboto-Bold';
-             aplicacion.appendChild(vtaTotal_pTagf);
-             vtaTotal_pTagf.style.left=(resultado_caja.x+resultado_caja.width/4+resultado_caja.parent.x)+"px";
-             vtaTotal_pTagf.style.top=(resultado_caja.y+resultado_caja.parent.y-vtaTotal_pTagf.clientHeight)+"px";
-*/
+
 
          var total_pTagf=document.createElement('p');
              total_pTagf.setAttribute("id","total_pTagf");
@@ -800,9 +790,11 @@ var p_tagCte=document.createElement('p');
             document.getElementById("tc_pTag0").innerHTML=(self.characters[0].tc).toFixed(1)+"%";
 
         var slider0=document.getElementById("slider0");
+        debugger;
         var SlideBG=slider0.childNodes[0];
         var knob=slider0.childNodes[1];
-        knob.style.left=((slider0.getBoundingClientRect().width*self.characters[0].tc/100)-(parseInt(knob.style.width)/2))+"px";
+        knob.style.left="calc("+(self.characters[0].tc)+"% - 12.5px)";
+        //knob.style.left=((slider0.getBoundingClientRect().width*self.characters[0].tc/100)-(parseInt(knob.style.width)/2))+"px";
         self.app.stage.getChildByName("leftCteGray").visible=false;
 
       }else if(self.characters.length==2){
@@ -815,7 +807,9 @@ var p_tagCte=document.createElement('p');
         var slider0=document.getElementById("slider1");
         var SlideBG=slider0.childNodes[0];
         var knob=slider0.childNodes[1];
-        knob.style.left=((slider0.getBoundingClientRect().width*self.characters[1].tc/100)-(parseInt(knob.style.width)/2))+"px";
+        debugger;
+        //knob.style.left=((slider0.getBoundingClientRect().width*self.characters[1].tc/100)-(parseInt(knob.style.width)/2))+"px";
+        knob.style.left="calc("+(self.characters[1].tc)+"% - 12.5px)";
         self.app.stage.getChildByName("rightCteGray").visible=false;
 
 
@@ -970,11 +964,29 @@ var p_tagCte=document.createElement('p');
         var variacionTotal=(((CtesBuyTotal*TotalCPA)/(CtesBuyTotalOriginal*TotalCPAOriginal))-1)*100;
         var varTotal_p=document.getElementById("varVtaTotal");
         varTotal_p.style.color="#27ad1b";
-        if(variacionTotal<0)
-          varTotal_p.style.color="#d82215";
-          varTotal_p.innerHTML=numberWithCommas(Math.round(variacionTotal))+"%";}
+        debugger;
+        if(variacionTotal<=-1)
 
-      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(Math.round(TotalCPA*CtesBuyTotal));
+          varTotal_p.style.color="#d82215";
+          if(isNaN(variacionTotal)){
+            variacionTotal=0;
+          }
+          varTotal_p.innerHTML=numberWithCommas(Math.round(variacionTotal))+"%";
+          //varTotal_p.innerHTML=(variacionTotal)+"%";
+
+          if(variacionTotal>=0 && variacionTotal<1 )
+          varTotal_p.style.color="#ffffff";
+
+        }
+
+
+      var vta_total=(Math.round(TotalCPA*CtesBuyTotal));
+      if(isNaN(vta_total)){
+        vta_total=0;
+      }
+
+      document.getElementById("vtaTotal_pTag").innerHTML="$"+numberWithCommas(vta_total);
+      console.log("vtaTotal: "+vta_total)
 
       return self;
   }
@@ -1043,7 +1055,7 @@ var p_tagCte=document.createElement('p');
         descript_txt.setAttribute("id","descript_txt");
         descript_txt.setAttribute("class","question0");
         descript_txt.innerHTML="Ahora, ya que entendemos como está compuesto el Estado de Resultados de Cliente de Coppel (Indicadores de venta y perfiles de clientes) pasamos al siguiente bloque, en donde vamos a simular con datos reales como se comportan cada uno de los perfiles de clientes."
-        descript_txt.setAttribute("style","position: absolute;top: 30%;left: 25%;font-size: "+factorScreen(22)+"px;font-family: roboto-black;color: #FFFFFF;width: 50%;text-align: center;display: inline-block;");
+        //descript_txt.setAttribute("style","position: absolute;top: 30%;left: 25%;font-size: "+factorScreen(22)+"px;font-family: roboto-black;color: #FFFFFF;width: 50%;text-align: center;display: inline-block;");
         aplicacion.appendChild(descript_txt);
 
 
@@ -1051,8 +1063,9 @@ var p_tagCte=document.createElement('p');
     var leftCent=(parseInt(aplicacion.clientWidth)/2);
     var aplicacion=document.getElementById("aplicacion");
     var title=document.createElement('p')
+        title.setAttribute("class","title");
         title.innerHTML="Estado de Resultados de Clientes"
-        title.setAttribute("style","text-shadow: 3px 0px #09102C;font-weight: bold;position: absolute;top: 5%;font-size: "+factorScreen(40)+"px;margin: 0px;font-family: Roboto-Regular;color: #FFFFFF;");
+        title.style.top=self.app.screen.height * 0.05+"px";
         aplicacion.appendChild(title);
         title.style.left=(leftCent-(title.clientWidth/2))+"px";
 
@@ -1060,7 +1073,7 @@ var p_tagCte=document.createElement('p');
                 subtitle.setAttribute("id","subTitle");
                 subtitle.setAttribute("class","subTitle");
                 subtitle.innerHTML="Simulador"
-                subtitle.setAttribute("style","font-weight: bold;position:absolute;top:10%;font-family: Roboto-Regular;color: #FFFFFF;");
+                subtitle.style.top=self.app.screen.height * 0.13+"px";
                 aplicacion.appendChild(subtitle);
                 subtitle.style.left=(leftCent-(subtitle.clientWidth/2))+"px";
 

@@ -19,26 +19,28 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 #start-anim, #exit-anim { /* has to be in the same div with class="gsap-anim-button" */
 	position: inherit;
 }
-#gsap-anim-text-1, #post-title-text {
-    position: relative;
+#gsap-anim-text-1,#gsap-anim-text-2,#gsap-anim-text-3,#gsap-anim-text-4, #post-title-text {
+  position: relative;
 	word-break: break-all;
 	hyphens: auto;
+	color:#FFFFFF;
 }
 
-#gsap-anim-text-1, #post-title-text {
-	text-align: center;
-	text-align-last: center;
+#gsap-anim-text-1,#gsap-anim-text-2,#gsap-anim-text-3,#gsap-anim-text-4, #post-title-text {
+	text-align: justify;
+	text-align-last: justify;
+	color:#FFFFFF;
 }
 
 
 
-#gsap-anim-text-1 span { /* !important for gsap, has to be in <div> with relative position */
+#gsap-anim-text-1 span,#gsap-anim-text-2 span,#gsap-anim-text-3 span,#gsap-anim-text-4 span { /* !important for gsap, has to be in <div> with relative position */
 	position: relative;
 	font-family:roboto-regular;
-	font-size:18px;
+	font-size:20px;
     line-height:35px;
     color:#FFFFFF;
-	font-weight:bold;
+	/*font-weight:bold;*/
 	word-break: break-all;
 	hyphens: auto;
 
@@ -48,10 +50,10 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 #post-title-text span { /* !important for gsap, has to be in <div> with relative position */
 	position: relative;
 	font-family:roboto-regular;
-	font-size:18px;
+	font-size:20px;
     line-height:35px;
     color:#FFFFFF;
-	font-weight:bold;
+	/*font-weight:bold;*/
 	word-break: break-all;
 	hyphens: auto;
 
@@ -59,7 +61,7 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 
 #contenedor{
 	/*height: 40%;*/
-	width: 560px;
+	width: 609px;
 	position: absolute;
 	top: 25%;
 	right: 1%;
@@ -68,10 +70,21 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 
 #contenedor_2{
 	word-break: keep-all;
-	width: 390px;
+	width: 435px;
 	position: absolute;
 	right: 1%;
-	top: calc(25% + 210px);
+	top: calc(22% + 210px);
+}
+
+.tags_div>p{
+	margin-top: 1%;
+	margin-bottom: 0;
+}
+
+@media (max-width: 1400px) and (max-height: 800px) {
+	.tags_div{
+		height: 16%;
+	}
 }
 
 @media screen and (max-height:480px) {
@@ -86,7 +99,7 @@ html,body,div,span,applet,object,iframe,audio,video,h1,h2,h3,h4,h5,h6,h7,p,block
 	}
 
 	#contenedor{
-		width: 404px;
+		width: 609px;
 		position: absolute;
 		top: 25%;
 		right: 1%;

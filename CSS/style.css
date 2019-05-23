@@ -79,10 +79,19 @@ footer {
   margin-left: 1%;
   font-family: 'Roboto-Bold';
   font-size: 19px;
+  height: 19%;
+  background-color: azure;
+  border: azure;
+  border-radius: 5%;
+  text-align: center;
+  color:black;
 }
 
-@media screen and (max-width:1024px){
+@media screen and (max-width:1280px){
 
+  .tags_div{
+    height: 17%;
+  }
 }
 
 @media screen and (max-width:767px){
@@ -100,6 +109,7 @@ footer {
 @media (min-width:1101px)  {
   .intro{ font-size: 14px; }
   .title{ font-size: 40px; }
+
 
   #COPYRIGTH_{
 
@@ -125,7 +135,9 @@ footer {
 
 @media  (max-width: 1100px)  {
   .intro{ font-size: 9px; }
-  .title{ font-size: 20px; }
+  .title{ font-size: 20px;color:red }
+
+
 
   #COPYRIGTH_{
     background-image: url('../assets/ui/COPYRIGTH_60 X60.png');
@@ -147,4 +159,7 @@ footer {
     background-size:100%;
     width: 20%;
   }
+
+
+
 }

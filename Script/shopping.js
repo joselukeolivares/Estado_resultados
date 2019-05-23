@@ -21,7 +21,7 @@ function shopping(){
 
                 tienda_dentro.x =shop.width/2-tienda_dentro.width/2;
                 tienda_dentro.y = 0;
-               // debugger;
+               // //debugger;
                 //tienda_dentro.anchor.set(0.5,0.5);
 
                 app.stage.addChild(tienda_dentro);
@@ -69,7 +69,7 @@ var mueblesX1=tienda_dentro.x;
 var mueblesY=tienda_dentro.y+tienda_dentro.height/3.5;
 
      var id = Loader.resources['assets/ui/bloque_1/Articulos.json'].textures;
-     debugger;
+     //debugger;
 
        tvs = new PIXI.Sprite(id['5. TVS.png']);
 	   tvs.position.set(mueblesX2, mueblesY);
@@ -131,7 +131,7 @@ var mueblesY=tienda_dentro.y+tienda_dentro.height/3.5;
      comedor.parentGroup=group_2;
      //comedor.y= app.screen.height / 1.4;
 
-     debugger;
+     //debugger;
      perfumeria = new PIXI.Sprite(id['PERFUMERIA.png']);
 	   perfumeria.position.set(shop.width*.01, screen.height / 6.2);
 	   perfumeria.scale.set(shop.escala_2,shop.escala_2);
@@ -159,7 +159,7 @@ var muebles = [sala,tvs,lavanderia,perfumeria,audio,lineablanca,celulares,comedo
           for(i=0;i<8;i++){
           var p = i * (shop.width/10);
           var q = i * (shop.height/12);
-debugger;
+//debugger;
            clientes_t[i] = new PIXI.spine.Spine(loader.resources.Cliente_naranja.spineData);
            clientes_t[i].scale.set(shop.escala_4,shop.escala_4);
            clientes_t[i].x =Math.floor((Math.random() * shop.width) + 1);
@@ -314,7 +314,7 @@ function LoadButton(){
      TweenMax.to([tienda_dentro,sala,tvs,lavanderia,audio,lineablanca,celulares,comedor,perfumeria],3,{alpha:1});
      app.stage.addChild(container);
      //console.log(self.app.stage);
-    // debugger;
+    // //debugger;
 
     clientes(app);
 

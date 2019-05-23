@@ -80,3 +80,14 @@ animation-duration: 1s;
 .show_element{
   display: block;
 }
+
+#descript_txt{
+  margin: 0 10% 0 10%;
+  position: absolute;
+  top: 30%;
+  font-size: 20px;
+  font-family: roboto-regular;
+  color: #FFFFFF;
+  width: 80%;
+  text-align: center;
+}

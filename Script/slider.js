@@ -22,8 +22,21 @@ function slider(appDiv, app, index) {
   let knob = document.createElement("div");
   knob.className = "slider_knob";
   knob.setAttribute("id", "knob");
-  knob.style.left = ((200 - 30) / 2) + "px";
+  knob.style.left = "calc(50% - 12.5px)";
   dom.appendChild(knob);
+
+  //Tutor Hand
+  let tutor_hand = document.createElement("div");
+  tutor_hand.className = "tutor_hand";
+  tutor_hand.setAttribute("id", "tutor_hand");
+  tutor_hand.style.left = "47%";
+  dom.appendChild(tutor_hand);
+
+  //Instruction
+  let instruction = document.createElement("div");
+  instruction.setAttribute("id", "slider_instruction");
+  dom.appendChild(instruction);
+
 
   appDiv.appendChild(dom);
 
@@ -45,7 +58,7 @@ function slider(appDiv, app, index) {
   if(index == 0) {
     tc_square = new PIXI.Sprite(loader.resources["assets/ui/bloque_3/tasa_indicador.png"].texture);
     tc_square.x = app.width * 0.7;
-    tc_square.y = app.height * 1.3;
+    tc_square.y = app.height *1.1;
     tc_square.width = temp_width;
     tc_square.height = temp_height;
     // tc_square.scale.set(scale_temp);
@@ -54,6 +67,7 @@ function slider(appDiv, app, index) {
 
     dom.style.top = (tc_square.y + (tc_square.height * 1.15)) + "px";
     dom.style.left = (tc_square.x + (tc_square.width * 0.05)) + "px";
+    instruction.innerHTML=" Interactúa deslizando el slider y ve el efecto que tiene un aumento o disminución en la Tasa de Compra…"
 
     tcCts = document.createElement("p");
     tcCts.setAttribute("id", "tcCts");
@@ -84,7 +98,7 @@ function slider(appDiv, app, index) {
   if(index == 1) {
     cp_square = new PIXI.Sprite(loader.resources["assets/ui/bloque_3/compraProm_indicador.png"].texture);
     cp_square.x = app.width * 0.7;
-    cp_square.y = app.height * 1.3;
+    cp_square.y = app.height * 1.1;
     cp_square.width = temp_width;
     cp_square.height = temp_height;
     // cp_square.scale.set(scale_temp);
@@ -93,6 +107,7 @@ function slider(appDiv, app, index) {
 
     dom.style.top = (cp_square.y + (cp_square.height * 1.15)) + "px";
     dom.style.left = (cp_square.x + (cp_square.width * 0.05)) + "px";
+    instruction.innerHTML=" Interactúa deslizando el slider y ve el efecto que tiene un aumento o disminución en la Compra Promedio…"
 
     cpSls = document.createElement("p");
     cpSls.setAttribute("id", "cpSls");
@@ -230,7 +245,7 @@ function slider(appDiv, app, index) {
 	//window.addEventListener("mousemove",_onWindowMouseMove,false);
 	//window.addEventListener("mouseup",_onWindowMouseUp,false);
 
-  dom.addEventListener("pointerdown", _onDomMouseDown, false);
+  bg.addEventListener("pointerdown", _onDomMouseDown, false);
   knob.addEventListener("pointerdown",_onKnobMouseDown, false);
 	window.addEventListener("pointermove",_onWindowMouseMove,false);
 	window.addEventListener("pointerup",_onWindowMouseUp,false);

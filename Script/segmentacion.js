@@ -131,15 +131,15 @@ function createSprite(app){
   let title = document.createElement("h1");
   title.className = "title erase";
   title.innerHTML = "Estado de Resultados de Clientes";
-  title.style.top = "1%";
+  title.style.top = app.screen.height * 0.05+"px";
   document.getElementById("aplicacion").appendChild(title);
 
   let subTitle = document.createElement("h2");
   subTitle.className = "subTitle erase";
   subTitle.innerHTML = "Perfil de Clientes";
-  subTitle.style.top = "10%";
+  subTitle.style.top = app.screen.height * 0.13+"px";
   subTitle.style.left=0;
-  
+
   document.getElementById("aplicacion").appendChild(subTitle);
 
       var contButton = new PIXI.Sprite(PIXI.Texture.fromImage("assets/ui/bloque_3/b-continue.png"));
@@ -188,14 +188,44 @@ function createSprite(app){
          //////debugger;
 
            var x = document.createElement("DIV");
-           var br= document.createElement("br");
+           var y = document.createElement("DIV");
+           var z = document.createElement("DIV");
+           var z1 = document.createElement("DIV");
+
            x.setAttribute("id","gsap-anim-text-1");
-           var t = document.createTextNode("Con el objetivo de profundizar en el estudio y análisis de nuestros  clientes, se crearon perfiles en base al ciclo de vida del cliente. Esto nos ayudara a monitorear y crear estrategias especializadas  para cada tipo de cliente Coppel.");
-           x.appendChild(t);
+           y.setAttribute("id","gsap-anim-text-2");
+           z.setAttribute("id","gsap-anim-text-3");
+           z1.setAttribute("id","gsap-anim-text-4");
+           var row1 = document.createTextNode("Con el objetivo de profundizar en el estudio y análisis de nuestros");
+           var row2 = document.createTextNode("clientes, se crearon perfiles en base al ciclo de vida del cliente. ");
+           var row3 = document.createTextNode("Esto nos ayudara a monitorear y crear estrategias especializadas");
+           var row4 = document.createTextNode("para cada tipo de cliente Coppel.");
+           x.appendChild(row1);
+           y.appendChild(row2);
+           z.appendChild(row3);
+           z1.appendChild(row4);
            document.body.appendChild(x);
            contenedor.appendChild(x);
+           contenedor.appendChild(y);
+           contenedor.appendChild(z);
+           contenedor.appendChild(z1);
+/*
+           var contenedor_x = document.createElement("DIV");
+            contenedor_x.setAttribute("id","contenedor_x");
+            contenedor_x.setAttribute("style","position:absolute;right:0;top:50%;")
+            document.getElementById("aplicacion").appendChild(contenedor_x);
+
+              var z = document.createElement("DIV");
+                  z.setAttribute("id","gsap-anim-text-3");
+              var parrafo = document.createTextNode("jose luis");
+              z.appendChild(parrafo);
+              document.body.appendChild(z);
+              contenedor_x.appendChild(z);
+*/
 
 }
+
+
 
     if ( !document.getElementById('contenedor_2') ){
 
@@ -208,19 +238,69 @@ function createSprite(app){
 
            var y = document.createElement("DIV");
            y.setAttribute("id","post-title-text");
-           var s = document.createTextNode("¡Acompáñame a conocer a nuestros clientes...!");
+           var s = document.createTextNode("¡Acompáñame a conocer a nuestros clientes!");
            y.appendChild(s);
            document.body.appendChild(y);
            contenedor_2.appendChild(y);
 }
+          /*
+          $('#gsap-anim-text-1').each(function(){
+            $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+          });
+          $('#gsap-anim-text-2').each(function(){
+            $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+          });
+          $('#gsap-anim-text-4').each(function(){
+            $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+          });
+          $('#gsap-anim-text-3').each(function(){
+            $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+          });
+          */
+          split_txt('#gsap-anim-text-1');
+          split_txt('#gsap-anim-text-2');
+          split_txt('#gsap-anim-text-3');
+          split_txt('#gsap-anim-text-4');
+          split_txt('#post-title-text');
 
+          function split_txt(element){
+            $(''+element).each(function(){
+              $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+            });
+          }
 
+          anime.timeline({loop: false})
+                .add({
+                  targets: '.letter',
+                  opacity: [0,1],
+                  easing: "easeInOutQuad",
+                  duration: 1150,
+                  delay: function(el, i) {
+                    return 15 * (i+1)
+                  },
+                  complete:function(anim){
+                    console.log("complete");
+                  }
+                })
+
+                /*
+                .add({
+                  targets: '.gsap-anim-text-1',
+                  opacity: 0,
+                  duration: 500,
+                  easing: "easeOutExpo",
+                  delay: 1000
+                });
+                */
+/*
           jQuery(document).ready(function($){
           var $startAnim = $("#start-anim");
           var $exitAnim = $("#exit-anim");
           var $demoText = $("#gsap-anim-text-1");
+          //var $demoText3 = $("#gsap-anim-text-3");
           var $postTitleText = $("#post-title-text");
           $demoText.html ( $demoText.html().replace(/./g, "<span>$&</span>").replace(/\s/g, "&nbsp;"));
+          //$demoText3.html ( $demoText3.html().replace(/./g, "<span>$&</span>").replace(/\s/g, "&nbsp;"));
           $postTitleText.html( $postTitleText.html().replace(/./g, "<span>$&</span>").replace(/\s/g, "&nbsp;"));
           //$startAnim.ready(startAnimation);
           //$startAnim.on("click", startAnimation);
@@ -231,6 +311,7 @@ function createSprite(app){
           function startAnimation(){
           TweenLite.set($startAnim, {autoAlpha:0});
           TweenMax.staggerFromTo( $demoText.find("span"), 0.09, {autoAlpha:0, scale:2}, {autoAlpha:1, scale:1}, 0.01, reset );
+          //TweenMax.staggerFromTo( $demoText3.find("span"), 0.09, {autoAlpha:0, scale:2}, {autoAlpha:1, scale:1}, 0.01, reset );
           TweenMax.staggerFromTo( $postTitleText.find("span"), 0.09, {autoAlpha:0, scale:2}, {autoAlpha:1, scale:1}, 0.09, reset );
           //TweenMax.staggerFromTo( $postTitleText.find("span"), 0.4, {autoAlpha:0, rotationX:-90, top:"-30px"}, {autoAlpha:1, rotationX:0, top:"0px"}, 0.1, reset );
         }
@@ -240,7 +321,7 @@ function createSprite(app){
         }
 
           });
-
+*/
           var i=0;
 
     function introduction(){
@@ -268,35 +349,39 @@ function createSprite(app){
              	 text_titulo_2.y=self.app.screen.height/8.5;
 
              	//app.stage.addChild(text_titulo_2);
-
+/*
        jQuery(document).ready(function($){
 
            var $startAnim = $("#start-anim");
            var $exitAnim = $("#exit-anim");
            var $demoText = $("#gsap-anim-text-1");
+           //var $demoText3 = $("#gsap-anim-text-3");
            var $postTitleText = $("#post-title-text");
 
            startAnimation2();
            function startAnimation2(){
                TweenLite.set($startAnim, {autoAlpha:0});
                TweenMax.staggerFromTo( $demoText.find("span"), 0.09, {autoAlpha:1, scale:1}, {autoAlpha:0, scale:2}, 0.0001, reset2);
+               //TweenMax.staggerFromTo( $demoText3.find("span"), 0.09, {autoAlpha:1, scale:1}, {autoAlpha:0, scale:2}, 0.0001, reset2);
                TweenMax.staggerFromTo( $postTitleText.find("span"), 0.09, {autoAlpha:1, scale:1}, {autoAlpha:0, scale:2}, 0.0001, reset2 );}
 
           function reset2(){
               TweenMax.to($demoText, 1, {autoAlpha:0});
+              //TweenMax.to($demoText3, 1, {autoAlpha:0});
               TweenMax.to($postTitleText, 1, {autoAlpha:0});}
 
          });
-
+*/
 
          document.getElementById("aplicacion").removeChild(contenedor);
+         //document.getElementById("aplicacion").removeChild(contenedor_x);
          document.getElementById("aplicacion").removeChild(contenedor_2);
 
          var Loader = PIXI.loader;
          var ctesAtlas=PIXI.loader.resources['assets/ui/bloque_4/clientes_min/clientes_min.json'].textures;
 
          var cliente_nunca_entre15 = new PIXI.Sprite(ctesAtlas["4.-N-15 125X193.png"]);
-             cliente_nunca_entre15.y = self.app.screen.height/6;
+             cliente_nunca_entre15.y = self.app.screen.height/5.5;
          //cliente_nunca_entre15.anchor.set(0.5);
          cliente_nunca_entre15.scale.set(factorScreen(.99));
          app.stage.addChild(cliente_nunca_entre15);
@@ -304,13 +389,15 @@ function createSprite(app){
          var aplicacionDiv=document.getElementById('main');
          var mainDiv={};
              mainDiv.left=(parseFloat(aplicacionDiv.style.left)/100)*screen.width;
+
          var charDiv1=document.createElement('div');
              charDiv1.setAttribute("class","tags_div erase");
-             charDiv1.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+cliente_nunca_entre15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+             charDiv1.setAttribute("style","color:black;position:absolute;width:"+factorScreen(200)+"px;top:"+cliente_nunca_entre15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               //////debugger;
          var char1_p1=document.createElement('p');
 
              char1_p1.innerHTML="Nunca 0-15";
+             char1_p1.setAttribute("style","color:#ae6cb2;text-decoration:underline;")
          var char1_p2=document.createElement('p');
                  char1_p2.innerHTML="Cliente sin primer compra, entrega de tarjeta hace 0-15 meses.";
               charDiv1.appendChild(char1_p1);
@@ -320,18 +407,19 @@ function createSprite(app){
 
          var activo_sin_vencido = new PIXI.Sprite(ctesAtlas["6.-ASV 163X193.png"]);
          activo_sin_vencido.x = self.app.screen.width*.35;
-         activo_sin_vencido.y = self.app.screen.height/6;
+         activo_sin_vencido.y = self.app.screen.height/5.5;
          //activo_sin_vencido.anchor.set(0.5);
          activo_sin_vencido.scale.set(factorScreen(.99));
          app.stage.addChild(activo_sin_vencido);
 
          var charDiv2=document.createElement('div');
              charDiv2.setAttribute("class","tags_div erase");
-             charDiv2.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+activo_sin_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
+             charDiv2.setAttribute("style","color:black;position:absolute;width:"+factorScreen(200)+"px;top:"+activo_sin_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
               //////debugger;
          var char2_p1=document.createElement('p');
 
              char2_p1.innerHTML="Activo Sin Vencido";
+             char2_p1.setAttribute("style","color:#47ab44;text-decoration:underline;")
          var char2_p2=document.createElement('p');
                  char2_p2.innerHTML="Cliente con saldo en algunas de sus cuentas, sin saldo vencido.";
               charDiv2.appendChild(char2_p1);
@@ -340,18 +428,19 @@ function createSprite(app){
 
          var cliente_saldado_entre15 = new PIXI.Sprite(ctesAtlas["8.-S-15 168X196.png"]);
          cliente_saldado_entre15.x = self.app.screen.width*.65;
-         cliente_saldado_entre15.y = self.app.screen.height/6;
+         cliente_saldado_entre15.y = self.app.screen.height/5.5;
          //cliente_saldado_entre15.anchor.set(0.5);
          cliente_saldado_entre15.scale.set(factorScreen(.99));
          app.stage.addChild(cliente_saldado_entre15);
 
          var charDiv3=document.createElement('div');
              charDiv3.setAttribute("class","tags_div erase");
-             charDiv3.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+cliente_saldado_entre15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+             charDiv3.setAttribute("style","color:black;position:absolute;width:"+factorScreen(200)+"px;top:"+cliente_saldado_entre15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               //////debugger;
          var char3_p1=document.createElement('p');
 
              char3_p1.innerHTML="Saldado 0-15";
+             char3_p1.setAttribute("style","color:#32afb6;text-decoration:underline;margin-top:1%;margin-bottom:0%;")
          var char3_p2=document.createElement('p');
                  char3_p2.innerHTML="Cliente que saldo su cuenta, y que no ha vuelto a comprar en un periodo de 0 a 15 meses.";
               charDiv3.appendChild(char3_p1);
@@ -367,10 +456,10 @@ function createSprite(app){
 
          var charDiv4=document.createElement('div');
              charDiv4.setAttribute("class","tags_div erase");
-             charDiv4.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+cliente_nunca_mas15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+             charDiv4.setAttribute("style","color:black;position:absolute;width:"+factorScreen(200)+"px;top:"+cliente_nunca_mas15.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               //////debugger;
          var char4_p1=document.createElement('p');
-
+             char4_p1.setAttribute("style","color:#8c3b99;text-decoration:underline;")
              char4_p1.innerHTML="Nunca +15";
          var char4_p2=document.createElement('p');
                  char4_p2.innerHTML="Cliente sin primera compra,entrega de tarjeta hace más de 15 meses.";
@@ -420,7 +509,7 @@ function createSprite(app){
              var vencidoDiv=document.createElement('div');
                  vencidoDiv.setAttribute("id","globosVdo");
                  vencidoDiv.setAttribute("class","sin_margen erase");
-                 vencidoDiv.setAttribute("style","z-index:3;font-family:'Roboto-regular';position:absolute;width:200px;height:50px;top:100px;left:400px;background-color:white;border-radius:25px;");
+                 vencidoDiv.setAttribute("style","z-index:3;font-family:'Roboto-regular';position:absolute;width:200px;height:75px;top:100px;left:400px;background-color:white;border-radius:25px;");
              var p_tagACV=document.createElement('p');
 
                  document.body.appendChild(vencidoDiv);
@@ -461,10 +550,10 @@ function createSprite(app){
 
          var charDiv5=document.createElement('div');
              charDiv5.setAttribute("class","tags_div erase");
-             charDiv5.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+activo_con_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
+             charDiv5.setAttribute("style","color:black;position:absolute;width:"+factorScreen(200)+"px;top:"+activo_con_vencido.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
               //////debugger;
          var char5_p1=document.createElement('p');
-
+             char5_p1.setAttribute("style","color:#18451a;text-decoration:underline;")
              char5_p1.innerHTML="Activo con Vencido";
          var char5_p2=document.createElement('p');
                  char5_p2.innerHTML="Cliente con saldo en alguna de sus cuentas, con saldo vencido.";
@@ -522,10 +611,10 @@ function createSprite(app){
 
          var charDiv6=document.createElement('div');
              charDiv6.setAttribute("class","tags_div erase");
-             charDiv6.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+clientes_saldado_mas15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+             charDiv6.setAttribute("style","color:black;position:absolute;width:"+factorScreen(200)+"px;top:"+clientes_saldado_mas15.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               //////debugger;
          var char6_p1=document.createElement('p');
-
+             char6_p1.setAttribute("style","color:#153e4b;text-decoration:underline;")
              char6_p1.innerHTML="Saldado +15";
          var char6_p2=document.createElement('p');
                  char6_p2.innerHTML="Cliente que ha saldado sus cuentas y no ha vuelto comprar en un periodo de más de 15 meses.";
@@ -542,10 +631,10 @@ function createSprite(app){
 
          var charDiv7=document.createElement('div');
              charDiv7.setAttribute("class","tags_div erase");
-             charDiv7.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+generados.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+             charDiv7.setAttribute("style","color:black;position:absolute;width:"+factorScreen(200)+"px;top:"+generados.y+"px;left:"+((mainDiv.left)+cliente_nunca_entre15.x+cliente_nunca_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               //////debugger;
          var char7_p1=document.createElement('p');
-
+             char7_p1.setAttribute("style","color:#fea621;text-decoration:underline;")
              char7_p1.innerHTML="Generados";
          var char7_p2=document.createElement('p');
                  char7_p2.innerHTML="Generación de clientes nuevos en un periodo (Tarjetas entregadas).";
@@ -562,10 +651,10 @@ function createSprite(app){
 
          var charDiv8=document.createElement('div');
              charDiv8.setAttribute("class","tags_div erase");
-             charDiv8.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+z.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
+             charDiv8.setAttribute("style","color:black;position:absolute;width:"+factorScreen(200)+"px;top:"+z.y+"px;left:"+((mainDiv.left)+activo_sin_vencido.x+activo_sin_vencido.width)+"px;font-size:"+factorScreen(19)+"px;")
               //////debugger;
          var char8_p1=document.createElement('p');
-
+             char8_p1.setAttribute("style","color:#fb142a;text-decoration:underline;")
              char8_p1.innerHTML="Clientes Z";
          var char8_p2=document.createElement('p');
                  char8_p2.innerHTML="Cliente en cuenta perdida.";
@@ -582,10 +671,10 @@ function createSprite(app){
 
          var charDiv9=document.createElement('div');
              charDiv9.setAttribute("class","tags_div erase");
-             charDiv9.setAttribute("style","color:white;position:absolute;width:"+factorScreen(200)+"px;height:14%;top:"+quebrantados.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
+             charDiv9.setAttribute("style","color:black;position:absolute;width:"+factorScreen(200)+"px;top:"+quebrantados.y+"px;left:"+((mainDiv.left)+cliente_saldado_entre15.x+cliente_saldado_entre15.width)+"px;font-size:"+factorScreen(19)+"px;")
               //////debugger;
          var char9_p1=document.createElement('p');
-
+             char9_p1.setAttribute("style","color:#fb142a;text-decoration:underline;")
              char9_p1.innerHTML="Quebrantados";
          var char9_p2=document.createElement('p');
                  char9_p2.innerHTML="Clientes vendidos por BanCoppel a Coppel.";
